@@ -143,6 +143,7 @@
                 margin-right: 12px;
                 &:hover {
                     background-color: #0ab45c;
+                    cursor:pointer;
                 }
                 @media(min-width: $md) {
                     height: 50px;
@@ -171,6 +172,7 @@
                 margin-right: 12px;
                 &:hover {
                     background-color: #3E4962;
+                    cursor:pointer;
                 }
                 @media(min-width: $md) {
                     height: 50px;

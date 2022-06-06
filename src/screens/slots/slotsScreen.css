@@ -57,6 +57,9 @@
   cursor: pointer;
   border-bottom: 2px solid #ccc;
 }
+.slot-nav.dropdown {
+  overflow: visible;
+}
 .slot-nav.dropdown ul {
   flex-wrap: wrap;
 }

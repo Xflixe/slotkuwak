@@ -7,7 +7,7 @@ import {
     user_ico,
     refresh
 } from '../../assets/img/icons/icons';
-import {Link, useParams} from "react-router-dom";
+import {Link, Redirect, useParams} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {Actions, useTranslation} from "../../core";
 import ChangeLagunge from "../languages/ChangeLagunge";
@@ -71,8 +71,8 @@ const Header = ({page}) =>{
 
 
 
-                                            <div onClick={()=>ev.emit('withdrawModal', true)} className="withdraw-link">{t("withdraw")}</div>
-                                            <div onClick={()=>ev.emit('depositModal', true)} className="deposit-link">{t("deposit")}</div>
+                                            <div onClick={()=>{User.isLogged? ev.emit('withdrawModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="withdraw-link">{t("withdraw")}</div>
+                                            <div onClick={()=>{User.isLogged? ev.emit('depositModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="deposit-link">{t("deposit")}</div>
                                             <Link  to={`/${i18n.language}/account`} className="account-link"><img src={user_ico} alt=""/></Link>
                                         {/*
 

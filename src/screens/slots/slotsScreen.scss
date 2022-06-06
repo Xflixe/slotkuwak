@@ -61,6 +61,7 @@
   }
 
   &.dropdown {
+    overflow: visible;
     ul {
       flex-wrap: wrap;
       li {

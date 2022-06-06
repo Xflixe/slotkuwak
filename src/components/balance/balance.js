@@ -1,19 +1,23 @@
 import React, {useEffect, useState} from 'react';
 
 import {useUser} from "../../core/hooks/useUser";
+import {UseEvent} from "../../core/hooks/useEvent";
 import {
     reload,
     viewOff,
     viewOn,
 } from '../../assets/img/icons/icons';
-import {Link, useParams} from "react-router-dom";
+import {Link, Redirect, useParams} from "react-router-dom";
 import {Actions, useTranslation} from "../../core";
+
 
 const Balance = ({route}) =>{
     const {t} = useTranslation()
     const {User,signOut} = useUser();
     const params = useParams();
     const [showBalance,setShowBalance] = useState(false);
+    const ev = UseEvent();
+    const {lang} = useParams();
 
     const [infoData, setInfoData] = useState({
         firstName:'',
@@ -65,6 +69,10 @@ const Balance = ({route}) =>{
                     </svg>
                     <span>{t("Log Out")}</span>
                 </a>
+            </div>
+            <div className="mob-balance-btn">
+                <div onClick={()=>{User.isLogged? ev.emit('withdrawModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="btn-with withdraw-link">{t("withdraw")}</div>
+                <div onClick={()=>{User.isLogged? ev.emit('depositModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="btn-with deposit-link">{t("deposit")}</div>
             </div>
             {/*<div className="col-12">
                 <div

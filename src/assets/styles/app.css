@@ -20403,6 +20403,7 @@ input.for-confirm {
 }
 .navbar .navbar-head .authorization-interface .deposit-link:hover {
   background-color: #0ab45c;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .navbar .navbar-head .authorization-interface .deposit-link {
@@ -20433,6 +20434,7 @@ input.for-confirm {
 }
 .navbar .navbar-head .authorization-interface .withdraw-link:hover {
   background-color: #3E4962;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .navbar .navbar-head .authorization-interface .withdraw-link {
@@ -22485,23 +22487,30 @@ button:active, .btn-primary:active {
 
 .mob-balance-btn {
   display: none;
+  flex-direction: row;
+  margin-bottom: 20px;
+  padding: 0;
 }
 .mob-balance-btn .btn-with {
-  display: flex;
-  align-items: center;
+  flex: 1 50%;
+  padding: 0;
   color: #fff;
   border-radius: 6px;
   background-color: #171e2d;
   border: 2px solid #3E4962;
   transition: all 0.15s linear;
-  margin: 0;
-  width: 100%;
+  margin: 0 5px;
 }
 .mob-balance-btn .btn-with:hover {
   background-color: #242d42;
 }
 .mob-balance-btn .btn-dep {
   width: 100%;
+}
+.mob-balance-btn .deposit-link {
+  background-color: #00984a !important;
+  color: #e6e9f1;
+  border: 2px solid #00984a;
 }
 
 .footer {
@@ -23764,8 +23773,8 @@ select {
     display: none !important;
   }
 
-  .account-billing-info .mob-balance-btn {
-    display: block;
+  .mob-balance-btn {
+    display: flex;
   }
 }
 @media (max-width: 321px) {

@@ -19,6 +19,9 @@ import {
     evolution_img,
     vivogames,
     vivogames_img,
+    evolution_gaming,
+    vivo_gaming,
+    bet_ames
 } from "../../assets/img/casino/images";
 
 const CasinoScreen = () =>{
@@ -114,23 +117,32 @@ console.log(selectedProvider)
                 <div className="container">
                     <div className="casino-grid">
                         <div className="item-box" onClick={()=>window.open(`/${i18n.language}/playSlot?id=1106&gameId=105&gameType=casino`)}>
-                            <img className="bg" src={evolution_img}/>
+                            <img className="bg" src={evolution_gaming}/>
                             <ul>
-                                <li className="provider-logo"><img src={evolution}/></li>
+                                <li className="provider-logo">
+                                    <div>Evolution Gaming</div>
+                                    <div>400 Games</div>
+                                </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>
                         <div className="item-box" onClick={()=>window.open(`/${i18n.language}/playSlot?id=11&gameId=e864e7d293376c830c58d7ddddf9983f8d852718&gameType=casino`)}>
-                            <img className="bg" src={vivogames_img}/>
+                            <img className="bg" src={vivo_gaming}/>
                             <ul>
-                                <li className="provider-logo"><img src={vivogames}/></li>
+                                <li className="provider-logo">
+                                    <div>VivoGaming</div>
+                                    <div>400 Games</div>
+                                </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>
                         <div className="item-box" onClick={()=>window.open(`/${i18n.language}/playSlot?id=34&gameId=5687990baddbb934621c0b80b0f5f989f521d1a5&gameType=casino`)}>
-                            <img className="bg" src={betgames_img}/>
+                            <img className="bg" src={bet_ames}/>
                             <ul>
-                                <li className="provider-logo"><img src={betgames}/></li>
+                                <li className="provider-logo">
+                                    <div>Betgames.tv</div>
+                                    <div>400 Games</div>
+                                </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>

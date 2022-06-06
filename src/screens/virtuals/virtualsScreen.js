@@ -15,7 +15,9 @@ import {
     onetwogaming,
     onetwologo,
     goldenrace,
-    goldenrace_img
+    goldenrace_img,
+    kiron,
+    golden
 } from "../../assets/img/virtuals/images";
 
 
@@ -110,9 +112,22 @@ const VirtualsScreen = () =>{
                 <div className="container">
                     <div className="virtual-grid">
                         <div className="item-box"  onClick={()=>window.open(`/${i18n.language}/playSlot?id=1049&gameId=10114`)}>
-                            <img className="bg" src={goldenrace_img}/>
+                            <img className="bg" src={golden}/>
                             <ul>
-                                <li className="provider-logo"><img src={goldenrace}/></li>
+                                <li className="provider-logo">
+                                    <div>GoldenRace</div>
+                                    <div>400 Games</div>
+                                </li>
+                                <li className="arrow"><img src={arrow}/></li>
+                            </ul>
+                        </div>
+                        <div className="item-box"  onClick={()=>window.open(`/${i18n.language}/playSlot?id=80&gameId=28`)}>
+                            <img className="bg" src={kiron}/>
+                            <ul>
+                                <li className="provider-logo">
+                                    <div>kiron</div>
+                                    <div>400 Games</div>
+                                </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>

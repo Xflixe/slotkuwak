@@ -303,13 +303,13 @@ const SignUp =() =>{
     }
 
     return show && (
-        <PLXModal title={t("Sign Up")} onClose={()=>setShow(false)} dialogStyle={{maxWidth:'600px'}} contentStyle={{width:'600px'}}>
+        <PLXModal title={t("Sign Up")} onClose={()=>setShow(false)} dialogStyle={{maxWidth:'350px'}} contentStyle={{width:'600px'}}>
             <form style={{marginTop:'20px'}} onSubmit={(event)=>{
                 event.preventDefault();
 
                 onSignUp(signUpForm);
             }} className="signUp-form">
-                <div className="row"s>
+                <div className="row">
                     {/*<div className="col-12 col-md-6">
                                 <div className={`input-label ${error("firstName")}`}>
                                     <input type="text" name="firstName" id="name"
@@ -328,7 +328,7 @@ const SignUp =() =>{
                                     <label htmlFor="surname">Surname</label>
                                 </div>
                             </div>*/}
-                    <div className="col-12 col-md-6">
+                    <div className="col-12">
                         <div className={`input-label ${error("username")}`}>
                             <input type="text" name="username" id="surname"
                                    value={signUpForm.username}
@@ -381,7 +381,7 @@ const SignUp =() =>{
                         </div>
 
                     </div>*/}
-                    <div className="col-12 col-md-6" >
+                    <div className="col-12" >
                         {/*<div className="select-label" style={{width:"150px" }}>
                                     <select className="select2" placeholder="Currency"
                                             value={signUpForm.currencyCode}
@@ -410,7 +410,7 @@ const SignUp =() =>{
 
                     </div>
 
-                    <div className="col-12 col-md-6">
+                    <div className="col-12">
                         <div className={`input-label ${error("password")}`}>
                             <input type={passType.pass1}
                                    name="password"
@@ -422,7 +422,7 @@ const SignUp =() =>{
                             <div className={`toggle-password ${passType.pass1==='text'?'active':'hide'}`} onClick={()=>{togglePassType('pass1')}}/>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6">
+                    <div className="col-12">
                         <div className={`input-label ${error("password2")}`}>
                             <input
                                 type={passType.pass2}

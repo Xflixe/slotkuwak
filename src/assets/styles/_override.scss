@@ -708,10 +708,8 @@ select{
     .deposit-link {display: none !important;}
     //.navbar-balance {margin-right: 0 !important;}
   }
-  .account-billing-info {
-    .mob-balance-btn {
-      display: block;
-    }
+  .mob-balance-btn {
+    display: flex;
   }
 }
 

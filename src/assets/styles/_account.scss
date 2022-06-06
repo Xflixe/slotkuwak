@@ -312,23 +312,37 @@
 }
 .mob-balance-btn {
     display: none;
+    //display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    padding: 0;
+    //flex-wrap: wrap;
 
     .btn-with {
-        display: flex;
-        align-items: center;
+        //display: flex;
+        flex:1 50%;
+        padding: 0;
+        //align-items: center;
         color: #fff;
         border-radius: 6px;
         background-color: #171e2d;
         border: 2px solid #3E4962;
         transition: all 0.15s linear;
-        margin: 0;
-        width: 100%;
+        margin: 0 5px;
+        //width: 100%;
         &:hover {
             background-color: #242d42;
         }
     }
     .btn-dep {
         width: 100%;
+    }
+
+    .withdraw-link {}
+    .deposit-link {
+        background-color: #00984a !important;
+        color: #e6e9f1;
+        border: 2px solid #00984a;
     }
 }
 

@@ -5,22 +5,20 @@
 }
 .virtual-grid .item-box {
   color: #fff;
-  max-width: 33.33%;
-  position: relative;
+  max-width: calc(50% - 10px);
   margin: 0 5px 10px;
 }
 .virtual-grid .item-box .bg {
   width: 100%;
 }
 .virtual-grid .item-box ul {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   display: flex;
   align-items: center;
   list-style: none;
   padding: 0 20px;
+  background: #1B2235;
+  height: 60px;
 }
 .virtual-grid .item-box ul li:first-child {
   flex: 1 1;
@@ -30,6 +28,16 @@
 }
 .virtual-grid .item-box .provider-logo img {
   height: 25px;
+}
+.virtual-grid .item-box .provider-logo div {
+  line-height: 18px;
+}
+.virtual-grid .item-box .provider-logo div:first-child {
+  font-size: 18px;
+}
+.virtual-grid .item-box .provider-logo div:last-child {
+  font-size: 14px;
+  color: #8F9EC8;
 }
 
 @media (max-width: 450px) {

@@ -4,8 +4,8 @@
   flex-wrap: wrap;
   .item-box {
     color: #fff;
-    max-width: 33.33%;
-    position: relative;
+    max-width: calc(50% - 10px);
+    //position: relative;
     margin: 0 5px 10px;
 
     .bg {
@@ -13,14 +13,16 @@
     }
 
     ul {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      //position: absolute;
+      //bottom: 0;
+      //left: 0;
       width: 100%;
       display: flex;
       align-items: center;
       list-style: none;
       padding: 0 20px;
+      background: #1B2235;
+      height: 60px;
       li {
         &:first-child {flex:1 1;}
       }
@@ -31,6 +33,16 @@
     }
     .provider-logo {
       img {height: 25px}
+      div {
+        line-height: 18px;
+        &:first-child {
+          font-size: 18px;
+        }
+        &:last-child {
+          font-size: 14px;
+          color: #8F9EC8;
+        }
+      }
     }
   }
 }
