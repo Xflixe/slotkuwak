@@ -90,16 +90,16 @@ const Footer =()=>{
                                 <Link to={`/${i18n.language}/aboutUs`}>{t("About Us")}</Link>
                             </li>
                             <li>
-                                <Link to={`/${i18n.language}/terms`}>{t("Terms and conditions")}</Link>
+                                <Link to={`/${i18n.language}/terms/2/331`}>{t("Terms and conditions")}</Link>
                             </li>
                             <li>
                                 <Link to={`/${i18n.language}/contact`}>{t("Contact Us")}</Link>
                             </li>
 
-                            <li><Link to={`/${i18n.language}/privacy`}>{t("Privacy Policy")}</Link></li>
-                            <li><Link to={`/${i18n.language}/kyc_aml`}>{t("KYC/AML Policy")}</Link></li>
-                            <li className="d-none d-md-flex"><Link to={`/${i18n.language}/responsible_gaming`}>{t("Responsible Gaming")}</Link></li>
-                            <li><Link to={`/${i18n.language}/self_exclusion_policy`}>{t("Self Exclusion Policy")}</Link></li>
+                            <li><Link to={`/${i18n.language}/terms/3/11`}>{t("Privacy Policy")}</Link></li>
+                            <li><Link to={`/${i18n.language}/terms/8/881`}>{t("KYC/AML Policy")}</Link></li>
+                            <li className="d-none d-md-flex"><Link to={`/${i18n.language}/terms/5/551`}>{t("Responsible Gaming")}</Link></li>
+                            <li><Link to={`/${i18n.language}/terms/5/552`}>{t("Self Exclusion Policy")}</Link></li>
 
                         </ul>
                     </div>

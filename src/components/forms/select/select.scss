@@ -72,7 +72,7 @@
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
-    width: 100%;
+    width: calc(100% + 20px);
     background-color: #151b29;
     border: 2px solid #1c243a;
     z-index: 9;
@@ -122,6 +122,14 @@
         span {
           padding-left: 10px;
           font-size: 12px;
+        }
+
+        &.prefix {
+          span{
+            padding-left: 0;
+            padding-right: 10px;
+            font-size: 14px;
+          }
         }
 
         &:hover {

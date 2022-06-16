@@ -114,7 +114,7 @@ const Withdraw = ({onClose})=>{
     }
 
     return (
-        <div className="row withdraw-content">
+        <div className="row withdraw-content" style={{}}>
             {
                 <PLXModal title={t("Withdraw")} onClose={()=>onClose(false)} contentStyle={{width:'350px'}} dialogStyle={{width:"350px"}}  >
                     <div style={{minWidth:'200px'}}>

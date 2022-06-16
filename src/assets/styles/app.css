@@ -23136,6 +23136,21 @@ a:hover {
   color: #af8b3a;
 }
 
+.custom-modal .has_banner {
+  display: flex;
+  flex-direction: row;
+}
+.custom-modal .has_banner .banner_box {
+  flex: 1;
+  background-size: cover !important;
+  background-position: center !important;
+}
+@media (max-width: 700px) {
+  .custom-modal .has_banner .banner_box {
+    display: none;
+  }
+}
+
 .slider-container .swiper {
   border-radius: 6px;
 }

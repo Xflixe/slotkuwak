@@ -1,3 +1,7 @@
+.withdraw-content {
+  position: relative;
+  z-index: 21;
+}
 .withdraw-content .close-btn:hover {
   cursor: pointer;
 }

@@ -17,7 +17,7 @@ const Header = ({page}) =>{
     const dispatch = useDispatch();
     const {t,i18n} = useTranslation();
     const ev = UseEvent();
-    const {User} = useUser();
+    const {User,checkSession} = useUser();
     const {lang} = useParams();
     const [loaded,setLoaded]=useState(false);
     const [rotate,setRotate]=useState(false);
@@ -69,10 +69,20 @@ const Header = ({page}) =>{
 
                                             </div>
 
-
-
-                                            <div onClick={()=>{User.isLogged? ev.emit('withdrawModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="withdraw-link">{t("withdraw")}</div>
-                                            <div onClick={()=>{User.isLogged? ev.emit('depositModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="deposit-link">{t("deposit")}</div>
+                                            <div onClick={()=>{
+                                                checkSession().then(response=>{
+                                                    if(response){
+                                                        ev.emit('withdrawModal', true)
+                                                    }
+                                                })
+                                            }} className="withdraw-link">{t("withdraw")}</div>
+                                            <div onClick={()=>{
+                                                checkSession().then(response=>{
+                                                    if(response){
+                                                        ev.emit('depositModal', true)
+                                                    }
+                                                })
+                                            }} className="deposit-link">{t("deposit")}</div>
                                             <Link  to={`/${i18n.language}/account`} className="account-link"><img src={user_ico} alt=""/></Link>
                                         {/*
 

@@ -1,18 +1,75 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {ContentNavigator, Footer, Header, Swp} from "../../components";
 import {useTranslation} from "../../core";
+import './terms.scss';
+import _ from "lodash";
+import {useNavigation} from "../../core/hooks/useNavigation";
+import {Link, useHistory, useParams} from "react-router-dom";
+
+import {TERMS_CONTENT} from '../../data/termns_content';
+import {TERMS_NAV} from '../../data/termns_nav';
 
 
 const TermScreen = () =>{
-    const {i18n} = useTranslation()
+    const nav = TERMS_NAV;
+    const data = TERMS_CONTENT;
+
+    const {i18n} = useTranslation();
     const {t} = useTranslation();
+    const n = useNavigation();
+    const history = useHistory();
+    const [mobMenu, setMobMenu] = useState(false);
+
+    const {main,sub} = useParams();
+    const params = useParams();
 
     return (
         <>
             <Header page={"terms"}/>
 
             <main className="page">
+                <div className="container">
+                    <div className="mob-menu">
+                        <i onClick={()=>setMobMenu(!mobMenu)}/><span>Terms And Conditions</span>
+                    </div>
+                    <div className={`terms-wrapper ${mobMenu?'active':''}`}>
+                        <div className={`navigation ${mobMenu?'active':''}`}>
+                            {
+                                 _.map(nav,(v,index)=>{
+                                    return  <div className={`item ${v?.children?'list':''} ${main === v.id?'active':''}`} key={index}  >
+                                        <Link to={`/${i18n.language}/terms/${v.id}`}>
+                                            <div className="title">
+                                                <span>{v?.title_en}</span>
+                                            </div>
+                                        </Link>
+                                        {
+                                            v?.children && <div className="sub">
+                                                {
+                                                    _.map(v?.children,(child,key)=>{
+                                                        return <Link to={`/${i18n.language}/terms/${main}/${child.id}`} key={key} className={`${sub === child.id?'active':''}`}>
+                                                            <span>{child.title_en}</span>
+                                                        </Link>
+                                                    })
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                })
+                            }
+                        </div>
+                        <div className="terms-content">
+                            {
+                                _.map(data,(v,key)=>{
+                                    return v.menu_id === sub && <div key={key} dangerouslySetInnerHTML={{__html: v.text}} />
+                                })
+                            }
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            {/*<main className="page">
                 <div className="container">
                     <ContentNavigator page="terms" lang={i18n.language}/>
                     <div className="page-wrapper">
@@ -40,7 +97,7 @@ const TermScreen = () =>{
                         </div>
                     </div>
                 </div>
-            </main>
+            </main>*/}
 
 
 

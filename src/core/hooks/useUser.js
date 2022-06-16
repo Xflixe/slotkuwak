@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {SIGN_IN} from "../store/actionTypes";
 import _ from 'lodash'
+import {Actions} from "../index";
 export function useUser() {
     const User = useSelector(store=>store.User);
     const dispatch = useDispatch();
@@ -26,5 +27,9 @@ export function useUser() {
         }
     }
 
-    return  {User, signIn, signOut}
+    const checkSession = () => {
+      return dispatch(Actions.User.checkSession())
+    }
+
+    return  {User, signIn, signOut, checkSession}
 }

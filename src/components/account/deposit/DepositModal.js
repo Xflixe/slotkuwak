@@ -44,6 +44,9 @@ const DepositModal = ({onClose})=>{
     const [qrData,setQrData] = useState({})
     const [selectedCurrency,setSelectedCurrency] = useState({id:"BTC",title:"BTC",name:"Bitcoin"});
     const [copyText,setCopyText] = useState(false);
+    const [crypto,setCrypto]=useState('');
+    const [deposit,setDeposit]=useState({amount:'', address:""});
+
     useEffect(()=>{
         if(qr){
             getCurrencyCourse();
@@ -68,7 +71,14 @@ const DepositModal = ({onClose})=>{
 
 
     return (
-            <PLXModal title={t("Deposit QR")} onClose={()=>onClose(false)} className={'deposit-modal-new'} dialogStyle={{width:'300px'}} contentStyle={{width:'300px'}} >
+            <PLXModal title={t("Deposit QR")} onClose={()=>onClose(false)} className={'deposit-modal-new'}
+                      dialogStyle={{width:'300px'}}
+                      contentStyle={{width:'300px'}}
+                      banner={{
+                          width:'300px',
+                          url:'https://www.lider-bet.com/reactive/registration/static/media/sporttournament.5dd14703.jpg'
+                      }}
+            >
             <br/>
             <SelectBox
                 data={currencyList}
@@ -85,14 +95,43 @@ const DepositModal = ({onClose})=>{
                         <>
                             <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>{qrData?.exchangeRate?.rateFrom} {qrData.currency}  ~ {qrData?.exchangeRate?.rateTo} {qrData.toCurrency}</p>
                             <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>Min deposit:  {qrData?.exchangeRate?.minAmountFrom} {qrData.currency}</p>
-                            <br/>
-                            <a href={qr?.url} target={"_blank"} style={{textAlign:'center',borderRadius:'3px'}}>
+
+
+
+                            <div className="new-input-label">
+                                <div className="input-box">
+                                    <input type={"number"} name="Amount" id="amount" value={crypto} onChange={event => {
+                                        setCrypto(event.target.value);
+                                        setDeposit({deposit,amount: (event.target.value / qrData?.exchangeRate?.rateTo)});
+                                    }}
+                                    />
+                                    <label htmlFor="amount">{qrData.toCurrency}</label>
+                                </div>
+                            </div>
+
+                            <div className="new-input-label">
+                                <div className="input-box">
+                                    <input type={"number"} name="Amount" id="amount" value={deposit?.amount} onChange={event => {
+                                        setDeposit({...deposit,amount:event.target.value});
+                                        setCrypto(event.target.value * qrData?.exchangeRate?.rateTo);
+                                    }}
+                                    />
+                                    <label htmlFor="amount">{qrData.currency}</label>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <a href={qr?.url} target={"_blank"} style={{textAlign:'center',borderRadius:'3px',padding:'5px 0 10px'}}>
                                 <QRCode value={qrData?.url} fgColor={"black"} size={150} logoImage={logoM_jpg} />
                             </a>
                             <br/>
-                            <br/>
+
                             <div className="row">
-                                <div className="col-12">
+                                <div className="col-12" style={{marginBottom:'0'}}>
                                     <div  className={`input-label-border qr-address`}>
                                         <input  value={qrData?.url} type="text" name="name" id="qrUrl"/>
                                         <label htmlFor="qrUrl">{selectedCurrency.name+' '+t("Address")}</label>

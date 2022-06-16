@@ -5,6 +5,7 @@ const contact = React.lazy(() => import(("./screens/contact/contactScreen")));
 const Redirect = React.lazy(() => import(("./components/redirect/redirect")));
 const slots = React.lazy(() => import(("./screens/slots/slotsScreen")));
 const promo = React.lazy(() => import(("./screens/promo/promoScreen")));
+const promotions = React.lazy(() => import(("./screens/promotions/promotionScreen")));
 const terms = React.lazy(() => import(("./screens/terms/termScreen")));
 const aboutUs = React.lazy(() => import(("./screens/aboutUs/aboutScreen")));
 const casino = React.lazy(() => import(("./screens/casino/casinoScreen")));
@@ -24,6 +25,7 @@ const verification = React.lazy(() => import(("./screens/verification/verificati
 
 
 
+
 export const guestRoutes = [
     { path: '/', name: 'Home', exact:true, component: Redirect, page:"main" },
     { path: '/:lang', name: 'Home', exact:true, component: Redirect, page:"main" },
@@ -33,7 +35,8 @@ export const guestRoutes = [
     { path: '/:lang/slots', name: 'Slots', exact:false, component: slots, page:"slots" },
     { path: '/:lang/virtuals', name: 'Slots', exact:false, component: virtuals, page:"virtuals" },
     { path: '/:lang/promo', name: 'Promo', exact:false, component: promo , page:"promo"},
-    { path: '/:lang/terms', name: 'Terms', exact:false, component: terms , page:"terms"},
+    { path: '/:lang/promotions', name: 'Promotions', exact:false, component: promotions , page:"promotions"},
+
     { path: '/:lang/casino', name: 'Casino', exact:false, component: casino, page:"casino" },
     { path: '/:lang/sport', name: 'Sport', exact:false, component: sport, page:"sport" },
     { path: '/:lang/live', name: 'Live', exact:false, component: live, page:"live" },
@@ -48,6 +51,7 @@ export const guestRoutes = [
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
 
 
+
 ];
 
 export const userRoutes = [
@@ -59,7 +63,10 @@ export const userRoutes = [
     { path: '/:lang/slots', name: 'Slots', exact:false, component: slots, page:"slots" },
     { path: '/:lang/virtuals', name: 'Slots', exact:false, component: virtuals, page:"virtuals" },
     { path: '/:lang/promo', name: 'Promo', exact:false, component: promo, page:"promo" },
-    { path: '/:lang/terms', name: 'Terms', exact:false, component: terms , page:"terms"},
+    { path: '/:lang/promotions', name: 'Promotions', exact:false, component: promotions , page:"promotions"},
+    { path: '/:lang/terms', name: 'Terms', exact:true, component: terms , page:"terms"},
+    { path: '/:lang/terms/:main', name: 'Terms', exact:true, component: terms , page:"terms"},
+    { path: '/:lang/terms/:main/:sub', name: 'Terms', exact:false, component: terms , page:"terms"},
     { path: '/:lang/aboutUs', name: 'Terms', exact:false, component: aboutUs , page:"aboutUs"},
     { path: '/:lang/casino', name: 'Casino', exact:false, component: casino, page:"casino" },
     { path: '/:lang/account', name: 'Account', exact:true, component: account, page:"account" },

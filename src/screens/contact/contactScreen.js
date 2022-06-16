@@ -8,7 +8,7 @@ const ContactScreen = ()=>{
     <Header page={"contact"}/>
         <main className="page">
             <div className="container">
-                <ContentNavigator page="contact" lang={i18n.language}/>
+                {/*<ContentNavigator page="contact" lang={i18n.language}/>*/}
                 <div className="page-wrapper contact">
                     <div className="row">
                         <div className="col-12">

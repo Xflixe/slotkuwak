@@ -1964,6 +1964,7 @@ const Confirmation = () => {
                                                 <div style={{display:'flex',width:"100%"}}>
                                                     <div style={{width:"100px",marginRight: '10px'}}>
                                                         <SelectBox
+                                                            id={"prefix"}
                                                             data={mobileCode}
                                                             value={infoData.mobilePrefix}
                                                             placeholder={t("Prefix")}
@@ -1987,7 +1988,11 @@ const Confirmation = () => {
                                                                     type="button"
                                                                     className="btn-confirm"
                                                                     onClick={()=>{
-                                                                        if(infoData.mobile.trim().length>0){
+                                                                        if(infoData?.mobile === ''){
+                                                                            window.pushEvent(t("Fill Mobile"),"error");
+                                                                            return;
+                                                                        }
+                                                                        if(infoData?.mobile.trim().length>0){
                                                                             PHONE({
                                                                                 prefix:infoData.mobilePrefix,
                                                                                 number:infoData.mobile,

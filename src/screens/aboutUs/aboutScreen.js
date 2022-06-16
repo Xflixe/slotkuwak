@@ -14,7 +14,7 @@ const AboutUsScreen = () =>{
 
             <main className="page">
                 <div className="container">
-                    <ContentNavigator page="aboutUs" lang={i18n.language}/>
+                    {/*<ContentNavigator page="aboutUs" lang={i18n.language}/>*/}
                     <div className="page-wrapper">
                         <div className="row">
                             <div className="col-12">

@@ -68,6 +68,23 @@ const ping = () =>async (dispatch)=>{
         })
     })
 }
+
+const checkSession = () =>async (dispatch)=>{
+    return new Promise(resolve => {
+        http.get({url:Config.User.PING}).then(response=>{
+            console.log("ping",response)
+            dispatch({
+                type: PING,
+                payload: response.status?response.data.data:{},
+                status:response.status
+            })
+            resolve(response.status)
+        }).catch(()=>{
+            resolve(false)
+        })
+    })
+}
+
 const info = ()=>{
     return http.get({url:Config.User.INFO})
 }
@@ -249,5 +266,6 @@ export default {
     getCountryList,
     getMobileCodeList,
     getTransactionHistory,
-    getSlotTransactionHistory
+    getSlotTransactionHistory,
+    checkSession
 }

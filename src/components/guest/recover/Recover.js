@@ -5,6 +5,7 @@ import {Actions, useTranslation} from "../../../core";
 import _ from "lodash";
 import {useOTP} from "../../../core/hooks/useOTP";
 import './Recover.scss';
+import SelectBox from "../../forms/select/NewSelect";
 
 const Recover = () =>{
     const {otp, PHONE,EMAIL,CLOSE,ERROR} = useOTP();
@@ -29,10 +30,21 @@ const Recover = () =>{
         pass1:'',
         pass2:''
     })
-
+    const [mobileCode,setMobileCode]=useState([])
     const [error, setError] = useState(null);
 
+    const getMobileCodeList = ()=> {
+        Actions.User.getMobileCodeList().then(response=>{
+            if(response.status){
+                setMobileCode(_.map(response.data, (v,k)=> {
+                    return _.map(v,(val) => {return {id:val.code,title:val.title,code:val.iso3} })
+                })[0])
+            }
+        })
+    }
+
     useEffect(()=>{
+        getMobileCodeList();
         eventEmitter.on("recover",setType)
         return ()=>eventEmitter.removeListener("recover",e=>setType(null))
     },[])
@@ -133,10 +145,60 @@ const Recover = () =>{
                                     </div>
                                 </div>
                             )
-
                             :
                             (
                                 <div className="col-12">
+                                    <div style={{display:'flex',width:"100%"}}>
+                                        <div style={{width:"100px",marginRight: '10px'}}>
+                                            <SelectBox
+                                                data={mobileCode}
+                                                value={form.prefix}
+                                                placeholder={t("Prefix")}
+                                                //plData={''} plName={t("Choose Sex")}
+                                                onSelect={(e)=> setForm({...form,prefix:e.id})}
+                                            />
+                                        </div>
+                                        <div className={`new-input-label`} style={{flex:1,position: "relative"}}>
+                                            <input
+                                                type="number"
+                                                name="mobile"
+                                                id="mobile"
+                                                className="for-confirm"
+                                                value={form.data}
+                                                onChange={e => setForm({...form,data:e.target.value})}
+                                            />
+                                            <label htmlFor="phone">{t("Phone")}</label>
+                                            {/*{
+                                                infoData?.mobileConfirmed===1?<span className="confirmed">{t("Confirmed")}</span>:
+                                                    <button
+                                                        type="button"
+                                                        className="btn-confirm"
+                                                        onClick={()=>{
+                                                            if(infoData.mobile.trim().length>0){
+                                                                PHONE({
+                                                                    prefix:infoData.mobilePrefix,
+                                                                    number:infoData.mobile,
+                                                                    send:"/os/v1/api/secured/otp/profile-verification-mobile",
+                                                                    verify:"/os/v1/api/secured/otp/profile-verification-mobile",
+                                                                    save:e=>{
+                                                                        if(e){
+                                                                            setInfoData({...infoData,mobileConfirmed:1});
+                                                                            window.pushEvent(t("The operation was performed successfully"),"success");
+                                                                            CLOSE();
+                                                                        }
+
+                                                                    }
+                                                                })
+                                                            }
+                                                        }}
+                                                    >
+                                                        {t("Confirm")}
+                                                    </button>
+                                            }*/}
+                                        </div>
+                                    </div>
+                                </div>
+                                /*<div className="col-12">
                                     <div className={`new-input-label`}  >
                                         <div style={{display:'flex',width:"100%"}}>
                                             <div className="input-label" style={{width:"100px"}}>
@@ -164,7 +226,9 @@ const Recover = () =>{
                                         </div>
 
                                     </div>
-                                </div>
+                                </div>*/
+
+
                             )
 
 

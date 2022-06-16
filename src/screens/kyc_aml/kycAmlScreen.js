@@ -18,22 +18,7 @@ const KycAmlScreen = () =>{
                             <div className="col-12">
                                 <div className="page-headline">{t('Preamble')}</div>
                             </div>
-                            <div className="col-12 page-body">
-                                <p>
-                                    Winfinity N.V. (hereinafter – Organization) represents the organizer of gambling business and owner of gambling business license, operating since 2022 and provides service on the online gaming
-                                </p>
-
-                                <p>
-                                    website https://planetaxbet.com/  organized within the frames of the gaming license.
-                                </p>
-
-                                <p>
-                                    With the purpose of ensuring the highest standards of the offered service and complete fulfillment of requirements of Law of Client’s Country, the organization has elaborated the given policy “On Anti-Money-Laundering Control”, based on: the international law of  “On Facilitating the Prevention of Illicit Income Legalization”, provision of financial monitoring service “On receiving, systematization, processing information by Tax Service Provider and the rule of submitting such information to FMS” and recommendations of Financial Action Task Force (FATF). The goal of the Policy is to elaborate identification of risks, analyses, conduct, reduce and control system for the Organization against money laundering and financing terrorism.
-                                </p>
-
-                                <p>
-                                    The Policy is confirmed by the head of organization and is subject to annual renovation.
-                                </p>
+                            <div className="col-12 page-body"><p>Winfinity N.V. (hereinafter – Organization) represents the organizer of gambling business and owner of gambling business license, operating since 2022 and provides service on the online gaming</p><p>website https://planetaxbet.com/  organized within the frames of the gaming license.</p><p>With the purpose of ensuring the highest standards of the offered service and complete fulfillment of requirements of Law of Client’s Country, the organization has elaborated the given policy “On Anti-Money-Laundering Control”, based on: the international law of  “On Facilitating the Prevention of Illicit Income Legalization”, provision of financial monitoring service “On receiving, systematization, processing information by Tax Service Provider and the rule of submitting such information to FMS” and recommendations of Financial Action Task Force (FATF). The goal of the Policy is to elaborate identification of risks, analyses, conduct, reduce and control system for the Organization against money laundering and financing terrorism.</p><p>The Policy is confirmed by the head of organization and is subject to annual renovation.</p>
                             </div>
                         </div>
 

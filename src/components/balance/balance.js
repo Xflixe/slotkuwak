@@ -46,6 +46,30 @@ const Balance = ({route}) =>{
         console.log('user',User)
     },[params])
 
+
+    const checkStatus=()=>{
+        if(infoData?.verifyStatus !== 0){
+            if(infoData?.hasUserRequestedVerify === true && infoData?.verifyRequest?.result === -1){
+                return <span style={{color:'#ffbc00'}}>{ t("Pending")}</span>
+            }else if(infoData?.hasUserRequestedVerify === true && infoData?.verifyRequest?.result === 0){
+                return <span style={{color:'#f13232'}}>{ t("Rejected")}</span>
+            }else{
+                return <span style={{color:'#f13232'}}>{ t("Not Verified")}</span>
+            }
+        }else {
+            return <span style={{color:'#51a600'}}>Verified</span>
+        }
+
+        //{infoData?.verifyStatus === 0 ?
+        // infoData?.hasUserRequestedVerify?
+            // <span className={"unverified"}>{ t("Not Verified")}</span>:
+        // <span className={"unverified"}>{ t("Not Verified")}</span>:
+        // infoData?.hasUserRequestedVerify?
+        // <span className={"unverified"}>{ t("Not Verified")}</span>:
+        // <span className={"verified"}>{t("Verified")}</span>
+        // }
+    }
+
     return (
         <>
 
@@ -141,12 +165,12 @@ const Balance = ({route}) =>{
                         <Link to={`/${params.lang}/account/verification`} className="d-flex align-items-center justify-content-between nav-link">
                             <span>{t("Account Verification")}</span>
                             {
-                                infoData?.verifyStatus && (
-                                    <div className="verify_status">
-                                        {infoData?.verifyStatus === 0 ? infoData?.hasUserRequestedVerify? <span className={"unverified"}>{ t("Not Verified")}</span>:<span className={"unverified"}>{ t("Not Verified")}</span>:infoData?.hasUserRequestedVerify? <span className={"unverified"}>{ t("Not Verified")}</span>:<span className={"verified"}>{t("Verified")}</span>}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path id="add" d="M14.571,6.571H9.714a.286.286,0,0,1-.286-.286V1.429a1.429,1.429,0,0,0-2.857,0V6.286a.286.286,0,0,1-.286.286H1.429a1.429,1.429,0,0,0,0,2.857H6.286a.286.286,0,0,1,.286.286v4.857a1.429,1.429,0,1,0,2.857,0V9.714a.286.286,0,0,1,.286-.286h4.857a1.429,1.429,0,1,0,0-2.857Zm0,0"/></svg>
-                                    </div>
-                                )
+
+                                <div className="verify_status">
+                                    {checkStatus()}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path id="add" d="M14.571,6.571H9.714a.286.286,0,0,1-.286-.286V1.429a1.429,1.429,0,0,0-2.857,0V6.286a.286.286,0,0,1-.286.286H1.429a1.429,1.429,0,0,0,0,2.857H6.286a.286.286,0,0,1,.286.286v4.857a1.429,1.429,0,1,0,2.857,0V9.714a.286.286,0,0,1,.286-.286h4.857a1.429,1.429,0,1,0,0-2.857Zm0,0"/></svg>
+                                </div>
+
                             }
                         </Link>
                     </li>

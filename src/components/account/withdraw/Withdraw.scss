@@ -1,4 +1,6 @@
 .withdraw-content {
+  position: relative;
+  z-index: 21;
   .close-btn {
     &:hover {
       cursor: pointer;

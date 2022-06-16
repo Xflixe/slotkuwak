@@ -47,14 +47,21 @@ const SelectBox = memo(({id,data,onSelect,value,placeholder,className})=>{
                     <input type="text"  ref={ref3} className={"select-box-search"} style={{background:'#151b29'}} value={text}  onChange={e=>setText(e.target.value)} />
                     <ul>
                         {
-                            _.map(filterData, (v,k)=> <li key={k} onClick={()=>{
-                                onSelect(v);
-                            }}>
-                                {v.title}
-                                {
-                                    v.name?<span>{v.name}</span>:''
-                                }
-                            </li>)
+                            _.map(filterData, (v,k)=> {
+                                console.log(v)
+                                return <li className={id} key={k} onClick={()=>{onSelect(v);}}>
+                                    {
+                                        id === "prefix"? <span>{v?.code}</span>:''
+                                    }
+
+                                    {v.title}
+                                    {
+                                        v.name?<span>{v.name}</span>:''
+                                    }
+
+
+                                </li>
+                            })
                         }
                     </ul>
                 </div>

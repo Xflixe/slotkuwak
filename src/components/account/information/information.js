@@ -8,9 +8,6 @@ import SelectBox from "../../forms/select/NewSelect";
 import {SvgDot} from "../../index";
 import PLXModal from "../../modal/PLXModal";
 
-
-
-
 const currency = [
 /*
     {  id:'USD',title:"US Dollar" },
@@ -37,7 +34,7 @@ const Information = () => {
     const [forEdit,setForEdit] = useState({
         email:'',
         mobile:''
-    })
+    });
     const [infoData, setInfoData] = useState({
         firstName:'',
         email:'',
@@ -60,13 +57,13 @@ const Information = () => {
         question2:'',
         answer2:''
     });
-    const [loader,setLoader]=useState(false)
-    const [securityQuestionsLoader,setSecurityQuestionsLoader]=useState(false)
+    const [loader,setLoader]=useState(false);
+    const [securityQuestionsLoader,setSecurityQuestionsLoader]=useState(false);
     const [status,setStatus]=useState({
         status:"",
         msg:""
-    })
-    const [errors,setErrors]=useState([])
+    });
+    const [errors,setErrors]=useState([]);
     const [openChangePass,setOpenChangePass]=useState(false);
     const [openSecretQuestion,setOpenSecretQuestion]=useState(false);
     const [securityQuestions,setSecurityQuestions]=useState([]);
@@ -74,8 +71,8 @@ const Information = () => {
     const [dat2FA,setDat2FA]=useState(false);
 
     const [otpSource,setOtpSource]=useState('');
-    const [countries,setCountries]=useState([])
-    const [mobileCode,setMobileCode]=useState([])
+    const [countries,setCountries]=useState([]);
+    const [mobileCode,setMobileCode]=useState([]);
 
     const getSecurityQuestion =(ans={})=>{
         Actions.User.getSecurityQuestion({loader:setSecurityQuestionsLoader})
@@ -100,7 +97,7 @@ const Information = () => {
         getMobileCodeList();
 
         getInfo();
-    },[])
+    },[]);
 
     useEffect(()=>{
         if(openSecretQuestion && securityQuestions.length===0){
@@ -392,7 +389,6 @@ const Information = () => {
                                                             className="prefix"
                                                             value={infoData.mobilePrefix}
                                                             onSelect={e =>{
-                                                                console.log(e)
                                                                 setInfoData({...infoData,mobilePrefix:e.title})
                                                             }}
                                                         />
@@ -412,6 +408,10 @@ const Information = () => {
                                                             (forEdit.mobile === '' && infoData.mobileConfirmed === 1)?
                                                             <button
                                                                 onClick={()=>{
+                                                                    if(infoData?.mobile === ''){
+                                                                        window.pushEvent('Fill Mobile Field','error');
+                                                                        return;
+                                                                    }
                                                                     setForEdit({...forEdit,mobile:infoData.mobile});
                                                                     setInfoData({...infoData,mobileConfirmed:0,mobile:''});
                                                                     /*if(infoData.email.trim().length>0){
@@ -479,12 +479,16 @@ const Information = () => {
                                                                     type="button"
                                                                     className="btn-confirm"
                                                                     onClick={()=>{
+                                                                        if(infoData?.mobile === ''){
+                                                                            window.pushEvent('Fill Mobile Field','error');
+                                                                            return;
+                                                                        }
                                                                         if(forEdit.mobile === infoData.mobile) {
                                                                             window.pushEvent('use another mobile number','error');
                                                                             return;
                                                                         }
 
-                                                                        if(infoData.mobile.trim().length>0){
+                                                                        if(infoData?.mobile.trim().length>0){
                                                                             setForEdit({...forEdit,mobile:''});
                                                                             PHONE({
                                                                                 prefix:infoData.mobilePrefix,
