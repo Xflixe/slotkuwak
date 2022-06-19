@@ -39,7 +39,7 @@ const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,con
                 <div className={`modal-dialog modal-dialog-centered auth-modal ${className}`} style={st}>
                     <div className={`${devWidth?'has_banner':''}`}>
                         {
-                            devWidth?<div className="banner_box" style={{minWidth:`${banner?.width}`,background:`url(${banner?.url})`}}/>:''
+                            devWidth?<div className="banner_box" style={{minWidth:`${banner?.width}`,background:`url(${banner?.url})`,backgroundColor:"#1d2438"}}/>:''
                         }
 
                         <div className="modal-cont">

@@ -63,7 +63,7 @@
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  width: calc(100% + 20px);
+  width: 100%;
   background-color: #151b29;
   border: 2px solid #1c243a;
   z-index: 9;
@@ -75,6 +75,9 @@
   /* Track */
   /* Handle */
   /* Handle on hover */
+}
+.input-select .select-option-box.prefix {
+  width: calc(100% + 20px);
 }
 .input-select .select-option-box::-webkit-scrollbar {
   width: 10px;

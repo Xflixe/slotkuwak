@@ -256,7 +256,7 @@ const Information = () => {
         setErrors([])
 
         let error = _.chain(infoData).map((v,k)=>{
-            if(["mobileConfirmed","emailConfirmed","mobilePrefix","mobile","email","hasUserRequestedVerify"].includes(k)){
+            if(["mobileConfirmed","emailConfirmed","mobilePrefix","mobile","email","hasUserRequestedVerify"].indexOf(k) > -1){
                 return {key:k,value:1}
             }
             return {key:k,value:v}

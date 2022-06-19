@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './style.scss';
 import {Actions, useTranslation} from "../../../core";
 import _ from "lodash";
-import {Verification} from "../../index";
-import {Country} from "@microblink/blinkid-in-browser-sdk";
+import {SvgDot, Verification} from "../../index";
+
 import UploadDoc from "../uploadDoc/uploadDoc";
 import {useOTP} from "../../../core/hooks/useOTP";
 import Select from "../../forms/select/Select"
@@ -11,6 +11,7 @@ import SelectBox from "../../forms/select/NewSelect";
 import {useHistory, useParams} from "react-router-dom";
 import moment from "moment";
 import {ERRORS} from "../../../core/utils/errors";
+import {arrowLeftBack} from "../../../assets/img/icons/icons";
 
 /*const countries = [
     {title: 'Afghanistan', id: 'AF'},
@@ -1755,14 +1756,15 @@ const Confirmation = () => {
         country:"",
         mobileConfirmed:0,
         emailConfirmed:0,
-        mobilePrefix:""
+        mobilePrefix:"",
+        requestId:''
     });
 
     const [documents,setDocuments]=useState({
         "passportType":"",
         "docNumber":"",
         "country": "",
-        "doc_expire_date":moment(new Date(),"YYYY-MM-DD").add(1,"days").format('YYYY-MM-DD'),
+        "doc_expire_date":"MM-DD-YYYY",//moment(new Date(),"YYYY-MM-DD").add(1,"days").format('YYYY-MM-DD'),
         "front":"",
         "back":""
     })
@@ -1775,6 +1777,8 @@ const Confirmation = () => {
     const [otpSource,setOtpSources]=useState(null)
     const [countries,setCountries]=useState([])
     const [mobileCode,setMobileCode]=useState([])
+    const [loader,setLoader]=useState(false)
+
     useEffect(()=>{
         getInfo();
         getCountryList();
@@ -1847,36 +1851,50 @@ const Confirmation = () => {
         return errors.indexOf(key)>-1?"error":""
     }
     const nextStep = ()=>{
+
         setErrors([])
         let error = _.chain(infoData).map((v,k)=>{
-            if(["mobileConfirmed","emailConfirmed","mobilePrefix","mobile","email"].includes(k)){
-                console.log(k,v)
+            if(["mobileConfirmed","emailConfirmed","mobilePrefix","mobile","email","requestId"].indexOf(k) > -1){
                 return {key:k,value:1}
             }
             if(k==="dob"){
                 if(v){
-                    let d = moment(new Date(v)).diff(moment(moment(new Date((new Date()).getFullYear()-18, (new Date()).getMonth(),  (new Date()).getDate())).format("YYYY-MM-DD")), 'days')
+                    let d = moment(new Date(v)).diff(moment(moment(new Date((new Date()).getFullYear()-18, (new Date()).getMonth(),  (new Date()).getDate())).format("MM-DD-YYYY")), 'days')
                     if(d>0){
                         return {key:k,value:undefined}
                     }
                 }
-                console.log(k,v)
             }
 
             return {key:k,value:v}
         }).filter(v=>!v.value).map(v=>v.key).value();
 
-        console.log(error);
-
         if(error.length>0){
             setErrors([...error])
         }else{
-             setStep(2)
+                Actions.User.verificationStep1({data:{
+                        ...infoData
+                    },loader:setLoader}).then(response=>{
+                    if(response.status){
+                        setInfoData({...infoData,requestId:response.data.data})
+                        setStep(2)
+                    }
+                }).catch(e=>{
+                    console.log("catch",e)
+                    ERROR({error:t("error")})
+                })
         }
     }
     const finishStep=()=>{
         setErrors([])
         let error = _.chain(documents).map((v,k)=>{
+            if(k==="doc_expire_date"){
+                if(v){
+                    if(v === "MM-DD-YYYY"){
+                        return {key:k,value:undefined}
+                    }
+                }
+            }
             return {key:k,value:v}
         }).filter(v=>!v.value).map(v=>v.key).value();
         if(error.length>0){
@@ -1889,10 +1907,8 @@ const Confirmation = () => {
                 title:t('Confirm Operation'),
                 save:({code,sourceId})=>{
                     if(code){
-                        console.log("infodata",infoData)
                         Actions.User.verification({data:{
                             ...infoData,...documents,otp:code,sourceId:sourceId
-
                         },loader:"verifyOtp"}).then(response=>{
                             if(response.status){
                                 CLOSE();
@@ -1944,7 +1960,6 @@ const Confirmation = () => {
                     aria-labelledby="personal-tab"
                 >
                     <div className="account-tab-inner">
-                        <div className="tab-headline">{t("Account Confirmation")}</div>
 
                         <form onSubmit={e=>{
                             e.preventDefault()
@@ -1952,10 +1967,8 @@ const Confirmation = () => {
                         }} className="personal-data">
                             <div className="tab-content row">
                                 {
-                                    step === 1 ? <div
-                                        className="col-12 col-md-12 tab-pane show active"
-                                        id="information"
-                                    >
+                                    step === 1 ? <div className="col-12 col-md-12 tab-pane show active" id="information">
+                                        <div className="tab-headline">{t("Account Confirmation")}</div>
                                         <div className="row personal-row">
                                             <div className="col-12 d-none d-md-flex">
                                                 <div className="form-title">{t("Information")}</div>
@@ -1983,8 +1996,8 @@ const Confirmation = () => {
                                                         />
                                                         <label htmlFor="phone">{t("Phone")}</label>
                                                         {
-                                                            infoData?.mobileConfirmed===1?<span className="confirmed">{t("Confirmed")}</span>:
-                                                                <button
+                                                            infoData?.mobileConfirmed===1?<span className="confirmed">{t("Confirmed")}</span>: null
+                                                                /*<button
                                                                     type="button"
                                                                     className="btn-confirm"
                                                                     onClick={()=>{
@@ -2011,7 +2024,7 @@ const Confirmation = () => {
                                                                     }}
                                                                 >
                                                                     {t("Confirm")}
-                                                                </button>
+                                                                </button>*/
                                                         }
                                                     </div>
                                                 </div>
@@ -2028,8 +2041,8 @@ const Confirmation = () => {
                                                     />
                                                     <label htmlFor="email">Email</label>
                                                     {
-                                                        infoData?.emailConfirmed===1?<span className="confirmed">Confirmed</span>:
-                                                            <button
+                                                        infoData?.emailConfirmed===1?<span className="confirmed">Confirmed</span>: null
+                                                            /*<button
                                                                 onClick={()=>{
                                                                     if(infoData.email.trim().length>0){
                                                                         EMAIL({
@@ -2050,7 +2063,7 @@ const Confirmation = () => {
                                                                 className="btn-confirm"
                                                             >
                                                                 {t("Confirm")}
-                                                            </button>
+                                                            </button>*/
                                                     }
                                                 </div>
                                             </div>
@@ -2079,7 +2092,7 @@ const Confirmation = () => {
                                             </div>
                                             <div className="col-12 col-md-6">
                                                 <div className={`input-label-border ${error("dob")}`}>
-                                                    <input onChange={e => setInfoData({...infoData,dob:e.target.value})} value={infoData.dob} type="date" name="dob" id="dob" max={moment(new Date((new Date()).getFullYear()-18, (new Date()).getMonth(),  (new Date()).getDate())).format("YYYY-MM-DD")}/>
+                                                    <input onChange={e => setInfoData({...infoData,dob:e.target.value})} value={infoData.dob} type="date" name="dob" id="dob" max={moment(new Date((new Date()).getFullYear()-18, (new Date()).getMonth(),  (new Date()).getDate())).format("MM-DD-YYYY")}/>
                                                     <label htmlFor="dob">{t("Date of birth")}</label>
                                                 </div>
                                             </div>
@@ -2122,9 +2135,8 @@ const Confirmation = () => {
                                     </div>:null
                                 }
                                 {
-                                    step===2? <div
-                                        className="col-12 col-md-12 "
-                                    >
+                                    step===2? <div className="col-12 col-md-12">
+                                        <div className="tab-headline" style={{cursor:'pointer'}} onClick={()=>setStep(1)}><img src={arrowLeftBack} alt=""/> {t("Account Confirmation")}</div>
                                         <div className="row personal-row">
                                             <div className="col-12 order-3 order-md-2">
                                                 <div className="row step2" style={{marginTop:'20px'}}>
@@ -2170,7 +2182,7 @@ const Confirmation = () => {
                                                                     value={documents.doc_expire_date}
                                                                     type="date" name="dob"
                                                                     id="dob"
-                                                                    min={moment(new Date(),"YYYY-MM-DD").add(1,"days").format("YYYY-MM-DD")}/>
+                                                                    min={moment(new Date(),"MM-DD-YYYY").add(1,"days").format("MM-DD-YYYY")}/>
                                                             <label htmlFor="dob">{t("Document Expire Date")}</label>
                                                         </div>
                                                     </div>
@@ -2203,14 +2215,16 @@ const Confirmation = () => {
                         </form>
                         <div className="col-12 col-md-4">
                             <div style={{color:`${status.status ==="success"? 'green':'red'}`}}>{status.msg}</div>
-                            <button type="submit" style={{width:'100%'}} className="btn-primary" onClick={()=>{
+                            <button type="submit" style={{width:'100%',position:'relative',overflow:'hidden'}} className="btn-primary" onClick={()=>{
                                 if(step===1){
-                                    console.log(1111,infoData);
                                     nextStep();
                                 }else{
                                     finishStep();
                                 }
-                            }}>{t("Confirm And Continue")}</button>
+                            }}>
+                                {loader && <div className="loader-wrap"><SvgDot contentStyle={{backgroundColor: '#ffbc00'}}/></div>}
+                                {t("Confirm And Continue")}
+                            </button>
                         </div>
                     </div>
                 </div>

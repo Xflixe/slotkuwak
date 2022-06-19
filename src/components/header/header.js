@@ -62,8 +62,8 @@ const Header = ({page}) =>{
                                             <div className="header-amount-box">
 
                                                 <Link to={`/${i18n.language}/account`} className="navbar-balance d-flex flex-column">
-                                                    <span className="currency">{User.data.accounts.main.currency.iso3}</span>
-                                                    <span className="current-balance">{(User.data.accounts.main.amount).toFixed(2)}</span>
+                                                    <span className="currency">{User?.data?.accounts?.main?.currency?.iso3}</span>
+                                                    <span className="current-balance">{(User?.data?.accounts?.main?.amount).toFixed(2)}</span>
                                                 </Link>
                                                 <span onClick={()=>!rotate?pingBal():''}><img className={rotate?'rotate':''} src={refresh} alt=""/></span>
 

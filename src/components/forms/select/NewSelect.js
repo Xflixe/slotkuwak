@@ -32,7 +32,12 @@ const SelectBox = memo(({id,data,onSelect,value,placeholder,className})=>{
 
     const filterData = useMemo(()=>{
         if(text){
-            return _.filter(data,v=>v?.title.toLowerCase().indexOf(text.toLowerCase())>-1)
+            if(id==="prefix"){
+                return _.filter(data,v=>(v?.code.toLowerCase() + v?.title.toLowerCase()).indexOf(text.toLowerCase())>-1)
+            }else{
+                return _.filter(data,v=>v?.title.toLowerCase().indexOf(text.toLowerCase())>-1)
+            }
+
         }
         return data;
     },[data,text])
@@ -40,26 +45,18 @@ const SelectBox = memo(({id,data,onSelect,value,placeholder,className})=>{
     return (
         <div className={`newSelect-box`} ref={ref2} onClick={()=>{toggleRef2()}}>
         <div className={`input-select input-style ${className}`}  onClick={()=>{toggleSelect()}} >
-            <input type="text" name="select" className={"select-box"}  value={selected?.title||selected?.name} id={id} />
+            <input type="text" name="select" className={"select-box"} disabled={id==="prefix"?true:false}  value={selected?.title||selected?.name} id={id} />
             <label htmlFor={id}>{placeholder}</label>
             {
-                <div className={"select-option-box close-select-box"} ref={ref}>
+                <div className={`select-option-box close-select-box ${id}`} ref={ref}>
                     <input type="text"  ref={ref3} className={"select-box-search"} style={{background:'#151b29'}} value={text}  onChange={e=>setText(e.target.value)} />
                     <ul>
                         {
                             _.map(filterData, (v,k)=> {
-                                console.log(v)
                                 return <li className={id} key={k} onClick={()=>{onSelect(v);}}>
-                                    {
-                                        id === "prefix"? <span>{v?.code}</span>:''
-                                    }
-
+                                    {id === "prefix"? <span>{v?.code}</span>:''}
                                     {v.title}
-                                    {
-                                        v.name?<span>{v.name}</span>:''
-                                    }
-
-
+                                    {v.name?<span>{v.name}</span>:''}
                                 </li>
                             })
                         }

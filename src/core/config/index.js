@@ -9,6 +9,7 @@ export const Config ={
       UPDATE_INFO:"/us/v2/api/secured/personal/info/update",
       OTP:"/us/v2/api/reg/otp/get?type={type}&prefix={prefix}&value={value}",
       VERIFICATION:"/us/v2/api/secured/personal/info/verify",
+      VERIFICATIONSTEP1:"/us/v2/api/secured/personal/info/verify/step/1",
       VERIFICATION_EMAIL:"/us/v2/api/secured/personal/info/email/change",
       VERIFICATION_PHONE:"/us/v2/api/secured/personal/info/mobile/change",
       CHANGE_PASSWORD:"/us/v2/api/secured/personal/info/password/change",

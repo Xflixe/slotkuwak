@@ -76,7 +76,7 @@ const DepositModal = ({onClose})=>{
                       contentStyle={{width:'300px'}}
                       banner={{
                           width:'300px',
-                          url:'https://www.lider-bet.com/reactive/registration/static/media/sporttournament.5dd14703.jpg'
+                          url:''
                       }}
             >
             <br/>

@@ -85,10 +85,10 @@ const Carousel =(props)=>{
             }
 
             slide.forEach((slid, index) => {
-                if (slid.class.includes('preactivede')) {
+                if (slid.class.indexOf('preactivede') > -1) {
                     slid.class = 'slider-single proactivede';
                 }
-                if (slid.class.includes('preactive')) {
+                if (slid.class.indexOf('preactive') > -1) {
                     slid.class = 'slider-single preactivede';
                 }
             });
@@ -144,10 +144,10 @@ const Carousel =(props)=>{
                 preactiveSlide = slide[slideTotal];
             }
             slide.forEach((slid, index) => {
-                if (slid.class.includes('proactivede')) {
+                if (slid.class.indexOf('proactivede') > -1) {
                     slid.class = 'slider-single preactivede';
                 }
-                if (slid.class.includes('proactive')) {
+                if (slid.class.indexOf('proactive') > -1) {
                     slid.class = 'slider-single proactivede';
                 }
             });

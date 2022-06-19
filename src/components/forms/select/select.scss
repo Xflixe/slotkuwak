@@ -72,7 +72,7 @@
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
-    width: calc(100% + 20px);
+    width: 100%;
     background-color: #151b29;
     border: 2px solid #1c243a;
     z-index: 9;
@@ -81,6 +81,9 @@
     //display: none;
     max-height: 200px;
     overflow-y: auto;
+    &.prefix {
+      width: calc(100% + 20px);
+    }
 
     /* width */
     &::-webkit-scrollbar {

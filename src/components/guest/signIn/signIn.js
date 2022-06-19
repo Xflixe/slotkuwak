@@ -218,9 +218,7 @@ const SignIn =() =>{
                             {t("Log In")}
                         </button>
                     </form>
-                    <p style={{fontSize:"0.75rem", color:"white", textAlign:"center", marginTop:"10px"}}>{t("Don't have an account?")} <span className={"forgot-password"} onClick={()=>{
-                        setShow(false);
-                    }}>{t("Sign Up")}</span></p>
+                    <p style={{fontSize:"0.75rem", color:"white", textAlign:"center", marginTop:"10px"}}>{t("Don't have an account?")} <span className={"forgot-password"}  onClick={()=>ev.emit('signUp',true)}>{t("Sign Up")}</span></p>
                 </PLXModal>
             )
         }

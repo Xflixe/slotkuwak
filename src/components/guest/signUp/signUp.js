@@ -306,7 +306,7 @@ const SignUp =() =>{
         <PLXModal title={t("Sign Up")} onClose={()=>setShow(false)} dialogStyle={{width:'350px'}} contentStyle={{width:'350px'}}
                   banner={{
                       width:'300px',
-                      url:'https://www.lider-bet.com/reactive/registration/static/media/sporttournament.5dd14703.jpg'
+                      //url:'https://www.lider-bet.com/reactive/registration/static/media/sporttournament.5dd14703.jpg'
                   }}
         >
             <form style={{marginTop:'20px'}} onSubmit={(event)=>{

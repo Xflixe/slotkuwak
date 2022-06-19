@@ -153,11 +153,36 @@ const verification=({data,loader})=>{
                    "doc_expire_date":moment(data?.doc_expire_date).format("YYYY-MM-DD"),
                    "front":data?.front,
                    "back":data?.back,
-                   "otp":data.otp
+                   "otp":data.otp,
+                    "requestId":data.requestId
                },
                 headers:{  'Content-Type' : 'text/plain' },
                 loader:loader
         });
+}
+const verificationStep1=({data,loader})=>{
+    return  http.post({
+        url:Config.User.VERIFICATIONSTEP1,
+        data:{
+            "mail":data?.email,
+            "sourceId":data?.sourceId,
+            "firstName":data?.firstName,
+            "lastName":data?.lastName,
+            "mobilePrefix":data?.mobilePrefix,
+            "mobile":data?.mobile,
+            "dob":moment(data?.dob).format("YYYY-MM-DD"),
+            "gender":data?.gender,
+            "passportType":data?.passportType,
+            "docNumber":data?.docNumber,
+            "country": data?.country,
+            "doc_expire_date":moment(data?.doc_expire_date).format("YYYY-MM-DD"),
+            "front":data?.front,
+            "back":data?.back,
+            "otp":data.otp
+        },
+        headers:{  'Content-Type' : 'text/plain' },
+        loader:loader
+    });
 }
 
 const verification_email=({data,loader})=>{
@@ -255,6 +280,7 @@ export default {
     resendOtp,
     verifyOtp,
     verification,
+    verificationStep1,
     recoverUserName,
     recoverPassword,
     verification_email,
