@@ -1,12 +1,8 @@
 import React, {useEffect, useRef, useState } from "react";
 // Import Swiper React components
 //import { Swiper, SwiperSlide } from "swiper/react";
-import {Swiper, SwiperSlide} from "swiper/react/swiper-react";
+import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-react";
 
-// Import Swiper styles
-import 'swiper/swiper.scss';
-import 'swiper/modules/navigation/navigation.scss';
-import 'swiper/modules/pagination/pagination.scss';
 
 import _ from 'lodash';
 

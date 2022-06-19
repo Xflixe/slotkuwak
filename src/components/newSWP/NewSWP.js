@@ -6,12 +6,12 @@ import './newSWP.scss';
 
 // Import Swiper styles
 
-import 'swiper/swiper.scss'; // core Swiper
-import 'swiper/modules/autoplay/autoplay.scss';
-import 'swiper/modules/navigation/navigation.scss'; // Navigation module
-import 'swiper/modules/pagination/pagination.scss'; // Pagination module
-import 'swiper/modules/scrollbar/scrollbar.scss'; // Pagination module
-import {Swiper, SwiperSlide} from "swiper/react/swiper-react";
+import '../../../node_modules/swiper/swiper.scss'; // core Swiper
+import '../../../node_modules/swiper/modules/autoplay/autoplay.scss';
+import '../../../node_modules/swiper/modules/navigation/navigation.scss'; // Navigation module
+import '../../../node_modules/swiper/modules/pagination/pagination.scss'; // Pagination module
+import '../../../node_modules/swiper/modules/scrollbar/scrollbar.scss'; // Pagination module
+import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-react";
 import _ from "lodash";
 import {useState} from "react";
 import {Autoplay, Navigation, Pagination} from 'swiper';

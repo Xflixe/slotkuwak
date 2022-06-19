@@ -1,10 +1,8 @@
 import React,{useEffect,useState} from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 //import { Swiper, SwiperSlide } from 'swiper/react';
-import {Swiper, SwiperSlide} from "swiper/react/swiper-react";
-import 'swiper/swiper.scss';
-import 'swiper/modules/navigation/navigation.scss';
-import 'swiper/modules/pagination/pagination.scss';
+import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-react";
+
 import {slotSardCover} from "../../assets/img/images";
 import {play as PlayIcon, play as PlayBtn} from "../../assets/img/icons/icons";
 import _ from 'lodash'

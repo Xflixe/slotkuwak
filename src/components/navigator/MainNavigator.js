@@ -2,7 +2,6 @@ import React from "react";
 import {BrowserRouter as Router, BrowserRouter, Redirect, Route, useParams} from "react-router-dom";
 import {guestRoutes,userRoutes} from "../../route";
 import {createBrowserHistory} from "history";
-import {useUser} from "../../core/hooks/useUser";
 import StickFooter from "../mobile/stickFooter/index"
 const account = React.lazy(() => import(("../../screens/account/accountScreen")));
 

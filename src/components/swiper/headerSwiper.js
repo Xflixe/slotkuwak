@@ -1,10 +1,8 @@
 import React,{useEffect,useState,useRef} from 'react'
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y, Virtual} from 'swiper';
 //import { Swiper, SwiperSlide } from 'swiper/react';
-import {Swiper, SwiperSlide} from "swiper/react/swiper-react";
-import 'swiper/swiper.scss';
-import 'swiper/modules/navigation/navigation.scss';
-import 'swiper/modules/pagination/pagination.scss';
+import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-react";
+
 import _ from 'lodash'
 SwiperCore.use([Navigation,Virtual, Pagination, Scrollbar, A11y]);
 

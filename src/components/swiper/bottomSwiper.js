@@ -1,12 +1,9 @@
 import React,{useEffect,useState} from 'react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 //import { Swiper, SwiperSlide } from 'swiper/react';
-import {Swiper, SwiperSlide} from "swiper/react/swiper-react";
-import 'swiper/swiper.scss';
-import 'swiper/modules/navigation/navigation.scss';
-import 'swiper/modules/pagination/pagination.scss';
-import {slotSardCover} from "../../assets/img/images";
-import {play} from "../../assets/img/icons/icons";
+import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-react";
+
+
 import _ from 'lodash'
 import {Link} from "react-router-dom";
 import {i18n} from "../../core";
