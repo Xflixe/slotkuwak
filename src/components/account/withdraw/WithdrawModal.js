@@ -56,10 +56,10 @@ const Withdraw = ({onClose})=>{
         }
     },[selectedCurrency])
 
-    useEffect(()=>{
-        setExRate(null)
-        getExchangeRate(selectedCurrency?.id)
-    },[])
+    //useEffect(()=>{
+    //    setExRate(null)
+    //    getExchangeRate(selectedCurrency?.id)
+    //},[])
 
 
 

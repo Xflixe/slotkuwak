@@ -383,6 +383,7 @@ const Information = () => {
                                                 <div style={{display:"flex"}} >
                                                     <div className="input-select" style={{width:"100%",maxWidth:'100px'}}>
                                                         <SelectBox
+                                                            search={true}
                                                             data={mobileCode}
                                                             id={"prefix"}
                                                             placeholder={t("Prefix")}
@@ -832,10 +833,9 @@ const Information = () => {
                     <PLXModal title={t('Secret Question')} onClose={()=>{setOpenSecretQuestion(false);setSecurityQuestions([]);}} dialogStyle={{maxWidth:'360px'}} >
                         <form onSubmit={e=>{
                             e.preventDefault();
-                            console.log(questions)
                             //changePassword();
                             saveSecurityAnswers()
-                        }} className="confirm-form password-change">
+                        }} className="confirm-form security-question">
 
                             <div className="row">
                                 <h6 style={{color: '#727fa4'}}>{t("Question")} 1</h6>

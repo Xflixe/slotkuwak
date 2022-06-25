@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Actions, useTranslation} from "../../core";
 import PropTypes from "prop-types";
 import PLXModal from "../modal/PLXModal";
-import {SvgDot} from "../index";
+import {NewModal, SvgDot} from "../index";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {ERRORS} from "../../core/utils/errors";
 
@@ -99,9 +99,7 @@ export const MobileVerificationModal = ({number,prefix,onSubmit,err,send,save,ve
     },[reSend])
 
     return (
-        <PLXModal title={title?title:t('Phone Verification')}
-                  onClose={()=>onClose()}
-                  contentStyle={{maxWidth:'500px' }}>
+        <NewModal title={title?title:t('Phone Verification')} onClose={()=>onClose()} contentStyle={{maxWidth:'500px' }}>
             <form onSubmit={e=>{
                 e.preventDefault();
                 if(!codeRequest){
@@ -136,7 +134,7 @@ export const MobileVerificationModal = ({number,prefix,onSubmit,err,send,save,ve
                     {t("Confirm")}
                 </button>
             </form>
-        </PLXModal>
+        </NewModal>
     )
 
 }

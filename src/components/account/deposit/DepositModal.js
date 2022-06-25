@@ -62,22 +62,20 @@ const DepositModal = ({onClose})=>{
                     setQrData(response?.data?.data);
                 }else{
                     window.pushEvent(response.error?.message,"error")
-
                 }
             }).catch((reason)=>{
-            console.log(reason)
         })
     }
 
 
     return (
             <PLXModal title={t("Deposit QR")} onClose={()=>onClose(false)} className={'deposit-modal-new'}
-                      dialogStyle={{width:'300px'}}
-                      contentStyle={{width:'300px'}}
-                      banner={{
-                          width:'300px',
-                          url:''
-                      }}
+                  dialogStyle={{width:'300px'}}
+                  contentStyle={{width:'300px'}}
+                  banner={{
+                      width:'300px',
+                      url:''
+                  }}
             >
             <br/>
             <SelectBox
@@ -89,14 +87,11 @@ const DepositModal = ({onClose})=>{
                 onSelect={e => setSelectedCurrency(e)}
             />
             <div className="dep-wrap" >
-
                 {
                     (qrData?.url) ? (
                         <>
                             <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>{qrData?.exchangeRate?.rateFrom} {qrData.currency}  ~ {qrData?.exchangeRate?.rateTo} {qrData.toCurrency}</p>
                             <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>Min deposit:  {qrData?.exchangeRate?.minAmountFrom} {qrData.currency}</p>
-
-
 
                             <div className="new-input-label">
                                 <div className="input-box">
@@ -119,11 +114,6 @@ const DepositModal = ({onClose})=>{
                                     <label htmlFor="amount">{qrData.currency}</label>
                                 </div>
                             </div>
-
-
-
-
-
 
                             <a href={qr?.url} target={"_blank"} style={{textAlign:'center',borderRadius:'3px',padding:'5px 0 10px'}}>
                                 <QRCode value={qrData?.url} fgColor={"black"} size={150} logoImage={logoM_jpg} />
@@ -154,8 +144,6 @@ const DepositModal = ({onClose})=>{
                         </div>
                     )
                 }
-
-
             </div>
         </PLXModal>
 

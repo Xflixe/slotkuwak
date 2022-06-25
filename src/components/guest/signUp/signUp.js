@@ -6,12 +6,12 @@ import "./signUp.scss"
 import {useOTP} from "../../../core/hooks/useOTP";
 import PLXModal from "../../modal/PLXModal";
 
-import {SvgDot} from "../../index";
+import {NewModal, SvgDot} from "../../index";
 import Http from "../../../core/http/http2";
 import {UseEvent} from "../../../core/hooks/useEvent";
 import {useCookie} from "../../../core/hooks/useCookie";
 import {useDispatch} from "react-redux";
-
+import signUpBanner from "../../../assets/img/signupBanner.jpg"
 
 
 const MobilePrefixList=[
@@ -188,6 +188,7 @@ const SignUp =() =>{
              setSignUpError("")
              let error = _.chain(signUpForm)
                  .map((v,k)=>{
+
                      return  {key:k,value:v}
                  })
                  .filter(v=>{
@@ -213,6 +214,18 @@ const SignUp =() =>{
              if(signUpForm.password.trim().length<6 || signUpForm.password !== signUpForm.password2){
                  error=[...error,"password","password2"]
              }
+             let errUsername = /^[a-zA-Z0-9_.]+$/.test(signUpForm.username);
+             if(!errUsername){
+                 window.top.pushEvent('Username should contain at least 6 symbols','error');
+                 return;
+             }
+
+             let errPassword = signUpForm.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,}$/)
+
+             if(!errPassword){
+                 error=[...error,"password"]
+             }
+
              if(error.length>0 || !terms){
                  setTermsError(!terms)
                  setErrors([...error])
@@ -303,10 +316,12 @@ const SignUp =() =>{
     }
 
     return show && (
-        <PLXModal title={t("Sign Up")} onClose={()=>setShow(false)} dialogStyle={{width:'350px'}} contentStyle={{width:'350px'}}
+        <NewModal title={t("Sign Up")} onClose={()=>setShow(false)} dialogStyle={{width:'350px'}} contentStyle={{width:'350px'}}
+                  parentIdName="with-form"
                   banner={{
                       width:'300px',
-                      //url:'https://www.lider-bet.com/reactive/registration/static/media/sporttournament.5dd14703.jpg'
+                      url:signUpBanner,
+                      mobUrl:signUpBanner
                   }}
         >
             <form style={{marginTop:'20px'}} onSubmit={(event)=>{
@@ -461,7 +476,14 @@ const SignUp =() =>{
                     </div>
                 </div>
             </form>
-        </PLXModal>
+            <p style={{fontSize:"0.75rem", color:"white", textAlign:"center",marginBottom:0}}>
+                {t("Don't have an account?")}
+                <span className={"forgot-password"}  onClick={()=>{
+                    ev.emit('signUp',false)
+                    ev.emit('signIn',true)
+                }}> {t("Sign In")}</span>
+            </p>
+        </NewModal>
     )
 
 

@@ -6,6 +6,7 @@ export const Config ={
       PING: "/us/v1/api/secured/ping",
       //INFO:"/us/v1/api/secured/personal/info",
       INFO:"/us/v2/api/secured/personal/info",
+      VERIFICATIONINFO:"/us/v2/api/secured/personal/info/verify/check",
       UPDATE_INFO:"/us/v2/api/secured/personal/info/update",
       OTP:"/us/v2/api/reg/otp/get?type={type}&prefix={prefix}&value={value}",
       VERIFICATION:"/us/v2/api/secured/personal/info/verify",

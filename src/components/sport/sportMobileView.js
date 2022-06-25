@@ -4,14 +4,15 @@ import {Actions, useTranslation} from "../../core";
 import _ from 'lodash'
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
+import {UseEvent} from "../../core/hooks/useEvent";
 export const SportMobileView=()=>{
     const {i18n} = useTranslation()
     const {User} = useUser();
     const {lang} = useParams()
-
+    const ev = UseEvent();
     const dispatch = useDispatch();
     const SportLogin=(event)=>{
-        document.getElementById("signIn-btn").click()
+        ev.emit('signIn',true)
     }
     const balanceChangeHandler=(event)=>{
         console.log("balanceChangeHandler",event)

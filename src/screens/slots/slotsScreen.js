@@ -31,8 +31,17 @@ import {
     icon56,
     icon63,
 } from "../../assets/img/slot-nav/icon";
-import image_1 from "../../assets/img/slide/image_1.png";
-import slnav1 from "../../assets/img/slot-nav/caleta.png";
+
+import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
+import img_desk_2 from "../../assets/img/slide/casino/desktop/2.jpg";
+import img_desk_3 from "../../assets/img/slide/slots/desktop/1.jpg";
+import img_desk_4 from "../../assets/img/slide/sport/desktop/1.jpg";
+
+import img_mob_1 from "../../assets/img/slide/lending_mob.jpg";
+import img_mob_2 from "../../assets/img/slide/casino/mobile/2.jpg";
+import img_mob_3 from "../../assets/img/slide/slots/mobile/1.jpg";
+import img_mob_4 from "../../assets/img/slide/sport/mobile/1.jpg";
+import {useParams} from "react-router-dom";
 
 const slIcon = {
     '61':icon61,
@@ -61,6 +70,7 @@ const slIcon = {
 const SlotsScreen = () =>{
     const {t} = useTranslation()
     const {count} = useCount()
+    const {lang}=useParams();
     const [page,setPage]=useState(1)
     const [selected,setSelected] = useState([])
     const [providers,setProviders]=useState([])
@@ -74,12 +84,26 @@ const SlotsScreen = () =>{
     const [showMobileFilter,setShowMobileFilter] = useState(false)
     const [slMobNav,setSlMobNav] = useState(false)
     const [selectedProvider,setSelectedProvider]=useState({name:'All Providers'})
+    const [slideData,setSlideData] = useState(
+        window.innerWidth > 767 ? [
+            {id:2, icon:img_desk_2, url:`/${lang}/casino`},
+            {id:4, icon:img_desk_4, url:`/${lang}/sport`},
+            {id:1, icon:img_desk_1, url:`/${lang}/promotions`},
+            //{id:3, icon:img_desk_3, url:`/${lang}/slots`},
+        ] : [
+            {id:2, icon:img_mob_2, url:`/${lang}/casino`},
+            {id:4, icon:img_mob_4, url:`/${lang}/sport`},
+            {id:1, icon:img_mob_1, url:`/${lang}/promotions`},
+            //{id:3, icon:img_mob_3, url:`/${lang}/slots`},
+        ]
+    );
+
     useEffect(()=>{
         loadProvider();
         loadSlotList()
     },[])
     useEffect(()=>{
-        if(selectedProvider.length>0 || selectedFilters.length>0){
+        if(selectedProvider?.length>0 || selectedFilters?.length>0){
             //setPage(_.size(filteredSlotList)/20 + 1)
             setPage(1)
         }else{
@@ -96,18 +120,18 @@ const SlotsScreen = () =>{
 
     const filteredSlotList = useMemo(()=>{
         let filtered =list;
-        if(searchText.trim().length>0){
+        if(searchText.trim()?.length>0){
             filtered =  _.filter(filtered,v=>v.name.toLowerCase().indexOf(searchText.toLowerCase())>-1)
         }
         if(_.size(selectedProvider)>0){
 
             filtered = _.filter(filtered, slot=>{
-                return  _.intersection([slot.slotProviderId], _.map(selectedProvider,v=>v.id)).length>0
+                return  _.intersection([slot.slotProviderId], _.map(selectedProvider,v=>v.id))?.length>0
             })
         }
         if(_.size(selectedFilters)>0){
             filtered = _.filter(filtered, slot=>{
-                return  _.intersection(_.map(slot.filterGroups,v=>v.id), _.map(selectedFilters,v=>v.id)).length>0
+                return  _.intersection(_.map(slot.filterGroups,v=>v.id), _.map(selectedFilters,v=>v.id))?.length>0
             })
         }
 
@@ -135,19 +159,12 @@ const SlotsScreen = () =>{
         return _.filter(filteredSlotList,(v,k)=>k<page*count());
     }
 
-
-    let slides = <img  src={image_1} alt="1" />;
     return (
         <>
             <Header page={"slots"}/>
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP slide={slides} data={[
-                    {id:1, icon:image_1 },
-                    {id:2, icon:image_1 },
-                    {id:3, icon:image_1 },
-                    {id:4, icon:image_1 }
-                ]} />
+                <NewSWP data={slideData} />
             </div>
 
             <div></div>
@@ -290,7 +307,7 @@ const SlotsScreen = () =>{
                         </div>
 
                         <div className="col-12">
-                            <ShowMore page={page} count={count()} length={filteredSlotList.length} setPage={setPage}/>
+                            <ShowMore page={page} count={count()} length={filteredSlotList?.length} setPage={setPage}/>
                         </div>
 
                     </div>

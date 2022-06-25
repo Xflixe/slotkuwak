@@ -1,0 +1,97 @@
+.user-dropdown {
+  width: 100%;
+  max-width: 290px;
+  background-color: #1B2232;
+  border: 1px solid #283352;
+  border-radius: 6px;
+  position: absolute;
+  right: 35px;
+  top: calc(100% + 10px);
+  color: #8A92A5;
+  z-index: 9999;
+  box-shadow: 0 0 15px #0000007d;
+  display: none;
+}
+.user-dropdown.active {
+  display: block;
+}
+.user-dropdown .user-info {
+  padding: 12px 20px;
+}
+.user-dropdown .user-info h6 {
+  margin-bottom: 0;
+  color: #fff;
+}
+.user-dropdown .money-info {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #293246;
+}
+.user-dropdown .money-info .d-col {
+  flex: 1 50%;
+}
+.user-dropdown .money-info p {
+  font-size: 12px;
+  margin: 0;
+}
+.user-dropdown .money-info span {
+  font-size: 16px;
+  color: #fff;
+}
+.user-dropdown .user-links {
+  padding: 12px 20px;
+  border-bottom: 1px solid #293246;
+}
+.user-dropdown .user-links > * {
+  transition: all 0.15s linear;
+}
+.user-dropdown .user-links .link {
+  display: block;
+  padding: 12px 0;
+  margin: 0;
+  color: #8A92A5;
+  font-size: 16px;
+}
+.user-dropdown .user-links .link:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.user-dropdown .log-out {
+  padding: 14px 20px;
+}
+.user-dropdown .log-out .user-logout {
+  display: flex;
+  align-items: center;
+}
+.user-dropdown .log-out .user-logout svg {
+  fill: #b2bcd6;
+  height: 16px;
+}
+.user-dropdown .log-out .user-logout span {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+  color: #8A92A5;
+  padding-left: 12px;
+}
+.user-dropdown .log-out .user-logout > * {
+  transition: all 0.15s linear;
+}
+.user-dropdown .log-out .user-logout:hover {
+  cursor: pointer;
+}
+.user-dropdown .log-out .user-logout:hover span {
+  color: #fff;
+}
+.user-dropdown .log-out .user-logout:hover svg {
+  fill: #fff;
+}
+@media (max-width: 400px) {
+  .user-dropdown {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+/*# sourceMappingURL=userDropdown.css.map */

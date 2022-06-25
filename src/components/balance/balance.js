@@ -45,7 +45,6 @@ const Balance = ({route}) =>{
         getInfo()
     },[params])
 
-
     const checkStatus=()=>{
         if(infoData.verifyStatus === null) {return}
         if(infoData?.verifyStatus !== 0){
@@ -53,6 +52,8 @@ const Balance = ({route}) =>{
                 return <span style={{color:'#ffbc00'}}>{ t("Pending")}</span>
             }else if(infoData?.hasUserRequestedVerify === true && infoData?.verifyRequest?.result === 0){
                 return <span style={{color:'#f13232'}}>{ t("Rejected")}</span>
+            }else if(infoData?.hasUserRequestedVerify === true && infoData?.verifyRequest?.result === 3){
+                return <span style={{color:'#ffbc00'}}>{ t("Terminate")}</span>
             }else{
                 return <span style={{color:'#f13232'}}>{ t("Not Verified")}</span>
             }
@@ -63,7 +64,6 @@ const Balance = ({route}) =>{
 
     return (
         <>
-
             <div className="col-12 d-flex justify-content-between" style={{padding:'0 10px'}}>
                 <div className="d-flex flex-column flex-md-row align-items-md-center">
                     <span className="user-fullname">{User.data.username}</span>

@@ -61,7 +61,6 @@ const Deposit = ({onClose})=>{
 
                 }
             }).catch((reason)=>{
-            console.log(reason)
         })
     }
     const QRGenerator = () =>{

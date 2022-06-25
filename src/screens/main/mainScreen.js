@@ -4,10 +4,16 @@ import {Carousel, Header, Swp, Footer, Sport,NewSWP,PLAlert} from "../../compone
 import {Link, useParams} from "react-router-dom";
 import {Actions, useTranslation} from "../../core";
 
-import image_1 from '../../assets/img/slide/image_1.png';
-import image_2 from '../../assets/img/slide/image_2.png';
-import image_3 from '../../assets/img/slide/image_3.png';
-import image_4 from '../../assets/img/slide/image_4.png';
+import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
+import img_desk_2 from "../../assets/img/slide/casino/desktop/2.jpg";
+import img_desk_3 from "../../assets/img/slide/slots/desktop/1.jpg";
+import img_desk_4 from "../../assets/img/slide/sport/desktop/1.jpg";
+
+import img_mob_1 from "../../assets/img/slide/lending_mob.jpg";
+import img_mob_2 from "../../assets/img/slide/casino/mobile/2.jpg";
+import img_mob_3 from "../../assets/img/slide/slots/mobile/1.jpg";
+import img_mob_4 from "../../assets/img/slide/sport/mobile/1.jpg";
+
 
 
 const MainScreen = () =>{
@@ -17,7 +23,22 @@ const MainScreen = () =>{
     const [resize,setResize]=useState(window.innerWidth);
     const [mainPageSlotList,setMainPageSlotList]=useState([]);
     const [mainPageCasinoList,setMainPageCasinoList]=useState([]);
-    const [showAlert,setShowAlert]=useState(false);
+
+    const [slideData,setSlideData] = useState(
+        window.innerWidth > 767 ? [
+            {id:1, icon:img_desk_1, url:`/${lang}/promotions`},
+            {id:2, icon:img_desk_2, url:`/${lang}/casino`},
+            {id:4, icon:img_desk_4, url:`/${lang}/sport`},
+            {id:3, icon:img_desk_3, url:`/${lang}/slots`},
+        ] : [
+            {id:1, icon:img_mob_1, url:`/${lang}/promotions`},
+            {id:2, icon:img_mob_2, url:`/${lang}/casino`},
+            {id:4, icon:img_mob_4, url:`/${lang}/sport`},
+            {id:3, icon:img_mob_3, url:`/${lang}/slots`},
+        ]
+    );
+
+
     const getList = (pageId) =>{
         return Actions.Slot.listByPage({webPageId:pageId})
     }
@@ -38,11 +59,6 @@ const MainScreen = () =>{
         }
     },[]);
 
-    let slides = [
-        {id:1, icon:image_1 },
-        {id:2, icon:image_2 }
-    ];
-
     return (
         <>
             <Header page={"main"}/>
@@ -52,19 +68,8 @@ const MainScreen = () =>{
             </div>*/}
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP data={slides} />
+                <NewSWP data={slideData} />
             </div>
-            {/*<div className=" slider">
-                <Swp count={3}  data={[
-                    //{id:1, icon:prg },
-                    {id:2, icon:w2 },
-                    {id:3, icon:sl2 },
-                    {id:4, icon:sl2 },
-                    {id:5, icon:sl2 },
-                    {id:6, icon:sl2 },
-                    {id:7, icon:sl2 }
-                ]}/>
-            </div>*/}
 
             <main className="widget_cont" >
                 <div className="container" ref={ref}>
@@ -260,15 +265,6 @@ const MainScreen = () =>{
             </main>
 
             <Footer/>
-
-            {
-                showAlert && <PLAlert title="Notification" onClose={()=>setShowAlert(false)}
-                                      footer={<button onClick={()=>setShowAlert(false)}>Close</button>}
-                >
-                    <div className="alert_wrap">licensed by the Government of Curacao and operates under the Master License of Gaming Services Provider, N.V. #365/JAZ as an Information</div>
-                </PLAlert>
-            }
-
 
         </>
     )

@@ -4,7 +4,7 @@ import _ from "lodash";
 import {useOutsideAlerter} from "../../../core/hooks/useOutSideClick";
 import {useOutsideRef2} from "../../../core/hooks/useOutSideClickRef2";
 
-const SelectBox = memo(({id,data,onSelect,value,placeholder,className})=>{
+const SelectBox = memo(({id,data,onSelect,value,placeholder,className,error,search,disabled=false})=>{
     const ref = useRef(null);
     const ref2 = useRef(null);
     const ref3 = useRef(null);
@@ -44,12 +44,15 @@ const SelectBox = memo(({id,data,onSelect,value,placeholder,className})=>{
 
     return (
         <div className={`newSelect-box`} ref={ref2} onClick={()=>{toggleRef2()}}>
-        <div className={`input-select input-style ${className}`}  onClick={()=>{toggleSelect()}} >
-            <input type="text" name="select" className={"select-box"} disabled={id==="prefix"?true:false}  value={selected?.title||selected?.name} id={id} />
+        <div className={`input-select input-style ${className} ${error}`}  onClick={()=>{toggleSelect()}} >
+            <input disabled={(id==="prefix" || disabled)?true:false} type="text" name="select" className={"select-box"} value={selected?.title||selected?.name} id={id} />
             <label htmlFor={id}>{placeholder}</label>
             {
                 <div className={`select-option-box close-select-box ${id}`} ref={ref}>
-                    <input type="text"  ref={ref3} className={"select-box-search"} style={{background:'#151b29'}} value={text}  onChange={e=>setText(e.target.value)} />
+                    {
+                        search && <input type="text"  ref={ref3} className={"select-box-search"} style={{background:'#151b29'}} value={text}  onChange={e=>setText(e.target.value)} />
+                    }
+
                     <ul>
                         {
                             _.map(filterData, (v,k)=> {

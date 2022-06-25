@@ -1,0 +1,10 @@
+@media(max-width: 767px){
+  .slider-container {
+    .swiper {
+      .swiper-button-prev,
+      .swiper-button-next {
+        display: none !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+.new-custom-modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2222;
+  transition: opacity 0.15s linear;
+  background-color: rgba(0, 0, 0, 0.34);
+  .wrapper {
+    position: relative;
+    left: calc(50% - 10px);
+    top:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+  }
+
+  .banner_box {
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 6px;
+  }
+  .banner_box_mobile {
+    display: none;
+    width: 100%;
+    padding-top: 25vw;
+    margin-bottom: 20px;
+    max-height: 170px;
+    min-height: 170px;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .modal-box {
+    border-radius: 6px;
+    background: #1d2438;
+    box-shadow: 0px 0px 0px rgb(21 27 41 / 8%);
+    width: 100%;
+    max-width: 350px;
+    padding: 20px 0;
+
+    .modal-head {
+      position: relative;
+      margin: 0 25px 20px;
+
+      .modal-title {
+        font-family: "Proxima Regular", Helvetica,sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        text-align: left;
+        color: #e6e9f1;
+      }
+      .close {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        z-index: 99;
+        transition: all 0.15s linear;
+      }
+    }
+    .content {
+      padding: 0 25px;
+      button.btn-primary {
+        width: 100%;
+      }
+    }
+
+  }
+
+  &#with-form {
+    .content {
+      padding: 0 25px;
+      .forgot-password {
+        margin-top: 5px;
+        &:hover {
+          cursor: pointer;
+          color: #ffbc00;
+        }
+      }
+      .input-label {
+        input {
+          background-color: #262e45;
+
+          &:focus {
+            background-color: #2f3955;
+            & + label {
+              color: #8594c1;
+              top: 20% !important;
+              font-size: 12px;
+            }
+          }
+
+          & + label {
+            top:50%;
+          }
+
+          &:not([value=""]) + label {
+            color: #8594c1;
+            top: 20% !important;
+            font-size: 12px;
+            transform: none;
+          }
+        }
+
+
+      }
+    }
+  }
+
+  @media(max-width: 700px){
+    .wrapper {
+      left: 50%;
+    }
+
+    .banner_box {
+      display: none;
+    }
+    .banner_box_mobile {
+      display: block;
+    }
+  }
+}
+

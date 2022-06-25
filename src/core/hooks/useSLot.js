@@ -17,7 +17,7 @@ export function useSLot() {
         }
         setLoader(slot.gameId);
         Actions.Slot.play({...slot,lang:i18n.language}).then(response=>{
-            console.log(response)
+            console.log('useSLot',response)
             if(response.status && response.data?.resultCode===0){
                 let win;
                 if(response.data.data?.type ===null){
@@ -76,7 +76,14 @@ export function useSLot() {
                     break
                 }
             }else{
-                alert("Error")
+                console.log('notify',response)
+                ev.emit('notify', {
+                    show:true,
+                    text: JSON.stringify(response?.data),
+                    type:'error',
+                    title:'Error'
+                })
+                //alert("Error")
             }
         })
         .finally(()=>setLoader(null))

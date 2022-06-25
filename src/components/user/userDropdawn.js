@@ -1,0 +1,66 @@
+import React, {useEffect, useRef} from 'react';
+
+import './userDropdown.scss';
+import {useTranslation} from "../../core";
+import {useUser} from "../../core/hooks/useUser";
+import {Link, useParams} from "react-router-dom";
+import {useOutsideRef2} from "../../core/hooks/useOutSideClickRef2";
+
+
+
+
+const UserDropDawn = ({onClose,className})=>{
+    const {t,i18n} = useTranslation();
+    const {User,checkSession,signOut} = useUser();
+    const {lang} = useParams();
+    const ref2 = useRef(null);
+    useOutsideRef2(ref2,"account-dropdown-link");
+
+
+
+
+
+    return <>
+
+        <div className={`user-dropdown`} ref={ref2}>
+            <div className="user-info">
+                <h6>{User?.data?.username}</h6>
+                <span>({User?.data?.id})</span>
+            </div>
+            <div className="money-info">
+                <div className="d-col">
+                    <p>Balance</p>
+                    <span>{User?.data?.accounts?.main?.currency?.iso3} {User?.data?.accounts?.main?.amount.toFixed(2)}</span>
+                </div>
+                <div className="d-col">
+                    <p>Bonus Money</p>
+                    <span>{User?.data?.accounts?.main?.currency?.iso3} 0.00</span>
+                </div>
+            </div>
+            <div className="user-links">
+                <Link  to={`/${i18n.language}/account/info`} className="link">Personal Data</Link>
+                <Link  to={`/${i18n.language}/account/transactions`} className="link">Transactions</Link>
+                <Link  to={`/${i18n.language}/account/verification`} className="link">Account Verification</Link>
+            </div>
+            <div className="log-out">
+                <a className="user-logout" onClick={()=>{
+                    signOut(()=>{
+                        try {
+                            localStorage.clear()
+                        }finally {
+                            window.location.href="/"
+                        }
+                    });
+                }}>
+                    <svg id="noun_Log_Out_639972" data-name="noun_Log Out_639972" xmlns="http://www.w3.org/2000/svg" width="17.245" height="13.796" viewBox="0 0 17.245 13.796">
+                        <path id="Path_211" data-name="Path 211" d="M132.9,58.136a1.007,1.007,0,0,0-.467-.235.71.71,0,0,0-.87.757c-.008.886,0,1.768,0,2.655,0,.1-.009.219-.016.318h-.386c-1.544,0-3.088.006-4.632.007-.737,0-.994.236-.994.9v3.69c0,.665.256.89.992.89,1.544,0,3.088-.006,4.632-.006h.415v.365q0,1.317-.006,2.634a.705.705,0,0,0,.482.732.821.821,0,0,0,.879-.222l6.247-5.688a.654.654,0,0,0,0-1.093Q136.039,60.981,132.9,58.136Z" transform="translate(-122.22 -57.49)"/>
+                        <path id="Path_212" data-name="Path 212" d="M6.93,59.336H3.547a1.83,1.83,0,0,1-2.055-1.88q-.006-3.639,0-7.278A1.832,1.832,0,0,1,3.552,48.3c1.036,0,2.073,0,3.109,0,.851,0,.9-.051.865-.841-.021-.452-.113-.535-.6-.536-1.128,0-2.256,0-3.383,0a5.626,5.626,0,0,0-.848.062,3.2,3.2,0,0,0-2.7,3.09c.021,1.245,0,2.487,0,3.741H0c0,1.286-.028,2.618.007,3.927A3.144,3.144,0,0,0,3.134,60.69c1.166.052,2.336.021,3.5.024.876,0,.928-.049.89-.854C7.506,59.392,7.446,59.337,6.93,59.336Z" transform="translate(0.012 -46.924)"/>
+                    </svg>
+                    <span>{t("Log Out")}</span>
+                </a>
+            </div>
+        </div>
+
+    </>
+}
+export default UserDropDawn;

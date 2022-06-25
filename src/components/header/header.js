@@ -13,6 +13,7 @@ import {Actions, useTranslation} from "../../core";
 import ChangeLagunge from "../languages/ChangeLagunge";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useDispatch} from "react-redux";
+import UserDropDawn from "../user/userDropdawn";
 const Header = ({page}) =>{
     const dispatch = useDispatch();
     const {t,i18n} = useTranslation();
@@ -21,6 +22,7 @@ const Header = ({page}) =>{
     const {lang} = useParams();
     const [loaded,setLoaded]=useState(false);
     const [rotate,setRotate]=useState(false);
+    const [showUserDropDown,setShowUserDropDown]=useState(false);
     let rot ='';
     useEffect(()=>{
         console.log(User)
@@ -43,16 +45,14 @@ const Header = ({page}) =>{
             <nav className="navbar navbar-expand-md flex-column">
                 <div className="navbar-head">
                     <div className="container">
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-between" style={{position:'relative'}}>
                             <Link className="navbar-brand d-none d-lg-flex" to="/">
                                 <img src={logo2} alt=""/>
                             </Link>
                             <Link className="navbar-brand w-auto h-auto d-lg-none" to="/">
                                 <img src={logoM} alt=""/>
                             </Link>
-                            <div
-                                className="authorization-interface d-flex align-items-center"
-                            >
+                            <div className="authorization-interface d-flex align-items-center">
                                 {
                                     User.isLogged? <>
                                             {/*<div className="user-information">
@@ -83,7 +83,11 @@ const Header = ({page}) =>{
                                                     }
                                                 })
                                             }} className="deposit-link">{t("deposit")}</div>
-                                            <Link  to={`/${i18n.language}/account`} className="account-link"><img src={user_ico} alt=""/></Link>
+                                            <div className="account-link" id="account-dropdown-link">
+                                                <img src={user_ico} alt="" id="account-dropdown-link"/>
+                                            </div>
+
+                                            {/*<Link  to={`/${i18n.language}/account`} className="account-link"><img src={user_ico} alt=""/></Link>*/}
                                         {/*
 
                                         ev.emit('notify', {
@@ -137,6 +141,8 @@ const Header = ({page}) =>{
                                 }
                                 <ChangeLagunge style={User.isLogged? {}:{marginLeft:'20px'}}/>
                             </div>
+                            {User.isLogged?<UserDropDawn onClose={()=>setShowUserDropDown(false)}/>:''}
+
                         </div>
                     </div>
                 </div>
@@ -183,9 +189,9 @@ const Header = ({page}) =>{
                             <li className="nav-item">
                                 <Link to={`/${i18n.language}/slots`}  className={`nav-link ${page==='slots'? 'active':''}`}>{t("Slot")}</Link>
                             </li>
-                            {/*<li className="nav-item">
-                                <Link  to={`/${lang}/promo`}  className={`nav-link ${page==='promo'? 'active':''}`}>{t("Promo")}</Link>
-                            </li>*/}
+                            <li className="nav-item">
+                                <Link  to={`/${lang}/promotions`}  className={`nav-link ${page==='promo'? 'active':''}`}>{t("Welcome Bonus")}</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

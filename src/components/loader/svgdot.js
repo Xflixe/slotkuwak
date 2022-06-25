@@ -1,8 +1,8 @@
 import React from "react";
 import './loader.scss'
-const SvgLoader=({contentStyle})=>{
+const SvgLoader=({contentStyle,className})=>{
     return (
-        <div className="svg-loader" style={{...contentStyle}}>
+        <div className={`svg-loader ${className}`} style={{...contentStyle}}>
             <svg viewBox="0 0 120 30">
                 <circle cx="15" cy="15" r="15">
                     <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s"

@@ -1,3 +1,8 @@
-
+@media (max-width: 767px) {
+  .slider-container .swiper .swiper-button-prev,
+.slider-container .swiper .swiper-button-next {
+    display: none !important;
+  }
+}
 
 /*# sourceMappingURL=newSWP.css.map */

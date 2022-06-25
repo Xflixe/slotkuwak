@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Actions, useTranslation} from "../../core";
 import PropTypes from "prop-types";
 import PLXModal from "../modal/PLXModal";
-import {SvgDot} from "../index";
+import {NewModal, SvgDot} from "../index";
 import {UseEvent} from "../../core/hooks/useEvent";
 import _ from "lodash";
 import Select from "../forms/select/Select";
@@ -125,7 +125,7 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
     },[reSend])
 
     return (
-        <PLXModal title={(t(title)).concat(' ',(selectedSource?.type === 'email'? t('via Email'): t('via Phone')))}
+        <NewModal title={(t(title)).concat(' ',(selectedSource?.type === 'email'? t('via Email'): t('via Phone')))}
                   onClose={()=>onClose()}
                   contentStyle={{maxWidth:'500px' }}>
             <form onSubmit={e=>{
@@ -159,6 +159,7 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                         <div style={{marginTop:"20px"}}>
                             <SelectBox
                                 placeholder={"Select verification method"}
+                                id="otp"
                                 data={_.map(otpSources,v=>{
                                     return {
                                         id:v.id,
@@ -198,7 +199,7 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                 }
 
             </form>
-        </PLXModal>
+        </NewModal>
     )
 
 }

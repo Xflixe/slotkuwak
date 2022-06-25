@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {useNavigation} from "../../core/hooks/useNavigation";
 import {
     promo1,
@@ -9,26 +9,31 @@ import {
     promoCardCover,
     sl2, w2
 } from '../../assets/img/images';
-import { Footer,  Header, Swp} from "../../components";
+import {Footer, Header, NewSWP, Swp} from "../../components";
 import PromoCard from "../../components/promo/promoCard";
 import {useTranslation} from "../../core";
+
+import img_desk_1 from "../../assets/img/slide/slots/desktop/1.jpg";
+import img_mob_1 from "../../assets/img/slide/slots/mobile/1.jpg";
 
 
 const PromoScreen = () =>{
     const {t} = useTranslation()
 
+    const [slideData,setSlideData] = useState(
+        window.innerWidth > 767 ? [
+            {id:1, icon:img_desk_1 }
+        ] : [
+            {id:3, icon:img_mob_1 }
+        ]
+    );
+
     return (
         <>
             <Header page={"promo"}/>
 
-            <div className="slider">
-                <Swp count={3}  data={[
-                    {id:2, icon:w2 },
-                    {id:4, icon:sl2 },
-                    {id:5, icon:sl2 },
-                    {id:6, icon:sl2 },
-                    {id:7, icon:sl2 }
-                ]}/>
+            <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
+                <NewSWP data={slideData} />
             </div>
 
             <main className="main">

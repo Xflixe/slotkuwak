@@ -1,4 +1,9 @@
 .custom-modal {
+  .modal-main-wrap {
+    position: relative;
+    left: calc(50% - 10px);
+    transform: translateX(-50%);
+  }
   .has_banner {
     display: flex;
     flex-direction: row;
@@ -8,12 +13,23 @@
       background-position: center !important;
     }
   }
+  .banner_box_mobile {
+    display: none;
+    width: 100%;
+    padding-top: 25vw;
+    max-height: 170px;
+    background-size: cover !important;
+    background-position: center !important;
+  }
 
   @media(max-width: 700px){
     .has_banner {
       .banner_box {
         display: none;
       }
+    }
+    .banner_box_mobile {
+      display: block;
     }
   }
 }
@@ -55,12 +71,23 @@
       width: 100%;
     }
     .sl_img {
-      height: 25vw;
-      max-height: 360px;
+      height: 344px;
       width: 100%;
       background-position: center top !important;
       background-size: cover !important;
       border-radius: 6px;
+      @media(max-width: 1199px){
+        height: 290px;
+      }
+      @media(max-width: 991px){
+        height: 210px;
+      }
+      // mobile
+      @media(max-width: 767px){
+        //height: 160px;
+        height: 60vw;
+        max-height: 350px;
+      }
     }
   }
 }
@@ -625,15 +652,7 @@ label[for="phone-primary"] {font-size: 15px; color: #8f9ec8;}
     }
   }
 }
-@media (max-width: 800px) {
-  .swiper-slide {
-    .sl_img {
-      height: 30vw !important;
-    }
 
-  }
-
-}
 // redizain
 select{
   -webkit-appearance:none;
@@ -743,6 +762,12 @@ select{
   }
 
 }
+
 .grecaptcha-badge{
+  display: none;
+}
+
+// hide chat button
+iframe[title="Button to launch messaging window"] {
   display: none;
 }

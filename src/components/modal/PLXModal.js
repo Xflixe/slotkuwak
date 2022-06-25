@@ -3,13 +3,13 @@ import {close} from "../../assets/img/icons/icons";
 import PropTypes from "prop-types";
 
 const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className,parentIdName,banner})=>{
-    const [devWidth,setDevWidth]=useState(false)
-    const [st,setSt]=useState({
+    //const [devWidth,setDevWidth]=useState(false)
+    /*const [st,setSt]=useState({
         ...dialogStyle,
         width: `calc(${devWidth? banner?.width:'0px'} + ${dialogStyle?.width})`
     })
     useEffect(()=>{
-        calcStyle();
+        //calcStyle();
     },[])
 
     //let timeout = '';
@@ -29,17 +29,17 @@ const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,con
                 ...dialogStyle
             })
         }
-    }
+    }*/
 
     //window.addEventListener('resize', calcStyle)
 
     return  (
 
             <div id={parentIdName} className="custom-modal" onClick={()=>onClickBackDrop()}>
-                <div className={`modal-dialog modal-dialog-centered auth-modal ${className}`} style={st}>
-                    <div className={`${devWidth?'has_banner':''}`}>
+                <div className={`modal-dialog modal-dialog-centered auth-modal ${className}`} >
+                    <div className={`modal-main-wrap ${banner?.url?'has_banner':''}`}>
                         {
-                            devWidth?<div className="banner_box" style={{minWidth:`${banner?.width}`,background:`url(${banner?.url})`,backgroundColor:"#1d2438"}}/>:''
+                            banner?.url?<div className="banner_box" style={{minWidth:`${banner?.width}`,background:`url(${banner?.url})`,backgroundColor:"#1d2438"}}/>:''
                         }
 
                         <div className="modal-cont">
@@ -52,6 +52,9 @@ const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,con
                                     }
                                     <div className="modal-title">{title}</div>
                                 </div>
+                                {
+                                    banner?.mobUrl !== undefined? <div className="banner_box_mobile" style={{background:`url(${banner?.url})`}}/>:''
+                                }
                                 { children }
                             </div>
                             <div className={'modal-footer'}>

@@ -5,7 +5,8 @@ import "./signin.scss"
 import EventEmitter from "../../../core/utils/eventEmitter";
 import PLXModal from "../../modal/PLXModal";
 import {UseEvent} from "../../../core/hooks/useEvent";
-import {SvgDot} from "../../index";
+import {NewModal, SvgDot} from "../../index";
+import signUpBanner from "../../../assets/img/signupBanner.jpg";
 
 const SignIn =() =>{
     const {t} = useTranslation()
@@ -162,7 +163,13 @@ const SignIn =() =>{
         <>
         {
             show && (
-                <PLXModal title={t("Log In")} onClose={()=>setShow(false)} contentStyle={{maxWidth:'350px'}} dialogStyle={{maxWidth:'350px'}}>
+                <NewModal title={t("Log In")} onClose={()=>setShow(false)} dialogStyle={{width:'350px'}} contentStyle={{width:'350px'}}
+                          parentIdName="with-form"
+                          banner={{
+                              width:'300px',
+                              url:signUpBanner,
+                              mobUrl:signUpBanner
+                          }}>
                     <form onSubmit={(event)=>{
                         event.preventDefault();
                         if(loginForm.username && loginForm.password){
@@ -218,8 +225,14 @@ const SignIn =() =>{
                             {t("Log In")}
                         </button>
                     </form>
-                    <p style={{fontSize:"0.75rem", color:"white", textAlign:"center", marginTop:"10px"}}>{t("Don't have an account?")} <span className={"forgot-password"}  onClick={()=>ev.emit('signUp',true)}>{t("Sign Up")}</span></p>
-                </PLXModal>
+                    <p style={{fontSize:"0.75rem", color:"white", textAlign:"center", marginTop:"10px"}}>
+                        {t("Don't have an account?")}
+                        <span className={"forgot-password"}  onClick={()=>{
+                            ev.emit('signIn',false)
+                            ev.emit('signUp',true)
+                        }}> {t("Sign Up")}</span>
+                    </p>
+                </NewModal>
             )
         }
         {

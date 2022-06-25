@@ -12,17 +12,12 @@ export const TopMatchesWidget=({lang})=>{
         "containerId":"top-matches-container",
         "defaultLanguage":lang
     })
-    const getToken=()=>{
-        return  Actions.Sport.token()
-    }
-    const response = useMemo(async () => await getToken(), []);
+
     const loadFrame=(parameters)=>{
         window.Bootstrapper.boot(parameters, { name: "TopMatches" })
         .then(addTopMatchesEventsListeners)
-
     }
     function addTopMatchesEventsListeners(topMatches){
-
         topMatches.addEventListener('navigateToEvent', function (messageEvent) {
             console.log("navigate",messageEvent)
             history.push(`/${lang}/sport`)
@@ -45,14 +40,12 @@ export const TopMatchesWidget=({lang})=>{
 
     useEffect(() => {
         loadWidget()
-
     }, [widgetLang]);
-
 
     const loadWidget=()=>{
         console.log(lang)
         if (User.isLogged) {
-            response.then(res=>{
+            Actions.Sport.token().then(res=>{
                 console.log('asdada',res)
                 if(res.status){
                     loadFrame({...params,token:res.data.data.token,defaultLanguage:widgetLang})

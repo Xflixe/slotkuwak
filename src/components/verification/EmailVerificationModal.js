@@ -3,7 +3,7 @@ import {Actions, useTranslation} from "../../core";
 import PropTypes from "prop-types";
 import PLXModal from "../modal/PLXModal";
 import {UseEvent} from "../../core/hooks/useEvent";
-import {SvgDot} from "../index";
+import {NewModal, SvgDot} from "../index";
 
 window.reSendInterval=null;
 export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,verify,additionalParams,title,permitAll=false})=>{
@@ -80,7 +80,7 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
     },[reSend])
 
     return (
-        <PLXModal title={title?title:t('Email Verification')} onClose={()=>onClose()} contentStyle={{maxWidth:'500px'}}>
+        <NewModal title={title?title:t('Email Verification')} onClose={()=>onClose()} contentStyle={{maxWidth:'500px'}}>
             <form onSubmit={e=>{
                 e.preventDefault();
                 if(!codeRequest){
@@ -122,7 +122,7 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
                     {t("Confirm")}
                 </button>
             </form>
-        </PLXModal>
+        </NewModal>
     )
 
 

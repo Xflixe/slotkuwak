@@ -44,18 +44,22 @@ const Recover = () =>{
     }
 
     useEffect(()=>{
-        getMobileCodeList();
         eventEmitter.on("recover",setType)
         return ()=>eventEmitter.removeListener("recover",e=>setType(null))
     },[])
+
+    useEffect(()=>{
+        if(type !== null && mobileCode.length === 0){
+            getMobileCodeList();
+        }
+    },[type]);
 
     const sendData =()=>{
         if (type === 'Username'){
             window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'recoverUsername'}).then(async(token)=> {
                 Actions.User.recoverUserName({...form, token:token}).then(response=>{
-                    console.log(response)
                     setType(null);
-                    eventEmitter.emit('ev.emit(\'withdrawModal\', true)',false);
+                    eventEmitter.emit('withdrawModal',false);
                     window.pushEvent(`username გადმოგზავნილია`,'success');
                 }).catch(reason => window.pushEvent(`დაფიქსირდა შეცდომა`,'error'))
             });
@@ -151,6 +155,8 @@ const Recover = () =>{
                                     <div style={{display:'flex',width:"100%"}}>
                                         <div style={{width:"100px",marginRight: '10px'}}>
                                             <SelectBox
+                                                search={true}
+                                                id="prefix"
                                                 data={mobileCode}
                                                 value={form.prefix}
                                                 placeholder={t("Prefix")}

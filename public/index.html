@@ -16,11 +16,34 @@
     <meta name="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
+    <!-- HTML Meta Tags -->
+    <title>PlanetaXbet - Crypto Online Casino</title>
+    <meta name="description" content="PlanetaXbet is a crypto online casino founded by crypto enthusiasts. Fair winning await you here, start exploring and win big">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="PlanetaXbet - Crypto Online Casino">
+    <meta itemprop="description" content="PlanetaXbet is a crypto online casino founded by crypto enthusiasts. Fair winning await you here, start exploring and win big">
+    <meta itemprop="image" content="https://www.planetaxbet.com/assets/img/og.jpg">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://www.planetaxbet.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PlanetaXbet - Crypto Online Casino">
+    <meta property="og:description" content="PlanetaXbet is a crypto online casino founded by crypto enthusiasts. Fair winning await you here, start exploring and win big">
+    <meta property="og:image" content="https://www.planetaxbet.com/assets/img/og.jpg">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="planetaxbet.com">
+    <meta property="twitter:url" content="https://www.planetaxbet.com/">
+    <meta name="twitter:title" content="PlanetaXbet - Crypto Online Casino">
+    <meta name="twitter:description" content="PlanetaXbet is a crypto online casino founded by crypto enthusiasts. Fair winning await you here, start exploring and win big">
+    <meta name="twitter:image" content="https://www.planetaxbet.com/assets/img/og.jpg">
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+
+
+
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="PlanetaXBet is an online casino founded by enthusiasts of gambling, who value the activity for its true virtue - betting against or according to the odds and enjoying the thrill of winning. "
-    />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
@@ -31,7 +54,7 @@
     <script src="https://sport.planetaxbet.com/js/Partner/IntegrationLoader.js" data-src="sport-loader" type="application/javascript" ></script>
     <script src="https://sport.planetaxbet.com/js/partner/bootstrapper.min.js"></script>
 
-    <title>PlanetaXbet - Crypto Online Casino</title>
+
 
     <script src="https://www.google.com/recaptcha/api.js?render=6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS"></script>
 
@@ -131,6 +154,23 @@
       }
       .event-wrap .ev-box .ev-close:hover {cursor: pointer;color: #ff4a4a}
 
+      .ze-close {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        background-color: rgb(23, 73, 77);
+        z-index: 999;
+        padding: 15px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+        display: none;
+      }
+      .ze-close.active {
+        display: block;
+      }
+      .ze-close svg {
+        filter: brightness(11.75);
+      }
     </style>
     <script>
       let evID = 0;
@@ -183,6 +223,16 @@
         ev.remove();
         delete toolArray[id];
       }
+
+      function ZEChatAction(action) {
+        let z = document.getElementById('zeClose');
+        if(action === 'close'){
+          zE('messenger', 'close');
+          z.classList.remove('active');
+        }else{
+          z.classList.add('active');
+        }
+      }
     </script>
     <meta name="google-site-verification" content="-iB471aOWfQD1S2aVkoS1AqCH9MRyThJ6xGdGkj3aI0" />
   </head>
@@ -192,8 +242,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
-    <!-- Start of planetaxvet Zendesk Widget script -->
-    <!--<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=dfd7e3b9-4002-425f-8bca-d4f935f268b9"> </script>-->
-    <!-- End of planetaxvet Zendesk Widget script -->
+    <!-- Start of planetaxbet Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=59b13341-a587-4a6d-b275-d2445d3b6bc5"> </script>
+    <div class="ze-close" id="zeClose" onclick="ZEChatAction('close')">
+      <svg data-garden-id="buttons.icon" data-garden-version="8.13.0" theme="[object Object]" class="sc-bwzfXH hDrfMZ sc-vrqbdz-7 fbohUV" xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M3 13L13 3m0 10L3 3"></path></svg>
+    </div>
+    <!-- End of planetaxbet Zendesk Widget script -->
   </body>
 </html>

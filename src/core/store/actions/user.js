@@ -85,8 +85,11 @@ const checkSession = () =>async (dispatch)=>{
     })
 }
 
-const info = ()=>{
-    return http.get({url:Config.User.INFO})
+const info = _.memoize((id=1)=>{
+    return http.get({url:Config.User.INFO+"?id="+id})
+})
+const getVerificationInfo = ()=>{
+    return http.get({url:Config.User.VERIFICATIONINFO})
 }
 const signUp = async ({data,loader}) => {
     const response = await http.post({url:Config.User.SIGN_UP, data:query_string(data),permitAll:true,loader:loader});
@@ -139,7 +142,7 @@ const verification=({data,loader})=>{
    return  http.post({
                 url:Config.User.VERIFICATION,
                 data:{
-                   "mail":data?.email,
+                   "email":data?.email,
                    "sourceId":data?.sourceId,
                    "firstName":data?.firstName,
                    "lastName":data?.lastName,
@@ -150,6 +153,7 @@ const verification=({data,loader})=>{
                    "passportType":data?.passportType,
                    "docNumber":data?.docNumber,
                    "country": data?.country,
+                   "nationality": data?.nationality,
                    "doc_expire_date":moment(data?.doc_expire_date).format("YYYY-MM-DD"),
                    "front":data?.front,
                    "back":data?.back,
@@ -164,7 +168,7 @@ const verificationStep1=({data,loader})=>{
     return  http.post({
         url:Config.User.VERIFICATIONSTEP1,
         data:{
-            "mail":data?.email,
+            "email":data?.email,
             "sourceId":data?.sourceId,
             "firstName":data?.firstName,
             "lastName":data?.lastName,
@@ -174,7 +178,7 @@ const verificationStep1=({data,loader})=>{
             "gender":data?.gender,
             "passportType":data?.passportType,
             "docNumber":data?.docNumber,
-            "country": data?.country,
+            "nationality": data?.nationality,
             "doc_expire_date":moment(data?.doc_expire_date).format("YYYY-MM-DD"),
             "front":data?.front,
             "back":data?.back,
@@ -276,6 +280,7 @@ export default {
   ping,
   signUp,
   info,
+    getVerificationInfo,
   updateInfo,
     resendOtp,
     verifyOtp,

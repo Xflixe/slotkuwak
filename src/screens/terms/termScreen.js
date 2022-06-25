@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {ContentNavigator, Footer, Header, Swp} from "../../components";
+import {Footer, Header, Swp} from "../../components";
 import {useTranslation} from "../../core";
 import './terms.scss';
 import _ from "lodash";

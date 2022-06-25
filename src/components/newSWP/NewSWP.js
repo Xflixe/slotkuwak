@@ -15,6 +15,7 @@ import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-rea
 import _ from "lodash";
 import {useState} from "react";
 import {Autoplay, Navigation, Pagination} from 'swiper';
+import {Link} from "react-router-dom";
 
 const NewSWP = (props) =>{
     const [data,setData]= useState(props.data)
@@ -41,10 +42,10 @@ const NewSWP = (props) =>{
                 _.map(data, (v,index)=>{
                     return  (
                         <SwiperSlide key={index}>
-                            <a href="#">
+                            <Link to={v?.url}>
                                 <div className="sl_img" style={{background: `url(${v.icon})`}} />
                                 {/*<img src={v.icon} alt="Bitcoin" />*/}
-                            </a>
+                            </Link>
                         </SwiperSlide>
                     )
                 })

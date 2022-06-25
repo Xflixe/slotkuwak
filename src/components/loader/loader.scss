@@ -28,4 +28,13 @@
     height:100%;
     width: 100%;
   }
+
+  &.inputLoader {
+    top:50%;
+    transform: translateY(-50%);
+    svg {
+      fill:#d6dbeb;
+      height: 30px;
+    }
+  }
 }

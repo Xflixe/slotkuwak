@@ -1,0 +1,111 @@
+.new-custom-modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2222;
+  transition: opacity 0.15s linear;
+  background-color: rgba(0, 0, 0, 0.34);
+}
+.new-custom-modal .wrapper {
+  position: relative;
+  left: calc(50% - 10px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+}
+.new-custom-modal .banner_box {
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 6px;
+}
+.new-custom-modal .banner_box_mobile {
+  display: none;
+  width: 100%;
+  padding-top: 25vw;
+  margin-bottom: 20px;
+  max-height: 170px;
+  min-height: 170px;
+  background-size: cover !important;
+  background-position: center !important;
+}
+.new-custom-modal .modal-box {
+  border-radius: 6px;
+  background: #1d2438;
+  box-shadow: 0px 0px 0px rgba(21, 27, 41, 0.08);
+  width: 100%;
+  max-width: 350px;
+  padding: 20px 0;
+}
+.new-custom-modal .modal-box .modal-head {
+  position: relative;
+  margin: 0 25px 20px;
+}
+.new-custom-modal .modal-box .modal-head .modal-title {
+  font-family: "Proxima Regular", Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: left;
+  color: #e6e9f1;
+}
+.new-custom-modal .modal-box .modal-head .close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 99;
+  transition: all 0.15s linear;
+}
+.new-custom-modal .modal-box .content {
+  padding: 0 25px;
+}
+.new-custom-modal .modal-box .content button.btn-primary {
+  width: 100%;
+}
+.new-custom-modal#with-form .content {
+  padding: 0 25px;
+}
+.new-custom-modal#with-form .content .forgot-password {
+  margin-top: 5px;
+}
+.new-custom-modal#with-form .content .forgot-password:hover {
+  cursor: pointer;
+  color: #ffbc00;
+}
+.new-custom-modal#with-form .content .input-label input {
+  background-color: #262e45;
+}
+.new-custom-modal#with-form .content .input-label input:focus {
+  background-color: #2f3955;
+}
+.new-custom-modal#with-form .content .input-label input:focus + label {
+  color: #8594c1;
+  top: 20% !important;
+  font-size: 12px;
+}
+.new-custom-modal#with-form .content .input-label input + label {
+  top: 50%;
+}
+.new-custom-modal#with-form .content .input-label input:not([value=""]) + label {
+  color: #8594c1;
+  top: 20% !important;
+  font-size: 12px;
+  transform: none;
+}
+@media (max-width: 700px) {
+  .new-custom-modal .wrapper {
+    left: 50%;
+  }
+  .new-custom-modal .banner_box {
+    display: none;
+  }
+  .new-custom-modal .banner_box_mobile {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=NewModal.css.map */

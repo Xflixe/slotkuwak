@@ -11,6 +11,17 @@ import {filter} from "../../assets/img/icons/icons";
 import {useNav} from "../../core/hooks/useNav";
 import {useCount} from "../../core/hooks/useCount";
 import image_1 from "../../assets/img/slide/image_1.png";
+
+import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
+import img_desk_2 from "../../assets/img/slide/casino/desktop/2.jpg";
+import img_desk_3 from "../../assets/img/slide/slots/desktop/1.jpg";
+import img_desk_4 from "../../assets/img/slide/sport/desktop/1.jpg";
+
+import img_mob_1 from "../../assets/img/slide/lending_mob.jpg";
+import img_mob_2 from "../../assets/img/slide/casino/mobile/2.jpg";
+import img_mob_3 from "../../assets/img/slide/slots/mobile/1.jpg";
+import img_mob_4 from "../../assets/img/slide/sport/mobile/1.jpg";
+
 import {
     arrow,
     betgames,
@@ -27,7 +38,7 @@ import {
 const CasinoScreen = () =>{
     const nav = useNav();
     const {count} = useCount()
-
+    const {lang}=useParams();
     const {t,i18n} = useTranslation()
     const [page,setPage]=useState(1)
     const [providers,setProviders]=useState([])
@@ -40,14 +51,27 @@ const CasinoScreen = () =>{
     const [searchText, setSearchText] = useState("")
     const [selected,setSelected] = useState([])
     const [showMobileFilter,setShowMobileFilter] = useState(false)
+    const [slideData,setSlideData] = useState(
+        window.innerWidth > 767 ? [
+            //{id:2, icon:img_desk_2, url:`/${lang}/casino`},
+            {id:3, icon:img_desk_3, url:`/${lang}/slots`},
+            {id:1, icon:img_desk_1, url:`/${lang}/promotions`},
+            {id:4, icon:img_desk_4, url:`/${lang}/sport`},
+        ] : [
+            //{id:2, icon:img_mob_2, url:`/${lang}/casino`},
+            {id:3, icon:img_mob_3, url:`/${lang}/slots`},
+            {id:1, icon:img_mob_1, url:`/${lang}/promotions`},
+            {id:4, icon:img_mob_4, url:`/${lang}/sport`},
+        ]
+    );
+
+
+
     useEffect(()=>{
-
-console.log(selectedProvider)
-
         loadSlotList()
         loadProvider()
-
     },[])
+
     useEffect(()=>{
         if(selectedProvider.length>0 || selectedFilters.length>0){
             //setPage(_.size(filteredSlotList)/20 + 1)
@@ -99,18 +123,13 @@ console.log(selectedProvider)
         return _.filter(filteredSlotList,(v,k)=>k<page*count());
     }
 
-    let slides = <img  src={image_1} alt="1" />;
+
     return (
         <>
             <Header page={"casino"}/>
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP slide={slides} data={[
-                    {id:1, icon:image_1 },
-                    {id:2, icon:image_1 },
-                    {id:3, icon:image_1 },
-                    {id:4, icon:image_1 }
-                ]} />
+                <NewSWP data={slideData} />
             </div>
 
             <main className="main" style={{minHeight:'300px'}}>

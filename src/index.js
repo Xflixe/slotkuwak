@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React, {Suspense} from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./assets/styles/app.scss"
@@ -12,6 +12,18 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import '../node_modules/swiper/swiper.scss';
 import '../node_modules/swiper/modules/navigation/navigation.scss';
 import '../node_modules/swiper/modules/pagination/pagination.scss';
+
+/*const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+    <React.StrictMode>
+        <Suspense  fallback={""}>
+            <Provider store={Store}>
+                <App />
+            </Provider>
+        </Suspense>
+    </React.StrictMode>
+);*/
+
 ReactDOM.render(
   <React.StrictMode>
       <Suspense  fallback={""}>

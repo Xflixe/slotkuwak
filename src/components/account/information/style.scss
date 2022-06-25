@@ -76,3 +76,16 @@
   }
 
 }
+
+.security-question {
+
+  .input-select input {
+    &.select-box {
+      background-color: #262e45;
+    }
+    &:not([value=""]) {
+      background-color: #181e2e;
+    }
+  }
+
+}

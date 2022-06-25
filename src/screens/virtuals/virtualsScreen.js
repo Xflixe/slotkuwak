@@ -9,7 +9,7 @@ import {useParams} from "react-router-dom";
 import {CustomDropdown} from "../../components/dropdown/dropDown";
 import {filter} from "../../assets/img/icons/icons";
 import {useCount} from "../../core/hooks/useCount";
-import image_1 from "../../assets/img/slide/image_1.png";
+
 import {
     arrow,
     onetwogaming,
@@ -20,11 +20,20 @@ import {
     golden
 } from "../../assets/img/virtuals/images";
 
+import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
+import img_desk_2 from "../../assets/img/slide/casino/desktop/2.jpg";
+import img_desk_3 from "../../assets/img/slide/slots/desktop/1.jpg";
+import img_desk_4 from "../../assets/img/slide/sport/desktop/1.jpg";
+
+import img_mob_1 from "../../assets/img/slide/lending_mob.jpg";
+import img_mob_2 from "../../assets/img/slide/casino/mobile/2.jpg";
+import img_mob_3 from "../../assets/img/slide/slots/mobile/1.jpg";
+import img_mob_4 from "../../assets/img/slide/sport/mobile/1.jpg";
 
 const VirtualsScreen = () =>{
     const  {t,i18n} = useTranslation()
     const {count} = useCount()
-
+    const {lang}=useParams();
     const [page,setPage]=useState(1)
     const [providers,setProviders]=useState([])
     const [filters,setFilters]=useState([])
@@ -36,7 +45,19 @@ const VirtualsScreen = () =>{
     const [searchText, setSearchText] = useState("")
     const [selected,setSelected] = useState([])
     const [showMobileFilter,setShowMobileFilter] = useState(false)
-
+    const [slideData,setSlideData] = useState(
+        window.innerWidth > 767 ? [
+            {id:4, icon:img_desk_4, url:`/${lang}/sport`},
+            {id:3, icon:img_desk_3, url:`/${lang}/slots`},
+            {id:2, icon:img_desk_2, url:`/${lang}/casino`},
+            {id:1, icon:img_desk_1, url:`/${lang}/promotions`},
+        ] : [
+            {id:4, icon:img_mob_4, url:`/${lang}/sport`},
+            {id:3, icon:img_mob_3, url:`/${lang}/slots`},
+            {id:2, icon:img_mob_2, url:`/${lang}/casino`},
+            {id:1, icon:img_mob_1, url:`/${lang}/promotions`},
+        ]
+    );
     useEffect(()=>{
         loadSlotList()
         loadProvider()
@@ -93,19 +114,12 @@ const VirtualsScreen = () =>{
         return _.filter(filteredSlotList,(v,k)=>k<page*count());
     }
 
-
-    let slides = <img  src={image_1} alt="1" />;
     return (
         <>
             <Header page={"virtuals"}/>
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP slide={slides} data={[
-                    {id:1, icon:image_1 },
-                    {id:2, icon:image_1 },
-                    {id:3, icon:image_1 },
-                    {id:4, icon:image_1 }
-                ]} />
+                <NewSWP data={slideData} />
             </div>
 
             <main className="main" style={{minHeight:'300px'}}>

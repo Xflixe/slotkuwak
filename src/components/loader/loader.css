@@ -27,5 +27,13 @@
   height: 100%;
   width: 100%;
 }
+.svg-loader.inputLoader {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.svg-loader.inputLoader svg {
+  fill: #d6dbeb;
+  height: 30px;
+}
 
 /*# sourceMappingURL=loader.css.map */
