@@ -88,6 +88,10 @@ const checkSession = () =>async (dispatch)=>{
 const info = _.memoize((id=1)=>{
     return http.get({url:Config.User.INFO+"?id="+id})
 })
+
+const getLendingInfo = _.memoize((id=1)=>{
+    return http.get({url:Config.User.LENDINGINFO+"?id=wager"})
+})
 const getVerificationInfo = ()=>{
     return http.get({url:Config.User.VERIFICATIONINFO})
 }
@@ -280,6 +284,7 @@ export default {
   ping,
   signUp,
   info,
+    getLendingInfo,
     getVerificationInfo,
   updateInfo,
     resendOtp,

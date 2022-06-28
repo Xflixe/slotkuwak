@@ -10,6 +10,7 @@ import {discord, gr,
     isoftbet,
     kiron,
     wazdan,
+    chat
 } from "../../assets/img/icons/icons";
 import {Link} from "react-router-dom";
 import {i18n, useTranslation} from "../../core";
@@ -70,6 +71,12 @@ const Footer =()=>{
                             >
                                 <img src={discord} alt="" className="discord"/>
                             </a>
+                            <a className="d-flex align-items-center justify-content-center social-item rounded-circle" onClick={()=>{
+                                window.zE('messenger', 'open');
+                                window.ZEChatAction('open');
+                            }}>
+                                <img src={chat} alt="" className="chat"/>
+                            </a>
                         </div>
                     </div>
                     <div className="mob-col col-12 col-lg-3" >
@@ -93,7 +100,7 @@ const Footer =()=>{
                                 <Link to={`/${i18n.language}/terms/2/331`}>{t("Terms and conditions")}</Link>
                             </li>
                             <li>
-                                <Link to={`/${i18n.language}/contact`}>{t("Contact Us")}</Link>
+                                <Link to={`/${i18n.language}/contact`}>{t("Support")}</Link>
                             </li>
 
                             <li><Link to={`/${i18n.language}/terms/3/11`}>{t("Privacy Policy")}</Link></li>

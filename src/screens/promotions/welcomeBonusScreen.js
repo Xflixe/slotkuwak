@@ -36,7 +36,7 @@ const PromotionScreen = () =>{
     const {User,checkSession} = useUser();
     return (
         <>
-            <Header page={"promo"}/>
+            {/*<Header page={"promo"}/>*/}
 
             <main className="lending" style={{minHeight:'300px'}}>
 

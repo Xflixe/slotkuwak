@@ -67,6 +67,17 @@
         filter: brightness(105%);
       }
     }
+    a {
+      background-color: #ffbc00;
+      border: none;
+      padding: 5px 15px;
+      border-radius: 3px;
+      color: #000;
+      font-size: 14px;
+      &:hover {
+        filter: brightness(105%);
+      }
+    }
   }
 }
 

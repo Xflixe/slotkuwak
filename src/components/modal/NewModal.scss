@@ -17,9 +17,13 @@
   }
 
   .banner_box {
+    border-radius: 6px;
     background-size: cover !important;
     background-position: center !important;
-    border-radius: 6px;
+
+    //background-size: contain !important;
+    //background-position: top center !important;
+    //background-repeat: no-repeat !important;
   }
   .banner_box_mobile {
     display: none;
@@ -30,6 +34,10 @@
     min-height: 170px;
     background-size: cover !important;
     background-position: center !important;
+
+    //background-size: contain !important;
+    //background-position: top center !important;
+    //background-repeat: no-repeat !important;
   }
 
   .modal-box {

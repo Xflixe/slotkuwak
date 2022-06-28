@@ -65,5 +65,16 @@
 .pl_alert .modal-footer button:hover {
   filter: brightness(105%);
 }
+.pl_alert .modal-footer a {
+  background-color: #ffbc00;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 3px;
+  color: #000;
+  font-size: 14px;
+}
+.pl_alert .modal-footer a:hover {
+  filter: brightness(105%);
+}
 
 /*# sourceMappingURL=PLAlert.css.map */

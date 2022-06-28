@@ -9,13 +9,6 @@ import SelectBox from "../../forms/select/NewSelect";
 
 const Recover = () =>{
     const {otp, PHONE,EMAIL,CLOSE,ERROR} = useOTP();
-    const MobilePrefixList=[
-        {id:1,prefix: "+1"},
-        {id:673,prefix: "+673"},
-        {id:359,prefix: "+359"},
-        {id:226,prefix: "+226"},
-        {id:257,prefix: "+257"}
-    ]
 
     const {t} = useTranslation()
     const [type,setType] = useState(null)
@@ -58,9 +51,11 @@ const Recover = () =>{
         if (type === 'Username'){
             window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'recoverUsername'}).then(async(token)=> {
                 Actions.User.recoverUserName({...form, token:token}).then(response=>{
-                    setType(null);
-                    eventEmitter.emit('withdrawModal',false);
-                    window.pushEvent(`username გადმოგზავნილია`,'success');
+                    if(response.status){
+                        setType(null);
+                        eventEmitter.emit('withdrawModal',false);
+                        window.pushEvent(`username გადმოგზავნილია`,'success');
+                    }
                 }).catch(reason => window.pushEvent(`დაფიქსირდა შეცდომა`,'error'))
             });
         }else{
@@ -169,7 +164,6 @@ const Recover = () =>{
                                                 type="number"
                                                 name="mobile"
                                                 id="mobile"
-                                                className="for-confirm"
                                                 value={form.data}
                                                 onChange={e => setForm({...form,data:e.target.value})}
                                             />

@@ -11,6 +11,8 @@ import {QRCode} from "react-qrcode-logo";
 import {logoM_jpg} from "../../../assets/img/images";
 import SelectBox from "../../forms/select/NewSelect";
 import {UseEvent} from "../../../core/hooks/useEvent";
+import moment from "moment";
+
 
 
 window.reSendInterval=null;
@@ -41,13 +43,15 @@ const currencyList = [
 ]
 
 const Withdraw = ({onClose})=>{
-    const {t} = useTranslation();
+    const {i18n,t} = useTranslation();
     const {otp, PHONE,EMAIL,CLOSE,ERROR,MULTI} = useOTP();
     const [withdraw,setWithdraw]=useState({amount:'', address:""});
     const [crypto,setCrypto]=useState('');
     const [selectedCurrency,setSelectedCurrency] = useState({ id:"BTC",title:"BTC",name:"Bitcoin"});
     const [exRate,setExRate]=useState(null)
     const [loader,setLoader]=useState(false)
+    const [errors,setErrors]=useState([])
+    const ev = UseEvent()
 
     useEffect(()=>{
         if(selectedCurrency){
@@ -65,7 +69,14 @@ const Withdraw = ({onClose})=>{
 
     const withdrawHandler=()=> {
 
-        if(withdraw?.amount > 0 && withdraw?.address !== ''){
+        setErrors([])
+        let error =  _.chain(withdraw).map((v,k)=>{
+            return {key:k,value:v}
+        }).filter(v=>!v.value).map(v=>v.key).value();
+
+        if(error.length>0){
+            setErrors([...error])
+        }else{
             MULTI({
                 send:"/os/v1/api/secured/otp/withdraw-coinspaid",
                 title:t('Confirm Operation'),
@@ -83,7 +94,21 @@ const Withdraw = ({onClose})=>{
                                 setSelectedCurrency(null);
                                 window.pushEvent(t("The operation was performed successfully"),"success")
                             }else{
-                                console.log("catch")
+
+                                if(response?.error && response?.error?.resultCode === 2){
+                                    CLOSE();
+                                    ev.emit('notify', {
+                                        show:true,
+                                        text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                                        type:'error',
+                                        title:'Withdraw Error',
+                                        button:{
+                                            name:'Verify Account',
+                                            url: `/${i18n.language}/account/verification`
+                                        }
+                                    })
+                                }
+
                                 ERROR({error:t("error")})
                             }
                         }).catch(e=>{
@@ -94,9 +119,12 @@ const Withdraw = ({onClose})=>{
 
                 }
             })
-        }else{
-            window.pushEvent('Please fill fields','error');
+            //if(withdraw?.amount > 0 && withdraw?.address !== ''){
+            //}else{
+            //    window.pushEvent('Please fill fields','error');
+            //}
         }
+
     }
 
     const getExchangeRate = (currency)=>{
@@ -107,10 +135,11 @@ const Withdraw = ({onClose})=>{
                 }else{
                     setExRate(null)
                     window.pushEvent(response.error?.message,"error")
-
                 }
-
             })
+    }
+    const error=(key)=>{
+        return errors.indexOf(key)>-1?"error":""
     }
 
     return (
@@ -156,7 +185,7 @@ const Withdraw = ({onClose})=>{
                                         </div>
 
 
-                                        <div className="new-input-label">
+                                        <div className={`new-input-label ${error("amount")}`} >
                                             <div className="input-box">
                                                 <input type={"number"} name="Amount" id="amount" value={crypto} onChange={event => {
                                                     setCrypto(event.target.value);
@@ -167,7 +196,7 @@ const Withdraw = ({onClose})=>{
                                             </div>
                                         </div>
 
-                                        <div className="new-input-label" >
+                                        <div className={`new-input-label ${error("address")}`} >
                                             <div className="input-box">
                                                 <input type="text" name="account" id="account"
                                                        value={withdraw?.address} onChange={event => setWithdraw({...withdraw,address:event.target.value})}

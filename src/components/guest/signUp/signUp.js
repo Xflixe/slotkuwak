@@ -124,7 +124,7 @@ const SignUp =() =>{
         }
     },[primaryContact])
     useEffect(()=>{
-        console.log('otpDialog',otpDialog)
+        //console.log('otpDialog',otpDialog)
         if(otpDialog){
             if(otpDialog==="mail"){
                 otp.EMAIL({

@@ -150,6 +150,11 @@
       height: 50px;
       background: #1b2233;
       transition: all 0.15s linear;
+      .chat {
+        height: 25px;
+        opacity: .6;
+        cursor: pointer;
+      }
       i {
         font-size: 20px;
         color: #5e6d91;
@@ -160,6 +165,10 @@
       }
       &:hover {
         background-color: #212a3b;
+        .chat {
+          opacity: .9;
+
+        }
         .facebook {
           color: #4267b2;
         }

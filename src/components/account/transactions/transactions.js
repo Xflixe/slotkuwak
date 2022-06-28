@@ -97,9 +97,9 @@ const Transactions = ({onClose}) => {
     const getAmount=(v)=>{
 
         if(v.action === "SummaryRecord"){
-            return v.betAmount !== null?<><span>- {v.betAmount}</span><span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''
+            return v.betAmount !== null?<><span>- {v.betAmount.toFixed(2)}</span><span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''
         }else{
-            return v.amount !== null? <><span>{v.amount}</span><span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''
+            return v.amount !== null? <><span>{v.amount.toFixed(2)}</span><span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''
         }
     }
 
@@ -109,7 +109,7 @@ const Transactions = ({onClose}) => {
         }else{
             if(v.action === "deposit" || v.action === "withdrawal"){
                 return <>
-                    <p>{v.action}</p>
+                    <p>{v?.type === 3? (v?.parentAction? v.parentAction + ' fee':'Service fee') :v.action}</p>
                 </>
             }else{
                 return v.winAmount !== null ? <><p style={{fontSize:'12px',color:'#5d9323'}}>WIN</p>{v.winAmount}<span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''

@@ -46,7 +46,7 @@ export const TopMatchesWidget=({lang})=>{
         console.log(lang)
         if (User.isLogged) {
             Actions.Sport.token().then(res=>{
-                console.log('asdada',res)
+                //console.log('asdada',res)
                 if(res.status){
                     loadFrame({...params,token:res.data.data.token,defaultLanguage:widgetLang})
                 }else {

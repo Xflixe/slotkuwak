@@ -24,9 +24,9 @@ const Header = ({page}) =>{
     const [rotate,setRotate]=useState(false);
     const [showUserDropDown,setShowUserDropDown]=useState(false);
     let rot ='';
-    useEffect(()=>{
-        console.log(User)
-    },[page])
+    //useEffect(()=>{
+    //    console.log(User)
+    //},[page])
 
     useEffect(()=>{
         rot = setTimeout(function() {
@@ -139,7 +139,8 @@ const Header = ({page}) =>{
                                         </button>
                                     </>
                                 }
-                                <ChangeLagunge style={User.isLogged? {}:{marginLeft:'20px'}}/>
+                                <div className="account-link" id="account-lang"><ChangeLagunge style={User.isLogged? {}:{marginLeft:'20px'}}/></div>
+
                             </div>
                             {User.isLogged?<UserDropDawn onClose={()=>setShowUserDropDown(false)}/>:''}
 
@@ -190,7 +191,7 @@ const Header = ({page}) =>{
                                 <Link to={`/${i18n.language}/slots`}  className={`nav-link ${page==='slots'? 'active':''}`}>{t("Slot")}</Link>
                             </li>
                             <li className="nav-item">
-                                <Link  to={`/${lang}/promotions`}  className={`nav-link ${page==='promo'? 'active':''}`}>{t("Welcome Bonus")}</Link>
+                                <Link  to={`/${i18n.language}/promotions`}  className={`nav-link ${page==='promo'? 'active':''}`}>{t("Welcome Bonus")}</Link>
                             </li>
                         </ul>
                     </div>

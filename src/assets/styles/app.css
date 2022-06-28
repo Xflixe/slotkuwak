@@ -20377,6 +20377,14 @@ input.for-confirm {
   background-color: #2f3b55;
   cursor: pointer;
 }
+.navbar .navbar-head .authorization-interface .account-link#account-lang {
+  padding: 0;
+  margin: 0;
+  width: auto;
+  display: flex;
+  align-items: center;
+  background: unset;
+}
 @media (min-width: 768px) {
   .navbar .navbar-head .authorization-interface .account-link {
     width: 50px;
@@ -22665,6 +22673,11 @@ button:active, .btn-primary:active {
   background: #1b2233;
   transition: all 0.15s linear;
 }
+.footer .social-list .social-item .chat {
+  height: 25px;
+  opacity: 0.6;
+  cursor: pointer;
+}
 .footer .social-list .social-item i {
   font-size: 20px;
   color: #5e6d91;
@@ -22675,6 +22688,9 @@ button:active, .btn-primary:active {
 }
 .footer .social-list .social-item:hover {
   background-color: #212a3b;
+}
+.footer .social-list .social-item:hover .chat {
+  opacity: 0.9;
 }
 .footer .social-list .social-item:hover .facebook {
   color: #4267b2;

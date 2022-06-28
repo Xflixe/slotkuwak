@@ -1,18 +1,30 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState,useRef} from 'react'
 import {useTranslation} from "../../core";
 import {useParams} from "react-router-dom";
+import {useOutsideRef2} from "../../core/hooks/useOutSideClickRef2";
 import "./changeLagunge.scss"
+
+
  const ChangeLagunge = ({style}) =>{
     const {i18n} = useTranslation();
     const [activeLang,setActiveLang] = useState(i18n.language)
-
+     const ref2 = useRef(null);
      const changeLang =(lang)=>{
          window.history.pushState(null,null,window.location.pathname.replace(i18n.language,lang))
          i18n.changeLanguage(lang);
          setActiveLang(lang);
+
+         //useOutsideRef2(ref2,"account-lang");
      }
 
-    return  <div className={"changeLagunge"} style={style}>
+     const toggleRef2=()=>{
+         ref2.current.classList.toggle("active")
+     }
+
+
+     useOutsideRef2(ref2,"account-lang");
+
+    return  <div className={"changeLagunge"} style={style} ref={ref2} onClick={()=>{toggleRef2()}}>
         <div className="lang" data-lang={activeLang}>
             <div className="active-lang">&nbsp;</div>
             <div className="lang-wrapper">

@@ -112,10 +112,7 @@ const SlotsScreen = () =>{
     },[selectedProvider,selectedFilters,searchText])
 
     useEffect(()=>{
-
         setSelectedProvider(_.filter(providers,v=>v?.checked))
-
-        console.log(providers)
     },[providers])
 
     const filteredSlotList = useMemo(()=>{

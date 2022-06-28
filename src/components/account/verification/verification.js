@@ -74,6 +74,7 @@ const Confirmation = () => {
     const [loader,setLoader]=useState(false)
     const [inputLoader,setInputLoader]=useState(true)
     const [readOnly,setReadOnly]=useState(false)
+    const [userVerificationStatus,setUserVerificationStatus]=useState(null)
 
     useEffect(()=>{
         //getInfo();
@@ -426,7 +427,8 @@ const Confirmation = () => {
                                             </div>
                                             <div className="col-12 col-md-6">
                                                 <div className={`input-label-border ${error("dob")}`}>
-                                                    <input onChange={e => !readOnly?setInfoData({...infoData,dob:e.target.value}):''} value={infoData.dob} type="date" name="dob" id="dob" max={moment(new Date((new Date()).getFullYear()-18, (new Date()).getMonth(),  (new Date()).getDate())).format("MM-DD-YYYY")}/>
+                                                    <input onChange={e => !readOnly?setInfoData({...infoData,dob:e.target.value}):''} value={infoData.dob} type="date" name="dob" id="dob"
+                                                           max={moment(new Date(),"YYYY-MM-DD").subtract(18,"year").format("YYYY-MM-DD")}/>
                                                     <label htmlFor="dob">{t("Date of birth")}</label>
                                                 </div>
                                             </div>
@@ -521,7 +523,7 @@ const Confirmation = () => {
                                                                     value={documents.doc_expire_date}
                                                                     type="date" name="dob"
                                                                     id="dob"
-                                                                    min={moment(new Date(),"MM-DD-YYYY").add(1,"days").format("MM-DD-YYYY")}/>
+                                                                    min={moment(new Date(),"YYYY-MM-DD").add(1,"days").format("YYYY-MM-DD")}/>
                                                             <label htmlFor="dob">{t("Document Expire Date")}</label>
                                                         </div>
                                                     </div>

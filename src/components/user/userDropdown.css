@@ -39,6 +39,83 @@
   font-size: 16px;
   color: #fff;
 }
+.user-dropdown .lending-box {
+  background-color: #1D2436;
+  border-bottom: 1px solid #293246;
+}
+.user-dropdown .lending-box .lending-box-title {
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-dropdown .lending-box .lending-box-title h6 {
+  flex: 1;
+  font-size: 14px;
+  margin: 0;
+  color: #fff;
+}
+.user-dropdown .lending-box .lending-box-title a {
+  color: #FFBC00;
+  font-size: 12px;
+}
+.user-dropdown .lending-box .lending-box-title a:hover {
+  text-decoration: underline;
+}
+.user-dropdown .lending-box p {
+  color: #8A92A5;
+  font-size: 12px;
+  padding: 0 20px;
+  line-height: 12px;
+  margin: 0;
+}
+.user-dropdown .lending-box .lending-button {
+  margin: 20px 20px 20px;
+  padding: 10px 25px;
+  background: #FFBC00;
+  border-radius: 6px;
+  font-size: 12px;
+  display: inline-block;
+  color: #000;
+}
+.user-dropdown .lending-box .lending-button:hover {
+  cursor: pointer;
+  background: #fac736;
+}
+.user-dropdown .lending-box .progress-box {
+  padding: 0 20px;
+}
+.user-dropdown .lending-box .progress-box .progress-line {
+  height: 12px;
+  background-color: #242D40;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.user-dropdown .lending-box .progress-box .progress-line .progress-fill {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 0;
+  border-radius: 40px;
+  background: #ffbc00;
+  background: linear-gradient(90deg, #ffbc00 0%, #de8409 100%);
+}
+.user-dropdown .lending-box .progress-box .progress-info {
+  margin: 10px 0 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-dropdown .lending-box .progress-box .progress-info h6 {
+  flex: 1;
+  font-size: 14px;
+  margin: 0;
+  color: #fff;
+}
+.user-dropdown .lending-box .progress-box .progress-info span {
+  font-size: 10px;
+}
 .user-dropdown .user-links {
   padding: 12px 20px;
   border-bottom: 1px solid #293246;
@@ -47,11 +124,31 @@
   transition: all 0.15s linear;
 }
 .user-dropdown .user-links .link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 12px 0;
   margin: 0;
   color: #8A92A5;
   font-size: 16px;
+}
+.user-dropdown .user-links .link i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: #ccc;
+  margin-left: 10px;
+}
+.user-dropdown .user-links .link i[data-status="0"] {
+  background-color: #51a600;
+}
+.user-dropdown .user-links .link i[data-status="1"] {
+  background-color: #f13232;
+}
+.user-dropdown .user-links .link i[data-status="2"] {
+  background-color: #ffbc00;
+}
+.user-dropdown .user-links .link i[data-status="3"] {
+  background-color: #ffbc00;
 }
 .user-dropdown .user-links .link:hover {
   cursor: pointer;

@@ -2,7 +2,9 @@ import {close} from "../../assets/img/icons/icons";
 import PropTypes from "prop-types";
 import './PLAlert.scss';
 
-const PLAlert = ({children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className})=>{
+
+
+const PLAlert = ({data,children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className})=>{
     return  (
         <div
             className="custom-modal"
@@ -23,7 +25,9 @@ const PLAlert = ({children,title,footer,onClickBackDrop,closeButton,onClose,cont
                     { children }
 
                     <div className={'modal-footer'}>
-                        { footer }
+                        {
+                            data?.button? <a href={data?.button?.url} className="link">{data?.button?.name}</a> : footer
+                        }
                     </div>
                 </div>
 

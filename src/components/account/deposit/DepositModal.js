@@ -5,10 +5,12 @@ import {arrowLeftBack, coinspaid, percent, time} from "../../../assets/img/icons
 import {logoM, logoM_jpg} from "../../../assets/img/images"
 import './Deposit.scss';
 import {QRCode} from "react-qrcode-logo";
-import {SvgDot} from "../../index";
+import {NewModal, SvgDot} from "../../index";
 import SelectBox from "../../forms/select/NewSelect";
 import {copy} from "../../../assets/img/icons/icons"
-
+import lendingBanner from "../../../assets/img/lending.jpg";
+import lendingMobBanner from "../../../assets/img/lending_mob.jpg";
+import signUpBanner from "../../../assets/img/signupBanner.jpg";
 window.reSendInterval=null;
 
 const currencyList = [
@@ -69,15 +71,15 @@ const DepositModal = ({onClose})=>{
 
 
     return (
-            <PLXModal title={t("Deposit QR")} onClose={()=>onClose(false)} className={'deposit-modal-new'}
-                  dialogStyle={{width:'300px'}}
-                  contentStyle={{width:'300px'}}
+            <NewModal title={t("Deposit QR")} onClose={()=>onClose(false)} className={'deposit-modal-new'}
+                  dialogStyle={{width:'350px'}}
+                  contentStyle={{width:'350px'}}
                   banner={{
                       width:'300px',
-                      url:''
+                      //url:lendingBanner,
+                      //mobUrl:lendingMobBanner
                   }}
             >
-            <br/>
             <SelectBox
                 data={currencyList}
                 id={"crypto-currency"}
@@ -145,7 +147,7 @@ const DepositModal = ({onClose})=>{
                     )
                 }
             </div>
-        </PLXModal>
+        </NewModal>
 
     )
 

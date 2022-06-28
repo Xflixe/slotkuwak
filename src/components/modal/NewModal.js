@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {close} from "../../assets/img/icons/icons";
 import PropTypes from "prop-types";
 import './NewModal.scss';
@@ -8,7 +8,7 @@ const NewModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,con
     return  (
 
             <div id={parentIdName} className="new-custom-modal" onClick={()=>onClickBackDrop()}>
-                <div className={`wrapper`} >
+                <div className={`wrapper ${className}`} >
                     {
                         banner?.url?<div className="banner_box" style={{minWidth:`${banner?.width}`,background:`url(${banner?.url})`,backgroundColor:"#1d2438"}}/>:''
                     }
@@ -22,7 +22,7 @@ const NewModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,con
                             <div className="modal-title">{title}</div>
                         </div>
                         {
-                            banner?.mobUrl !== undefined? <div className="banner_box_mobile" style={{background:`url(${banner?.url})`}}/>:''
+                            banner?.mobUrl !== undefined? <div className="banner_box_mobile" style={{background:`url(${banner?.mobUrl})`}}/>:''
                         }
                         <div className="content">
                             { children }

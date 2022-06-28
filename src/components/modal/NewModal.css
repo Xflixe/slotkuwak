@@ -17,9 +17,9 @@
   justify-content: center;
 }
 .new-custom-modal .banner_box {
+  border-radius: 6px;
   background-size: cover !important;
   background-position: center !important;
-  border-radius: 6px;
 }
 .new-custom-modal .banner_box_mobile {
   display: none;

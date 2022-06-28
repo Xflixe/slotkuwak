@@ -1,5 +1,12 @@
 .recover-password {
   margin: 31px 0 0;
+
+  .newSelect-box {
+    #prefix {
+      background-color: #262e45;
+    }
+  }
+
   .new-input-label {
     margin-bottom: 16px !important;
     position: relative;
@@ -9,7 +16,7 @@
       top: 50%;
       left: 16px;
       transform: translateY(-50%);
-      font-family: "Proxima Regular", Helvetica;
+      font-family: "Proxima Regular", Helvetica,sans-serif;
       font-weight: 600;
       font-size: 14px;
       text-align: left;

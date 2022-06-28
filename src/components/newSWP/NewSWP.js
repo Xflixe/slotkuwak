@@ -24,8 +24,8 @@ const NewSWP = (props) =>{
             modules={[Autoplay,Pagination,Navigation]}
             spaceBetween={5}
             slidesPerView={1}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            //onSlideChange={() => console.log('slide change')}
+            //onSwiper={(swiper) => console.log(swiper)}
             navigation
             loop
             pagination={{ clickable: true }}

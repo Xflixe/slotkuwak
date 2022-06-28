@@ -53,6 +53,7 @@ import isoftbet from "./isoftbet.png";
 import kiron from "./kiron.png";
 import wazdan from "./wazdan.png";
 import refresh from "./refresh.svg";
+import chat from "./chat.svg";
 
 export {
 restriction18,
@@ -106,5 +107,6 @@ loader,
     isoftbet,
     kiron,
     wazdan,
-    refresh
+    refresh,
+    chat
 }

@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import './userDropdown.scss';
-import {useTranslation} from "../../core";
+import {Actions, useTranslation} from "../../core";
 import {useUser} from "../../core/hooks/useUser";
 import {Link, useParams} from "react-router-dom";
 import {useOutsideRef2} from "../../core/hooks/useOutSideClickRef2";
@@ -14,11 +14,54 @@ const UserDropDawn = ({onClose,className})=>{
     const {User,checkSession,signOut} = useUser();
     const {lang} = useParams();
     const ref2 = useRef(null);
+    const [userVerification,setUserVerification]=useState(1);
+
+
+    const [wager, setWager] = useState(null);
+
+    const getLendingInfo = ()=>{
+        Actions.User.getLendingInfo().then(response=>{
+            if(response.status){
+                console.log('getLendingInfo',response);
+                setWager(response.data.data)
+                //setInfoData(response.data.data);
+            }
+        })
+    }
+
+
     useOutsideRef2(ref2,"account-dropdown-link");
 
+    const getInfo = ()=>{
+        Actions.User.info().then(response=>{
+            if(response.status){
+                let dat = response?.data?.data;
+                if(dat?.verifyStatus !== 0){
+                    if(dat?.hasUserRequestedVerify === true && dat?.verifyRequest?.result === -1){
+                        // Pending
+                        setUserVerification(2)
+                    }else if(dat?.hasUserRequestedVerify === true && dat?.verifyRequest?.result === 0){
+                        // Rejected
+                        setUserVerification(1)
+                    }else if(dat?.hasUserRequestedVerify === true && dat?.verifyRequest?.result === 3){
+                        // Terminate
+                        setUserVerification(2)
+                    }else{
+                        // not verify
+                        setUserVerification(1)
+                    }
+                }else {
+                    // verify
+                    setUserVerification(0)
+                }
+            }
+        })
+    }
 
-
-
+    useEffect(()=>{
+        getInfo()
+        getLendingInfo()
+    },[])
 
     return <>
 
@@ -32,15 +75,54 @@ const UserDropDawn = ({onClose,className})=>{
                     <p>Balance</p>
                     <span>{User?.data?.accounts?.main?.currency?.iso3} {User?.data?.accounts?.main?.amount.toFixed(2)}</span>
                 </div>
-                <div className="d-col">
-                    <p>Bonus Money</p>
-                    <span>{User?.data?.accounts?.main?.currency?.iso3} 0.00</span>
-                </div>
+                {
+                    wager?.bonusAmount && (
+                        <div className="d-col">
+                            <p>Bonus Money</p>
+                            <span>{wager?.item?.currency} {wager?.bonusAmount.toFixed(2)}</span>
+                        </div>
+                    )
+                }
+
             </div>
+            {
+                (wager?.item || wager?.bonusClaimable) && (
+                    <div className="lending-box">
+                        <div className="lending-box-title">
+                            <h6>Welcome Bonus</h6>
+                            <Link to={`/${i18n.language}/promotions`}>See Rules</Link>
+                        </div>
+                        <p>Bonus money must be wagered 35x before it can be converted into real money</p>
+                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>See Rules</Link>}
+
+                        {
+                            wager?.item && (
+                                <>
+                                <div className="lending-box-title">
+                                    {wager?.item?.['wagerType'] === "FIRST-DEPOSIT"? <h6>1st deposit bonus</h6>:<h6>2nd Deposit</h6>}
+                                </div>
+                                <div className="progress-box">
+                                    <div className="progress-line" >
+                                        <div className="progress-fill" style={{width:`${wager?.item?.progress.toFixed(2)}%`}}/>
+                                    </div>
+                                    <div className="progress-info">
+                                        <h6>{wager?.item?.progress.toFixed(2)}%</h6>
+                                        <span>{`${wager?.item?.currency} ${wager?.item?.progressAmount.toFixed(2)} out of ${wager?.item?.currency} ${wager?.item?.fullAmount.toFixed(2)} wagered`}</span>
+                                    </div>
+                                </div>
+                                </>
+                            )
+                        }
+
+                    </div>
+                )
+            }
+
+
             <div className="user-links">
                 <Link  to={`/${i18n.language}/account/info`} className="link">Personal Data</Link>
                 <Link  to={`/${i18n.language}/account/transactions`} className="link">Transactions</Link>
-                <Link  to={`/${i18n.language}/account/verification`} className="link">Account Verification</Link>
+                <Link  to={`/${i18n.language}/account/verification`} className="link">Account Verification <i data-status={userVerification}/></Link>
             </div>
             <div className="log-out">
                 <a className="user-logout" onClick={()=>{
