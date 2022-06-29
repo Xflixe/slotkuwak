@@ -26,11 +26,10 @@ console.log(token)
     });
     if(response.status){
         jwt.setData(response.data)
+
         setTimeout(()=>{
             dispatch(ping())
-        },100)
-
-
+        },10)
         dispatch({
             type: SIGN_IN,
             payload: {},
@@ -72,13 +71,12 @@ const ping = () =>async (dispatch)=>{
 const checkSession = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
-            console.log("ping",response)
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},
                 status:response.status
             })
-            resolve(response.status)
+            resolve(response)
         }).catch(()=>{
             resolve(false)
         })

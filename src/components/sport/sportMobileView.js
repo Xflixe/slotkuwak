@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
 export const SportMobileView=()=>{
+
     const {i18n} = useTranslation()
     const {User} = useUser();
     const {lang} = useParams()
