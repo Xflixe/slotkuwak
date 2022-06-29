@@ -34,34 +34,31 @@ const  App=()=> {
         const signInFormEvent= event.subscribe("notify",setShowNotify)
         const depositModal= event.subscribe("depositModal",setDepositModal)
         const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
-        return ()=>{
-            signInFormEvent.unsubscribe()
-            depositModal.unsubscribe()
-            withdrawModal.unsubscribe()
-        }
-    },[])
-
-    useEffect( () => {
-       if(nav.get("cxd")){
+        if(nav.get("cxd")){
             //აფილეიტები
             cookie.setCookie("cxd",nav.get("cxd"),14)
-       }
+        }
         ping()
         //checkLanguage()
         const listener = event.subscribe("plxEvent",(e)=>{
             switch (e?.type) {
                 case "signOut":
-                        localStorage.clear()
-                        user.signOut(()=>event.emit('signIn',true))
+                    localStorage.clear()
+                    user.signOut(()=>event.emit('signIn',true))
                     break;
                 default: break;
             }
         })
 
         return ()=>{
+            signInFormEvent.unsubscribe()
+            depositModal.unsubscribe()
+            withdrawModal.unsubscribe()
             listener.unsubscribe()
+
         }
     },[])
+
 
 
     const ping =  async () => {

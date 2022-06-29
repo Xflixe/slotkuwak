@@ -70,9 +70,25 @@ const Header = ({page}) =>{
                                             </div>
 
                                             <div onClick={()=>{
+
                                                 checkSession().then(response=>{
-                                                    if(response){
-                                                        ev.emit('withdrawModal', true)
+                                                    console.log(response)
+                                                    if(response.status){
+
+                                                        if(response?.data?.data?.verifyStatus===0){
+                                                            ev.emit('withdrawModal', true)
+                                                        }else{
+                                                            ev.emit('notify', {
+                                                                show:true,
+                                                                text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                                                                type:'error',
+                                                                title:'Withdraw',
+                                                                button:{
+                                                                    name:'Verify Account',
+                                                                    url: `/${i18n.language}/account/verification`
+                                                                }
+                                                            })
+                                                        }
                                                     }
                                                 })
                                             }} className="withdraw-link">{t("withdraw")}</div>
