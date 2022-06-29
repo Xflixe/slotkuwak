@@ -38,6 +38,8 @@ const SignUp =() =>{
     const [signUpLoader,setSignUpLoader]=useState(false);
     const [signUpError,setSignUpError]=useState("")
     const [otpDialog,setOtpDialog]=useState(null)
+    const [passPattern,setPassPattern]=useState(0);
+    const [passPatternText,setPassPatternText]=useState('');
     const [signUpForm,setSignUpForm]=useState({
         mail:"",
         //firstName:"",
@@ -211,7 +213,9 @@ const SignUp =() =>{
 
              //console.log(error)
 
-             if(signUpForm.password.trim().length<6 || signUpForm.password !== signUpForm.password2){
+
+
+             if(signUpForm.password.trim().length < 6 || signUpForm.password !== signUpForm.password2){
                  error=[...error,"password","password2"]
              }
              let errUsername = /^[a-zA-Z0-9_.]+$/.test(signUpForm.username);
@@ -219,11 +223,14 @@ const SignUp =() =>{
                  window.top.pushEvent('Username should contain at least 6 symbols','error');
                  return;
              }
+             let errPassword1 = signUpForm.password.match(/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/);
+             let errPassword2 = signUpForm.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$/);
 
-             let errPassword = signUpForm.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,}$/)
-
-             if(!errPassword){
-                 error=[...error,"password"]
+             console.log(errPassword1,errPassword2)
+             if(!(errPassword1 || errPassword2)){
+                 error=[...error,"password"];
+                 window.top.pushEvent('Passwords must contain: minimum 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9] and must be at least 6 characters in length','error');
+                 return;
              }
 
              if(error.length>0 || !terms){
@@ -232,7 +239,7 @@ const SignUp =() =>{
                  if(error.length===2 && error[0]==="password" && error[1]==="password2"){
                      //alert("Passwords do not match")
                      //alert(t("Password should contain at least 6 symbols"));
-                     window.top.pushEvent('Password should contain at least 6 symbols','error');
+                     window.top.pushEvent(' 123Passwords must contain: minimum 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9] and must be at least 6 characters in length','error');
                  }
 
              }else{
@@ -313,6 +320,19 @@ const SignUp =() =>{
     }
     const error=(key)=>{
         return errors.indexOf(key)>-1?"error":""
+    }
+
+    const checkPassPattern=(ps='')=> {
+        if(ps.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$/)){
+            setPassPattern(3);
+            setPassPatternText('Strong');
+        }else if(ps.trim().match(/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/)){
+            setPassPattern(2);
+            setPassPatternText('Medium');
+        }else {
+            setPassPattern(1);
+            setPassPatternText('Weak');
+        }
     }
 
     return show && (
@@ -436,11 +456,21 @@ const SignUp =() =>{
                                    name="password"
                                    id="password"
                                    value={signUpForm.password}
-                                   onChange={event => setSignUpForm({...signUpForm,password:event.target.value})}
+                                   onChange={event => {
+                                       setSignUpForm({...signUpForm,password:event.target.value})
+                                       checkPassPattern(event.target.value)
+                                   }}
                             />
                             <label htmlFor="password">{t("Password")}</label>
                             <div className={`toggle-password ${passType.pass1==='text'?'active':'hide'}`} onClick={()=>{togglePassType('pass1')}}/>
                         </div>
+                    </div>
+                    <div className="col-12">
+                        <ul className="pass-pattern" data-active={passPattern} data-text={passPatternText}>
+                            <li/>
+                            <li/>
+                            <li/>
+                        </ul>
                     </div>
                     <div className="col-12">
                         <div className={`input-label ${error("password2")}`}>
@@ -477,7 +507,7 @@ const SignUp =() =>{
                 </div>
             </form>
             <p style={{fontSize:"0.75rem", color:"white", textAlign:"center",marginBottom:0}}>
-                {t("Don't have an account?")}
+                {t("Already have an account?")}
                 <span className={"forgot-password"}  onClick={()=>{
                     ev.emit('signUp',false)
                     ev.emit('signIn',true)

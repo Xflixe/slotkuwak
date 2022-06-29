@@ -18,4 +18,49 @@
   background-color: #262e45;
 }
 
+.pass-pattern {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.pass-pattern[data-text] {
+  padding-top: 20px;
+}
+.pass-pattern[data-text]:before {
+  position: absolute;
+  content: attr(data-text);
+  top: -8px;
+  left: 0;
+  color: #fff;
+}
+.pass-pattern li {
+  flex: 1;
+  height: 8px;
+  border-radius: 30px;
+  background: #4e546b;
+}
+.pass-pattern li:nth-child(2) {
+  margin: 0 3px;
+}
+.pass-pattern[data-active="1"] li:nth-child(1) {
+  background: red;
+}
+.pass-pattern[data-active="2"] li:nth-child(1) {
+  background: #ffbc00;
+}
+.pass-pattern[data-active="2"] li:nth-child(2) {
+  background: #ffbc00;
+}
+.pass-pattern[data-active="3"] li:nth-child(1) {
+  background: #8efd1e;
+}
+.pass-pattern[data-active="3"] li:nth-child(2) {
+  background: #8EFD1EFF;
+}
+.pass-pattern[data-active="3"] li:nth-child(3) {
+  background: #8EFD1EFF;
+}
+
 /*# sourceMappingURL=signUp.css.map */
