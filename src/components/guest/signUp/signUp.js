@@ -49,7 +49,7 @@ const SignUp =() =>{
         countryCode:"VGB",
         //currencyCode:840,
         password:"",
-        password2:"",
+        //password2:"",
         username:""
     })
     const [terms,setTerms]=useState(false)
@@ -78,7 +78,7 @@ const SignUp =() =>{
             countryCode:"VGB",
             //currencyCode:840,
             password:"",
-            password2:"",
+            //password2:"",
             username:""
         });
 
@@ -110,7 +110,7 @@ const SignUp =() =>{
             countryCode:"VGB",
             //currencyCode:840,
             password:"",
-            password2:"",
+            //password2:"",
             username:""
         });
         setTerms(false);
@@ -211,12 +211,9 @@ const SignUp =() =>{
                  )
                  .map(v=>v.key).value();
 
-             console.log('pawaaaa')
 
-
-
-             if(signUpForm.password.trim().length < 6 || signUpForm.password !== signUpForm.password2){
-                 error=[...error,"password","password2"]
+             if(signUpForm.password.trim().length < 6){
+                 error=[...error,"password"]
              }
              let errUsername = /^[a-zA-Z0-9_.]+$/.test(signUpForm.username);
              if(!errUsername){
@@ -236,7 +233,7 @@ const SignUp =() =>{
              if(error.length>0 || !terms){
                  setTermsError(!terms)
                  setErrors([...error])
-                 if(error.length===2 && error[0]==="password" && error[1]==="password2"){
+                 if(error.length===2 && error[0]==="password"){
                      //alert("Passwords do not match")
                      //alert(t("Password should contain at least 6 symbols"));
                      window.top.pushEvent('passwords did not match!','error');
@@ -333,6 +330,10 @@ const SignUp =() =>{
         }else {
             setPassPattern(1);
             setPassPatternText('Weak');
+        }
+        if(ps === ''){
+            setPassPattern(0);
+            setPassPatternText('');
         }
     }
 
@@ -472,8 +473,9 @@ const SignUp =() =>{
                             <li/>
                             <li/>
                         </ul>
+                        {passPattern === 1 && <p style={{color: '#ff1f1f', lineHeight: '15px', fontSize: '13px', margin: '5px 0',marginBottom: '0'}}>Passwords must contain: at least 8 characters, min. 1 upper case, 1 lower case, 1 numeric symbol.</p>}
                     </div>
-                    <div className="col-12">
+                    {/*<div className="col-12">
                         <div className={`input-label ${error("password2")}`}>
                             <input
                                 type={passType.pass2}
@@ -485,7 +487,7 @@ const SignUp =() =>{
                             <label htmlFor="confirmPassword">{t("Repeat Password")}</label>
                             <div className={`toggle-password ${passType.pass2==='text'?'active':'hide'}`} onClick={()=>{togglePassType('pass2')}}/>
                         </div>
-                    </div>
+                    </div>*/}
                     <div className="col-12">
                         <label htmlFor="terms-and-conditions" className={`terms ${termsError?'error-text':''}`}>
 

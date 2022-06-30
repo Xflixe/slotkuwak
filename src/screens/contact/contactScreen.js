@@ -72,8 +72,8 @@ const ContactScreen = ()=>{
                                         window.ZEChatAction('open');
                                     }}>
                                         <img src={require("../../assets/flags/chat.png")} alt=""/>
-                                            <div className="d-flex flex-column" >
-                                                <div className="contact-type-title">{t("Live Chat")}</div>
+                                            <div className="d-flex flex-column">
+                                                <div className="contact-type-title" style={{margin:'0'}}>{t("Live Chat")}</div>
                                                 {/*<a href="https://direct.lc.chat/14154144/" target="_blank" ><div className="contact-type underline">{t("Write a Message")}</div></a>*/}
                                             </div>
                                     </div>

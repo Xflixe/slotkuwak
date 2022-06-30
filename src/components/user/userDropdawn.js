@@ -90,10 +90,10 @@ const UserDropDawn = ({onClose,className})=>{
                     <div className="lending-box">
                         <div className="lending-box-title">
                             <h6>Welcome Bonus</h6>
-                            <Link to={`/${i18n.language}/promotions`}>See Rules</Link>
+                            {wager?.item && <Link to={`/${i18n.language}/promotions`}>See Rules</Link>}
                         </div>
-                        <p>Bonus money must be wagered 35x before it can be converted into real money</p>
-                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>See Rules</Link>}
+                        <p>{wager?.item?'Bonus money must be wagered 35x before it can be converted into real money':'Claim €800 welcome bonus in 2 easy deposit bonuses, redeem your offer - just follow these steps.'}</p>
+                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>Claim Bonus</Link>}
 
                         {
                             wager?.item && (
