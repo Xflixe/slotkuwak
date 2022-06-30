@@ -77,13 +77,33 @@ export function useSLot() {
                 }
             }else{
                 console.log('notify',response)
-                ev.emit('notify', {
-                    show:true,
-                    text: JSON.stringify(response?.data),
-                    type:'error',
-                    title:'Error'
-                })
-                //alert("Error")
+                if(response.data?.resultCode === 202){
+                    if(response.data?.message){
+                         if(response?.data?.message.indexOf("404")>-1){
+                             ev.emit('notify', {
+                                 show:true,
+                                 text: "Connection error :(  Please try in a few minutes.",
+                                 type:'error',
+                                 title:'Error'
+                             })
+                         }
+                    }else{
+                        ev.emit('notify', {
+                            show:true,
+                            text: "Sorry, game is not currently available in your country? Please see restricted country list <a href='https://planetaxbet.com/en/terms/6/661'>here</a>",
+                            type:'error',
+                            title:'Error'
+                        })
+                    }
+                }else{
+                    ev.emit('notify', {
+                        show:true,
+                        text: JSON.stringify(response?.data),
+                        type:'error',
+                        title:'Error'
+                    })
+                }
+
             }
         })
         .finally(()=>setLoader(null))
