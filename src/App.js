@@ -88,7 +88,7 @@ const  App=()=> {
 
             {
                 showNotify.show && <PLAlert data={showNotify} title={showNotify?.title} onClose={()=>setShowNotify({...showNotify,show:false})} footer={<button onClick={()=>setShowNotify({...showNotify,show:false})}>Close</button>}>
-                    <div className="alert_wrap">{showNotify.text}</div>
+                    <div className="alert_wrap" dangerouslySetInnerHTML={{__html:showNotify.text}}></div>
                 </PLAlert>
             }
 
