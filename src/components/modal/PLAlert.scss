@@ -2,6 +2,7 @@
 
   .modal-content {
     background-color: #1f202c;
+    margin: 0 10px;
     .modal-head {
       display: flex;
       justify-content: space-between;
@@ -20,7 +21,7 @@
     }
   }
   .modal-title {
-    font-family: "Proxima Regular", Helvetica;
+    font-family: "Proxima Regular", Helvetica,sans-serif;
     font-weight: 700;
     font-size: 20px;
     text-align: left;

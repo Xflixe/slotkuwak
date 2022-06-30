@@ -211,7 +211,7 @@ const SignUp =() =>{
                  )
                  .map(v=>v.key).value();
 
-             //console.log(error)
+             console.log('pawaaaa')
 
 
 
@@ -239,7 +239,7 @@ const SignUp =() =>{
                  if(error.length===2 && error[0]==="password" && error[1]==="password2"){
                      //alert("Passwords do not match")
                      //alert(t("Password should contain at least 6 symbols"));
-                     window.top.pushEvent(' 123Passwords must contain: minimum 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9] and must be at least 6 characters in length','error');
+                     window.top.pushEvent('passwords did not match!','error');
                  }
 
              }else{
@@ -258,6 +258,7 @@ const SignUp =() =>{
                  }
                  Actions.User.signUp({data:data,loader:"verifyOtp"}).then(response=>{
                      // data:loginForm,loader:setSignInLoader
+                     setOtpDialog(null);
                      if(response.status){
                          //document.getElementById("close-sign-up").click();
                          //document.getElementById("signIn-btn").click();

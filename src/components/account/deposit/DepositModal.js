@@ -76,8 +76,8 @@ const DepositModal = ({onClose})=>{
                   contentStyle={{width:'350px'}}
                   banner={{
                       width:'300px',
-                      //url:lendingBanner,
-                      //mobUrl:lendingMobBanner
+                      url:lendingBanner,
+                      mobUrl:lendingMobBanner
                   }}
             >
             <SelectBox

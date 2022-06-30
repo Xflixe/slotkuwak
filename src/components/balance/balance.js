@@ -12,8 +12,8 @@ import {Actions, useTranslation} from "../../core";
 
 
 const Balance = ({route}) =>{
-    const {t} = useTranslation()
-    const {User,signOut} = useUser();
+    const {t,i18n} = useTranslation()
+    const {User,signOut,checkSession} = useUser();
     const params = useParams();
     const [showBalance,setShowBalance] = useState(false);
     const ev = UseEvent();
@@ -86,7 +86,30 @@ const Balance = ({route}) =>{
                 </a>
             </div>
             <div className="mob-balance-btn">
-                <div onClick={()=>{User.isLogged? ev.emit('withdrawModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="btn-with withdraw-link">{t("withdraw")}</div>
+                {/*<div onClick={()=>{User.isLogged? ev.emit('withdrawModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="btn-with withdraw-link">{t("withdraw")}</div>*/}
+                <div onClick={()=>{
+
+                    checkSession().then(response=>{
+                        console.log(response)
+                        if(response.status){
+
+                            if(response?.data?.data?.verifyStatus===0){
+                                ev.emit('withdrawModal', true)
+                            }else{
+                                ev.emit('notify', {
+                                    show:true,
+                                    text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                                    type:'error',
+                                    title:'Withdraw',
+                                    button:{
+                                        name:'Verify Account',
+                                        url: `/${i18n.language}/account/verification`
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }} className="btn-with withdraw-link">{t("withdraw")}</div>
                 <div onClick={()=>{User.isLogged? ev.emit('depositModal', true):( <Redirect to={`/${lang}/main`}/>)}} className="btn-with deposit-link">{t("deposit")}</div>
             </div>
             {/*<div className="col-12">

@@ -16,16 +16,16 @@
   flex: 1;
   list-style: none;
 }
-.stickFooter li a {
+.stickFooter li a, .stickFooter li div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: 14px;
 }
-.stickFooter li a i {
+.stickFooter li a i, .stickFooter li div i {
   text-align: center;
 }
-.stickFooter li a span {
+.stickFooter li a span, .stickFooter li div span {
   text-align: center;
   color: #B0BBD4;
   margin-top: 5px;

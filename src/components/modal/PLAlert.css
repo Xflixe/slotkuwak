@@ -1,5 +1,6 @@
 .pl_alert .modal-content {
   background-color: #1f202c;
+  margin: 0 10px;
 }
 .pl_alert .modal-content .modal-head {
   display: flex;
@@ -17,7 +18,7 @@
   background-image: linear-gradient(to right, transparent, 20%, rgba(143, 158, 200, 0.43), 80%, transparent);
 }
 .pl_alert .modal-title {
-  font-family: "Proxima Regular", Helvetica;
+  font-family: "Proxima Regular", Helvetica, sans-serif;
   font-weight: 700;
   font-size: 20px;
   text-align: left;
