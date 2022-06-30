@@ -54,6 +54,7 @@ import kiron from "./kiron.png";
 import wazdan from "./wazdan.png";
 import refresh from "./refresh.svg";
 import chat from "./chat.svg";
+import telegram from "./telegram.svg";
 
 export {
 restriction18,
@@ -108,5 +109,6 @@ loader,
     kiron,
     wazdan,
     refresh,
-    chat
+    chat,
+    telegram
 }
