@@ -119,5 +119,7 @@
   "Transactions": "Transactions",
   "Deposit QR": "Deposit QR",
   "A 6-digit code was sent to": "A 4-digit code was sent to",
-  "A 4-digit Email code was sent to": "A 4-digit Email code was sent to"
+  "A 4-digit Email code was sent to": "A 4-digit Email code was sent to",
+  "username_already_exists": "Username already exists!",
+  "email_already_exists": "Email already exists!"
 }
