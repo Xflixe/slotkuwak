@@ -223,10 +223,10 @@ const SignUp =() =>{
              let errPassword1 = signUpForm.password.match(/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/);
              let errPassword2 = signUpForm.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$/);
 
-             console.log(errPassword1,errPassword2)
+             //console.log(errPassword1,errPassword2)
              if(!(errPassword1 || errPassword2)){
                  error=[...error,"password"];
-                 window.top.pushEvent('Passwords must contain: minimum 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9] and must be at least 6 characters in length','error');
+                 //window.top.pushEvent('Passwords must contain: minimum 1 upper case letter [A-Z] and a minimum of 1 numeric character [0-9] and must be at least 6 characters in length','error');
                  return;
              }
 
@@ -277,6 +277,8 @@ const SignUp =() =>{
                                      window.top.pushEvent('Incorect SMS Code Please Check Sending SMS','error');
                                  }
                              }else{
+                                 console.log(key,val)
+
                                  window.top.pushEvent(key+': '+val,'error');
                                  if(errors.indexOf(key)===-1){
                                      setErrors([...errors,key])
@@ -473,7 +475,7 @@ const SignUp =() =>{
                             <li/>
                             <li/>
                         </ul>
-                        {passPattern === 1 && <p style={{color: '#ff1f1f', lineHeight: '15px', fontSize: '13px', margin: '5px 0',marginBottom: '0'}}>Passwords must contain: at least 8 characters, min. 1 upper case, 1 lower case, 1 numeric symbol.</p>}
+                        {passPattern === 1 && <p style={{color: 'rgb(161 175 181)', lineHeight: '15px', fontSize: '13px', margin: '5px 0',marginBottom: '0'}}>Passwords must contain: at least 8 characters, min. 1 upper case, 1 lower case, 1 numeric symbol.</p>}
                     </div>
                     {/*<div className="col-12">
                         <div className={`input-label ${error("password2")}`}>

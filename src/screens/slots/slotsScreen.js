@@ -30,6 +30,7 @@ import {
     icon77,
     icon56,
     icon63,
+    icon90
 } from "../../assets/img/slot-nav/icon";
 
 import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
@@ -65,6 +66,7 @@ const slIcon = {
     '77':icon77,
     '56':icon56,
     '63':icon63,
+    '90':icon90,
 }
 
 const SlotsScreen = () =>{

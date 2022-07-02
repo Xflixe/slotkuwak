@@ -10,21 +10,55 @@ import {discord, gr,
     kiron,
     wazdan,
 } from "../../assets/img/icons/icons";
+import "./contactSecreen.scss";
+
 const ContactScreen = ()=>{
     const {t,i18n} = useTranslation()
     return <>
     <Header page={"contact"}/>
         <main className="page">
             <div className="container">
-                {/*<ContentNavigator page="contact" lang={i18n.language}/>*/}
                 <div className="page-wrapper contact">
                     <div className="row">
-                        <div className="col-12">
+                        <div className="col-12 col-md-6">
                             <div className="page-headline">{t('Support')}</div>
+                            <p style={{color:'#8F9EC8'}}>For all customer support issues contact us through e-mail or Live Chat</p>
+                            <div className="row support-box">
+                                <a className="item">
+
+                                </a>
+                            </div>
+                            <div className="soc-box item-list">
+                                <p style={{color:'#8F9EC8'}}>For live updates & news please follow official links</p>
+                                <div className="item-list">
+                                    <a href="https://t.me/planetaxbet"  target="_blank" className="item" data-soc="telegram"/>
+                                    <a href="https://twitter.com/PXbet" target="_blank" className="item" data-soc="twitter"/>
+                                    <a href="https://www.facebook.com/Planetaxbet"  target="_blank" className="item" data-soc="facebook"/>
+                                    <a href="https://discord.gg/sbjFXbbcBK" target="_blank" className="item" data-soc="discord"/>
+                                </div>
+
+                            </div>
                         </div>
-                        <div className="col-12">
-                            <div className="row">
-                                {/*<div className="col-12 col-md-6 col-lg-4">
+                        <div className="col-12 col-md-6">
+                            <div className="page-headline">{t('Contact Us')}</div>
+                            <p style={{color:'#8F9EC8'}}>please choose related subject and submit a form</p>
+                            <div className="row form-box">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <Footer/>
+    </>
+}
+export default ContactScreen;
+
+/*
+<div className="row">
+    {/!*<div className="col-12 col-md-6 col-lg-4">
                                     <div className="d-flex align-items-center contact-item">
                                         <img src={require("../../assets/flags/uk-flag.png").default} alt=""/>
                                             <div className="d-flex flex-column">
@@ -32,8 +66,8 @@ const ContactScreen = ()=>{
                                                 <a href="tel:0-800-210-410" className="contact-type">0-800-210-410</a>
                                             </div>
                                     </div>
-                                </div>*/}
-                                {/*<div className="col-12 col-md-6 col-lg-4">
+                                </div>*!/}
+    {/!*<div className="col-12 col-md-6 col-lg-4">
                                     <a href="https://discord.gg/sbjFXbbcBK" target="_blank" className="contact-type">
                                     <div className="d-flex align-items-center contact-item">
 
@@ -45,18 +79,18 @@ const ContactScreen = ()=>{
 
                                     </div>
                                     </a>
-                                </div>*/}
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="d-flex align-items-center contact-item">
-                                        <img src={require("../../assets/flags/email.png")} alt=""/>
-                                            <div className="d-flex flex-column">
-                                                <div className="contact-type-title">{t("Email")}</div>
-                                                <a href="mailto:support@planetaxbet.com"
-                                                   className="contact-type">support@planetaxbet.com</a>
-                                            </div>
-                                    </div>
-                                </div>
-                                {/*<div className="col-12 col-md-6 col-lg-4">
+                                </div>*!/}
+    <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex align-items-center contact-item">
+            <img src={require("../../assets/flags/email.png")} alt=""/>
+            <div className="d-flex flex-column">
+                <div className="contact-type-title">{t("Email")}</div>
+                <a href="mailto:support@planetaxbet.com"
+                   className="contact-type">support@planetaxbet.com</a>
+            </div>
+        </div>
+    </div>
+    {/!*<div className="col-12 col-md-6 col-lg-4">
                                     <div className="d-flex align-items-center contact-item">
                                         <img src={require("../../assets/flags/telegram.png")} alt=""/>
                                             <div className="d-flex flex-column">
@@ -65,26 +99,17 @@ const ContactScreen = ()=>{
                                                    className="contact-type">@HelpPlanetaXbet</a>
                                             </div>
                                     </div>
-                                </div>*/}
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="d-flex align-items-center contact-item" onClick={()=>{
-                                        window.zE('messenger', 'open');
-                                        window.ZEChatAction('open');
-                                    }}>
-                                        <img src={require("../../assets/flags/chat.png")} alt=""/>
-                                            <div className="d-flex flex-column">
-                                                <div className="contact-type-title" style={{margin:'0'}}>{t("Live Chat")}</div>
-                                                {/*<a href="https://direct.lc.chat/14154144/" target="_blank" ><div className="contact-type underline">{t("Write a Message")}</div></a>*/}
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                </div>*!/}
+    <div className="col-12 col-md-6 col-lg-4">
+        <div className="d-flex align-items-center contact-item" onClick={()=>{
+            window.zE('messenger', 'open');
+            window.ZEChatAction('open');
+        }}>
+            <img src={require("../../assets/flags/chat.png")} alt=""/>
+            <div className="d-flex flex-column">
+                <div className="contact-type-title" style={{margin:'0'}}>{t("Live Chat")}</div>
+                {/!*<a href="https://direct.lc.chat/14154144/" target="_blank" ><div className="contact-type underline">{t("Write a Message")}</div></a>*!/}
             </div>
-        </main>
-        <Footer/>
-    </>
-}
-export default ContactScreen;
+        </div>
+    </div>
+</div>*/

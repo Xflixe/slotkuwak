@@ -19,6 +19,7 @@ import icon86 from './relax.png';
 import icon77 from './spadegaming.png';
 import icon56 from './tomhorn.png';
 import icon63 from './wazdan.png';
+import icon90 from './greenjade.png';
 
 export  {
     icon61,
@@ -42,4 +43,5 @@ export  {
     icon77,
     icon56,
     icon63,
+    icon90,
 }
