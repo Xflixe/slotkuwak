@@ -13,21 +13,6 @@ import {useCookie} from "../../../core/hooks/useCookie";
 import {useDispatch} from "react-redux";
 import signUpBanner from "../../../assets/img/signupBanner.jpg"
 
-
-const MobilePrefixList=[
-    {id:1,prefix: "+1"},
-    {id:673,prefix: "+673"},
-    {id:359,prefix: "+359"},
-    {id:226,prefix: "+226"},
-    {id:257,prefix: "+257"}
-]
-const CountryList=[
-    {id:"VGB",name: "British Virgin Islands"},
-    {id:"BRN",name: "Brunei Darussalam"},
-    {id:"BGR",name: "Bulgaria"},
-    {id:"BFA",name: "Burkina Faso"},
-    {id:"BDI",name: "Burundi"},
-]
 const SignUp =() =>{
     const dispatch = useDispatch()
     const cookie = useCookie()
@@ -185,9 +170,8 @@ const SignUp =() =>{
     }
 
     const onSignUp=(signUpForm)=>{
-
+        setErrors([])
          window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'register'}).then(async(token)=> {
-             setSignUpError("")
              let error = _.chain(signUpForm)
                  .map((v,k)=>{
 
@@ -277,9 +261,9 @@ const SignUp =() =>{
                                      window.top.pushEvent('Incorect SMS Code Please Check Sending SMS','error');
                                  }
                              }else{
-                                 console.log(key,val)
 
-                                 window.top.pushEvent(key+': '+val,'error');
+                                 console.log(key,val)
+                                 window.top.pushEvent(i18n.t(val),'error');
                                  if(errors.indexOf(key)===-1){
                                      setErrors([...errors,key])
                                  }
