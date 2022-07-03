@@ -249,6 +249,9 @@ const withdraw_coinsPaid=({data,loader})=>{
 const getSecurityQuestion =({loader})=>{
    return  http.get({url:Config.User.GET_SECURITY_QUESTIONS,loader:loader})
 }
+const sendMessage =({loader,data})=>{
+    return  http.post({url:Config.User.MessageUrl,loader:loader,data:query_string(data)})
+}
 const checkSecurityQuestion =({loader})=>{
    return  http.get({url:Config.User.CHECK_SECURITY_QUESTIONS,loader:loader})
 }
@@ -275,6 +278,7 @@ const getSlotTransactionHistory =({date})=>{
 }
 export default {
   getSecurityQuestion,
+    sendMessage,
     checkSecurityQuestion,
     saveSecurityQuestions,
   signIn,

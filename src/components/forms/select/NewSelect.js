@@ -26,6 +26,7 @@ const SelectBox = memo(({id,data,onSelect,value,placeholder,className,error,sear
         ref.current.classList.toggle("close-select-box")
     }
     const toggleRef2=()=>{
+        if(!search) {return}
         ref3.current.focus()
         ref2.current.classList.toggle("active")
     }

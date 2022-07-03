@@ -1,0 +1,88 @@
+.password-recover {
+  text-align: center;
+  color: #BEC5D9;
+  margin: 80px 0 100px;
+
+  .error{
+    border-bottom: 1px solid red;
+  }
+  .error-text{
+    color:red !important;
+  }
+
+  .pr-form {
+    max-width: 327px;
+    margin: 0 auto;
+  }
+
+  .input-label label {
+    top:50%;
+  }
+
+  .input-label input:not([value=""]){
+    & + label {
+      top: 9px;
+      transform: unset;
+      font-size: 12px;
+    }
+  }
+
+  .pass-pattern {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    list-style: none;
+    &[data-text] {
+      padding-top: 20px;
+      &:before {
+        position: absolute;
+        content: attr(data-text);
+        top: -8px;
+        left: 0;
+        color: #fff;
+      }
+    }
+    li {
+      flex:1;
+      height: 8px;
+      border-radius: 30px;
+      background: #4e546b;
+      &:nth-child(2) {margin: 0 3px}
+    }
+
+    &[data-active="1"] {
+      li {
+        &:nth-child(1) {background: red}
+      }
+
+    }
+    &[data-active="2"] {
+      li {
+        &:nth-child(1) {
+          background: #ffbc00
+        }
+
+        &:nth-child(2) {
+          background: #ffbc00
+        }
+      }
+    }
+    &[data-active="3"] {
+      li {
+        &:nth-child(1) {
+          background: #8efd1e
+        }
+
+        &:nth-child(2) {
+          background: #8EFD1EFF
+        }
+
+        &:nth-child(3) {
+          background: #8EFD1EFF
+        }
+      }
+    }
+  }
+}

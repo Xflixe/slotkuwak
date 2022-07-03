@@ -345,6 +345,81 @@
   width: 100%;
 }
 
+.lending-rules {
+  margin: 0 20px;
+}
+.lending-rules .rules-wrap {
+  width: 100%;
+  max-width: 736px;
+  margin: 20px auto;
+  color: #BEC5D9;
+  font-size: 14px;
+}
+.lending-rules .rules-wrap img {
+  width: 100%;
+}
+.lending-rules .rules-wrap h4 {
+  color: #FFFFFF;
+}
+.lending-rules .rules-wrap h5 {
+  color: #FFFFFF;
+}
+.lending-rules .rules-wrap .steps {
+  margin: 0 0 40px;
+  padding: 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  border-bottom: 1px solid #212A3E;
+}
+.lending-rules .rules-wrap .steps li {
+  margin-right: 70px;
+  padding: 0 0 20px;
+}
+.lending-rules .rules-wrap .steps li div {
+  color: #BEC5D9;
+}
+.lending-rules .rules-wrap .steps li p {
+  color: #FFFFFF;
+  font-size: 18px;
+  margin: 0;
+}
+.lending-rules .rules-wrap section {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.lending-rules .rules-wrap section .rules-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.lending-rules .rules-wrap section .rules-title span {
+  font-size: 14px;
+  color: #FFBC00;
+  font-weight: normal;
+  padding-bottom: 5px;
+}
+.lending-rules .rules-wrap section .rules-list {
+  padding: 14px;
+}
+.lending-rules .rules-wrap section .rules-list li {
+  margin: 10px 0;
+}
+.lending-rules .rules-wrap .sec-btn {
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 18px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #27B66C;
+  padding: 15px 55px;
+  margin: 20px 0 50px;
+}
+
 @media (max-width: 900px) {
   .lending .rules-title {
     font-size: 1.2rem;

@@ -23,6 +23,7 @@ const privacy_policy = React.lazy(() => import(("./screens/privacy_policy/privac
 const responsible_gaming = React.lazy(() => import(("./screens/responsible_gaming/responsibleGaming")));
 const playSlot = React.lazy(() => import(("./screens/playSlot/PlaySlot")));
 const verification = React.lazy(() => import(("./screens/verification/verificationScreen")));
+const passRecover = React.lazy(() => import(("./screens/user/passRecover/recoverPassword")));
 
 
 
@@ -51,6 +52,7 @@ export const guestRoutes = [
     { path: '/:lang/playSlot', name: 'playSlot', exact:false, component:playSlot, page:"playSlot"},
     { path: '/:lang/play', name: 'playSlot', exact:false, component:()=><div></div>, page:"play"},
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
+    { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
 
 
 
@@ -87,6 +89,7 @@ export const userRoutes = [
     { path: '/:lang/play', name: 'playSlot', exact:false, component:()=><div></div>, page:"playSlot"},
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
     { path: '/:lang/loader', name: 'verification', exact:false, component:()=><div>please wait</div>, page:"loader"},
+    { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
 
 ];
 

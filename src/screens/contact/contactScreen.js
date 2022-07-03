@@ -1,6 +1,6 @@
-import React from "react";
-import {Balance, ContentNavigator, Footer, Header, Information} from "../../components";
-import {useTranslation} from "../../core";
+import React, {useState} from "react";
+import {Balance, ContentNavigator, Footer, Header, Information, SvgDot} from "../../components";
+import {Actions, useTranslation} from "../../core";
 import {discord, gr,
     evolutionGaming,
     relax,
@@ -11,9 +11,75 @@ import {discord, gr,
     wazdan,
 } from "../../assets/img/icons/icons";
 import "./contactSecreen.scss";
+import SelectBox from "../../components/forms/select/NewSelect";
+import _ from "lodash";
+import {useCookie} from "../../core/hooks/useCookie";
 
+const subject = [
+    {
+        name:'Media Inquires',
+        id:'1'
+    },
+    {
+        name:'Report a Bug',
+        id:'2'
+    },
+    {
+        name:'Other',
+        id:'3'
+    }
+
+]
 const ContactScreen = ()=>{
-    const {t,i18n} = useTranslation()
+    const {t,i18n} = useTranslation();
+    const cookie = useCookie();
+    const [data,setData] = useState({
+        name:'',
+        email:'',
+        subject:'',
+        text:'',
+    })
+    const [loader,setLoader]=useState(false)
+    const [errors,setErrors]=useState([]);
+
+    const error=(key)=>{
+        return errors.indexOf(key)>-1?"error":""
+    }
+
+    const sendMessage=()=> {
+        setErrors([]);
+        window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'message'}).then(async(token)=> {
+            let error = _.chain(data)
+                .map((v,k)=>{
+                    return  {key:k,value:v}
+                })
+                .filter(v=>!v.value)
+                .map(v=>v.key).value();
+
+            if(error.length>0){
+                setErrors([...error])
+            }else{
+
+                let dat = {...data,token:token}
+                if(cookie.getCookie("cxd")){
+                    dat = {...dat,cxd:cookie.getCookie("cxd")}
+                }
+
+                Actions.User.sendMessage({loader:setLoader,data:dat}).then((response)=>{
+                    console.log('message',response)
+
+                    if(response.status){
+                        setData({name:'', email:'', subject:'', text:'',})
+                    }
+
+
+                })
+            }
+
+        });
+
+    }
+
     return <>
     <Header page={"contact"}/>
         <main className="page">
@@ -23,12 +89,24 @@ const ContactScreen = ()=>{
                         <div className="col-12 col-md-6">
                             <div className="page-headline">{t('Support')}</div>
                             <p style={{color:'#8F9EC8'}}>For all customer support issues contact us through e-mail or Live Chat</p>
-                            <div className="row support-box">
-                                <a className="item">
-
+                            <div className="support-box">
+                                <a className="item" data-soc="email" href="mailto:support@planetaxbet.com">
+                                    <ul>
+                                        <li>Email</li>
+                                        <li>support@planetaxbet.com</li>
+                                    </ul>
                                 </a>
+                                <div className="item" data-soc="chat" onClick={()=>{
+                                    window.zE('messenger', 'open');
+                                    window.ZEChatAction('open');
+                                }}>
+                                    <ul>
+                                        <li>Chat</li>
+                                        <li>Write a Message</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div className="soc-box item-list">
+                            <div className="soc-box item-list desctop-wers">
                                 <p style={{color:'#8F9EC8'}}>For live updates & news please follow official links</p>
                                 <div className="item-list">
                                     <a href="https://t.me/planetaxbet"  target="_blank" className="item" data-soc="telegram"/>
@@ -39,11 +117,55 @@ const ContactScreen = ()=>{
 
                             </div>
                         </div>
-                        <div className="col-12 col-md-6">
+                        <div className="col-12 col-md-6 rightSide">
                             <div className="page-headline">{t('Contact Us')}</div>
                             <p style={{color:'#8F9EC8'}}>please choose related subject and submit a form</p>
-                            <div className="row form-box">
+                            <div className="form-box">
+                                <div className="col-12">
+                                    <div className={`input-label-border ${error("name")}`}>
+                                        <input onChange={e => setData({...data,name:e.target.value})} value={data.name} type="text" name="name" id="name"/>
+                                        <label htmlFor="name">{t("Name")}</label>
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className={`input-label-border ${error("email")}`}>
+                                        <input onChange={e => setData({...data,email:e.target.value})} value={data.email} type="email" name="email" id="email"/>
+                                        <label htmlFor="email">{t("E-mail")}</label>
+                                    </div>
+                                </div>
+                                <div  className={`input-select-border col-12 `}>
+                                    <SelectBox
+                                        id={"subject"}
+                                        search={false}
+                                        data={subject}
+                                        value={data.subject}
+                                        disabled={true}
+                                        placeholder={t("Select Subject")}
+                                        onSelect={(e)=> setData({...data,subject:e.id})}
+                                        className={`${error("subject")}`}
+                                    />
+                                </div>
+                                <div  className={`input-select-border col-12 `}>
+                                    <textarea id="textarea" placeholder="Write your message here…" className={`${error("text")}`}/>
+                                </div>
+                                <div  className={`input-select-border col-12`}>
+                                    <button type="submit" style={{width:'190px',position:'relative',overflow:'hidden'}} className="btn-primary" onClick={()=>{
+                                        sendMessage()
+                                    }}>
+                                        {loader && <div className="loader-wrap"><SvgDot contentStyle={{backgroundColor: '#ffbc00'}}/></div>}
+                                        {t("Send Message")}
+                                    </button>
+                                </div>
+                                <div className="soc-box item-list mob-wers">
+                                    <p style={{color:'#8F9EC8'}}>For live updates & news please follow official links</p>
+                                    <div className="item-list">
+                                        <a href="https://t.me/planetaxbet"  target="_blank" className="item" data-soc="telegram"/>
+                                        <a href="https://twitter.com/PXbet" target="_blank" className="item" data-soc="twitter"/>
+                                        <a href="https://www.facebook.com/Planetaxbet"  target="_blank" className="item" data-soc="facebook"/>
+                                        <a href="https://discord.gg/sbjFXbbcBK" target="_blank" className="item" data-soc="discord"/>
+                                    </div>
 
+                                </div>
                             </div>
 
                         </div>
