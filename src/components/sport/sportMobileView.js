@@ -5,8 +5,10 @@ import _ from 'lodash'
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
+import {useNavigation} from "../../core/hooks/useNavigation";
 export const SportMobileView=()=>{
-
+    const nav = useNavigation();
+    const [view,setView]=useState(nav.get("betHistory") !==undefined?'BetsHistory':"Home")
     const {i18n} = useTranslation()
     const {User} = useUser();
     const {lang} = useParams()
@@ -16,13 +18,13 @@ export const SportMobileView=()=>{
         ev.emit('signIn',true)
     }
     const balanceChangeHandler=(event)=>{
-        console.log("balanceChangeHandler",event)
         dispatch(Actions.User.ping())
     }
     const [params]=useState({
         "server":["www.planetaxbet.com","planetaxbet.com"].indexOf(window.location.hostname)>-1?"https://sport.planetaxbet.com/":"https://sport.staging.planetaxbet.com/",
         "containerId":"application-container",
         "token":"-",
+        "currentPage":view,
         "defaultLanguage":lang,
         "timeZone":4,
         "hasRouterDisabled":false,

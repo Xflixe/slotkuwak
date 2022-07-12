@@ -122,6 +122,7 @@ const UserDropDawn = ({onClose,className})=>{
             <div className="user-links">
                 <Link  to={`/${i18n.language}/account/info`} className="link">Personal Data</Link>
                 <Link  to={`/${i18n.language}/account/transactions`} className="link">Transactions</Link>
+                <Link  to={`/${i18n.language}/sport?betHistory`} className="link">Bet History</Link>
                 <Link  to={`/${i18n.language}/account/verification`} className="link">Account Verification <i data-status={userVerification}/></Link>
             </div>
             <div className="log-out">

@@ -1,14 +1,15 @@
 import React, {useEffect, useLayoutEffect, useMemo, useState} from "react";
 import {useUser} from "../../core/hooks/useUser";
-import {Actions, useTranslation} from "../../core";
+import {Actions, i18n, useTranslation} from "../../core";
 import _ from 'lodash'
 import Listeners from "../../utils/listeners";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
+import {useNavigation} from "../../core/hooks/useNavigation";
 export const EuropeanView=({view})=>{
+    const nav = useNavigation();
 
-    const {i18n} = useTranslation()
     const {User} = useUser();
     const ev = UseEvent()
     const dispatch=useDispatch()
@@ -47,10 +48,9 @@ export const EuropeanView=({view})=>{
         "eventsHandler":eventsHandlerCallback
 
     })
-
-
     useEffect(()=>{
         if (User.isLogged) {
+
             response.then(res=>{
                 if(res.status){
                     setToken(res.data.data.token)
@@ -68,14 +68,12 @@ export const EuropeanView=({view})=>{
             i18n.off("languageChanged")
         }
     },[User.isLogged])
-
-
     const getToken=()=>{
         return  Actions.Sport.token()
     }
     const response = useMemo(async () => await getToken(), []);
-    const loadFrame= (parameters) => {
-        window.SportFrame.frame(_.map(parameters, (v, k) => {
+    const loadFrame=  (parameters) => {
+            window.SportFrame.frame(_.map(parameters, (v, k) => {
             return [k, v]
         }))
     }
