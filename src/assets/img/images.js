@@ -50,7 +50,7 @@ import webmoneySmall from './webmoney-small.png';
 import w1 from './w1.jpg';
 import w2 from './w2.jpg';
 import prg from './prg.jpg';
-
+import begambleaware from "./begambleawareorg_white_png.png"
 export  {
     ajax,
     bayern,
@@ -103,7 +103,8 @@ export  {
     w1,
     w2,
     prg,
-    logoM_jpg
+    logoM_jpg,
+    begambleaware
 }
 
 

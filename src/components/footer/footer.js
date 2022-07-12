@@ -1,7 +1,7 @@
 import React from 'react';
 import '../footer/footer.scss';
 import {FooterCarousel} from "../index";
-import {betsoft, netent} from "../../assets/img/images";
+import {begambleaware, betsoft, netent} from "../../assets/img/images";
 import {discord, gr,
     evolutionGaming,
     relax,
@@ -221,10 +221,14 @@ const Footer =()=>{
                                 >
                                     <img src={discord} alt="" className="discord"/>
                                 </a>
-                            </div>
+
+                        </div>
+
                     </div>
                 </div>
-
+                <div className="begambleaware" >
+                    <a href="https://www.begambleaware.org/" target="_blank"> <img src={begambleaware} width={"230px"} align="right"/> </a>
+                </div>
                 <br/>
 
                 <div className="row gx-0 align-items-center">
@@ -234,6 +238,7 @@ const Footer =()=>{
                         </div>
                         <div className="footer-copyright d-flex align-items-center">
                             <p style={{margin:'0'}}>Copyright © 2021  www.planetaxbet.com is operated by Winfinity N.V. that is licensed by the Government of Curacao and operates under the Master License of Gaming Services Provider, N.V. #365/JAZ as an Information Service Provider. Winfinity N.V.’s registration number is 156346 and its registered address is Abraham de Veerstraat 9, Curaçao.</p>
+
                             <iframe src="https://licensing.gaming-curacao.com/validator/?lh=3a84155f3027a434172149ba09f2bce5&template=seal" style={{'width':'150px','height':'50px','border':'none','marginLeft':'20px'}}/>
                         </div>
                     </div>

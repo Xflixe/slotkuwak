@@ -30,7 +30,7 @@ import {discord, gr,
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useUser} from "../../core/hooks/useUser";
 
-import lendingRules from "../../assets/img/lending-rules.jpg"
+import lendingRules from "../../assets/img/lending-rules.jpg?1"
 
 const PromotionScreen = () =>{
     const ev = UseEvent();

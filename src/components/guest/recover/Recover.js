@@ -1,4 +1,4 @@
-import {PLXModal} from "../../index";
+import {PLXModal, SvgDot} from "../../index";
 import {useEffect, useState} from "react";
 import EventEmitter from "../../../core/utils/eventEmitter";
 import {Actions, useTranslation} from "../../../core";
@@ -6,6 +6,8 @@ import _ from "lodash";
 import {useOTP} from "../../../core/hooks/useOTP";
 import './Recover.scss';
 import SelectBox from "../../forms/select/NewSelect";
+import {UseEvent} from "../../../core/hooks/useEvent";
+
 
 const Recover = () =>{
     const {otp, PHONE,EMAIL,CLOSE,ERROR} = useOTP();
@@ -13,11 +15,13 @@ const Recover = () =>{
     const {t} = useTranslation()
     const [type,setType] = useState(null)
     const eventEmitter = new EventEmitter();
+    const ev = UseEvent()
+    const [prLoader,setPrLoader] = useState(false);
     const [form,setForm] = useState({
         channel:'mobile',
         token:'',
         username:'',
-        prefix:359,
+        prefix:'',
         data:'',
         newPassword:false,
         pass1:'',
@@ -48,64 +52,77 @@ const Recover = () =>{
     },[type]);
 
     const sendData =()=>{
+        setPrLoader(true)
         if (type === 'Username'){
             window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'recoverUsername'}).then(async(token)=> {
-                Actions.User.recoverUserName({...form, token:token}).then(response=>{
+                let params = {
+                    channel:form.channel,
+                    token:token,
+                    data:form.data
+                };
+                if(form.channel ==="mobile"){
+                    params["prefix"]=form.prefix;
+                }
+
+                Actions.User.recoverUserName(params).then(response=>{
                     if(response.status){
+                        ev.emit('notify', {
+                            show:true,
+                            text:form.channel === 'mobile'?'If your phone number is in our database, You will receive a text message with password recovery instructions.':'If your email is in our database, You will receive an email with password recovery instructions.',
+                            type:'success',
+                            title:'Recover Username'
+                        })
                         setType(null);
-                        eventEmitter.emit('withdrawModal',false);
-                        window.pushEvent(`username გადმოგზავნილია`,'success');
+                        setPrLoader(false)
+                        //eventEmitter.emit('withdrawModal',false);
+                        //window.pushEvent(`username გადმოგზავნილია`,'success');
                     }
-                }).catch(reason => window.pushEvent(`დაფიქსირდა შეცდომა`,'error'))
+                }).catch(reason => {
+                    ev.emit('notify', {
+                        show:true,
+                        text:form.channel === 'mobile'?'If your phone number is in our database, You will receive a text message with password recovery instructions.':'If your email is in our database, You will receive an email with password recovery instructions.',
+                        type:'error',
+                        title:'Recover Username'
+                    })
+                    setPrLoader(false)
+                })
             });
         }else{
             window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'recoverPassword'}).then(async(token)=> {
-                //Actions.User.recoverUserName({...form, token:token}).then(response=>{
-                    if (form.channel === 'email'){
-                        EMAIL({
-                            email: form.data,
-                            send: `/us/v1/api/personal/recover/otp/get`,
-                            additionalParams:{
-                                username:form.username,
-                                token:token
-                            },
-                            save: code => {
-                                if (code) {
-                                    recoverPassword(code)
-                                }
-                            }
-                        })
-                    }else{
-                        PHONE({
-                            prefix:form.prefix,
-                            number:form.data,
-                            additionalParams:{
-                                username:form.username,
-                                token:token
-                            },
-                            send:`/us/v1/api/personal/recover/otp/get`,
-                            save:code=>{
-                                if(code){
-                                    recoverPassword(code)
-                                }
-                            }
-                        })
-                    }
-                //}).catch(reason => window.pushEvent(`დაფიქსირდა შეცდომა`,'error'))
+
+                let params = {
+                    channel:form.channel,
+                    token:token,
+                    data:form.data,
+                    username:form.username
+                };
+                if(form.channel ==="mobile"){
+                    params["prefix"]=form.prefix;
+                }
+
+                Actions.User.recoverPassword(params).then(response=>{
+                setType(null)
+                    ev.emit('notify', {
+                        show:true,
+                        text:form.channel === 'mobile'?'If your phone number is in our database, You will receive a text message with password recovery instructions.':'If your email is in our database, You will receive an email with password recovery instructions.',
+                        type:'success',
+                        title:'Recover Password'
+                    })
+                    setPrLoader(false)
+                }).catch(reason =>{
+                    ev.emit('notify', {
+                        show:true,
+                        text:'An error occurred',
+                        type:'error',
+                        title:'Recover Password'
+                    })
+                    setPrLoader(false)
+                })
             });
         }
     }
 
-    const recoverPassword =(code)=>{
-        window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'recoverPassword'}).then(async(token)=> {
-            Actions.User.recoverPassword({...form, token:token, otp:code}).then(response=>{
-                setType(null);
-                eventEmitter.emit('signIn',false);
-                CLOSE();
-                window.pushEvent(`დროებითი პაროლი გადმოგზავნილია`,'success');
-            }).catch(reason => window.pushEvent(`დაფიქსირდა შეცდომა`,'error'))
-        });
-    }
+
 
     return type !==null && (
         <PLXModal
@@ -251,7 +268,14 @@ const Recover = () =>{
                     error && <div className="login_error" style={{color:'#ff7e7e'}}>{error}</div>
                 }
 
-                <button type="submit" className="btn-primary" >{t("Submit")}</button>
+
+                <button type="submit" className="btn-primary" style={{position:'relative',overflow:'hidden'}} >
+                    {prLoader && <SvgDot contentStyle={{background:'#ffcb39'}}/> }
+                    {t("Submit")}
+                </button>
+
+
+                {/*<button type="submit" className="btn-primary">{t("Submit")}</button>*/}
             </form>
 
         </PLXModal>

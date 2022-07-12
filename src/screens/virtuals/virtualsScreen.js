@@ -47,15 +47,15 @@ const VirtualsScreen = () =>{
     const [showMobileFilter,setShowMobileFilter] = useState(false)
     const [slideData,setSlideData] = useState(
         window.innerWidth > 767 ? [
-            {id:4, icon:img_desk_4, url:`/${lang}/sport`},
-            {id:3, icon:img_desk_3, url:`/${lang}/slots`},
-            {id:2, icon:img_desk_2, url:`/${lang}/casino`},
-            {id:1, icon:img_desk_1, url:`/${lang}/promotions`},
+            {id:4, icon:img_desk_4, url:`/${i18n.language}/sport`},
+            {id:3, icon:img_desk_3, url:`/${i18n.language}/slots`},
+            {id:2, icon:img_desk_2, url:`/${i18n.language}/casino`},
+            {id:1, icon:img_desk_1, url:`/${i18n.language}/promotions`},
         ] : [
-            {id:4, icon:img_mob_4, url:`/${lang}/sport`},
-            {id:3, icon:img_mob_3, url:`/${lang}/slots`},
-            {id:2, icon:img_mob_2, url:`/${lang}/casino`},
-            {id:1, icon:img_mob_1, url:`/${lang}/promotions`},
+            {id:4, icon:img_mob_4, url:`/${i18n.language}/sport`},
+            {id:3, icon:img_mob_3, url:`/${i18n.language}/slots`},
+            {id:2, icon:img_mob_2, url:`/${i18n.language}/casino`},
+            {id:1, icon:img_mob_1, url:`/${i18n.language}/promotions`},
         ]
     );
     useEffect(()=>{

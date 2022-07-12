@@ -20,10 +20,19 @@ const TermScreen = () =>{
     const n = useNavigation();
     const history = useHistory();
     const [mobMenu, setMobMenu] = useState(false);
+    let params = useParams();
 
-    const {main,sub} = useParams();
-    const params = useParams();
-
+    const [main,setMain]=useState(params?.main)
+    const [sub,setSub]=useState(params?.sub)
+    useEffect(()=>{
+        if(params?.main==="affiliate_program_T&C"){
+            setMain("1")
+            setSub("21")
+        }else{
+            setMain(params?.main)
+            setSub(params?.sub)
+        }
+    },[params])
     return (
         <>
             <Header page={"terms"}/>

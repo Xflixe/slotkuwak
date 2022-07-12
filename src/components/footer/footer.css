@@ -388,5 +388,16 @@
     padding-left: 0;
   }
 }
+.begambleaware {
+  flex: 1;
+  display: flex;
+  justify-Content: flex-end;
+  padding-top: 20px;
+}
+@media screen and (max-width: 990px) {
+  .begambleaware {
+    justify-content: center;
+  }
+}
 
 /*# sourceMappingURL=footer.css.map */

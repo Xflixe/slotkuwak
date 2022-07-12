@@ -46,8 +46,10 @@ export const Config ={
    },
    Guest:{
       RECOVER: {
-         USERNAME:"/us/v1/api/personal/recover/username?channel={channel}&token={token}&prefix={prefix}&data={data}",
-         PASSWORD:"/us/v1/api/personal/recover/password?channel={channel}&token={token}&prefix={prefix}&data={data}&username={username}&otp={otp}"
+         USERNAME:"/us/v1/api/personal/recover/username",
+         PASSWORD:"/us/v1/api/personal/recover/password",
+         CHECKTOKEN:"/us/v1/api/personal/recover/password/check",
+         RESETPASSURL:"/us/v1/api/personal/recover/password/reset"
       }
    },
    Deposit:{

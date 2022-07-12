@@ -2,10 +2,10 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function(app) {
 
     const proxy = {
-        //target: 'http://192.168.1.15:8072',
+        target: 'http://192.168.1.26:8072',
         //target: 'https://planetaxbet.com',
         //target: 'https://staging.planetaxbet.com',
-        target: 'http://127.0.0.1:8072',
+        //target: 'http://127.0.0.1:8072',
         //target: 'http://192.168.30.50:8072',
         //target: 'http://192.168.10.34:8072',
         logLevel:"debug",

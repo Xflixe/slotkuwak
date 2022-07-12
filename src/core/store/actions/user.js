@@ -127,17 +127,28 @@ const  verifyOtp = ({verify,type,prefix,value,otp,additionalParams={},loader,per
     })
 
 }
-const  recoverUserName = ({channel,prefix,data,token}) =>{
-    //{type}&prefix={prefix}&value={value}url
+const  recoverUserName = (data) =>{
     return http.post({
-        url:Config.Guest.RECOVER.USERNAME.replace("{channel}",channel).replace("{prefix}",prefix).replace("{data}",data).replace('{token}',token),
+        url:Config.Guest.RECOVER.USERNAME.concat("?",query_string(data)),
         permitAll:true
     })
 }
-const  recoverPassword = ({channel,prefix,data,token,username,otp}) =>{
-    //{type}&prefix={prefix}&value={value}
+const  recoverPassword = (data) =>{
     return http.post({
-        url:Config.Guest.RECOVER.PASSWORD.replace("{channel}",channel).replace("{prefix}",prefix).replace("{data}",data).replace('{token}',token).replace('{username}',username).replace('{otp}',otp)
+        url:Config.Guest.RECOVER.PASSWORD.concat("?",query_string(data)),
+        permitAll:true
+    })
+}
+const  checkRecoveryToken = (data) =>{
+    return http.post({
+        url:Config.Guest.RECOVER.CHECKTOKEN.concat("?",query_string(data)),
+        permitAll:true
+    })
+}
+const  sendResetPass = (data) =>{
+    return http.post({
+        url:Config.Guest.RECOVER.RESETPASSURL.concat("?",query_string(data)),
+        permitAll:true
     })
 }
 const verification=({data,loader})=>{
@@ -285,6 +296,8 @@ export default {
   signOut,
   ping,
   signUp,
+    checkRecoveryToken,
+    sendResetPass,
   info,
     getLendingInfo,
     getVerificationInfo,
