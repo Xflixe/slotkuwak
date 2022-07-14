@@ -4,11 +4,13 @@ import {Carousel, Header, Swp, Footer, Sport,NewSWP,PLAlert} from "../../compone
 import {Link, useParams} from "react-router-dom";
 import {Actions, useTranslation} from "../../core";
 
+import img_desk_1_ru from "../../assets/img/slide/lending_desc_ru.jpg";
 import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
 import img_desk_2 from "../../assets/img/slide/casino/desktop/2.jpg";
 import img_desk_3 from "../../assets/img/slide/slots/desktop/1.jpg";
 import img_desk_4 from "../../assets/img/slide/sport/desktop/1.jpg";
 
+import img_mob_1_ru from "../../assets/img/slide/lending_mob_ru.jpg";
 import img_mob_1 from "../../assets/img/slide/lending_mob.jpg";
 import img_mob_2 from "../../assets/img/slide/casino/mobile/2.jpg";
 import img_mob_3 from "../../assets/img/slide/slots/mobile/1.jpg";
@@ -25,18 +27,49 @@ const MainScreen = () =>{
     const [mainPageCasinoList,setMainPageCasinoList]=useState([]);
 
     const [slideData,setSlideData] = useState(
-        window.innerWidth > 767 ? [
-            {id:1, icon:img_desk_1, url:`/${i18n.language}/promotions`},
-            {id:2, icon:img_desk_2, url:`/${i18n.language}/casino`},
-            {id:4, icon:img_desk_4, url:`/${i18n.language}/sport`},
-            {id:3, icon:img_desk_3, url:`/${i18n.language}/slots`},
-        ] : [
-            {id:1, icon:img_mob_1, url:`/${i18n.language}/promotions`},
-            {id:2, icon:img_mob_2, url:`/${i18n.language}/casino`},
-            {id:4, icon:img_mob_4, url:`/${i18n.language}/sport`},
-            {id:3, icon:img_mob_3, url:`/${i18n.language}/slots`},
-        ]
+        window.innerWidth > 767 ? {
+            ru: [
+                {id: 1, icon: img_desk_1_ru, url: `/${i18n.language}/promotions`},
+                {id: 2, icon: img_desk_2, url: `/${i18n.language}/casino`},
+                {id: 4, icon: img_desk_4, url: `/${i18n.language}/sport`},
+                {id: 3, icon: img_desk_3, url: `/${i18n.language}/slots`},
+            ],
+            en: [
+                {id: 1, icon: img_desk_1, url: `/${i18n.language}/promotions`},
+                {id: 2, icon: img_desk_2, url: `/${i18n.language}/casino`},
+                {id: 4, icon: img_desk_4, url: `/${i18n.language}/sport`},
+                {id: 3, icon: img_desk_3, url: `/${i18n.language}/slots`},
+            ],
+            es: [
+                {id: 1, icon: img_desk_1, url: `/${i18n.language}/promotions`},
+                {id: 2, icon: img_desk_2, url: `/${i18n.language}/casino`},
+                {id: 4, icon: img_desk_4, url: `/${i18n.language}/sport`},
+                {id: 3, icon: img_desk_3, url: `/${i18n.language}/slots`},
+            ]
+
+        } : {
+            ru: [
+                {id: 1, icon: img_mob_1_ru, url: `/${i18n.language}/promotions`},
+                {id: 2, icon: img_mob_2, url: `/${i18n.language}/casino`},
+                {id: 4, icon: img_mob_4, url: `/${i18n.language}/sport`},
+                {id: 3, icon: img_mob_3, url: `/${i18n.language}/slots`},
+            ],
+            en: [
+                {id: 1, icon: img_mob_1, url: `/${i18n.language}/promotions`},
+                {id: 2, icon: img_mob_2, url: `/${i18n.language}/casino`},
+                {id: 4, icon: img_mob_4, url: `/${i18n.language}/sport`},
+                {id: 3, icon: img_mob_3, url: `/${i18n.language}/slots`},
+            ],
+            es: [
+                {id: 1, icon: img_mob_1, url: `/${i18n.language}/promotions`},
+                {id: 2, icon: img_mob_2, url: `/${i18n.language}/casino`},
+                {id: 4, icon: img_mob_4, url: `/${i18n.language}/sport`},
+                {id: 3, icon: img_mob_3, url: `/${i18n.language}/slots`},
+            ],
+
+        }
     );
+
 
 
     const getList = (pageId) =>{
@@ -68,7 +101,7 @@ const MainScreen = () =>{
             </div>*/}
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP data={slideData} />
+                <NewSWP data={slideData[i18n.language]} />
             </div>
 
             <main className="widget_cont" >

@@ -13,12 +13,15 @@ import '../../../node_modules/swiper/modules/pagination/pagination.scss'; // Pag
 import '../../../node_modules/swiper/modules/scrollbar/scrollbar.scss'; // Pagination module
 import {Swiper, SwiperSlide} from "../../../node_modules/swiper/react/swiper-react";
 import _ from "lodash";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Autoplay, Navigation, Pagination} from 'swiper';
 import {Link} from "react-router-dom";
 
 const NewSWP = (props) =>{
     const [data,setData]= useState(props.data)
+    useEffect(()=>{
+        setData(props.data)
+    },[props.data])
     return (
         <Swiper
             modules={[Autoplay,Pagination,Navigation]}
