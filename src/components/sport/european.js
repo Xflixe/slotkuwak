@@ -7,8 +7,9 @@ import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useNavigation} from "../../core/hooks/useNavigation";
-export const EuropeanView=({view})=>{
+export const EuropeanView=()=>{
     const nav = useNavigation();
+    const [view,setView]=useState(nav.get("betHistory") !==undefined?'BetsHistory':"Home")
 
     const {User} = useUser();
     const ev = UseEvent()
