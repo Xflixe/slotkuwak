@@ -1,5 +1,6 @@
 export const Config ={
    User:{
+      RESTRICTION:"/v1/api/restriction",
       SIGN_OUT:"/api/?app=logout",
       SIGN_IN: "/v1/api/login",
       SIGN_UP:"/us/v2/api/reg",

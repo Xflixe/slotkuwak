@@ -12,6 +12,8 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import '../node_modules/swiper/swiper.scss';
 import '../node_modules/swiper/modules/navigation/navigation.scss';
 import '../node_modules/swiper/modules/pagination/pagination.scss';
+import {createBrowserHistory} from "history"
+import {BrowserRouter as Router, BrowserRouter, Redirect, Route, useParams} from "react-router-dom";
 
 /*const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,12 +25,15 @@ root.render(
         </Suspense>
     </React.StrictMode>
 );*/
+const browserHistory = createBrowserHistory();
 
 ReactDOM.render(
   <React.StrictMode>
       <Suspense  fallback={""}>
           <Provider store={Store}>
-            <App />
+              <Router history={browserHistory}>
+                      <App />
+              </Router>
           </Provider>
       </Suspense>
   </React.StrictMode>,

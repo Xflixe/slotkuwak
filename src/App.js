@@ -12,6 +12,7 @@ import EventEmitter from "./core/utils/eventEmitter";
 import Deposit from "./components/account/deposit/Deposit";
 import DepositModal from "./components/account/deposit/DepositModal";
 import WithdrawModal from "./components/account/withdraw/WithdrawModal";
+import {Restricted} from "./components/restricted/Restricted"
 
 
 const  App=()=> {
@@ -19,6 +20,7 @@ const  App=()=> {
     const dispatch = useDispatch();
     const event = UseEvent();
     const [loaded,setLoaded]=useState(false)
+    const [restriction,setRestriction] = useState(null)
     const cookie = useCookie()
     const nav  = useNav();
     const user = useUser();
@@ -30,8 +32,12 @@ const  App=()=> {
         text:'',
         type:''
     });
-
     useEffect(()=>{
+
+        /*Actions.User.checkRestriction().then(response=>{
+
+        }).catch(()=>setRestriction(true));*/
+        setRestriction('restricted')
         const signInFormEvent= event.subscribe("notify",setShowNotify)
         const depositModal= event.subscribe("depositModal",setDepositModal)
         const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
@@ -59,31 +65,16 @@ const  App=()=> {
 
         }
     },[])
-
-
-
     const ping =  async () => {
         setLoaded(await dispatch(Actions.User.ping()))
     }
 
-    return  loaded && (<>
-          <MainNavigator/>
 
-          <Guest/>
-          <OTP/>
-          <div className="event-wrap"/>
-          {/*{
-              User?.data?.verifyStatus === 1 && modal === true &&
-              <Modal closeButton={true}
-                     onClose={()=>setModal(false)}
-                     title={"Verification Modal"}
-                     footer={<Button className={"danger"} title={"დახურვა"} onCLick={()=>setModal(false)}/>}
-              >
-                  <div>verif modal</div>
-              </Modal>
-          }*/}
-
-
+    return restriction !==null && ((loaded && restriction ==='restricted') ?  <Restricted/>:(<>
+            <MainNavigator/>
+            <Guest/>
+            <OTP/>
+            <div className="event-wrap"/>
             {withdrawModal ? <WithdrawModal onClose={()=> setWithdrawModal(false)}/> : ''}
             {depositModal ? <DepositModal onClose={()=> setDepositModal(false)}/> : ''}
 
@@ -92,10 +83,8 @@ const  App=()=> {
                     <div className="alert_wrap" dangerouslySetInnerHTML={{__html:showNotify.text}}></div>
                 </PLAlert>
             }
-
-
         </>
-  )
+    ))
 }
 
 export default App;

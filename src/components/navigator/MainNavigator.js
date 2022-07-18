@@ -7,9 +7,7 @@ const account = React.lazy(() => import(("../../screens/account/accountScreen"))
 
 
 const MainNavigator = ()=>{
-    const browserHistory = createBrowserHistory();
     return (
-        <Router history={browserHistory}>
             <BrowserRouter>
                 {(userRoutes).map((route, idx) => {
                         return route.component ? (
@@ -29,7 +27,6 @@ const MainNavigator = ()=>{
                 })}
             </BrowserRouter>
 
-        </Router>
     )
 
 }

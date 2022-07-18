@@ -201,7 +201,6 @@ const verificationStep1=({data,loader})=>{
         loader:loader
     });
 }
-
 const verification_email=({data,loader})=>{
    return  http.post({
                 url:Config.User.VERIFICATION_EMAIL,
@@ -227,7 +226,6 @@ const verification_phone=({data,loader})=>{
         loader:loader
     });
 }
-
 const change_password=({data,loader})=>{
     return  http.post({
         url:Config.User.CHANGE_PASSWORD,
@@ -242,7 +240,6 @@ const change_password=({data,loader})=>{
         loader:loader
     });
 }
-
 const withdraw_coinsPaid=({data,loader})=>{
     return  http.post({
         url:Config.User.WITHDRAW_COINSPAID,
@@ -287,7 +284,12 @@ const getTransactionHistory =({d1,d2})=>{
 const getSlotTransactionHistory =({date})=>{
     return  http.get({url:Config.User.GET_SLOT_TRANSACTION_HISTORY.replace("{date}",date)})
 }
+const checkRestriction = () =>{
+    return  http.get({url:Config.User.RESTRICTION, permitAll:true})
+
+}
 export default {
+    checkRestriction,
   getSecurityQuestion,
     sendMessage,
     checkSecurityQuestion,
