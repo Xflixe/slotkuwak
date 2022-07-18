@@ -26,49 +26,49 @@ const MainScreen = () =>{
     const [mainPageSlotList,setMainPageSlotList]=useState([]);
     const [mainPageCasinoList,setMainPageCasinoList]=useState([]);
 
-    const [slideData,setSlideData] = useState(
+    const slideData =
         window.innerWidth > 767 ? {
             ru: [
-                {id: 1, icon: img_desk_1_ru, url: `/${i18n.language}/promotions`},
-                {id: 2, icon: img_desk_2, url: `/${i18n.language}/casino`},
-                {id: 4, icon: img_desk_4, url: `/${i18n.language}/sport`},
-                {id: 3, icon: img_desk_3, url: `/${i18n.language}/slots`},
+                {id: 1, icon: img_desk_1_ru, url: `/ru/promotions`},
+                {id: 2, icon: img_desk_2, url: `/ru/casino`},
+                {id: 4, icon: img_desk_4, url: `/ru/sport`},
+                {id: 3, icon: img_desk_3, url: `/ru/slots`},
             ],
             en: [
-                {id: 1, icon: img_desk_1, url: `/${i18n.language}/promotions`},
-                {id: 2, icon: img_desk_2, url: `/${i18n.language}/casino`},
-                {id: 4, icon: img_desk_4, url: `/${i18n.language}/sport`},
-                {id: 3, icon: img_desk_3, url: `/${i18n.language}/slots`},
+                {id: 1, icon: img_desk_1, url: `/en/promotions`},
+                {id: 2, icon: img_desk_2, url: `/en/casino`},
+                {id: 4, icon: img_desk_4, url: `/en/sport`},
+                {id: 3, icon: img_desk_3, url: `/en/slots`},
             ],
             es: [
-                {id: 1, icon: img_desk_1, url: `/${i18n.language}/promotions`},
-                {id: 2, icon: img_desk_2, url: `/${i18n.language}/casino`},
-                {id: 4, icon: img_desk_4, url: `/${i18n.language}/sport`},
-                {id: 3, icon: img_desk_3, url: `/${i18n.language}/slots`},
+                {id: 1, icon: img_desk_1, url: `/es/promotions`},
+                {id: 2, icon: img_desk_2, url: `/es/casino`},
+                {id: 4, icon: img_desk_4, url: `/es/sport`},
+                {id: 3, icon: img_desk_3, url: `/es/slots`},
             ]
 
         } : {
             ru: [
-                {id: 1, icon: img_mob_1_ru, url: `/${i18n.language}/promotions`},
-                {id: 2, icon: img_mob_2, url: `/${i18n.language}/casino`},
-                {id: 4, icon: img_mob_4, url: `/${i18n.language}/sport`},
-                {id: 3, icon: img_mob_3, url: `/${i18n.language}/slots`},
+                {id: 1, icon: img_mob_1_ru, url: `/ru/promotions`},
+                {id: 2, icon: img_mob_2, url: `/ru/casino`},
+                {id: 4, icon: img_mob_4, url: `/ru/sport`},
+                {id: 3, icon: img_mob_3, url: `/ru/slots`},
             ],
             en: [
-                {id: 1, icon: img_mob_1, url: `/${i18n.language}/promotions`},
-                {id: 2, icon: img_mob_2, url: `/${i18n.language}/casino`},
-                {id: 4, icon: img_mob_4, url: `/${i18n.language}/sport`},
-                {id: 3, icon: img_mob_3, url: `/${i18n.language}/slots`},
+                {id: 1, icon: img_mob_1, url: `/en/promotions`},
+                {id: 2, icon: img_mob_2, url: `/en/casino`},
+                {id: 4, icon: img_mob_4, url: `/en/sport`},
+                {id: 3, icon: img_mob_3, url: `/en/slots`},
             ],
             es: [
-                {id: 1, icon: img_mob_1, url: `/${i18n.language}/promotions`},
-                {id: 2, icon: img_mob_2, url: `/${i18n.language}/casino`},
-                {id: 4, icon: img_mob_4, url: `/${i18n.language}/sport`},
-                {id: 3, icon: img_mob_3, url: `/${i18n.language}/slots`},
+                {id: 1, icon: img_mob_1, url: `/es/promotions`},
+                {id: 2, icon: img_mob_2, url: `/es/casino`},
+                {id: 4, icon: img_mob_4, url: `/es/sport`},
+                {id: 3, icon: img_mob_3, url: `/es/slots`},
             ],
 
         }
-    );
+
 
 
 
