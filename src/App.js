@@ -34,10 +34,13 @@ const  App=()=> {
     });
     useEffect(()=>{
 
-        /*Actions.User.checkRestriction().then(response=>{
-
-        }).catch(()=>setRestriction(true));*/
-        setRestriction('restricted')
+        Actions.User.checkRestriction().then(response=>{
+            if(!response.status && response?.error ==="restricted"){
+                setRestriction("restricted")
+            }else{
+                setRestriction("allowed")
+            }
+        }).catch(e=>setRestriction("allowed"))
         const signInFormEvent= event.subscribe("notify",setShowNotify)
         const depositModal= event.subscribe("depositModal",setDepositModal)
         const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
