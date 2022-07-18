@@ -129,8 +129,8 @@ const VirtualsScreen = () =>{
                             <img className="bg" src={golden}/>
                             <ul>
                                 <li className="provider-logo">
-                                    <div>GoldenRace</div>
-                                    <div>400 Games</div>
+                                    <div>{t("GoldenRace")}</div>
+                                    <div>400 {t("Games")}</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
@@ -139,8 +139,8 @@ const VirtualsScreen = () =>{
                             <img className="bg" src={kiron}/>
                             <ul>
                                 <li className="provider-logo">
-                                    <div>kiron</div>
-                                    <div>400 Games</div>
+                                    <div>{t("kiron")}</div>
+                                    <div>400 {t("Games")}</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>

@@ -85,7 +85,7 @@ const Transactions = ({onClose}) => {
     const getIcon=(v)=>{
         if(v.providerId === "DIGITAIN"){
             return <div className="ticket-svg"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.022 5.44l5.626 9.743M4.495 15.776a.624.624 0 01.127-.78 2.5 2.5 0 00-2.45-4.243.624.624 0 01-.739-.28l-.97-1.679a.625.625 0 01.23-.854l12.99-7.5a.625.625 0 01.854.23l.969 1.678a.625.625 0 01-.127.78 2.5 2.5 0 002.45 4.243.624.624 0 01.739.28l.969 1.678a.625.625 0 01-.229.854l-12.99 7.5a.625.625 0 01-.854-.229l-.97-1.678z"></path></g><defs><clipPath id="clip0"><path fill="#b5121b" d="M0 0h20v20H0z"></path></clipPath></defs></svg>
-                <span style={{paddingLeft:'5px'}}>Sport</span>
+                <span style={{paddingLeft:'5px'}}>{t("Sport")}</span>
             </div>
         }else if(v.action === "SummaryRecord"){
             return <i className="slot-icon"/>
@@ -109,10 +109,10 @@ const Transactions = ({onClose}) => {
         }else{
             if(v.action === "deposit" || v.action === "withdrawal"){
                 return <>
-                    <p>{v?.type === 3? (v?.parentAction? v.parentAction + ' fee':'Service fee') :v.action}</p>
+                    <p>{v?.type === 3? (v?.parentAction? v.parentAction + ' fee':t("Service fee")) :v.action}</p>
                 </>
             }else{
-                return v.winAmount !== null ? <><p style={{fontSize:'12px',color:'#5d9323'}}>WIN</p>{v.winAmount}<span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''
+                return v.winAmount !== null ? <><p style={{fontSize:'12px',color:'#5d9323'}}>{t("WIN")}</p>{v.winAmount}<span style={{marginLeft:'5px',fontSize:'12px',color:'#909eac'}}>{v.currency}</span></>:''
             }
 
         }
@@ -192,7 +192,7 @@ const Transactions = ({onClose}) => {
 
                             <img src={arrowLeftBack} alt=""/>
 
-                            <div className="tab-headline">Transaction History</div>
+                            <div className="tab-headline">{t("Transaction History")}</div>
                         </button>
                     </div>
                     <div className="col-12">
@@ -200,18 +200,18 @@ const Transactions = ({onClose}) => {
                             <div className="field-col">
                                 <div className={`input-label-border`}>
                                     <input onChange={e => setDateRange({...dateRange,start:e.target.value})} value={dateRange.start} type="date" name="dob" id="tr-start" />
-                                    <label htmlFor="tr-start">Date: <span>{t("from")}</span></label>
+                                    <label htmlFor="tr-start"> <span>{t("Date: from")}</span></label>
                                 </div>
                             </div>
                             <div className="field-col">
                                 <div className={`input-label-border`}>
                                     <input onChange={e => setDateRange({...dateRange,end:e.target.value})} value={dateRange.end} type="date" name="dob" id="tr-end" />
-                                    <label htmlFor="tr-end">Date: <span>{t("to")}</span></label>
+                                    <label htmlFor="tr-end"> <span>{t("Date: to")}</span></label>
                                 </div>
                             </div>
                             <div className="field-col btn-field">
                                 <div className={`input-label-border history-confirm-btn`}>
-                                    <button onClick={()=>trHistory()}>Confirm</button>
+                                    <button onClick={()=>trHistory()}>{t("Confirm")}</button>
                                 </div>
                             </div>
                         </div>
@@ -391,10 +391,10 @@ const Transactions = ({onClose}) => {
                     <div className="slot-transaction-detail head">
                         <table>
                             <tr>
-                                <td>Provider</td>
-                                <td>Date Time</td>
-                                <td>Amount</td>
-                                <td>Type</td>
+                                <td>{t("Provider")}</td>
+                                <td>{t("Date Time")}</td>
+                                <td>{t("Amount")}</td>
+                                <td>{t("Type")}</td>
                             </tr>
                         </table>
                     </div>

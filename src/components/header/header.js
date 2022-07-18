@@ -80,11 +80,11 @@ const Header = ({page}) =>{
                                                         }else{
                                                             ev.emit('notify', {
                                                                 show:true,
-                                                                text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                                                                text:t('Oops, Unfortunately you can not withdraw money. Please verify your profile first.'),
                                                                 type:'error',
-                                                                title:'Withdraw',
+                                                                title:t('Withdraw'),
                                                                 button:{
-                                                                    name:'Verify Account',
+                                                                    name:t('Verify Account'),
                                                                     url: `/${i18n.language}/account/verification`
                                                                 }
                                                             })

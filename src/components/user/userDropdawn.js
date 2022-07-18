@@ -72,13 +72,13 @@ const UserDropDawn = ({onClose,className})=>{
             </div>
             <div className="money-info">
                 <div className="d-col">
-                    <p>Balance</p>
+                    <p>{t("Balance")}</p>
                     <span>{User?.data?.accounts?.main?.currency?.iso3} {User?.data?.accounts?.main?.amount.toFixed(2)}</span>
                 </div>
                 {
                     wager?.bonusAmount && (
                         <div className="d-col">
-                            <p>Bonus Money</p>
+                            <p>{t("Bonus Money")}</p>
                             <span>{wager?.item?.currency} {wager?.bonusAmount.toFixed(2)}</span>
                         </div>
                     )
@@ -89,17 +89,17 @@ const UserDropDawn = ({onClose,className})=>{
                 (wager?.item || wager?.bonusClaimable) && (
                     <div className="lending-box">
                         <div className="lending-box-title">
-                            <h6>Welcome Bonus</h6>
-                            {wager?.item && <Link to={`/${i18n.language}/promotions`}>See Rules</Link>}
+                            <h6>{t("Welcome Bonus")}</h6>
+                            {wager?.item && <Link to={`/${i18n.language}/promotions`}>{t("See Rules")}</Link>}
                         </div>
-                        <p>{wager?.item?'Bonus money must be wagered 35x before it can be converted into real money':'Claim €800 welcome bonus in 2 easy deposit bonuses, redeem your offer - just follow these steps.'}</p>
-                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>Claim Bonus</Link>}
+                        <p>{wager?.item?t('Bonus money must be wagered 35x before it can be converted into real money'):t('Claim €800 welcome bonus in 2 easy deposit bonuses, redeem your offer - just follow these steps.')}</p>
+                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>{t("Claim Bonus")}</Link>}
 
                         {
                             wager?.item && (
                                 <>
                                 <div className="lending-box-title">
-                                    {wager?.item?.['wagerType'] === "FIRST-DEPOSIT"? <h6>1st deposit bonus</h6>:<h6>2nd Deposit</h6>}
+                                    {wager?.item?.['wagerType'] === "FIRST-DEPOSIT"? <h6>{t("1st deposit bonus")}</h6>:<h6>{t("2nd Deposit")}</h6>}
                                 </div>
                                 <div className="progress-box">
                                     <div className="progress-line" >
@@ -120,10 +120,10 @@ const UserDropDawn = ({onClose,className})=>{
 
 
             <div className="user-links">
-                <Link  to={`/${i18n.language}/account/info`} className="link">Personal Data</Link>
-                <Link  to={`/${i18n.language}/account/transactions`} className="link">Transactions</Link>
-                <Link  to={`/${i18n.language}/sport?betHistory`} className="link">Bet History</Link>
-                <Link  to={`/${i18n.language}/account/verification`} className="link">Account Verification <i data-status={userVerification}/></Link>
+                <Link  to={`/${i18n.language}/account/info`} className="link">{t("Personal Data")}</Link>
+                <Link  to={`/${i18n.language}/account/transactions`} className="link">{t("Transactions")}</Link>
+                <Link  to={`/${i18n.language}/sport?betHistory`} className="link">{t("Bet History")}</Link>
+                <Link  to={`/${i18n.language}/account/verification`} className="link">{t("Account Verification")} <i data-status={userVerification}/></Link>
             </div>
             <div className="log-out">
                 <a className="user-logout" onClick={()=>{

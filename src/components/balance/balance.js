@@ -58,7 +58,7 @@ const Balance = ({route}) =>{
                 return <span style={{color:'#f13232'}}>{ t("Not Verified")}</span>
             }
         }else {
-            return <span style={{color:'#51a600'}}>Verified</span>
+            return <span style={{color:'#51a600'}}>{t("Verified")}</span>
         }
     }
 
@@ -90,7 +90,6 @@ const Balance = ({route}) =>{
                 <div onClick={()=>{
 
                     checkSession().then(response=>{
-                        console.log(response)
                         if(response.status){
 
                             if(response?.data?.data?.verifyStatus===0){
@@ -98,11 +97,11 @@ const Balance = ({route}) =>{
                             }else{
                                 ev.emit('notify', {
                                     show:true,
-                                    text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                                    text:t('Oops, Unfortunately you can not withdraw money. Please verify your profile first.'),
                                     type:'error',
-                                    title:'Withdraw',
+                                    title:t("Withdraw"),
                                     button:{
-                                        name:'Verify Account',
+                                        name:t("Verify Account"),
                                         url: `/${i18n.language}/account/verification`
                                     }
                                 })

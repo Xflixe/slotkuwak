@@ -83,7 +83,7 @@ const DepositModal = ({onClose})=>{
             <SelectBox
                 data={currencyList}
                 id={"crypto-currency"}
-                placeholder={t("currency")}
+                placeholder={t("Currency")}
                 className="crypto-currency"
                 value={selectedCurrency.id}
                 onSelect={e => setSelectedCurrency(e)}
@@ -93,7 +93,7 @@ const DepositModal = ({onClose})=>{
                     (qrData?.url) ? (
                         <>
                             <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>{qrData?.exchangeRate?.rateFrom} {qrData.currency}  ~ {qrData?.exchangeRate?.rateTo} {qrData.toCurrency}</p>
-                            <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>Min deposit:  {qrData?.exchangeRate?.minAmountFrom} {qrData.currency}</p>
+                            <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>{t("Min deposit")}:  {qrData?.exchangeRate?.minAmountFrom} {qrData.currency}</p>
 
                             <div className="new-input-label">
                                 <div className="input-box">
@@ -134,7 +134,7 @@ const DepositModal = ({onClose})=>{
                                                 setCopyText(false)
                                             },3000);
                                         }}><img src={copy}/></i>
-                                        <span data-show={copyText}>copied</span>
+                                        <span data-show={copyText}>{t("copied")}</span>
 
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@ import {UseEvent} from "../../core/hooks/useEvent";
 import {useNavigation} from "../../core/hooks/useNavigation";
 export const SportMobileView=()=>{
     const nav = useNavigation();
-    const [view,setView]=useState(nav.get("betHistory") !==undefined?'BetsHistory':"Home")
+    const [view,setView]=useState(nav.get("betHistory") !==null?'BetsHistory':"Home")
     const {i18n} = useTranslation()
     const {User} = useUser();
     const {lang} = useParams()

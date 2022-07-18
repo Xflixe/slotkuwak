@@ -68,9 +68,9 @@ const Recover = () =>{
                     if(response.status){
                         ev.emit('notify', {
                             show:true,
-                            text:form.channel === 'mobile'?'If your phone number is in our database, You will receive a text message with password recovery instructions.':'If your email is in our database, You will receive an email with password recovery instructions.',
+                            text:form.channel === 'mobile'?t('If your phone number is in our database, You will receive a text message with password recovery instructions.'):t('If your email is in our database, You will receive an email with password recovery instructions.'),
                             type:'success',
-                            title:'Recover Username'
+                            title:t('Recover Username')
                         })
                         setType(null);
                         setPrLoader(false)
@@ -80,9 +80,9 @@ const Recover = () =>{
                 }).catch(reason => {
                     ev.emit('notify', {
                         show:true,
-                        text:form.channel === 'mobile'?'If your phone number is in our database, You will receive a text message with password recovery instructions.':'If your email is in our database, You will receive an email with password recovery instructions.',
+                        text:form.channel === 'mobile'?t('If your phone number is in our database, You will receive a text message with password recovery instructions.'):t('If your email is in our database, You will receive an email with password recovery instructions.'),
                         type:'error',
-                        title:'Recover Username'
+                        title:t('Recover Username')
                     })
                     setPrLoader(false)
                 })
@@ -104,17 +104,17 @@ const Recover = () =>{
                 setType(null)
                     ev.emit('notify', {
                         show:true,
-                        text:form.channel === 'mobile'?'If your phone number is in our database, You will receive a text message with password recovery instructions.':'If your email is in our database, You will receive an email with password recovery instructions.',
+                        text:form.channel === 'mobile'?t('If your phone number is in our database, You will receive a text message with password recovery instructions.'):t('If your email is in our database, You will receive an email with password recovery instructions.'),
                         type:'success',
-                        title:'Recover Password'
+                        title:t('Recover Password')
                     })
                     setPrLoader(false)
                 }).catch(reason =>{
                     ev.emit('notify', {
                         show:true,
-                        text:'An error occurred',
+                        text:t('An error occurred'),
                         type:'error',
-                        title:'Recover Password'
+                        title:t('Recover Password')
                     })
                     setPrLoader(false)
                 })

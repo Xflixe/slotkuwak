@@ -163,7 +163,7 @@ const SignUp =() =>{
                 setShow(false);
 
             } else {
-                window.top.pushEvent('specified username or password is incorrect','error');
+                window.top.pushEvent(t('specified username or password is incorrect'),'error');
             }
         })
 
@@ -201,7 +201,7 @@ const SignUp =() =>{
              }
              let errUsername = /^[a-zA-Z0-9_.]+$/.test(signUpForm.username);
              if(!errUsername){
-                 window.top.pushEvent('Username should contain at least 6 symbols','error');
+                 window.top.pushEvent(t('Username should contain at least 6 symbols'),'error');
                  return;
              }
              let errPassword1 = signUpForm.password.match(/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/);
@@ -220,14 +220,14 @@ const SignUp =() =>{
                  if(error.length===2 && error[0]==="password"){
                      //alert("Passwords do not match")
                      //alert(t("Password should contain at least 6 symbols"));
-                     window.top.pushEvent('passwords did not match!','error');
+                     window.top.pushEvent(t('passwords did not match!'),'error');
                  }
 
              }else{
                  if(!confirmed){
                      if(!primaryContact.phone && !primaryContact.email){
                          //alert('Chose Transactions Method');
-                         window.top.pushEvent('Chose Transactions Method','error');
+                         window.top.pushEvent(t('Choose Transactions Method'),'error');
 
                          return;
                      }
@@ -243,7 +243,7 @@ const SignUp =() =>{
                      if(response.status){
                          //document.getElementById("close-sign-up").click();
                          //document.getElementById("signIn-btn").click();
-                         window.top.pushEvent('Registration completed successfully','success');
+                         window.top.pushEvent(t('Registration completed successfully'),'success');
                          //alert("Registration completed successfully")
                          otp.CLOSE();
                          ev.emit('signUp',false);
@@ -258,12 +258,11 @@ const SignUp =() =>{
                                  if(['mail',"mobile"].indexOf(val)>-1){
                                      setOtpDialog(val)
                                  }else{
-                                     window.top.pushEvent('Incorect SMS Code Please Check Sending SMS','error');
+                                     window.top.pushEvent(t('Incorect SMS Code Please Check Sending SMS'),'error');
                                  }
                              }else{
 
-                                 console.log(key,val)
-                                 window.top.pushEvent(i18n.t(val),'error');
+                                 window.top.pushEvent(t(val),'error');
                                  if(errors.indexOf(key)===-1){
                                      setErrors([...errors,key])
                                  }
@@ -309,13 +308,13 @@ const SignUp =() =>{
     const checkPassPattern=(ps='')=> {
         if(ps.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$/)){
             setPassPattern(3);
-            setPassPatternText('Strong');
+            setPassPatternText(t('Strong'));
         }else if(ps.trim().match(/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/)){
             setPassPattern(2);
-            setPassPatternText('Medium');
+            setPassPatternText(t('Medium'));
         }else {
             setPassPattern(1);
-            setPassPatternText('Weak');
+            setPassPatternText(t('Weak'));
         }
         if(ps === ''){
             setPassPattern(0);
@@ -459,7 +458,7 @@ const SignUp =() =>{
                             <li/>
                             <li/>
                         </ul>
-                        {passPattern === 1 && <p style={{color: 'rgb(161 175 181)', lineHeight: '15px', fontSize: '13px', margin: '5px 0',marginBottom: '0'}}>Passwords must contain: at least 8 characters, min. 1 upper case, 1 lower case, 1 numeric symbol.</p>}
+                        {passPattern === 1 && <p style={{color: 'rgb(161 175 181)', lineHeight: '15px', fontSize: '13px', margin: '5px 0',marginBottom: '0'}}>{t("Passwords must contain: at least 8 characters, min. 1 upper case, 1 lower case, 1 numeric symbol.")}</p>}
                     </div>
                     {/*<div className="col-12">
                         <div className={`input-label ${error("password2")}`}>

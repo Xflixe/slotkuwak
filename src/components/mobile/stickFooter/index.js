@@ -25,7 +25,7 @@ const StickFooter = () =>{
                     <li>
                         <Link to={`/${lang}/main`}>
                             <i><img src={stickHome} alt=""/></i>
-                            <span>Home</span>
+                            <span>{t("Home")}</span>
                         </Link>
                     </li>
                     <li>
@@ -37,13 +37,12 @@ const StickFooter = () =>{
                             })
                         }}>
                             <i><img src={stickDeposit} alt=""/></i>
-                            <span>Deposit</span>
+                            <span>{t("Deposit")}</span>
                         </div>
                     </li>
                     <li>
                         <div onClick={()=>{
                             checkSession().then(response=>{
-                                console.log(response)
                                 if(response.status){
 
                                     if(response?.data?.data?.verifyStatus===0){
@@ -51,11 +50,11 @@ const StickFooter = () =>{
                                     }else{
                                         ev.emit('notify', {
                                             show:true,
-                                            text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                                            text:t('Oops, Unfortunately you can not withdraw money. Please verify your profile first.'),
                                             type:'error',
-                                            title:'Withdraw',
+                                            title:t('Withdraw'),
                                             button:{
-                                                name:'Verify Account',
+                                                name:t('Verify Account'),
                                                 url: `/${i18n.language}/account/verification`
                                             }
                                         })
@@ -64,13 +63,13 @@ const StickFooter = () =>{
                             })
                         }}>
                             <i><img src={stickWithdraw} alt=""/></i>
-                            <span>Withdraw</span>
+                            <span>{t("Withdraw")}</span>
                         </div>
                     </li>
                     <li>
                         <Link to={`/${lang}/account`}>
                             <i><img src={stickAccount} alt=""/></i>
-                            <span>Account</span>
+                            <span>{t("Account")}</span>
                         </Link>
                     </li>
                 </ul>

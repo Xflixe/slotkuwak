@@ -8,10 +8,7 @@ import _ from "lodash";
 import {Redirect, useParams} from "react-router-dom";
 import {useUser} from "../../core/hooks/useUser";
 import PLXModal from "../../components/modal/PLXModal";
-import SelectBox from "../../components/forms/select/NewSelect";
-import {QRCode} from "react-qrcode-logo";
-import {logoM_jpg} from "../../assets/img/images";
-import {copy} from "../../assets/img/icons/icons";
+
 const TransactionScreen = () =>{
     const {t} = useTranslation()
 
@@ -71,7 +68,7 @@ const TransactionScreen = () =>{
 
     const getStatus=(v)=>{
         if(v.action === "SummaryRecord"){
-            return <button className="det-button" onClick={()=>showDetail(v)}>Detailed</button>
+            return <button className="det-button" onClick={()=>showDetail(v)}>{t("Detailed")}</button>
         }else{
             return v.status === 1 ? t("Successful"):t("Pending")
         }
@@ -100,13 +97,13 @@ const TransactionScreen = () =>{
                                         <div className="col-12 col-md-3">
                                             <div className={`input-label-border`}>
                                                 <input onChange={e => setDateRange({...dateRange,start:e.target.value})} value={dateRange.start} type="date" name="dob" id="tr-start" />
-                                                <label htmlFor="tr-start">Date: <span>{t("from")}</span></label>
+                                                <label htmlFor="tr-start"> <span>{t("Date: from")}</span></label>
                                             </div>
                                         </div>
                                         <div className="col-12 col-md-3">
                                             <div className={`input-label-border`}>
                                                 <input onChange={e => setDateRange({...dateRange,end:e.target.value})} value={dateRange.end} type="date" name="dob" id="tr-end" />
-                                                <label htmlFor="tr-end">Date: <span>{t("to")}</span></label>
+                                                <label htmlFor="tr-end"> <span>{t("Date: to")}</span></label>
                                             </div>
                                         </div>
                                     </div>
@@ -296,11 +293,11 @@ const TransactionScreen = () =>{
                 showDetailModal && <PLXModal title={t("Transaction History")} onClose={()=>setShowDetailModal(false)} className={'slot-transaction-history'} dialogStyle={{width:'700px'}} contentStyle={{width:'700px'}} >
                     <div className="slot-transaction-detail head">
                         <ul>
-                            <li>Provider</li>
-                            <li>Date</li>
-                            <li>Time</li>
-                            <li>Amount</li>
-                            <li>Type</li>
+                            <li>{t("Provider")}</li>
+                            <li>{t("Date")}</li>
+                            <li>{t("Time")}</li>
+                            <li>{t("Amount")}</li>
+                            <li>{t("Type")}</li>
                         </ul>
                     </div>
                     <div className="slot-transaction-detail">

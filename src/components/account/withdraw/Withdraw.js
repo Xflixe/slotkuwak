@@ -86,7 +86,7 @@ const Withdraw = ({onClose})=>{
                 }
             })
         }else{
-            window.pushEvent('Please fill fields','error');
+            window.pushEvent(t('Please fill fields'),'error');
         }
     }
     const withdrawDialog = () =>{
@@ -123,7 +123,7 @@ const Withdraw = ({onClose})=>{
                                             setCrypto(event.target.value * exRate?.exchangeRate?.rateTo);
                                         }}
                                         />
-                                        <label htmlFor="amount">EUR</label>
+                                        <label htmlFor="amount">{t("EUR")}</label>
                                         {/*{t("Money")}*/}
                                     </div>
                                     <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>Min Withdraw: {exRate?.exchangeRate?.minAmountFrom} {exRate.currency}</p>
@@ -152,7 +152,7 @@ const Withdraw = ({onClose})=>{
                                 <div className="new-input-label" style={{display:'flex',justifyContent:'center'}} >
                                     <button  onClick={()=> withdrawHandler()} className="btn-primary"
                                              id="withdraw-tab" type="submit" style={{width:"100%",marginTop:"16px",maxWidth:"100%"}}>
-                                        <span>Withdraw</span>
+                                        <span>{t("Withdraw")}</span>
                                     </button>
                                 </div>
                             </>:
@@ -215,7 +215,7 @@ const Withdraw = ({onClose})=>{
                                                 <span className="reflection">
                                                     <img src={time} alt="Time"/>
                                                 </span>
-                                        <div className="reflection-duration">Instantly</div>
+                                        <div className="reflection-duration">{t("Instantly")}</div>
                                     </div>
                                 </div>
                                 <a target="_blank" className="btn-dark" onClick={()=>setSelectedCurrency({id:"BTC",title:"BTC",name:"Bitcoin"})}>Withdraw</a>

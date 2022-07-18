@@ -122,7 +122,7 @@ const ChangePassword = ({title,email,err,onSubmit,onClose,send,save,verify,addit
                         <div className={`toggle-password ${passType.currentPass==='text'?'active':'hide'}`} onClick={()=>{togglePassType('currentPass')}}/>
                     </div>
 
-                    <span className="characters-controll">Must contain at least 6 characters</span>
+                    <span className="characters-controll">{t("Must contain at least 6 characters")}</span>
                 </div>
                 <div className="new-input-label" >
                     <div className="input-box">
@@ -132,7 +132,7 @@ const ChangePassword = ({title,email,err,onSubmit,onClose,send,save,verify,addit
                         <label htmlFor="pass1">{t("New Password")}</label>
                         <div className={`toggle-password ${passType.pass1==='text'?'active':'hide'}`} onClick={()=>{togglePassType('pass1')}}/>
                     </div>
-                    <span className="characters-controll wrong">Must contain at least 6 characters</span>
+                    <span className="characters-controll wrong">{t("Must contain at least 6 characters")}</span>
                 </div>
                 <div className="new-input-label" >
                     <div className="input-box">
@@ -142,7 +142,7 @@ const ChangePassword = ({title,email,err,onSubmit,onClose,send,save,verify,addit
                         <label htmlFor="pass2">{t("Confirm Password")}</label>
                         <div className={`toggle-password ${passType.pass2==='text'?'active':'hide'}`} onClick={()=>{togglePassType('pass2')}}/>
                     </div>
-                    <span className={`characters-controll success`}>Must contain at least 6 characters</span>
+                    <span className={`characters-controll success`}>{t("Must contain at least 6 characters")}</span>
                 </div>
 
 

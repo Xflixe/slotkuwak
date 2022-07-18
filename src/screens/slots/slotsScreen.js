@@ -177,9 +177,9 @@ const SlotsScreen = () =>{
                                     v.checked=false;
                                     return v;
                                 })])
-                            }}>All</button>
-                            <button>Trending</button>
-                            <button>Most Liked</button>
+                            }}>{t("All")}</button>
+                            <button>{t("Trending")}</button>
+                            <button>{t("Most Liked")}</button>
                             <div className="search">
                                 <input
                                     type="text"

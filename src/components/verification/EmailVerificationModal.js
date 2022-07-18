@@ -84,11 +84,11 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
             <form onSubmit={e=>{
                 e.preventDefault();
                 if(!codeRequest){
-                    window.pushEvent('Please Request SMS Code','error');
+                    window.pushEvent(t('Please Request SMS Code'),'error');
                     return;
                 }
                 if(!code){
-                    window.pushEvent("Incorrect sms code","error");
+                    window.pushEvent(t("Incorrect sms code"),"error");
                     setTimeout(()=>{
                         setError("")
                     },2000)

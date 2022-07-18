@@ -59,21 +59,21 @@ const Finances = () => {
                                     <li className="nav-item" role="presentation">
                                         <button onClick={(e)=>setDeposit(true)} className="d-flex align-items-center justify-content-between nav-link secondery"
                                                 id="deposit-tab" type="button">
-                                            <span>Deposit</span>
+                                            <span>{t("Deposit")}</span>
                                             {svgArrow()}
                                         </button>
                                     </li>
                                     <li className="nav-item" role="presentation">
                                         <button onClick={()=>setWithdraw(true)} className="d-flex align-items-center justify-content-between nav-link secondery"
                                                 id="withdraw-tab" type="button">
-                                            <span>Withdraw</span>
+                                            <span>{t("Withdraw")}</span>
                                             {svgArrow()}
                                         </button>
                                     </li>
                                   <li className="nav-item" role="presentation">
                                         <button onClick={()=>setHistory(true)} className="d-flex align-items-center justify-content-between nav-link secondery"
                                                 id="transaction-tab" type="button">
-                                            <span>Transaction history</span>
+                                            <span>{t("Transaction history")}</span>
                                             {svgArrow()}
                                         </button>
                                     </li>

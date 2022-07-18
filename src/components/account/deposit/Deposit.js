@@ -99,7 +99,7 @@ const Deposit = ({onClose})=>{
                                                 setCopyText(false)
                                             },3000);
                                         }}><img src={copy}/></i>
-                                        <span data-show={copyText}>copied</span>
+                                        <span data-show={copyText}>{t("copied")}</span>
 
                                     </div>
                                 </div>

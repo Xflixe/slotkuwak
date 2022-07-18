@@ -123,11 +123,9 @@ const Information = () => {
                                                 getSecurityQuestion(response.data);
                                                 CLOSE();
                                             }else{
-                                                console.log("catch")
                                                 ERROR({error:t("error")})
                                             }
                                         }).catch(e=>{
-                                            console.log("catch")
                                             ERROR({error:t("error")})
                                         })
                                     }
@@ -208,11 +206,9 @@ const Information = () => {
                                 setSecurityQuestions([]);
                                 CLOSE();
                             }else{
-                                console.log("catch")
                                 ERROR({error:t("error")})
                             }
                         }).catch(e=>{
-                            console.log("catch")
                             ERROR({error:t("error")})
                         })
                     }
@@ -238,11 +234,9 @@ const Information = () => {
                             setOpen2FA(false)
                             CLOSE();
                         }else{
-                            console.log("catch")
                             ERROR({error:t("error")})
                         }
                     }).catch(e=>{
-                        console.log("catch")
                         ERROR({error:t("error")})
                     })
                 }
@@ -267,7 +261,6 @@ const Information = () => {
 
         if(error.length>0){
             setErrors([...error])
-            console.log('error',error)
         }else{
             Actions.User.updateInfo({data:infoData,loader:setLoader}).then(response=>{
                 setTimeout(()=>{
@@ -283,13 +276,13 @@ const Information = () => {
                         ...status,
                         status:'success'//, msg:t('The information was successfully updated')
                     })
-                    window.pushEvent('The information was successfully updated','success')
+                    window.pushEvent(t('The information was successfully updated'),'success')
                 }else {
                     setStatus({
                         ...status,
                         status:"error"//,msg:t("An error occurred while updating the information")
                     })
-                    window.pushEvent('An error occurred while updating the information','error')
+                    window.pushEvent(t('An error occurred while updating the information'),'error')
                 }
             })
         }
@@ -298,7 +291,6 @@ const Information = () => {
 
     const getPrimaryOtp = () =>{
         Actions.Otp.getPrimary().then(response=>{
-            console.log(223,response)
             if(response){
                 if(response?.enabled){
                     setDat2FA(response?.enabled);
@@ -318,7 +310,7 @@ const Information = () => {
             {
                 infoData?.hasUserRequestedVerify === true && infoData?.verifyStatus !== 0 &&
                 <div className="col-12">
-                    <div className="user_verify_test">Your information has been submitted and Waiting for Review </div>
+                    <div className="user_verify_test">{t("Your information has been submitted and Waiting for Review")}</div>
                 </div>
             }
             <br/>
@@ -557,7 +549,7 @@ const Information = () => {
                                                     onChange={e => setInfoData({...infoData,email:e.target.value})}
                                                     disabled={forEdit.email === '' && infoData.emailConfirmed?'disabled':''}
                                                 />
-                                                <label htmlFor="email">Email</label>
+                                                <label htmlFor="email">{t("Email")}</label>
                                                 {
                                                     (forEdit.email === '' && infoData.emailConfirmed === 1)?
                                                     <button
@@ -796,7 +788,7 @@ const Information = () => {
                             {
                                 otpSource === '' ? (
                                     <>
-                                        <div style={{color: '#ff4646',paddingTop: '20px'}}>Error was reported. Contact the hotline</div>
+                                        <div style={{color: '#ff4646',paddingTop: '20px'}}>{t("Error was reported. Contact the hotline")}</div>
                                     </>
                                 ):(
                                     <>
@@ -804,14 +796,14 @@ const Information = () => {
                                             <div  className="col-12" style={{marginBottom:'0'}}>
                                                 <br/>
 
-                                                <p style={{fontSize:'14px',lineHeight:'14px',color:'#707c9b'}}>Two-factor authentication (2FA) adds an additional layer of security to your account by requiring to enter a one-time verification code sent using your preferred channel in order to login</p>
+                                                <p style={{fontSize:'14px',lineHeight:'14px',color:'#707c9b'}}>{t("Two-factor authentication (2FA) adds an additional layer of security to your account by requiring to enter a one-time verification code sent using your preferred channel in order to login")}</p>
                                                 <div className="out-2fa-box">
-                                                    <div style={{color:'#707c9b'}}>Turn on Two-factor authentication:</div>
+                                                    <div style={{color:'#707c9b'}}>{t("Turn on Two-factor authentication")}:</div>
                                                     <div onClick={()=>setDat2FA(!dat2FA)} className={`btn-2fa ${dat2FA?'active':'disable'}`}><i/></div>
                                                 </div>
                                                 <br/>
                                                 {
-                                                    dat2FA && <p style={{fontSize:'14px',lineHeight:'14px',color:'#707c9b',marginBottom:'0'}}>on next time login one time verification code will be sent to this channel: <span style={{color:'#ccc'}}>{otpSource}</span></p>
+                                                    dat2FA && <p style={{fontSize:'14px',lineHeight:'14px',color:'#707c9b',marginBottom:'0'}}>{t("on next time login one time verification code will be sent to this channel")}: <span style={{color:'#ccc'}}>{otpSource}</span></p>
                                                 }
                                             </div>
                                         </div>

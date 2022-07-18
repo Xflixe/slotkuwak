@@ -15,6 +15,7 @@ import WithdrawModal from "./components/account/withdraw/WithdrawModal";
 
 
 const  App=()=> {
+    const {t} = useTranslation()
     const dispatch = useDispatch();
     const event = UseEvent();
     const [loaded,setLoaded]=useState(false)
@@ -87,7 +88,7 @@ const  App=()=> {
             {depositModal ? <DepositModal onClose={()=> setDepositModal(false)}/> : ''}
 
             {
-                showNotify.show && <PLAlert data={showNotify} title={showNotify?.title} onClose={()=>setShowNotify({...showNotify,show:false})} footer={<button onClick={()=>setShowNotify({...showNotify,show:false})}>Close</button>}>
+                showNotify.show && <PLAlert data={showNotify} title={showNotify?.title} onClose={()=>setShowNotify({...showNotify,show:false})} footer={<button onClick={()=>setShowNotify({...showNotify,show:false})}>{t("Close")}</button>}>
                     <div className="alert_wrap" dangerouslySetInnerHTML={{__html:showNotify.text}}></div>
                 </PLAlert>
             }

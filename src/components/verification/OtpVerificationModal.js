@@ -95,13 +95,13 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                         setError('')
                     }else {
                         console.log('444',response)
-                        setError('error')
+                        setError(t('error'))
                         save(false)
                     }
 
                 })
         }else{
-            setError("Please check field")
+            setError(t("Please check field"))
         }
 
     }
@@ -135,11 +135,11 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                     return;
                 }
                 if(!codeRequest){
-                    window.pushEvent('Please Request SMS Code','error');
+                    window.pushEvent(t('Please Request SMS Code'),'error');
                     return;
                 }
                 if(!code){
-                    window.pushEvent("Incorrect sms code","error");
+                    window.pushEvent(t("Incorrect sms code"),"error");
                 }else{
                     setCodeRequest(false);
                     if(verify){
@@ -152,13 +152,13 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
 
 
                 {
-                    showError && <div style={{color: '#ff4646',paddingTop: '20px'}}>Error was reported. Contact the hotline</div>
+                    showError && <div style={{color: '#ff4646',paddingTop: '20px'}}>{t("Error was reported. Contact the hotline")}</div>
                 }
                 {
                     otpSources.length !== 0 ? (
                         <div style={{marginTop:"20px"}}>
                             <SelectBox
-                                placeholder={"Select verification method"}
+                                placeholder={t("Select verification method")}
                                 id="otp"
                                 data={_.map(otpSources,v=>{
                                     return {
@@ -179,7 +179,7 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                 {
                    sourceId? <div>
                        <p className="confirm-text">
-                           {t("A 6-digit code was sent to")}:<span className="phone-num">{selectedSource?.type === 'email'? ' Email':" Phone "}</span>. {t("Please enter the code in the field below to confirm")}:
+                           {t("A 4-digit code was sent to")}:<span className="phone-num">{selectedSource?.type === 'email'? ' Email':" Phone "}</span>. {t("Please enter the code in the field below to confirm")}:
                        </p>
                        <div className="input-label-border">
                            <input type="text" name="code" id="code" value={code} onChange={e=>setCode(e.target.value)} className="for-confirm"/>

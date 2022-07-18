@@ -68,7 +68,6 @@ const SignIn =() =>{
                 header:head,
                 token:token
             }))
-            console.log('asdadas',response)
             if (response.status) {
                 if(window.location.href.indexOf("playSlot")>-1
                     || window.location.href.indexOf("live")>-1
@@ -89,18 +88,18 @@ const SignIn =() =>{
                     }else{
                         ev.emit('notify', {
                             show:true,
-                            text:'specified username or password is incorrect',
+                            text:t('specified username or password is incorrect'),
                             type:'error',
-                            title:'Log In Error'
+                            title:t('Log In Error')
                         })
                     }
                 }else{
                     //window.top.pushEvent('specified username or password is incorrect','error');
                     ev.emit('notify', {
                         show:true,
-                        text:'specified username or password is incorrect',
+                        text:t('specified username or password is incorrect'),
                         type:'error',
-                        title:'Log In Error'
+                        title:t('Log In Error')
                     })
                 }
             }
@@ -126,14 +125,12 @@ const SignIn =() =>{
             loader:setLoader
         })
             .then(response=>{
-                console.log('mobOtp',response)
                 if(response.status){
                     setCode("");
                     //setReSend(response.data.data.remaining);
                     setReSend(response?.data?.remaining);
                     setCodeRequest(true);
                 }else {
-                    console.log('mobOtp',response)
                     setError('error');
                     setCodeRequest(false);
                 }
@@ -176,7 +173,7 @@ const SignIn =() =>{
                             signIn()
                         }else{
                             //alert(t("Please fill in all the fields"))
-                            window.top.pushEvent('Please fill in all the fields','error');
+                            window.top.pushEvent(t('Please fill in all the fields'),'error');
                         }
                     }} className="form">
                         <div className="input-label">
@@ -246,7 +243,7 @@ const SignIn =() =>{
                         <div className="row">
                             <div  className="col-12" style={{marginBottom:'0'}}>
                                 <br/>
-                                <p>Enter the code that came to your email or SMS</p>
+                                <p>{t("Enter the code that came to your email or SMS")}</p>
                                 <div className="fields">
                                     <input type="number" ref={ref1} value={otp[0]} onChange={(e)=>{
 
@@ -346,7 +343,7 @@ const SignIn =() =>{
                                     {/*<input type="text" name="code" id="code" value={code} onChange={e=>setCode(e.target.value)} className="for-confirm"/>*/}
                                     {/*<label htmlFor="code">{t("Code")}</label>*/}
                                     {
-                                        reSend!==-1? <><span>Resend Code: </span><span className="timeout">{reSend}</span></>: <button type="button" className="btn-confirm" onClick={()=>onResend()}>{t("Resend Code")}</button>
+                                        reSend!==-1? <><span>{t("Resend Code")}: </span><span className="timeout">{reSend}</span></>: <button type="button" className="btn-confirm" onClick={()=>onResend()}>{t("Resend Code")}</button>
                                     }
                                 </div>
 

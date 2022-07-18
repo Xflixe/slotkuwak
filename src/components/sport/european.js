@@ -9,7 +9,8 @@ import {UseEvent} from "../../core/hooks/useEvent";
 import {useNavigation} from "../../core/hooks/useNavigation";
 export const EuropeanView=()=>{
     const nav = useNavigation();
-    const [view,setView]=useState(nav.get("betHistory") !==undefined?'BetsHistory':"Home")
+
+    const [view,setView]=useState(nav.get("betHistory") !==null?'BetsHistory':"Home")
 
     const {User} = useUser();
     const ev = UseEvent()
@@ -50,6 +51,7 @@ export const EuropeanView=()=>{
 
     })
     useEffect(()=>{
+        console.log(nav.get("betHistory"))
         if (User.isLogged) {
 
             response.then(res=>{
