@@ -26,7 +26,7 @@ export const Config ={
       GET_MOBILE_PREFIX_LIST:"/wsd/v1/api/mobile-codes",
       GET_TRANSACTION_HISTORY:"us/v1/api/secured/history/transfers?d1={d1}&d2={d2}",
       GET_SLOT_TRANSACTION_HISTORY:"us/v1/api/secured/history/transfers/details?date={date}",
-      MessageUrl:""
+      MessageUrl:"ws/v1/api/support/ticket"
    },
    Config:{
       REFRESH_TOKEN:"/v1/api/refresh_token",

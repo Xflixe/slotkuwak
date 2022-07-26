@@ -1,7 +1,7 @@
 import { useEffect, useState} from 'react'
 
 import {Actions, useTranslation} from "./core";
-import {Guest, MainNavigator, PLAlert,} from "./components";
+import {Guest, MainNavigator, PLAlert, Skeleton,} from "./components";
 import {useDispatch} from "react-redux";
 import OTP from "./components/verification";
 import {useNav} from "./core/hooks/useNav";
@@ -72,18 +72,23 @@ const  App=()=> {
         setLoaded(await dispatch(Actions.User.ping()))
     }
 
+    if(!loaded || restriction === null){
+        return <Skeleton/>
+    }
+    return ((loaded && restriction === 'restricted') ? <Restricted/> : (<>
 
-    return restriction !==null && ((loaded && restriction ==='restricted') ?  <Restricted/>:(<>
             <MainNavigator/>
             <Guest/>
             <OTP/>
             <div className="event-wrap"/>
-            {withdrawModal ? <WithdrawModal onClose={()=> setWithdrawModal(false)}/> : ''}
-            {depositModal ? <DepositModal onClose={()=> setDepositModal(false)}/> : ''}
+            {withdrawModal ? <WithdrawModal onClose={() => setWithdrawModal(false)}/> : ''}
+            {depositModal ? <DepositModal onClose={() => setDepositModal(false)}/> : ''}
 
             {
-                showNotify.show && <PLAlert data={showNotify} title={showNotify?.title} onClose={()=>setShowNotify({...showNotify,show:false})} footer={<button onClick={()=>setShowNotify({...showNotify,show:false})}>{t("Close")}</button>}>
-                    <div className="alert_wrap" dangerouslySetInnerHTML={{__html:showNotify.text}}></div>
+                showNotify.show && <PLAlert data={showNotify} title={showNotify?.title}
+                                            onClose={() => setShowNotify({...showNotify, show: false})} footer={<button
+                    onClick={() => setShowNotify({...showNotify, show: false})}>{t("Close")}</button>}>
+                    <div className="alert_wrap" dangerouslySetInnerHTML={{__html: showNotify.text}}/>
                 </PLAlert>
             }
         </>
