@@ -35,9 +35,9 @@ const ContactScreen = ()=>{
     const cookie = useCookie();
     const [data,setData] = useState({
         name:'',
-        email:'',
+        mail:'',
         subject:'',
-        text:'',
+        message:'',
     })
     const [loader,setLoader]=useState(false)
     const [errors,setErrors]=useState([]);
@@ -48,7 +48,7 @@ const ContactScreen = ()=>{
 
     const sendMessage=()=> {
         setErrors([]);
-        window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'message'}).then(async(token)=> {
+        window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'supportTicket'}).then(async(token)=> {
             let error = _.chain(data)
                 .map((v,k)=>{
                     return  {key:k,value:v}
@@ -69,7 +69,8 @@ const ContactScreen = ()=>{
                     console.log('message',response)
 
                     if(response.status){
-                        setData({name:'', email:'', subject:'', text:'',})
+                        setData({name:'', mail:'', subject:'1', message:'',})
+                        window.pushEvent(t('Your Message Was Sent'),'success')
                     }
 
 
@@ -129,7 +130,7 @@ const ContactScreen = ()=>{
                                 </div>
                                 <div className="col-12">
                                     <div className={`input-label-border ${error("email")}`}>
-                                        <input onChange={e => setData({...data,email:e.target.value})} value={data.email} type="email" name="email" id="email"/>
+                                        <input onChange={e => setData({...data,mail:e.target.value})} value={data.mail} type="email" name="email" id="email"/>
                                         <label htmlFor="email">{t("E-mail")}</label>
                                     </div>
                                 </div>
@@ -146,7 +147,13 @@ const ContactScreen = ()=>{
                                     />
                                 </div>
                                 <div  className={`input-select-border col-12 `}>
-                                    <textarea id="textarea" placeholder="Write your message here…" className={`${error("text")}`}/>
+                                    <textarea id="textarea"
+                                              onChange={e => {
+                                                  setData({...data,message:e.target.value})
+                                              }}
+                                              placeholder="Write your message here…"
+                                              className={`${error("text")}`}
+                                    />
                                 </div>
                                 <div  className={`input-select-border col-12`}>
                                     <button type="submit" style={{width:'190px',position:'relative',overflow:'hidden'}} className="btn-primary" onClick={()=>{

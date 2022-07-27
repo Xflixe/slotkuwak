@@ -1,0 +1,130 @@
+.skeleton {
+  margin: 15px 0;
+}
+.skeleton .sk_head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.skeleton .sk_head button {
+  width: 128px;
+  height: 53px;
+  background: #1C2334;
+  border-radius: 10px;
+}
+.skeleton .sk_nav {
+  width: 50%;
+  height: 35px;
+  background: #1C2334;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.skeleton .sk_slider {
+  width: 100%;
+  height: 310px;
+  background: #1C2334;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+.skeleton .sk_cars {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.skeleton .sk_cars .sk_item {
+  width: calc(100% / 4);
+  height: 310px;
+  background: #1C2334;
+  border-radius: 20px;
+  margin: 0 20px;
+}
+.skeleton .sk_cars .sk_item:first-child {
+  margin-left: 0;
+}
+.skeleton .sk_cars .sk_item:last-child {
+  margin-right: 0;
+}
+.skeleton .sk_footer {
+  width: 100%;
+  height: 198px;
+  background: #1C2334;
+  border-radius: 20px;
+  margin: 15px 0;
+}
+
+@media (max-width: 1199px) {
+  .skeleton .sk_cars .sk_item {
+    width: calc(100% / 3);
+  }
+  .skeleton .sk_cars .sk_item:nth-child(3) {
+    margin-right: 0;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(4) {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .skeleton .sk_slider {
+    height: 280px;
+  }
+  .skeleton .sk_cars .sk_item {
+    width: calc(100% / 2);
+    height: 240px;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(2) {
+    margin-right: 0;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(3) {
+    display: none;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(4) {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .skeleton .sk_slider {
+    height: 230px;
+  }
+  .skeleton .sk_cars .sk_item {
+    width: calc(100% / 2);
+    height: 220px;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(2) {
+    margin-right: 0;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(3) {
+    display: none;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(4) {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .skeleton .sk_slider {
+    height: 45vw;
+  }
+  .skeleton .sk_cars .sk_item {
+    width: calc(100% / 2);
+    height: 40vw;
+    margin: 0 10px;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(2) {
+    margin-right: 0;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(3) {
+    display: none;
+  }
+  .skeleton .sk_cars .sk_item:nth-child(4) {
+    display: none;
+  }
+  .skeleton .sk_footer {
+    height: 30vw;
+  }
+  .skeleton .sk_head button:last-child {
+    margin-left: 20px;
+  }
+}
+
+/*# sourceMappingURL=skeleton.css.map */

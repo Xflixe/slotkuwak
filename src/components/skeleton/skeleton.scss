@@ -1,0 +1,121 @@
+.skeleton {
+  margin: 15px 0;
+  .sk_head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    button {
+      width: 128px;
+      height: 53px;
+      background: #1C2334;
+      border-radius: 10px;
+    }
+  }
+  .sk_nav {
+    width: 50%;
+    height: 35px;
+    background: #1C2334;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  .sk_slider {
+    width: 100%;
+    height: 310px;
+    background: #1C2334;
+    border-radius: 20px;
+    margin-bottom: 30px;
+  }
+  .sk_cars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    .sk_item {
+      width: calc(100% / 4);
+      height: 310px;
+      background: #1C2334;
+      border-radius: 20px;
+      margin: 0 20px;
+      &:first-child{margin-left: 0}
+      &:last-child{margin-right: 0}
+    }
+  }
+  .sk_footer {
+    width: 100%;
+    height: 198px;
+    background: #1C2334;
+    border-radius: 20px;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .skeleton {
+    .sk_cars {
+      .sk_item {
+        width: calc(100% / 3);
+        &:nth-child(3) {margin-right: 0}
+        &:nth-child(4) {display: none;}
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  .skeleton {
+    .sk_slider {
+      height: 280px;
+    }
+    .sk_cars {
+      .sk_item {
+        width: calc(100% / 2);
+        height: 240px;
+        &:nth-child(2) {margin-right: 0}
+        &:nth-child(3) {display: none;}
+        &:nth-child(4) {display: none;}
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .skeleton {
+    .sk_slider {
+      height: 230px;
+    }
+    .sk_cars {
+      .sk_item {
+        width: calc(100% / 2);
+        height: 220px;
+        &:nth-child(2) {margin-right: 0}
+        &:nth-child(3) {display: none;}
+        &:nth-child(4) {display: none;}
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .skeleton {
+    .sk_slider {
+      height: 45vw;
+
+    }
+    .sk_cars {
+      .sk_item {
+        width: calc(100% / 2);
+        height: 40vw;
+        margin: 0 10px;
+        &:nth-child(2) {margin-right: 0}
+        &:nth-child(3) {display: none;}
+        &:nth-child(4) {display: none;}
+      }
+    }
+    .sk_footer {
+      height: 30vw;
+    }
+    .sk_head {
+      button {
+        &:last-child {margin-left: 20px}
+      }
+    }
+  }
+}

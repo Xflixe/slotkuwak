@@ -17,6 +17,15 @@
 .signUp-form .input-label input {
   background-color: #262e45;
 }
+.signUp-form .input-label input[type=date] + label {
+  color: #8594c1;
+  top: 20% !important;
+  transform: unset;
+  font-size: 12px;
+}
+.signUp-form .input-label input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 
 .pass-pattern {
   display: flex;

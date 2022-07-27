@@ -25,6 +25,7 @@ import ChangePassword from "./account/changePassword/ChangePassword";
 import Transactions from "./account/transactions/transactions";
 import Carusel3D from "./3D_Carusel/3DCarusel";
 import NewSWP from "./newSWP/NewSWP";
+import Skeleton from "./skeleton/skeleton";
 
 
 export {
@@ -54,6 +55,7 @@ export {
     ChangePassword,
     Transactions,
     Carusel3D,
-    NewSWP
+    NewSWP,
+    Skeleton
 
 }

@@ -258,7 +258,7 @@ const getSecurityQuestion =({loader})=>{
    return  http.get({url:Config.User.GET_SECURITY_QUESTIONS,loader:loader})
 }
 const sendMessage =({loader,data})=>{
-    return  http.post({url:Config.User.MessageUrl,loader:loader,data:query_string(data)})
+    return  http.post({url:Config.User.MessageUrl,loader:loader,data:query_string(data), permitAll:true})
 }
 const checkSecurityQuestion =({loader})=>{
    return  http.get({url:Config.User.CHECK_SECURITY_QUESTIONS,loader:loader})

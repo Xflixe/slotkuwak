@@ -50,7 +50,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "react-scripts build && node deploy/deploy_aws1.js & node deploy/deploy_aws2.js ",
+    "deploy": "node deploy/deploy.js ",
     "prod": "node deploy/deploy_aws1.js & node deploy/deploy_aws2.js",
     "prod1": "node deploy/deploy_aws1.js",
     "prod2": "node deploy/deploy_aws2.js",

@@ -755,6 +755,12 @@ select{
     display: flex;
   }
 }
+@media(max-width: 767px){
+  // hide chat button
+  iframe[title="Button to launch messaging window"] {
+    display: none;
+  }
+}
 
 @media(max-width: 321px) {
   .footer {
@@ -764,10 +770,7 @@ select{
 }
 
 .grecaptcha-badge{
-  display: none;
+  display: none !important;
 }
 
-// hide chat button
-iframe[title="Button to launch messaging window"] {
-  display: none;
-}
+

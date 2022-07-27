@@ -12,6 +12,7 @@ import {UseEvent} from "../../../core/hooks/useEvent";
 import {useCookie} from "../../../core/hooks/useCookie";
 import {useDispatch} from "react-redux";
 import signUpBanner from "../../../assets/img/signupBanner.jpg"
+import moment from "moment";
 
 const SignUp =() =>{
     const dispatch = useDispatch()
@@ -35,7 +36,8 @@ const SignUp =() =>{
         //currencyCode:840,
         password:"",
         //password2:"",
-        username:""
+        username:"",
+        dob:""
     })
     const [terms,setTerms]=useState(false)
     const [termsError,setTermsError]=useState(false);
@@ -174,7 +176,14 @@ const SignUp =() =>{
          window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'register'}).then(async(token)=> {
              let error = _.chain(signUpForm)
                  .map((v,k)=>{
-
+                     /*if(k==="dob"){
+                         if(v){
+                             let d = moment(new Date(v)).diff(moment(moment(new Date((new Date()).getFullYear()-18, (new Date()).getMonth(),  (new Date()).getDate())).format("MM-DD-YYYY")), 'days')
+                             if(d>0){
+                                 return {key:k,value:undefined}
+                             }
+                         }
+                     }*/
                      return  {key:k,value:v}
                  })
                  .filter(v=>{
@@ -434,7 +443,16 @@ const SignUp =() =>{
                                 <label htmlFor="email">{t("Email")}</label>
                             </div>
                         </div>
+                    </div>
 
+                    <div className="col-12">
+                        <div className={`input-label ${error("dob")}`}>
+                            <input onChange={e => setSignUpForm({...signUpForm,dob:e.target.value})} value={signUpForm.dob} type="date" name="dob" id="dob"
+                                   max={moment(new Date(),"YYYY-MM-DD").subtract(18,"year").format("YYYY-MM-DD")}
+                                   min={moment(new Date(),"YYYY-MM-DD").subtract(90,"year").format("YYYY-MM-DD")}
+                            />
+                            <label htmlFor="dob">{t("Date of birth")}</label>
+                        </div>
                     </div>
 
                     <div className="col-12">
