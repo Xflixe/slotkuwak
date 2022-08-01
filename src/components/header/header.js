@@ -6,7 +6,8 @@ import {
     logo2,
     user_ico,
     refresh,
-    logo_new
+    logo_new,
+    PlanetaLogo
 } from '../../assets/img/icons/icons';
 import {Link, Redirect, useParams} from "react-router-dom";
 import PropTypes from 'prop-types';

@@ -56,7 +56,7 @@ import refresh from "./refresh.svg";
 import chat from "./chat.svg";
 import telegram from "./telegram.svg";
 import logo_new from "./logo_new.svg";
-
+import PlanetaLogo from "./planetaLogo.png"
 export {
     logo_new,
 restriction18,
@@ -112,5 +112,6 @@ loader,
     wazdan,
     refresh,
     chat,
-    telegram
+    telegram,
+    PlanetaLogo
 }
