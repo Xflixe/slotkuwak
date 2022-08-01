@@ -55,8 +55,10 @@ import wazdan from "./wazdan.png";
 import refresh from "./refresh.svg";
 import chat from "./chat.svg";
 import telegram from "./telegram.svg";
+import logo_new from "./logo_new.svg";
 
 export {
+    logo_new,
 restriction18,
 account,
 arrowLeft,
