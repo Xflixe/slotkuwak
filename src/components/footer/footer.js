@@ -28,10 +28,10 @@ import {
     usdc,
     usdt} from "../../assets/img/crypro/crypto";
 
-const Footer =()=>{
+const Footer =({style})=>{
     const {t} = useTranslation()
     return(
-        <footer className="footer">
+        <footer className="footer" style={style}>
             <div className="container">
                 <div className="row gx-0 align-items-center foot-wrap">
                     <div className="col-12 d-md-none">

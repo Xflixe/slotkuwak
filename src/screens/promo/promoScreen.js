@@ -15,10 +15,59 @@ import {useTranslation} from "../../core";
 
 import img_desk_1 from "../../assets/img/slide/slots/desktop/1.jpg";
 import img_mob_1 from "../../assets/img/slide/slots/mobile/1.jpg";
+import {useParams} from "react-router-dom";
+import User from "../../core/store/actions/user";
+import {UseEvent} from "../../core/hooks/useEvent";
 
 
 const PromoScreen = () =>{
     const {t} = useTranslation()
+    const nav = useNavigation();
+    const {page} =useParams()
+    const ev = UseEvent()
+    const [frameHeight, setFrameHeight] = useState('100px');
+    const [header, setHeader] = useState(true);
+    const [footer, setFooter] = useState(true);
+
+
+    useEffect(()=>{
+        if(!window.setHeader){
+            window.setHeader = function (param){
+                setHeader(param)
+            }
+        }
+        if(!window.setFooter){
+            window.setFooter = function (param){
+                setFooter(param)
+            }
+        }
+        if(!window.setHeight){
+            window.setHeight = function (height){
+                setFrameHeight(height)
+            }
+        }
+        if(!window.depositModal){
+            window.depositModal = function (){
+                User.isLogged? ev.emit('depositModal', true) : ev.emit('signUp',true)
+            }
+        }
+
+
+        return ()=>{
+            if(window.setHeader){
+                delete  window.setHeader
+            }
+            if(window.setFooter){
+                delete  window.setFooter
+            }
+            if(window.setHeight){
+                delete  window.setHeight
+            }
+            if(window.depositModal){
+                delete  window.depositModal
+            }
+        }
+    },[])
 
     const [slideData,setSlideData] = useState(
         window.innerWidth > 767 ? [
@@ -28,14 +77,31 @@ const PromoScreen = () =>{
         ]
     );
 
+
+
     return (
         <>
-            <Header page={"promo"}/>
+            {
+                header? <Header page={"promo"}/>:''
+            }
 
-            <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
+
+            {/*<iframe width="100%" height={frameHeight} src={} />*/}
+            <div className={"promotion"}>
+                <iframe
+                    //ref={ref}
+                    scrolling="no"
+                    src={`/promos/${page}/index_en.html?${Math.random()}`}
+                    frameBorder="0"
+                    className={"promotion-frame"}
+                    width="100%" height="100%"
+                    style={{height:frameHeight}}
+
+                />
+            </div>
+            {/*<div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
                 <NewSWP data={slideData} />
             </div>
-
             <main className="main">
                 <div className="container wrapper">
 
@@ -77,9 +143,13 @@ const PromoScreen = () =>{
 
 
                 </div>
-            </main>
+            </main>*/}
 
-            <Footer/>
+            {
+                footer? <Footer style={{marginTop:0}}/>:''
+            }
+
+
 
         </>
     )

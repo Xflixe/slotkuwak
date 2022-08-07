@@ -12,6 +12,7 @@ import EventEmitter from "./core/utils/eventEmitter";
 import Deposit from "./components/account/deposit/Deposit";
 import DepositModal from "./components/account/deposit/DepositModal";
 import WithdrawModal from "./components/account/withdraw/WithdrawModal";
+import WelcomeBonus from "./components/account/welcomeBonus/WelcomeBonus";
 import {Restricted} from "./components/restricted/Restricted"
 
 
@@ -26,6 +27,7 @@ const  App=()=> {
     const user = useUser();
     const [depositModal,setDepositModal]=useState(false);
     const [withdrawModal,setWithdrawModal]=useState(false);
+    const [welcomeBonus,setWelcomeBonus]=useState(true);
 
     const [showNotify,setShowNotify]=useState({
         show:false,
@@ -44,6 +46,7 @@ const  App=()=> {
         const signInFormEvent= event.subscribe("notify",setShowNotify)
         const depositModal= event.subscribe("depositModal",setDepositModal)
         const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
+        const welcomeBonus= event.subscribe("welcomeBonus",setWelcomeBonus)
         if(nav.get("cxd")){
             //აფილეიტები
             cookie.setCookie("cxd",nav.get("cxd"),14)
@@ -65,7 +68,7 @@ const  App=()=> {
             depositModal.unsubscribe()
             withdrawModal.unsubscribe()
             listener.unsubscribe()
-
+            welcomeBonus.unsubscribe()
         }
     },[])
     const ping =  async () => {
@@ -81,6 +84,7 @@ const  App=()=> {
             <Guest/>
             <OTP/>
             <div className="event-wrap"/>
+            {welcomeBonus ? <WelcomeBonus onClose={() => setWelcomeBonus(false)}/> : ''}
             {withdrawModal ? <WithdrawModal onClose={() => setWithdrawModal(false)}/> : ''}
             {depositModal ? <DepositModal onClose={() => setDepositModal(false)}/> : ''}
 

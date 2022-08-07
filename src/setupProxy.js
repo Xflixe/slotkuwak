@@ -11,6 +11,11 @@ module.exports = function(app) {
         logLevel:"debug",
         changeOrigin: true,
     }
+    const proxyPromo = {
+        target: 'http://promotions.planetaxbet.com/',
+        logLevel:"debug",
+        changeOrigin: true,
+    }
 
     app.use(
         '/ss/v1',
@@ -43,5 +48,9 @@ module.exports = function(app) {
     app.use(
         '/ps/v1',
         createProxyMiddleware(proxy)
+    );
+    app.use(
+        '/promos',
+        createProxyMiddleware(proxyPromo)
     );
 };

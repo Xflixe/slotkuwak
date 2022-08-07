@@ -6,6 +6,7 @@ const Redirect = React.lazy(() => import(("./components/redirect/redirect")));
 const slots = React.lazy(() => import(("./screens/slots/slotsScreen")));
 const promo = React.lazy(() => import(("./screens/promo/promoScreen")));
 const promotions = React.lazy(() => import(("./screens/promotions/promotionScreen")));
+const promos = React.lazy(() => import(("./screens/promo/promoScreen")));
 const welcomeBonus = React.lazy(() => import(("./screens/promotions/welcomeBonusScreen")));
 const terms = React.lazy(() => import(("./screens/terms/termScreen")));
 const aboutUs = React.lazy(() => import(("./screens/aboutUs/aboutScreen")));
@@ -37,7 +38,8 @@ export const guestRoutes = [
     { path: '/:lang/slots', name: 'Slots', exact:false, component: slots, page:"slots" },
     { path: '/:lang/virtuals', name: 'Slots', exact:false, component: virtuals, page:"virtuals" },
     { path: '/:lang/promo', name: 'Promo', exact:false, component: promo , page:"promo"},
-    { path: '/:lang/promotions', name: 'Promotions', exact:false, component: promotions , page:"promotions"},
+    { path: '/:lang/promotions',name: 'Promotions', exact:true, component: promotions , page:"promotions"},
+    { path: '/:lang/promotions/:page', name: 'Promotions', exact:false, component: promos , page:"promotions"},
     { path: '/:lang/welcomebonus', name: 'WelcomeBonus', exact:false, component: welcomeBonus , page:"welcomebonus"},
 
     { path: '/:lang/casino', name: 'Casino', exact:false, component: casino, page:"casino" },
@@ -67,7 +69,8 @@ export const userRoutes = [
     { path: '/:lang/slots', name: 'Slots', exact:false, component: slots, page:"slots" },
     { path: '/:lang/virtuals', name: 'Slots', exact:false, component: virtuals, page:"virtuals" },
     { path: '/:lang/promo', name: 'Promo', exact:false, component: promo, page:"promo" },
-    { path: '/:lang/promotions', name: 'Promotions', exact:false, component: promotions , page:"promotions"},
+    { path: '/:lang/promotions', name: 'Promotions', exact:true, component: promotions , page:"promotions"},
+    { path: '/:lang/promotions/:page', name: 'Promotions', exact:false, component: promos , page:"promotions"},
     { path: '/:lang/welcomebonus', name: 'WelcomeBonus', exact:false, component: welcomeBonus , page:"welcomebonus"},
     { path: '/:lang/terms', name: 'Terms', exact:true, component: terms , page:"terms"},
     { path: '/:lang/terms/:main', name: 'Terms', exact:true, component: terms , page:"terms"},
