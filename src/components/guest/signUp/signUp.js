@@ -66,7 +66,8 @@ const SignUp =() =>{
             //currencyCode:840,
             password:"",
             //password2:"",
-            username:""
+            username:"",
+            promoCode:""
         });
 
         const signUpFormEvent= ev.subscribe("signUp",setShow)
@@ -491,9 +492,20 @@ const SignUp =() =>{
                             <div className={`toggle-password ${passType.pass2==='text'?'active':'hide'}`} onClick={()=>{togglePassType('pass2')}}/>
                         </div>
                     </div>*/}
+
+                    <div className="col-12">
+                        <p style={{color:'#fff',marginBottom:0}}>{t('Have Promo Code?')}</p>
+                        <div className={`input-label ${error("promoCode")}`}>
+                            <input type="text" name="promoCode" id="promoCode"
+                                   value={signUpForm.promoCode}
+                                   onChange={event => setSignUpForm({...signUpForm,promoCode:event.target.value})}
+                            />
+                            <label htmlFor="promoCode">{t("Promo Code")}</label>
+                        </div>
+                    </div>
+
                     <div className="col-12">
                         <label htmlFor="terms-and-conditions" className={`terms ${termsError?'error-text':''}`}>
-
                             <input type="checkbox" id={'terms-and-conditions'} checked={terms} onChange={(_) =>{
                                 setTerms(!terms)
                                 if(!terms){
@@ -503,6 +515,7 @@ const SignUp =() =>{
                             {t("By clicking sign up, you accept our")} <span style={{textDecoration:'underline'}}><a href={`/${i18n.language}/terms`}>{t("Terms & Conditions")}</a></span> {t("and that you are over 18 years old")}
                         </label>
                     </div>
+
                     <div className={"error-text"}>{t(signUpError)}</div>
                     <div className="col-12">
                         <button type="submit" className="btn-primary" style={{width:'100%',position:'relative',overflow:'hidden'}}>

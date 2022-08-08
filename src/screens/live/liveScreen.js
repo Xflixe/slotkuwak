@@ -8,7 +8,7 @@ const LiveScreen=(props)=>{
 
     return  <>
         <Header page={"live"}/>
-        <main className='sp_cont' style={{background:`url(${load})`}}>
+        <main className='sp_cont'>
             {
                 isMobile? <Sport.SportMobileView/>:<Sport.EuropeanView view={"EventView"}/>
             }

@@ -27,7 +27,7 @@ const  App=()=> {
     const user = useUser();
     const [depositModal,setDepositModal]=useState(false);
     const [withdrawModal,setWithdrawModal]=useState(false);
-    const [welcomeBonus,setWelcomeBonus]=useState(true);
+    const [welcomeBonus,setWelcomeBonus]=useState(false);
 
     const [showNotify,setShowNotify]=useState({
         show:false,

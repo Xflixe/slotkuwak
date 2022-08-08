@@ -11,7 +11,7 @@ const SportScreen=(props)=>{
 
     return  <>
         <Header page={"sport"}/>
-        <main className='sp_cont' style={{background:`url(${load})`}}>
+        <main className='sp_cont'>
             {
                 isMobile? <Sport.SportMobileView/>:<Sport.EuropeanView />
             }
