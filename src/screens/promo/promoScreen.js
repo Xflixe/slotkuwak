@@ -28,7 +28,8 @@ const PromoScreen = () =>{
     const [frameHeight, setFrameHeight] = useState('100px');
     const [header, setHeader] = useState(true);
     const [footer, setFooter] = useState(true);
-
+    const {i18n} = useTranslation()
+    const {lang} = useParams()
 
     useEffect(()=>{
         if(!window.setHeader){
@@ -91,7 +92,7 @@ const PromoScreen = () =>{
                 <iframe
                     //ref={ref}
                     scrolling="no"
-                    src={`/promos/${page}/index_en.html?${Math.random()}`}
+                    src={`/promos/${page}/index_${lang}.html?${Math.random()}`}
                     frameBorder="0"
                     className={"promotion-frame"}
                     width="100%" height="100%"
