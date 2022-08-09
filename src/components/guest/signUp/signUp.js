@@ -66,8 +66,8 @@ const SignUp =() =>{
             //currencyCode:840,
             password:"",
             //password2:"",
-            username:"",
-            promoCode:""
+            //promoCode:"",
+            username:""
         });
 
         const signUpFormEvent= ev.subscribe("signUp",setShow)
@@ -493,7 +493,7 @@ const SignUp =() =>{
                         </div>
                     </div>*/}
 
-                    <div className="col-12">
+                    {/*<div className="col-12">
                         <p style={{color:'#fff',marginBottom:0}}>{t('Have Promo Code?')}</p>
                         <div className={`input-label ${error("promoCode")}`}>
                             <input type="text" name="promoCode" id="promoCode"
@@ -502,7 +502,7 @@ const SignUp =() =>{
                             />
                             <label htmlFor="promoCode">{t("Promo Code")}</label>
                         </div>
-                    </div>
+                    </div>*/}
 
                     <div className="col-12">
                         <label htmlFor="terms-and-conditions" className={`terms ${termsError?'error-text':''}`}>

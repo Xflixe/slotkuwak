@@ -30,6 +30,7 @@ const PromoScreen = () =>{
     const [footer, setFooter] = useState(true);
     const {i18n} = useTranslation()
     const {lang} = useParams()
+    const [url,setUrl] = useState(`/promos/${page}/index_${i18n.language}.html?${Math.random()}`)
 
     useEffect(()=>{
         if(!window.setHeader){
@@ -70,6 +71,11 @@ const PromoScreen = () =>{
         }
     },[])
 
+    useEffect(()=>{
+        setUrl(`/promos/${page}/index_${i18n.language}.html?${Math.random()}`)
+        //console.log(lang,i18n.language)
+    },[lang,i18n.language])
+
     const [slideData,setSlideData] = useState(
         window.innerWidth > 767 ? [
             {id:1, icon:img_desk_1 }
@@ -92,7 +98,7 @@ const PromoScreen = () =>{
                 <iframe
                     //ref={ref}
                     scrolling="no"
-                    src={`/promos/${page}/index_${lang}.html?${Math.random()}`}
+                    src={url}
                     frameBorder="0"
                     className={"promotion-frame"}
                     width="100%" height="100%"
