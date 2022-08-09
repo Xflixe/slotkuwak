@@ -12,16 +12,6 @@ import {useNav} from "../../core/hooks/useNav";
 import {useCount} from "../../core/hooks/useCount";
 import image_1 from "../../assets/img/slide/image_1.png";
 
-import img_desk_1 from "../../assets/img/slide/lending_desc.jpg";
-import img_desk_2 from "../../assets/img/slide/casino/desktop/2.jpg";
-import img_desk_3 from "../../assets/img/slide/slots/desktop/1.jpg";
-import img_desk_4 from "../../assets/img/slide/sport/desktop/1.jpg";
-
-import img_mob_1 from "../../assets/img/slide/lending_mob.jpg";
-import img_mob_2 from "../../assets/img/slide/casino/mobile/2.jpg";
-import img_mob_3 from "../../assets/img/slide/slots/mobile/1.jpg";
-import img_mob_4 from "../../assets/img/slide/sport/mobile/1.jpg";
-
 import {
     arrow,
     betgames,
@@ -34,6 +24,25 @@ import {
     vivo_gaming,
     bet_ames
 } from "../../assets/img/casino/images";
+
+import img_desk_wb_en from "../../assets/img/slide/wb_en.png";
+import img_desk_wb_ru from "../../assets/img/slide/wb_ru.png";
+import desk_casino_en from "../../assets/img/slide/casino/desktop/3en.png";
+import desk_casino_ru from "../../assets/img/slide/casino/desktop/3ru.png";
+import desk_sl_en from "../../assets/img/slide/slots/desktop/2en.png";
+import desk_sl_ru from "../../assets/img/slide/slots/desktop/2ru.png";
+import desk_sp_en from "../../assets/img/slide/sport/desktop/2en.png";
+import desk_sp_ru from "../../assets/img/slide/sport/desktop/2ru.png";
+
+
+import img_mob_wb_ru from "../../assets/img/slide/wb_mob_ru.png";
+import img_mob_wb_en from "../../assets/img/slide/wb_mob_en.png";
+import mob_casino_en from "../../assets/img/slide/casino/mobile/3en.png";
+import mob_casino_ru from "../../assets/img/slide/casino/mobile/3ru.png";
+import mob_sl_en from "../../assets/img/slide/slots/mobile/2en.png";
+import mob_sl_ru from "../../assets/img/slide/slots/mobile/2ru.png";
+import mob_sp_en from "../../assets/img/slide/sport/mobile/2en.png";
+import mob_sp_ru from "../../assets/img/slide/sport/mobile/2ru.png";
 
 const CasinoScreen = () =>{
     const nav = useNav();
@@ -51,19 +60,42 @@ const CasinoScreen = () =>{
     const [searchText, setSearchText] = useState("")
     const [selected,setSelected] = useState([])
     const [showMobileFilter,setShowMobileFilter] = useState(false)
-    const [slideData,setSlideData] = useState(
-        window.innerWidth > 767 ? [
-            //{id:2, icon:img_desk_2, url:`/${lang}/casino`},
-            {id:3, icon:img_desk_3, url:`/${i18n.language}/slots`},
-            {id:1, icon:img_desk_1, url:`/${i18n.language}/promotions`},
-            {id:4, icon:img_desk_4, url:`/${i18n.language}/sport`},
-        ] : [
-            //{id:2, icon:img_mob_2, url:`/${lang}/casino`},
-            {id:3, icon:img_mob_3, url:`/${i18n.language}/slots`},
-            {id:1, icon:img_mob_1, url:`/${i18n.language}/promotions`},
-            {id:4, icon:img_mob_4, url:`/${i18n.language}/sport`},
-        ]
-    );
+    const slideData =
+        window.innerWidth > 767 ? {
+            ru: [
+                {id: 3, icon: desk_sl_ru, url: `/ru/slots`},
+                {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
+                {id: 4, icon: desk_sp_ru, url: `/ru/sport`},
+            ],
+            en: [
+                {id: 3, icon: desk_sl_en, url: `/en/slots`},
+                {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
+                {id: 4, icon: desk_sp_en, url: `/en/sport`},
+            ],
+            es: [
+                {id: 3, icon: desk_sl_en, url: `/es/slots`},
+                {id: 5, icon: img_desk_wb_en, url: `/es/promotions/welcome_bonus`},
+                {id: 4, icon: desk_sp_en, url: `/es/sport`},
+            ]
+
+        } : {
+            ru: [
+                {id: 3, icon: mob_sl_ru, url: `/ru/slots`},
+                {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
+                {id: 4, icon: mob_sp_ru, url: `/ru/sport`},
+            ],
+            en: [
+                {id: 3, icon: mob_sl_en, url: `/en/slots`},
+                {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
+                {id: 4, icon: mob_sp_en, url: `/en/sport`},
+            ],
+            es: [
+                {id: 3, icon: mob_sl_en, url: `/es/slots`},
+                {id: 5, icon: img_mob_wb_en, url: `/es/promotions/welcome_bonus`},
+                {id: 4, icon: mob_sp_en, url: `/es/sport`},
+            ],
+
+        }
 
 
 
@@ -129,7 +161,7 @@ const CasinoScreen = () =>{
             <Header page={"casino"}/>
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP data={slideData} />
+                <NewSWP data={slideData[i18n.language]} />
             </div>
 
             <main className="main" style={{minHeight:'300px'}}>
