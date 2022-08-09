@@ -3,8 +3,8 @@ module.exports = function(app) {
 
     const proxy = {
         //target: 'http://192.168.1.26:8072',
-        //target: 'https://planetaxbet.com',
-        target: 'https://staging.planetaxbet.com',
+        target: 'https://www.planetaxbet.com',
+        ///target: 'https://staging.planetaxbet.com',
         //target: 'http://127.0.0.1:8072',
         //target: 'http://192.168.30.50:8072',
         //target: 'http://192.168.10.34:8072',
@@ -12,7 +12,7 @@ module.exports = function(app) {
         changeOrigin: true,
     }
     const proxyPromo = {
-        target: 'http://promotions.planetaxbet.com/',
+        target: 'https://www.planetaxbet.com/',
         logLevel:"debug",
         changeOrigin: true,
     }
