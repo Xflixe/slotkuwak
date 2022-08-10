@@ -68,6 +68,10 @@ export const SportMobileView=()=>{
         }
     },[])
     return <div id="application-container">
-        <div className="widget_loader"/>
+        <div className="loader" style={{marginTop:'calc(100% * 0.5)'}}>
+            <div className="inner one"></div>
+            <div className="inner two"></div>
+            <div className="inner three"></div>
+        </div>
     </div>
 }
