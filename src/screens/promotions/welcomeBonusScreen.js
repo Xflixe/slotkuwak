@@ -41,7 +41,6 @@ const PromotionScreen = () =>{
             {
                 <Redirect to={`/${lang}/promotions/lending`}/>
             }
-            {/*<Header page={"promo"}/>*/}
 
            {/* <main className="lending" style={{minHeight:'300px'}}>
 
@@ -143,7 +142,6 @@ const PromotionScreen = () =>{
                     </div>
 
             </main>*/}
-            {/*<Footer/>*/}
         </>
     )
 }
