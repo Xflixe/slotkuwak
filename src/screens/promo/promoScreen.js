@@ -16,11 +16,13 @@ import {useTranslation} from "../../core";
 import img_desk_1 from "../../assets/img/slide/slots/desktop/1.jpg";
 import img_mob_1 from "../../assets/img/slide/slots/mobile/1.jpg";
 import {useParams} from "react-router-dom";
-import User from "../../core/store/actions/user";
+
 import {UseEvent} from "../../core/hooks/useEvent";
+import {useUser} from "../../core/hooks/useUser"
 
 
 const PromoScreen = () =>{
+    const {User} = useUser()
     const {t} = useTranslation()
     const nav = useNavigation();
     const {page} =useParams()
@@ -50,6 +52,8 @@ const PromoScreen = () =>{
         }
         if(!window.depositModal){
             window.depositModal = function (){
+
+                console.log(User)
                 User.isLogged? ev.emit('depositModal', true) : ev.emit('signUp',true)
             }
         }

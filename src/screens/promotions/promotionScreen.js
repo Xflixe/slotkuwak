@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header} from "../../components";
 import './promotionScreen.scss';
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useUser} from "../../core/hooks/useUser";
-import lendingRules from "../../assets/img/lending-rules.jpg?1"
 import WelcomeBonusImage from "../../assets/img/promo/rsz_welcome_bonus_736x360.png"
 const PromotionScreen = () =>{
     const ev = UseEvent();
     const {User,checkSession} = useUser();
+    useEffect(()=>{
+        checkSession()
+    },[])
+
     return (
         <>
             <Header page={"promo"}/>
