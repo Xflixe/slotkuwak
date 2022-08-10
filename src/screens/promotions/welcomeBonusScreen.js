@@ -29,16 +29,21 @@ import {discord, gr,
 } from "../../assets/img/icons/icons";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useUser} from "../../core/hooks/useUser";
+import {Redirect, useParams} from "react-router-dom";
 
 
 const PromotionScreen = () =>{
     const ev = UseEvent();
     const {User,checkSession} = useUser();
+    const {lang} = useParams()
     return (
         <>
+            {
+                <Redirect to={`/${lang}/promotions/lending`}/>
+            }
             {/*<Header page={"promo"}/>*/}
 
-            <main className="lending" style={{minHeight:'300px'}}>
+           {/* <main className="lending" style={{minHeight:'300px'}}>
 
                     <div className="main-container">
                         <section className="section sec-shadow sec-header">
@@ -137,7 +142,7 @@ const PromotionScreen = () =>{
                         </section>
                     </div>
 
-            </main>
+            </main>*/}
             {/*<Footer/>*/}
         </>
     )
