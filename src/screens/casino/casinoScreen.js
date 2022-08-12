@@ -22,7 +22,12 @@ import {
     vivogames_img,
     evolution_gaming,
     vivo_gaming,
-    bet_ames
+    bet_ames,
+    pragmaticPlayCasino,
+    EvolutionCasino,
+    PragmaticPlayCasino,
+    VivoCasino,
+    BetGamesTvCasino
 } from "../../assets/img/casino/images";
 
 import img_desk_wb_en from "../../assets/img/slide/wb_en.png";
@@ -167,8 +172,8 @@ const CasinoScreen = () =>{
             <main className="main" style={{minHeight:'300px'}}>
                 <div className="container">
                     <div className="casino-grid">
-                        <div className="item-box" onClick={()=>window.open(`/${i18n.language}/playSlot?id=1106&gameId=105&gameType=casino`)}>
-                            <img className="bg" src={evolution_gaming}/>
+                        <div className="item-box" style={{cursor:'pointer'}} onClick={()=>window.open(`/${i18n.language}/playSlot?id=1106&gameId=105&gameType=casino`)}>
+                            <img className="bg" src={EvolutionCasino}/>
                             <ul>
                                 <li className="provider-logo">
                                     <div>Evolution Gaming</div>
@@ -177,8 +182,8 @@ const CasinoScreen = () =>{
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>
-                        <div className="item-box" onClick={()=>window.open(`/${i18n.language}/playSlot?id=11&gameId=e864e7d293376c830c58d7ddddf9983f8d852718&gameType=casino`)}>
-                            <img className="bg" src={vivo_gaming}/>
+                        <div className="item-box" style={{cursor:'pointer'}} onClick={()=>window.open(`/${i18n.language}/playSlot?id=11&gameId=e864e7d293376c830c58d7ddddf9983f8d852718&gameType=casino`)}>
+                            <img className="bg" src={VivoCasino}/>
                             <ul>
                                 <li className="provider-logo">
                                     <div>VivoGaming</div>
@@ -187,11 +192,21 @@ const CasinoScreen = () =>{
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>
-                        <div className="item-box" onClick={()=>window.open(`/${i18n.language}/playSlot?id=34&gameId=5687990baddbb934621c0b80b0f5f989f521d1a5&gameType=casino`)}>
-                            <img className="bg" src={bet_ames}/>
+                        <div className="item-box" style={{cursor:'pointer'}} onClick={()=>window.open(`/${i18n.language}/playSlot?id=34&gameId=5687990baddbb934621c0b80b0f5f989f521d1a5&gameType=casino`)}>
+                            <img className="bg" src={BetGamesTvCasino}/>
                             <ul>
                                 <li className="provider-logo">
                                     <div>Betgames.tv</div>
+                                    <div>400 Games</div>
+                                </li>
+                                <li className="arrow"><img src={arrow}/></li>
+                            </ul>
+                        </div>
+                        <div className="item-box" style={{cursor:'pointer'}} onClick={()=>window.open(`/${i18n.language}/playSlot?id=34&gameId=5687990baddbb934621c0b80b0f5f989f521d1a5&gameType=casino`)}>
+                            <img className="bg" src={PragmaticPlayCasino}/>
+                            <ul>
+                                <li className="provider-logo">
+                                    <div>PragmaticPlay Live</div>
                                     <div>400 Games</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
