@@ -257,10 +257,10 @@ const SignUp =() =>{
                          otp.CLOSE();
                          ev.emit('signUp',false);
 
-                         if (response?.data?.data?.promotions?.bonusCode && response?.data?.data?.promotions?.bonusCode?.resultCode > 0){
+                         if (response?.data?.data?.promotions?.promoCode && response?.data?.data?.promotions?.promoCode?.data?.resultCode > 0){
                              ev.emit('notify',{
                                  show:true,
-                                 text:'Error has been occurred while promo code being activated. You can try activate your promo code again in your profile page. -<br/>'+ response?.data?.data?.promotions?.bonusCode?.message,
+                                 text:'Error has been occurred while promo code being activated. You can try activate your promo code again in your profile page.<br/><span style="color:red">'+response?.data?.data?.promotions?.promoCode?.data?.message+'</span>',
                                  type:'error'
                              });
                          }
