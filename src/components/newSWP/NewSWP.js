@@ -20,7 +20,7 @@ import {Link} from "react-router-dom";
 const NewSWP = (props) =>{
     const [data,setData]= useState(props.data)
     useEffect(()=>{
-        console.log(props.data)
+        //console.log(props.data)
         setData(props.data)
     },[props.data])
     return (

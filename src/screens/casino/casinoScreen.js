@@ -202,7 +202,7 @@ const CasinoScreen = () =>{
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
                         </div>
-                        <div className="item-box" style={{cursor:'pointer'}} onClick={()=>window.open(`/${i18n.language}/playSlot?id=34&gameId=5687990baddbb934621c0b80b0f5f989f521d1a5&gameType=casino`)}>
+                        <div className="item-box" style={{cursor:'pointer'}} onClick={()=>window.open(`/${i18n.language}/playSlot?id=2991&gameId=102&gameType=casino`)}>
                             <img className="bg" src={PragmaticPlayCasino}/>
                             <ul>
                                 <li className="provider-logo">

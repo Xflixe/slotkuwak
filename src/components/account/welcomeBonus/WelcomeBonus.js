@@ -12,10 +12,12 @@ import {logoM_jpg} from "../../../assets/img/images";
 import SelectBox from "../../forms/select/NewSelect";
 import {UseEvent} from "../../../core/hooks/useEvent";
 import moment from "moment";
+import {useDispatch} from "react-redux";
 
 
 
-const WelcomeBonus = ({onClose})=>{
+const WelcomeBonus = ({data,onClose})=>{
+    const dispatch = useDispatch()
     const {i18n,t} = useTranslation();
     const {otp, PHONE,EMAIL,CLOSE,ERROR,MULTI} = useOTP();
     const [withdraw,setWithdraw]=useState({amount:'', address:""});
@@ -25,15 +27,60 @@ const WelcomeBonus = ({onClose})=>{
     const [loader,setLoader]=useState(false)
     const [errors,setErrors]=useState([])
     const ev = UseEvent()
-
+    const [show,setShow] = useState(false);
 
     const choseGift = (param) => {
         setGift(param)
     }
+
+    const signIn=async (data) => {
+
+        window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'login'}).then(async(token)=> {
+            const response = await dispatch(Actions.User.signIn({
+                data: data,
+                token:token
+            }))
+            if (response.status) {
+                if(window.location.href.indexOf("playSlot")>-1
+                    || window.location.href.indexOf("live")>-1
+                    || window.location.href.indexOf("sport")>-1
+                ){
+                    window.location.reload()
+                    return
+                }
+                setShow(false);
+
+            } else {
+                window.top.pushEvent(t('specified username or password is incorrect'),'error');
+            }
+        })
+
+    }
+
+    const claimBonus = (param) => {
+        console.log('consol param',param)
+
+        Actions.User.claimBonusUrl({id:data?.NO_DEPOSIT_BONUS?.data?.id,type:gift===1?'wager':'freespin'}).then(response=>{
+            if (response.status){
+                signIn({username:data.username,password:data.password})
+            }else{
+                if (response.error.message && response.error.resultCode){
+                    window.top.pushEvent(response.error.message,'error');
+                }
+            }
+        }).catch(e=>console.log('claimBonus'))
+
+        onClose(false)
+    }
+
+    useEffect(()=>{
+        console.log('data',data)
+    },[data])
+
     return (
         <div className="row welcome_bonus" style={{}}>
             {
-                <NewModal title={t("Welcome Bonus")} onClose={()=>onClose(false)} contentStyle={{width:'870px'}} dialogStyle={{width:"870px"}}>
+                <NewModal title={t("Welcome Bonus")} onClose={()=>claimBonus('exit')} contentStyle={{width:'870px'}} dialogStyle={{width:"870px"}}>
                     <div className="wb">
                         <p>Welcome to planetaX, have fun playing and enjoy wins, We offer you two types of bonus, feel free to <strong>select disired one.</strong></p>
                         <div className="gift-overflow">
@@ -70,8 +117,12 @@ const WelcomeBonus = ({onClose})=>{
                                 <p>If you close window without selecting welcome bonus type, Deposit Bonus (B Capital) will be activated automatically</p>
                             </div>
                             <div className="but">
-                                <button className="skip">Skip</button>
-                                <button className="claim">Claim Bonus</button>
+                                <button className="skip" onClick={()=>{
+                                    claimBonus('skip')
+                                }}>Skip</button>
+                                <button className="claim" onClick={()=>{
+                                    claimBonus('claim')
+                                }}>Claim Bonus</button>
                             </div>
                         </div>
 
