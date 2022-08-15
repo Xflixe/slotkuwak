@@ -7,6 +7,7 @@
   z-index: 2222;
   transition: opacity 0.15s linear;
   background-color: rgba(0, 0, 0, 0.34);
+  overflow: auto;
 }
 .new-custom-modal .wrapper {
   position: relative;
