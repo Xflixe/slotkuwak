@@ -5,15 +5,13 @@ import {Balance, SvgDot} from "../../index";
 
 import {useOTP} from "../../../core/hooks/useOTP";
 import _ from "lodash";
-import {arrowLeftBack, coinspaid, percent, time} from "../../../assets/img/icons/icons";
 import './Withdraw.scss';
-import {QRCode} from "react-qrcode-logo";
-import {logoM_jpg} from "../../../assets/img/images";
+
 import SelectBox from "../../forms/select/NewSelect";
 import {UseEvent} from "../../../core/hooks/useEvent";
-import moment from "moment";
-
-
+import WithdrawIcon from "./icons/widthdraw-icon.png"
+import WithdrawCopyIcon from "./icons/withdraw-copy.png"
+import {useUser} from "../../../core/hooks/useUser"
 
 window.reSendInterval=null;
 
@@ -44,6 +42,7 @@ const currencyList = [
 
 const Withdraw = ({onClose})=>{
     const {i18n,t} = useTranslation();
+    const {User} = useUser()
     const {otp, PHONE,EMAIL,CLOSE,ERROR,MULTI} = useOTP();
     const [withdraw,setWithdraw]=useState({amount:'', address:""});
     const [crypto,setCrypto]=useState('');
@@ -51,6 +50,8 @@ const Withdraw = ({onClose})=>{
     const [exRate,setExRate]=useState(null)
     const [loader,setLoader]=useState(false)
     const [errors,setErrors]=useState([])
+    const [disableBtn,setDisableBtn]= useState(null)
+    const [feeError,setFeeError]=useState(null)
     const ev = UseEvent()
 
     useEffect(()=>{
@@ -145,7 +146,14 @@ const Withdraw = ({onClose})=>{
     return (
         <div className="row withdraw-content" style={{}}>
             {
-                <PLXModal title={t("Withdraw")} onClose={()=>onClose(false)} contentStyle={{width:'350px'}} dialogStyle={{width:"350px"}}  >
+                <PLXModal
+                    title={t("Withdraw")}
+                  onClose={()=>onClose(false)}
+                  contentStyle={{width:'400px',maxWidth:'100%' }}
+                  dialogStyle={{width:"400px",maxWidth:'100%'}}
+                  className={"withdraw-modal"}
+                    preTitle={<img src={WithdrawIcon} width='26' height='24' style={{marginRight:'10px'}} />}
+                >
                     <div style={{minWidth:'200px'}}>
                         <form onSubmit={e=>{
                             e.preventDefault()
@@ -162,7 +170,7 @@ const Withdraw = ({onClose})=>{
                                     onSelect={e => setSelectedCurrency(e)}
                                 />
                                 {
-                                    exRate? <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>
+                                    exRate? <p style={{color:'#899194',fontSize:'12px',margin:'10px 5px 40px 5px'}}>
                                         {exRate?.exchangeRate?.rateFrom} {exRate.currency} ~ {exRate?.exchangeRate?.rateTo} {exRate.toCurrency}
                                     </p>:''
 
@@ -171,43 +179,75 @@ const Withdraw = ({onClose})=>{
                             </div>
                             {
                                 exRate? <>
-                                        <div className="new-input-label">
-                                            <div className="input-box">
+                                        <div className={`new-input-label ${feeError ? 'withdraw-error' : ''}`} >
+                                            <div className="input-box" >
                                                 <input type={"number"} name="Amount" id="amount" value={withdraw?.amount} onChange={event => {
                                                     setWithdraw({...withdraw,amount:event.target.value});
                                                     setCrypto(event.target.value * exRate?.exchangeRate?.rateTo);
+                                                    if(parseFloat((event.target.value * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
+                                                        setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
+                                                        return;
+                                                    }else if(event.target.value<20){
+                                                        setFeeError(t(`You can withdraw min 20EUR (Fee 0.4EUR /2%)`))
+                                                        return;
+                                                    }else{
+                                                        setFeeError(null)
+                                                    }
+
                                                 }}
                                                 />
-                                                <label htmlFor="amount">EUR</label>
+                                                <label htmlFor="amount">{t("EUR")}</label>
                                                 {/*{t("Money")}*/}
                                             </div>
-                                            <p style={{color:'#8594c1',fontSize:'12px',margin:'4px 3px'}}>Min Withdraw: {exRate?.exchangeRate?.minAmountFrom} {exRate.currency}</p>
+                                            <p style={{color:'#899194',fontSize:'0.8rem',margin:'4px 3px'}}> {feeError?feeError:t(`MIN - {{min}} EUR`,{min:exRate?.exchangeRate?.minAmountFrom})}  </p>
                                         </div>
 
 
-                                        <div className={`new-input-label ${error("amount")}`} >
+                                        <div className={`new-input-label ${error("amount")}  ` }  >
                                             <div className="input-box">
                                                 <input type={"number"} name="Amount" id="amount" value={crypto} onChange={event => {
                                                     setCrypto(event.target.value);
                                                     setWithdraw({...withdraw,amount: (event.target.value / exRate?.exchangeRate?.rateTo)});
                                                 }}
                                                 />
-                                                <label htmlFor="amount">{exRate.toCurrency}</label>
+                                                <label htmlFor="amount" >{ exRate.toCurrency}</label>
                                             </div>
                                         </div>
 
-                                        <div className={`new-input-label ${error("address")}`} >
-                                            <div className="input-box">
+                                        <div className={`new-input-label`}  >
+                                            <div className="input-box" style={{position:'relative'}}>
                                                 <input type="text" name="account" id="account"
-                                                       value={withdraw?.address} onChange={event => setWithdraw({...withdraw,address:event.target.value})}
+                                                       value={withdraw?.address} onChange={event => {
+
+                                                            setWithdraw({...withdraw,address:event.target.value})
+                                                       }}
                                                 />
                                                 <label htmlFor="account">{t("Address")}</label>
+                                                <img src={WithdrawCopyIcon} width='20' style={{position:'absolute',right:'10px',top:'15px'}}/>
+
                                             </div>
+
                                         </div>
-                                        <div className="new-input-label" style={{display:'flex',justifyContent:'center'}} >
-                                            <button  onClick={()=> withdrawHandler()} className="btn-primary"
-                                                     id="withdraw-tab" type="submit" style={{width:"100%",marginTop:"16px",maxWidth:"100%"}}>
-                                                <span>Withdraw</span>
+                                        <div className="new-input-label withdraw-button-container" style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:'3rem',marginBottom:"0px !important"}} >
+
+                                            <div style={{display:'flex',flexDirection:'column'}}>
+                                                <div style={{
+                                                    height: '24px',
+                                                    fontSize: '1rem',
+                                                    color:'white'
+                                                }}>{(withdraw.amount * 1.02).toFixed(2)} {t("EUR")}</div>
+                                                <div
+                                                    style={{
+                                                        height: '24px',
+                                                        fontSize: '0.8rem',
+                                                        color:'#A5AAAC'
+                                                    }}
+                                                >{t("Fee")}: {(withdraw.amount * 0.02).toFixed(2)} {t("EUR")} (2%)</div>
+                                            </div>
+
+                                            <button  onClick={()=> feeError? console.log():withdrawHandler()} className={`btn-primary withdraw-btn ${feeError? 'disabled':''}`}
+                                                     id="withdraw-tab" type="submit" style={{width:"100%",maxWidth:"100%",marginTop:0}}>
+                                                <span>{t("Withdraw")}</span>
                                             </button>
                                         </div>
                                     </>:
