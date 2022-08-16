@@ -257,13 +257,13 @@ const SignUp =() =>{
                          otp.CLOSE();
                          ev.emit('signUp',false);
 
-                         if (response?.data?.data?.promotions?.promoCode && response?.data?.data?.promotions?.promoCode?.data?.resultCode > 0){
-                             ev.emit('notify',{
-                                 show:true,
-                                 text:'Error has been occurred while promo code being activated. You can try activate your promo code again in your profile page.<br/><span style="color:red">'+response?.data?.data?.promotions?.promoCode?.data?.message+'</span>',
-                                 type:'error'
-                             });
-                         }
+                         //if (response?.data?.data?.promotions?.promoCode && response?.data?.data?.promotions?.promoCode?.data?.resultCode > 0){
+                         //    ev.emit('notify',{
+                         //        show:true,
+                         //        text:'Error has been occurred while promo code being activated. You can try activate your promo code again in your profile page.<br/><span style="color:red">'+response?.data?.data?.promotions?.promoCode?.data?.message+'</span>',
+                         //        type:'error'
+                         //    });
+                         //}
 
                          if (response?.data?.data?.promotions?.NO_DEPOSIT_BONUS){
                              ev.emit('welcomeBonus',{
