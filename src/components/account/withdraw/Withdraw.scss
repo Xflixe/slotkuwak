@@ -2,6 +2,21 @@
 .withdraw-modal{
   max-width: 100vw;
 
+  .withdraw_max {
+    position: absolute;
+    right: 9px;
+    top: 9px;
+    background: #2A3032;
+    padding: 7px 14px;
+    border-radius: 19px;
+    font-size: 12px;
+    color: #fff;
+    &:hover {
+      cursor: pointer;
+      //background: #57bb45;
+    }
+  }
+
   .modal-content{
     background-color: #171B1C !important;
     max-width: 100vw !important;

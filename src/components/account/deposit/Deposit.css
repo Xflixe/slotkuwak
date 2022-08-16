@@ -31,10 +31,6 @@
   background-color: #262e45;
 }
 
-.deposit-modal-new {
-  margin-top: 50px;
-  margin-bottom: 60px;
-}
 .deposit-modal-new .modal-content {
   padding: 44px 20px 32px !important;
 }
@@ -183,6 +179,15 @@
 }
 .deposit-modal-new .dep-wrap .new-input-label .characters-controll.success {
   color: #27b66c !important;
+}
+@media (max-height: 700px) and (max-width: 400px) {
+  .deposit-modal-new {
+    margin: 0;
+  }
+  .deposit-modal-new .modal-box .content {
+    overflow-y: auto;
+    max-height: 400px;
+  }
 }
 
 /*# sourceMappingURL=Deposit.css.map */

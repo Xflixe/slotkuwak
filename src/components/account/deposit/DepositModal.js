@@ -77,18 +77,19 @@ const DepositModal = ({onClose})=>{
                   banner={{
                       width:'300px',
                       url:lendingBanner,
-                      mobUrl:lendingMobBanner
+                      //mobUrl:lendingMobBanner
                   }}
             >
-            <SelectBox
-                data={currencyList}
-                id={"crypto-currency"}
-                placeholder={t("Currency")}
-                className="crypto-currency"
-                value={selectedCurrency.id}
-                onSelect={e => setSelectedCurrency(e)}
-            />
-            <div className="dep-wrap" >
+
+                <SelectBox
+                    data={currencyList}
+                    id={"crypto-currency"}
+                    placeholder={t("Currency")}
+                    className="crypto-currency"
+                    value={selectedCurrency.id}
+                    onSelect={e => setSelectedCurrency(e)}
+                />
+                <div className="dep-wrap" >
                 {
                     (qrData?.url) ? (
                         <>
@@ -117,11 +118,6 @@ const DepositModal = ({onClose})=>{
                                 </div>
                             </div>
 
-                            <a href={qr?.url} target={"_blank"} style={{textAlign:'center',borderRadius:'3px',padding:'5px 0 10px'}}>
-                                <QRCode value={qrData?.url} fgColor={"black"} size={150} logoImage={logoM_jpg} />
-                            </a>
-                            <br/>
-
                             <div className="row">
                                 <div className="col-12" style={{marginBottom:'0'}}>
                                     <div  className={`input-label-border qr-address`}>
@@ -139,6 +135,11 @@ const DepositModal = ({onClose})=>{
                                     </div>
                                 </div>
                             </div>
+                            <br/>
+                            <a href={qr?.url} target={"_blank"} style={{textAlign:'center',borderRadius:'3px',padding:'5px 0 10px'}}>
+                                <QRCode value={qrData?.url} fgColor={"black"} size={150} logoImage={logoM_jpg} />
+                            </a>
+
                         </>
                     ):(
                         <div style={{height:"150px"}}>
@@ -147,6 +148,7 @@ const DepositModal = ({onClose})=>{
                     )
                 }
             </div>
+
         </NewModal>
 
     )

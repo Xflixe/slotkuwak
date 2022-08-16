@@ -197,6 +197,9 @@ const Withdraw = ({onClose})=>{
                                                 }}
                                                 />
                                                 <label htmlFor="amount">{t("EUR")}</label>
+                                                <div className="withdraw_max" onClick={()=>{
+
+                                                }}>{t('MAX')}</div>
                                                 {/*{t("Money")}*/}
                                             </div>
                                             <p style={{color:'#899194',fontSize:'0.8rem',margin:'4px 3px'}}> {feeError?feeError:t(`MIN - {{min}} EUR`,{min:exRate?.exchangeRate?.minAmountFrom})}  </p>
