@@ -27,7 +27,9 @@ const  App=()=> {
     const user = useUser();
     const [depositModal,setDepositModal]=useState(false);
     const [withdrawModal,setWithdrawModal]=useState(false);
-    const [welcomeBonus,setWelcomeBonus]=useState(false);
+    const [welcomeBonus,setWelcomeBonus]=useState({
+        showHide:false
+    });
 
     const [showNotify,setShowNotify]=useState({
         show:false,
@@ -84,7 +86,7 @@ const  App=()=> {
             <Guest/>
             <OTP/>
             <div className="event-wrap"/>
-            {welcomeBonus ? <WelcomeBonus onClose={() => setWelcomeBonus(false)}/> : ''}
+            {welcomeBonus.showHide ? <WelcomeBonus data={welcomeBonus} onClose={() => setWelcomeBonus({...welcomeBonus,showHide:false})}/> : ''}
             {withdrawModal ? <WithdrawModal onClose={() => setWithdrawModal(false)}/> : ''}
             {depositModal ? <DepositModal onClose={() => setDepositModal(false)}/> : ''}
 

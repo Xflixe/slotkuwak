@@ -823,6 +823,11 @@ select{
   .mob-balance-btn {
     display: flex;
   }
+
+  //sport
+  .dm__betslip--single {
+    bottom: 72px !important;
+  }
 }
 @media(max-width: 767px){
   // hide chat button

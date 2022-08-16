@@ -34,8 +34,8 @@ const Swp = (props) =>{
         <>
             <Swiper
                 spaceBetween={50}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
+                //onSlideChange={() => console.log('slide change')}
+                //onSwiper={(swiper) => console.log(swiper)}
                 navigation
                 loop={true}
                 pagination={{ clickable: true }}

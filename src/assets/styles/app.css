@@ -23907,6 +23907,10 @@ select {
   .mob-balance-btn {
     display: flex;
   }
+
+  .dm__betslip--single {
+    bottom: 72px !important;
+  }
 }
 @media (max-width: 767px) {
   iframe[title="Button to launch messaging window"] {

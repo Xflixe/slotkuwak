@@ -288,7 +288,12 @@ const checkRestriction = () =>{
     return  http.get({url:Config.User.RESTRICTION, permitAll:true})
 
 }
+const claimBonusUrl =({id,type})=>{
+    return  http.post({url:Config.User.ClaimBonusUrl.replace("{id}",id).replace("{type}",type),permitAll:true})
+}
+
 export default {
+    claimBonusUrl,
     checkRestriction,
   getSecurityQuestion,
     sendMessage,

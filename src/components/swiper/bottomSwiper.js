@@ -21,8 +21,8 @@ const  FooterCarousel = (props) =>{
         <Swiper
             spaceBetween={10}
             slidesPerView={count}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            //onSwiper={(swiper) => console.log(swiper)}
+            //onSlideChange={() => console.log('slide change')}
         >
             {
                 _.map(data, (v,index)=>{

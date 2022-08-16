@@ -66,7 +66,7 @@ const SignUp =() =>{
             //currencyCode:840,
             password:"",
             //password2:"",
-            //promoCode:"",
+            promoCode:"",
             username:""
         });
 
@@ -147,8 +147,6 @@ const SignUp =() =>{
     },[otpDialog])
 
     const signIn=async (data) => {
-
-
 
         window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'login'}).then(async(token)=> {
             const response = await dispatch(Actions.User.signIn({
@@ -253,12 +251,31 @@ const SignUp =() =>{
                      if(response.status){
                          //document.getElementById("close-sign-up").click();
                          //document.getElementById("signIn-btn").click();
-                         window.top.pushEvent(t('Registration completed successfully'),'success');
                          //alert("Registration completed successfully")
+
+                         window.top.pushEvent(t('Registration completed successfully'),'success');
                          otp.CLOSE();
                          ev.emit('signUp',false);
+
+                         if (response?.data?.data?.promotions?.promoCode && response?.data?.data?.promotions?.promoCode?.data?.resultCode > 0){
+                             ev.emit('notify',{
+                                 show:true,
+                                 text:'Error has been occurred while promo code being activated. You can try activate your promo code again in your profile page.<br/><span style="color:red">'+response?.data?.data?.promotions?.promoCode?.data?.message+'</span>',
+                                 type:'error'
+                             });
+                         }
+
+                         if (response?.data?.data?.promotions?.NO_DEPOSIT_BONUS){
+                             ev.emit('welcomeBonus',{
+                                 ...response?.data?.data?.promotions,
+                                 ...data,
+                                 showHide:true
+                             });
+                         }else{
+                             signIn({username:data.username,password:data.password})
+                         }
                          //ev.emit('signIn',true);
-                         signIn({username:data.username,password:data.password})
+                         //console.log('response',response)
 
                      }else{
                          if(response?.error?.data){
@@ -493,7 +510,7 @@ const SignUp =() =>{
                         </div>
                     </div>*/}
 
-                    {/*<div className="col-12">
+                    <div className="col-12">
                         <p style={{color:'#fff',marginBottom:0}}>{t('Have Promo Code?')}</p>
                         <div className={`input-label ${error("promoCode")}`}>
                             <input type="text" name="promoCode" id="promoCode"
@@ -502,7 +519,7 @@ const SignUp =() =>{
                             />
                             <label htmlFor="promoCode">{t("Promo Code")}</label>
                         </div>
-                    </div>*/}
+                    </div>
 
                     <div className="col-12">
                         <label htmlFor="terms-and-conditions" className={`terms ${termsError?'error-text':''}`}>
