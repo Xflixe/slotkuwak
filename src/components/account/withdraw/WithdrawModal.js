@@ -182,8 +182,13 @@ const Withdraw = ({onClose})=>{
                                         <div className={`new-input-label ${feeError ? 'withdraw-error' : ''}`} >
                                             <div className="input-box" >
                                                 <input type={"number"} name="Amount" id="amount" value={withdraw?.amount} onChange={event => {
+
                                                     setWithdraw({...withdraw,amount:event.target.value});
                                                     setCrypto(event.target.value * exRate?.exchangeRate?.rateTo);
+                                                    if(event.target.value===''){
+                                                        setFeeError(null)
+                                                        return;
+                                                    }
                                                     if(parseFloat((event.target.value * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
                                                         setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
                                                         return;
@@ -194,11 +199,12 @@ const Withdraw = ({onClose})=>{
                                                         setFeeError(null)
                                                     }
 
+
                                                 }}
                                                 />
                                                 <label htmlFor="amount">{t("EUR")}</label>
                                                 <div className="withdraw_max" onClick={()=>{
-
+                                                     setWithdraw({...withdraw,amount: (User?.data?.accounts?.main?.amount / 1.02).toFixed(2) })
                                                 }}>{t('MAX')}</div>
                                                 {/*{t("Money")}*/}
                                             </div>
@@ -226,7 +232,9 @@ const Withdraw = ({onClose})=>{
                                                        }}
                                                 />
                                                 <label htmlFor="account">{t("Address")}</label>
+{/*
                                                 <img src={WithdrawCopyIcon} width='20' style={{position:'absolute',right:'10px',top:'15px'}}/>
+*/}
 
                                             </div>
 
