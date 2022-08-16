@@ -37,10 +37,10 @@
     background-color: #262e45;
   }
 }
-
 .deposit-modal-new {
   //margin-top: 50px;
   //margin-bottom: 60px;
+
   .modal-content {
     padding: 44px 20px 32px !important;
   }
@@ -196,11 +196,12 @@
   }
 
   @media (max-height: 700px) and (max-width: 400px){
+    top:calc(50% - 30px) !important;
     margin: 0;
     .modal-box {
       .content {
         overflow-y: auto;
-        max-height: 400px;
+        max-height: 475px;
       }
     }
   }

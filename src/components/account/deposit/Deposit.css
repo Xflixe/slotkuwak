@@ -182,11 +182,12 @@
 }
 @media (max-height: 700px) and (max-width: 400px) {
   .deposit-modal-new {
+    top: calc(50% - 30px) !important;
     margin: 0;
   }
   .deposit-modal-new .modal-box .content {
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 475px;
   }
 }
 

@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Actions, useTranslation} from "../../../core";
-import PLXModal from "../../modal/PLXModal";
-import {arrowLeftBack, coinspaid, percent, time} from "../../../assets/img/icons/icons";
 import {logoM, logoM_jpg} from "../../../assets/img/images"
 import './Deposit.scss';
 import {QRCode} from "react-qrcode-logo";
@@ -9,8 +7,6 @@ import {NewModal, SvgDot} from "../../index";
 import SelectBox from "../../forms/select/NewSelect";
 import {copy} from "../../../assets/img/icons/icons"
 import lendingBanner from "../../../assets/img/lending.jpg";
-import lendingMobBanner from "../../../assets/img/lending_mob.jpg";
-import signUpBanner from "../../../assets/img/signupBanner.jpg";
 window.reSendInterval=null;
 
 const currencyList = [
