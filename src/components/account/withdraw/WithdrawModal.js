@@ -208,7 +208,7 @@ const Withdraw = ({onClose})=>{
                                                 }}>{t('MAX')}</div>
                                                 {/*{t("Money")}*/}
                                             </div>
-                                            <p style={{color:'#899194',fontSize:'0.8rem',margin:'4px 3px'}}> {feeError?feeError:t(`MIN - {{min}} EUR`,{min:exRate?.exchangeRate?.minAmountFrom})}  </p>
+                                            <p style={{color:'#899194',fontSize:'0.8rem',margin:'4px 3px'}}> {feeError?feeError:t(`MIN - {{min}} EUR`,{min:20})}  </p>
                                         </div>
 
 
