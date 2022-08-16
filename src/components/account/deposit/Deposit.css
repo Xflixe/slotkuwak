@@ -31,6 +31,10 @@
   background-color: #262e45;
 }
 
+.deposit-modal-new {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
 .deposit-modal-new .modal-content {
   padding: 44px 20px 32px !important;
 }

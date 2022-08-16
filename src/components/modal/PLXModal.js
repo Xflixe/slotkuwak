@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {close} from "../../assets/img/icons/icons";
 import PropTypes from "prop-types";
 
-const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className,parentIdName,banner})=>{
+const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className,parentIdName,banner,preTitle=null})=>{
     //const [devWidth,setDevWidth]=useState(false)
     /*const [st,setSt]=useState({
         ...dialogStyle,
@@ -50,7 +50,7 @@ const PLXModal = ({children,title,footer,onClickBackDrop,closeButton,onClose,con
                                             <img src={close} alt="Close modal"/>
                                         </button>
                                     }
-                                    <div className="modal-title">{title}</div>
+                                    <div className="modal-title">{preTitle}{title}</div>
                                 </div>
                                 {
                                     banner?.mobUrl !== undefined? <div className="banner_box_mobile" style={{background:`url(${banner?.url})`}}/>:''
