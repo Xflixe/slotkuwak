@@ -12,6 +12,7 @@ import {UseEvent} from "../../../core/hooks/useEvent";
 import WithdrawIcon from "./icons/widthdraw-icon.png"
 import WithdrawCopyIcon from "./icons/withdraw-copy.png"
 import {useUser} from "../../../core/hooks/useUser"
+import {Timeout} from "../../../core/utils/timeout"
 
 window.reSendInterval=null;
 
@@ -45,7 +46,7 @@ const Withdraw = ({onClose})=>{
     const {User} = useUser()
     const {otp, PHONE,EMAIL,CLOSE,ERROR,MULTI} = useOTP();
     const [withdraw,setWithdraw]=useState({amount:'', address:""});
-    const [crypto,setCrypto]=useState('');
+    const [crypto,setCrypto]=useState('');(User?.data?.accounts?.main?.amount / 1.02).toFixed(2)
     const [selectedCurrency,setSelectedCurrency] = useState({ id:"BTC",title:"BTC",name:"Bitcoin"});
     const [exRate,setExRate]=useState(null)
     const [loader,setLoader]=useState(false)
@@ -189,16 +190,19 @@ const Withdraw = ({onClose})=>{
                                                         setFeeError(null)
                                                         return;
                                                     }
-                                                    if(parseFloat((event.target.value * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
-                                                        setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
-                                                        return;
-                                                    }else if(event.target.value<20){
-                                                        setFeeError(t(`You can withdraw min 20EUR (Fee 0.4EUR /2%)`))
-                                                        return;
-                                                    }else{
-                                                        setFeeError(null)
-                                                    }
+                                                    Timeout.clear()
+                                                    Timeout.set(()=>{
+                                                        if(parseFloat((event.target.value * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
+                                                            setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
+                                                            return;
+                                                        }else if(event.target.value<20){
+                                                            setFeeError(t(`You can withdraw min 20EUR (Fee 0.4EUR /2%)`))
+                                                            return;
+                                                        }else{
+                                                            setFeeError(null)
+                                                        }
 
+                                                    },500)
 
                                                 }}
                                                 />
@@ -215,8 +219,24 @@ const Withdraw = ({onClose})=>{
                                         <div className={`new-input-label ${error("amount")}  ` }  >
                                             <div className="input-box">
                                                 <input type={"number"} name="Amount" id="amount" value={crypto} onChange={event => {
+                                                    let amount = (event.target.value / exRate?.exchangeRate?.rateTo);
                                                     setCrypto(event.target.value);
-                                                    setWithdraw({...withdraw,amount: (event.target.value / exRate?.exchangeRate?.rateTo)});
+                                                    setWithdraw({...withdraw,amount: amount});
+
+                                                    Timeout.clear()
+                                                    Timeout.set(()=>{
+                                                        if(parseFloat((amount * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
+                                                            setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
+                                                            return;
+                                                        }else if(amount<20){
+                                                            setFeeError(t(`You can withdraw min 20EUR (Fee 0.4EUR /2%)`))
+                                                            return;
+                                                        }else{
+                                                            setFeeError(null)
+                                                        }
+
+                                                    },500)
+
                                                 }}
                                                 />
                                                 <label htmlFor="amount" >{ exRate.toCurrency}</label>
