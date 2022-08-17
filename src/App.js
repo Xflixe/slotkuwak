@@ -13,6 +13,7 @@ import Deposit from "./components/account/deposit/Deposit";
 import DepositModal from "./components/account/deposit/DepositModal";
 import WithdrawModal from "./components/account/withdraw/WithdrawModal";
 import WelcomeBonus from "./components/account/welcomeBonus/WelcomeBonus";
+import PromoModal from "./components/account/promoModal/PromoModal";
 import {Restricted} from "./components/restricted/Restricted"
 
 
@@ -30,11 +31,15 @@ const  App=()=> {
     const [welcomeBonus,setWelcomeBonus]=useState({
         showHide:false
     });
-
     const [showNotify,setShowNotify]=useState({
-        show:false,
+        show: false,
         text:'',
-        type:''
+        type:'',
+        title:''
+    });
+    const [promModal,setPromModal]=useState({
+        show: false,
+        type:'',
     });
     useEffect(()=>{
 
@@ -92,11 +97,15 @@ const  App=()=> {
 
             {
                 showNotify.show && <PLAlert data={showNotify} title={showNotify?.title}
-                                            onClose={() => setShowNotify({...showNotify, show: false})} footer={<button
+                    onClose={() => setShowNotify({...showNotify, show: false})} footer={<button
                     onClick={() => setShowNotify({...showNotify, show: false})}>{t("Close")}</button>}>
                     <div className="alert_wrap" dangerouslySetInnerHTML={{__html: showNotify.text}}/>
                 </PLAlert>
             }
+
+            {promModal.show && <PromoModal/>}
+
+
         </>
     ))
 }

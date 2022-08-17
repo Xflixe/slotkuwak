@@ -20,7 +20,7 @@ import icon77 from './spadegaming.png';
 import icon56 from './tomhorn.png';
 import icon63 from './wazdan.png';
 import icon90 from './greenjade.png';
-import icon114 from './bf.png';
+import icon8 from './bf.png';
 import icon123 from './IgroSoft.png';
 import icon89 from './kalamba.png';
 import icon50 from './triple.png';
@@ -49,7 +49,7 @@ export  {
     icon56,
     icon63,
     icon90,
-    icon114,
+    icon8,
     icon123,
     icon89,
     icon50

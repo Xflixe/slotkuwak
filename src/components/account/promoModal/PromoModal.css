@@ -1,0 +1,40 @@
+.promo-modal {
+  min-width: 600px;
+}
+.promo-modal .modal-box {
+  background: #1A1E1F;
+  max-width: unset;
+}
+.promo-modal .promo-modal-box {
+  background: linear-gradient(89.06deg, #8E2DE2 8.52%, #4A00E0 120.31%);
+  border-radius: 8px;
+  padding: 32px 20px;
+  color: #fff;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.promo-modal .promo-modal-box h3 {
+  color: #EEC64F;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+.promo-modal .promo-modal-box p {
+  max-width: 450px;
+  margin: 0 auto;
+}
+.promo-modal .promo-modal-box p span {
+  font-weight: bold;
+}
+.promo-modal .promo-modal-box button {
+  background: linear-gradient(77.69deg, #10B77F 0%, #10B7AD 85.44%);
+  border-radius: 6px;
+  padding: 12px 24px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #fff;
+}
+.promo-modal .promo-modal-box button:hover {
+  background: linear-gradient(77.69deg, #10B7AD 0%, #10B77F 85.44%);
+}
+
+/*# sourceMappingURL=PromoModal.css.map */

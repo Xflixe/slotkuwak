@@ -6,12 +6,7 @@ import './PLAlert.scss';
 
 const PLAlert = ({data,children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className})=>{
     return  (
-        <div
-            className="custom-modal"
-            onClick={()=>onClickBackDrop()}
-
-        >
-
+        <div className="custom-modal" onClick={()=>onClickBackDrop()}>
             <div className={`modal-dialog modal-dialog-centered pl_alert ${className}`} style={{...dialogStyle}}>
                 <div className="modal-content" style={{...contentStyle}}>
                     <div className="modal-head mb-0">
@@ -31,11 +26,12 @@ const PLAlert = ({data,children,title,footer,onClickBackDrop,closeButton,onClose
                     </div>
                 </div>
 
-
             </div>
         </div>
     )
+
 }
+
 PLAlert.propTypes={
     title:PropTypes.string,
     closeButton:PropTypes.bool,
