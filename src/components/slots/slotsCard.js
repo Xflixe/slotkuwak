@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import _ from 'lodash'
 import {play as PlayIcon} from "../../assets/img/icons/icons";
 import {useSLot} from "../../core/hooks/useSLot";
@@ -10,6 +10,8 @@ const SlotCard =({data})=> {
     const {loader}=useLoader()
     const {play}= useSLot()
     const {t,i18n} = useTranslation()
+
+
     return (_.map(data, (v,index)=>{
                 return  (
                     <div className="card-list-item" key={index} >

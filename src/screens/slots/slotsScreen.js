@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {sl2, w2} from '../../assets/img/images';
 import {filter} from '../../assets/img/icons/icons';
 import {Footer, Header, NewSWP, ShowMore, SlotCard, Swp} from "../../components";
@@ -92,22 +92,15 @@ const slIcon = {
 const SlotsScreen = () =>{
     const {t,i18n} = useTranslation()
     const {count} = useCount()
-    const {lang}=useParams();
     const [page,setPage]=useState(1)
-    const [selected,setSelected] = useState([])
     const [providers,setProviders]=useState([])
     const [filters,setFilters]=useState([])
     const [searchText, setSearchText] = useState("")
     const [list,setList]=useState([])
-    const [providerFilter,setProviderFilter]=useState(false);
-    const [filtersFilter,setFiltersFilter]=useState(false);
     const [selectedFilters,setSelectedFilters] = useState([])
-
-    const [showMobileFilter,setShowMobileFilter] = useState(false)
     const [slMobNav,setSlMobNav] = useState(false)
     const [selectedProvider,setSelectedProvider]=useState({name:'All Providers'})
-    const slideData =
-        window.innerWidth > 767 ? {
+    const slideData = window.innerWidth > 767 ? {
             ru: [
                 {id: 2, icon: desk_casino_ru, url: `/ru/casino`},
                 {id: 4, icon: desk_sp_ru, url: `/ru/sport`},
@@ -146,7 +139,10 @@ const SlotsScreen = () =>{
     useEffect(()=>{
         loadProvider();
         loadSlotList()
+
     },[])
+
+
     useEffect(()=>{
         if(selectedProvider?.length>0 || selectedFilters?.length>0){
             //setPage(_.size(filteredSlotList)/20 + 1)
@@ -180,6 +176,20 @@ const SlotsScreen = () =>{
         return filtered;
     },[list,selectedProvider,selectedFilters,searchText])
 
+    useEffect(()=>{
+        if(filteredSlotList){
+            let counter = 1;
+            setPage(counter)
+            window.addEventListener("scroll",e=>{
+                if(page * count()<filteredSlotList.length){
+                    counter++;
+                    setPage(counter)
+                }
+            })
+        }
+
+    },[filteredSlotList])
+
     const loadProvider = () => {
         Actions.Slot.list({webPageId:1}).then(response=> {
             //if(response.status){
@@ -209,7 +219,6 @@ const SlotsScreen = () =>{
                 <NewSWP data={slideData[i18n.language]} />
             </div>
 
-            <div></div>
 
             <main className="main" style={{minHeight:'300px'}}>
                 <div className="container wrapper">

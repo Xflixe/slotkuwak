@@ -56,6 +56,13 @@ const ping = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
             console.log("ping",response)
+            if(response.status){
+                window.zE('webWidget', 'identify', {
+                    name: response?.data?.data?.firstName + " "+ response?.data?.data?.lastName,
+                    email: "kapana27@gmail.com",
+                });
+            }
+
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},
@@ -71,6 +78,10 @@ const ping = () =>async (dispatch)=>{
 const checkSession = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
+            alert("tes")
+            if(response.status){
+                console.log(response.data)
+            }
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},
@@ -305,10 +316,10 @@ export default {
   signUp,
     checkRecoveryToken,
     sendResetPass,
-  info,
+    info,
     getLendingInfo,
     getVerificationInfo,
-  updateInfo,
+    updateInfo,
     resendOtp,
     verifyOtp,
     verification,

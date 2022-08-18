@@ -114,7 +114,6 @@ const Withdraw = ({onClose})=>{
                                 ERROR({error:t("error")})
                             }
                         }).catch(e=>{
-                            console.log("catch")
                             ERROR({error:t("error")})
                         })
                     }
