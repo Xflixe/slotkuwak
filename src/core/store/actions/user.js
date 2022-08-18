@@ -52,12 +52,7 @@ const signOut = () => async (dispatch)=>{
 const ping = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
-            if(response.status){
-                window.zE('webWidget', 'identify', {
-                    name: response?.data?.data?.firstName + " "+ response?.data?.data?.lastName,
-                    email: "kapana27@gmail.com",
-                });
-            }
+
 
             dispatch({
                 type: PING,
