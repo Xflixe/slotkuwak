@@ -22,7 +22,7 @@ const UserDropDawn = ({onClose,className})=>{
     const getLendingInfo = ()=>{
         Actions.User.getLendingInfo().then(response=>{
             if(response.status){
-                console.log('getLendingInfo',response);
+                //console.log('getLendingInfo',response);
                 setWager(response.data.data)
                 //setInfoData(response.data.data);
             }
