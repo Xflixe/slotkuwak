@@ -74,7 +74,6 @@ const Header = ({page}) =>{
                                             <div onClick={()=>{
 
                                                 checkSession().then(response=>{
-                                                    console.log(response)
                                                     if(response.status){
 
                                                         if(response?.data?.data?.verifyStatus===0){

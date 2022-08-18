@@ -8,7 +8,6 @@ const  OTP =()=>{
 
 
     const onSubmit = (e) =>{
-        console.log(e)
     }
     return  <>
         {

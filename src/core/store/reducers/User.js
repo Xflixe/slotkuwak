@@ -1,7 +1,6 @@
 import { PING, SIGN_IN} from "../actionTypes";
 
 export const  User = (state={ isLogged:false , data:{}}, action)=>{
-  console.log(action)
   switch (action.type){
     case SIGN_IN:
       return {...state,isLogged: action.payload.isLogged, data:action.payload.data};

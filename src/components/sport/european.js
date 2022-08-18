@@ -23,14 +23,13 @@ export const EuropeanView=()=>{
         ev.emit("signUp",true)
     }
     const balanceChangeHandler=(event)=>{
-        console.log("balanceChangeHandler",event)
+      //  console.log("balanceChangeHandler",event)
 
     }
     const onNavigateHandler=(event)=>{
-        console.log("onNavigateHandler",event)
+       // console.log("onNavigateHandler",event)
     }
     const eventsHandlerCallback=(event)=>{
-        console.log("eventsHandlerCallback",event)
         dispatch(Actions.User.ping())
     }
     const [params,setParams]=useState({
@@ -51,7 +50,6 @@ export const EuropeanView=()=>{
 
     })
     useEffect(()=>{
-        console.log(nav.get("betHistory"))
         if (User.isLogged) {
 
             response.then(res=>{

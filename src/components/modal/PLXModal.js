@@ -79,8 +79,8 @@ PLXModal.propTypes={
 PLXModal.defaultProps={
     title:"",
     closeButton:true,
-    onClickBackDrop:()=>console.log("backdrop click"),
-    onClose:()=>console.log("onClose"),
+    onClickBackDrop:()=>{},
+    onClose:()=>{},
     contentStyle:{}
 }
 

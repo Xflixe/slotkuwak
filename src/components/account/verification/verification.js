@@ -106,15 +106,12 @@ const Confirmation = () => {
 
     const getInfo = ()=>{
         Actions.User.info().then(response=>{
-            console.log('response?.data?.data',response?.data)
             if(response.status){
-                console.log('response?.data?.data',response?.data)
                 if (response?.data?.data?.verifyStatus === 0 || response?.data?.data?.verifyStatus === 2){
                     setReadOnly(true)
                 }
                 if (response?.data?.data?.userVerifyStatus === 2){setStep(2)}
                 let res = response.data.data;
-                console.log('res',res);
                 setInfoData(_.fromPairs(_.map(infoData, (v,k)=> {
                     switch (k){
                         case "nationality":
@@ -196,9 +193,6 @@ const Confirmation = () => {
             }
             return {key:k,value:v}
         }).filter(v=>!v.value).map(v=>v.key).value();
-
-        console.log('error',error)
-
         if(error.length>0){
             setErrors([...error])
         }else{
@@ -211,7 +205,6 @@ const Confirmation = () => {
                     setStep(2)
                 }
             }).catch(e=>{
-                console.log("catch",e)
                 ERROR({error:t("error")})
             })
         }
@@ -271,8 +264,6 @@ const Confirmation = () => {
 
                             }
                         }).catch(e=>{
-
-                            console.log("catch",e)
                             ERROR({error:t("error")})
                         })
                     }

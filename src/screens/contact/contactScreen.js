@@ -66,7 +66,6 @@ const ContactScreen = ()=>{
                 }
 
                 Actions.User.sendMessage({loader:setLoader,data:dat}).then((response)=>{
-                    console.log('message',response)
 
                     if(response.status){
                         setData({name:'', mail:'', subject:'1', message:'',})

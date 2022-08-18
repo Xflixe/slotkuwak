@@ -27,7 +27,6 @@ export function useBottomBar(){
                 payload:false
             })
             if(callback && _.isFunction(callback)){
-                console.log("callback")
                 callback()
             }
         }

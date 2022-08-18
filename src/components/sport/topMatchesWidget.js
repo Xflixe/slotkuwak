@@ -19,12 +19,10 @@ export const TopMatchesWidget=({lang})=>{
     }
     function addTopMatchesEventsListeners(topMatches){
         topMatches.addEventListener('navigateToEvent', function (messageEvent) {
-            console.log("navigate",messageEvent)
             history.push(`/${lang}/sport`)
 
         }); // console.log(messageEvent.data.Id);
         topMatches.addEventListener('navigateToChampionship', function (messageEvent) {
-            console.log("navigateToChampionship",messageEvent)
         }); // console.log(messageEvent.data.Id);
     }
     useEffect( () => {
@@ -43,7 +41,6 @@ export const TopMatchesWidget=({lang})=>{
     }, [widgetLang]);
 
     const loadWidget=()=>{
-        console.log(lang)
         if (User.isLogged) {
             Actions.Sport.token().then(res=>{
                 //console.log('asdada',res)

@@ -15,7 +15,7 @@ const  HeaderCarousel = (props) =>{
     },[props.count])
     useEffect(()=> {
         if(ref){
-            console.log(document.querySelector(".swiper-wrapper").setAttribute("class","swiper-wrapper d-flex align-items-center"));
+            (document.querySelector(".swiper-wrapper").setAttribute("class","swiper-wrapper d-flex align-items-center"));
         }
     },[ref])
 
@@ -26,8 +26,8 @@ const  HeaderCarousel = (props) =>{
             slidesPerView={count}
             navigation
             pagination={{ clickable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => {}}
+            onSlideChange={() => {}}
             loop={true}
             wrapperClass={"test"}
         >

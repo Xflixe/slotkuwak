@@ -80,7 +80,6 @@ const Information = () => {
                 setSecurityQuestions((response.status && response.data?response.data?.data:[]))
 
                 if(ans !== {}){
-                    console.log(ans)
                     setQuestions({
                         question1:parseInt(ans?.data?.security_question1),
                         answer1:ans?.data?.security_answer1,
@@ -134,7 +133,6 @@ const Information = () => {
                             })
                         }
                     }
-                    //console.log(response.status);
                     //setSecurityQuestions((response.status && response.data?response.data?.data:[]))
 
                 })
@@ -174,7 +172,6 @@ const Information = () => {
                   }
                 })))
 
-                //console.log('InfoData',infoData)
             }
         })
     }

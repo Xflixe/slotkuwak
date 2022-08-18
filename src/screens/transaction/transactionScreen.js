@@ -33,7 +33,7 @@ const TransactionScreen = () =>{
                     setTrData(response?.data?.data)
                 }
             }).catch((reason)=>{
-            console.log(reason)
+            //console.log(reason)
         })
     }
 

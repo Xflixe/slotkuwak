@@ -9,7 +9,7 @@ const VerificationScreen = () =>{
     const {t} = useTranslation()
     const nav  = useNavigation();
     useEffect(()=>{
-        console.log(nav);
+        //console.log(nav);
         setTimeout(function (){
             document.getElementById('btn-confirm-verification').click();
         },1000)

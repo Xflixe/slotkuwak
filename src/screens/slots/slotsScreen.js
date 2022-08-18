@@ -197,7 +197,7 @@ const SlotsScreen = () =>{
             //}
             setProviders(response.status?response.data.data.providers:[]);
             setFilters(response.status?response.data.data.filterGroups:[]);
-        }).catch(reason => console.log(reason))
+        }).catch(reason => {})
     }
     const loadSlotList =()=>{
         Actions.Slot.listByPage(1).then((response)=>{
