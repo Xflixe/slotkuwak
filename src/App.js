@@ -41,7 +41,23 @@ const  App=()=> {
         show: false,
         type:'',
     });
+
+
     useEffect(()=>{
+        const ping = async () => {
+            setLoaded(await dispatch(Actions.User.ping()))
+        }
+
+        const notification = ()=>{
+            Actions.User.notification().then(response=>{
+                console.log('notification',response)
+                if(response.status){
+                    console.log('notification',response)
+                }
+            })
+        }
+
+        notification()
 
         Actions.User.checkRestriction().then(response=>{
             if(!response.status && response?.error ==="restricted"){
@@ -50,15 +66,19 @@ const  App=()=> {
                 setRestriction("allowed")
             }
         }).catch(e=>setRestriction("allowed"))
-        const signInFormEvent= event.subscribe("notify",setShowNotify)
-        const depositModal= event.subscribe("depositModal",setDepositModal)
-        const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
-        const welcomeBonus= event.subscribe("welcomeBonus",setWelcomeBonus)
+
         if(nav.get("cxd")){
             //აფილეიტები
             cookie.setCookie("cxd",nav.get("cxd"),14)
         }
+
         ping()
+
+        const signInFormEvent= event.subscribe("notify",setShowNotify)
+        const depositModal= event.subscribe("depositModal",setDepositModal)
+        const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
+        const welcomeBonus= event.subscribe("welcomeBonus",setWelcomeBonus)
+
         //checkLanguage()
         const listener = event.subscribe("plxEvent",(e)=>{
             switch (e?.type) {
@@ -78,9 +98,7 @@ const  App=()=> {
             welcomeBonus.unsubscribe()
         }
     },[])
-    const ping =  async () => {
-        setLoaded(await dispatch(Actions.User.ping()))
-    }
+
 
     if(!loaded || restriction === null){
         return <Skeleton/>
@@ -103,8 +121,7 @@ const  App=()=> {
                 </PLAlert>
             }
 
-            {promModal.show && <PromoModal/>}
-
+            {promModal.show && <PromoModal onClose={() => setPromModal({...promModal, show: false})}/>}
 
         </>
     ))

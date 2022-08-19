@@ -25,12 +25,12 @@ class Http {
                 }}).then(response=>{
                     resolve(response.status===200?{status:true,data:response.data}:{status:false,data:response.data})
             }).catch( async reason => {
-                console.log("refresh",enableRefreshToken,jwt?.refresh,reason?.response?.status)
+                //console.log("refresh",enableRefreshToken,jwt?.refresh,reason?.response?.status)
 
                 if (enableRefreshToken && jwt?.refresh && reason?.response?.status === 401) {
                     if(enableRefreshToken){
                         let refresh = await this.refreshToken(jwt)
-                        console.log("refresh-token",refresh)
+                        //console.log("refresh-token",refresh)
 
                         if(refresh?.status){
                             jwt.setData(refresh.data.data);

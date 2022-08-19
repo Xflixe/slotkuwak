@@ -291,24 +291,28 @@ const checkRestriction = () =>{
 const claimBonusUrl =({id,type})=>{
     return  http.post({url:Config.User.ClaimBonusUrl.replace("{id}",id).replace("{type}",type),permitAll:true})
 }
+const notification =()=>{
+    return  http.get({url:Config.User.notification})
+}
 
 export default {
     claimBonusUrl,
     checkRestriction,
-  getSecurityQuestion,
+    getSecurityQuestion,
     sendMessage,
     checkSecurityQuestion,
     saveSecurityQuestions,
-  signIn,
-  signOut,
-  ping,
-  signUp,
+    signIn,
+    signOut,
+    ping,
+    signUp,
     checkRecoveryToken,
     sendResetPass,
-  info,
+    info,
     getLendingInfo,
+    notification,
     getVerificationInfo,
-  updateInfo,
+    updateInfo,
     resendOtp,
     verifyOtp,
     verification,

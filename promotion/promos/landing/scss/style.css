@@ -32,8 +32,8 @@
 .promo .pr_head .pr_head_text h1 {
   margin-top: 32px;
   margin-bottom: 24px;
-  font-size: 36px;
-  line-height: 52px;
+  font-size: 23px;
+  line-height: 36px;
   font-family: "Montserrat", sans-serif;
 }
 .promo .pr_head .pr_head_text h1 span {
@@ -54,6 +54,9 @@
   font-size: 16px;
   color: #fff;
   border: none;
+}
+.promo .pr_head .pr_head_text button:hover {
+  cursor: pointer;
 }
 .promo .pr_content {
   min-height: 1400px;
@@ -182,14 +185,15 @@
   margin-bottom: 16px;
   border-bottom: 1px solid #5A26A5;
 }
-.promo .pr_content .cont_mw .rules .rule_call ul {
+.promo .pr_content .cont_mw .rules .rule_call ul, .promo .pr_content .cont_mw .rules .rule_call ol {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  padding-left: 20px;
 }
-.promo .pr_content .cont_mw .rules .rule_call ul ol, .promo .pr_content .cont_mw .rules .rule_call ul li {
+.promo .pr_content .cont_mw .rules .rule_call ul li, .promo .pr_content .cont_mw .rules .rule_call ol li {
   padding: 8px 0;
 }
 .promo .pr_content .cont_mw ul.providers {
@@ -201,7 +205,7 @@
   justify-content: center;
 }
 .promo .pr_content .cont_mw ul.providers li {
-  width: 188px;
+  width: 155px;
   height: 80px;
   background-repeat: no-repeat !important;
   background-position: center !important;
@@ -213,8 +217,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
-  padding: 15px 0;
+  padding: 20px 0;
   justify-content: center;
+  border-bottom: 1px solid #5A26A5;
 }
 .promo .pr_content .cont_mw ul.crypto li {
   width: 60px;

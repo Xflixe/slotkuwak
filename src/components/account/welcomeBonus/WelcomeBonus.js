@@ -63,6 +63,9 @@ const WelcomeBonus = ({data,onClose})=>{
         Actions.User.claimBonusUrl({id:data?.NO_DEPOSIT_BONUS?.data?.id,type:gift===1?'wager':'freespin'}).then(response=>{
             if (response.status){
                 signIn({username:data.username,password:data.password})
+                if(window.top.location.href.indexOf('landing') !== -1){
+                    window.top.location.href = `https://www.planetaxbet.com/${i18n.language}/main`
+                }
             }else{
                 if (response.error.message && response.error.resultCode){
                     window.top.pushEvent(response.error.message,'error');

@@ -1,0 +1,147 @@
+body {
+  background: #1e2224;
+}
+
+.turbo {
+  display: inline-block;
+  margin: 0 -10px;
+}
+.turbo .box {
+  position: relative;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+  width: 203px;
+  height: 132px;
+  float: left;
+}
+.turbo .box .left-icon {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 9;
+}
+.turbo .box .right-icon {
+  top: 0;
+  right: 0;
+  position: absolute;
+  z-index: 9;
+}
+.turbo .box .right-icon .big {
+  opacity: 0.1;
+}
+.turbo .box .right-icon .small {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-26%, -70%);
+}
+.turbo .box .game-box {
+  transition: all 0.1s ease-in-out;
+  position: absolute;
+  top: 0;
+}
+.turbo .box .box_1 {
+  position: relative;
+  width: 203px;
+  height: 132px;
+  background: linear-gradient(328.78deg, #882839 13.23%, #D93163 122.29%);
+}
+.turbo .box .box_1.blue {
+  background: linear-gradient(128deg, #1d8c89 13.23%, #155c5a 122.29%);
+}
+.turbo .box .box_1.yellow {
+  background: linear-gradient(113deg, #e08b1d 13.23%, #e5b20a 122.29%);
+}
+.turbo .box .box_1.sky {
+  background: linear-gradient(128deg, #2b64bf 13.23%, #3d7fe9 122.29%);
+}
+.turbo .box .box_1.pink {
+  background: linear-gradient(128deg, #ed448b 13.23%, #e02e78 122.29%);
+}
+.turbo .box .box_1 .full {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.turbo .box .box_1 .full img {
+  margin: 16px 0;
+}
+.turbo .box .box_2 {
+  width: 203px;
+  height: 132px;
+  background: #171B1C;
+  display: flex;
+  flex-direction: column;
+}
+.turbo .box .box_2 .name {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 16px;
+  color: #fff;
+}
+.turbo .box .box_2 .full {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.turbo .box .box_2 .full img {
+  margin: 16px 0;
+}
+.turbo .box .box_2 .full + .info {
+  position: relative;
+}
+.turbo .box .info {
+  position: absolute;
+  padding: 12px 16px;
+  color: #fff;
+  bottom: 0;
+  left: 0;
+}
+.turbo .box .info .title {
+  font-size: 34px;
+  line-height: 34px;
+  font-weight: bold;
+}
+.turbo .box .info .name {
+  font-size: 14px;
+}
+.turbo .box .info button {
+  background: linear-gradient(77.69deg, #10B77F 0%, #10B7AD 85.44%);
+  border-radius: 6px;
+  width: 100px;
+  height: 44px;
+  font-size: 14px;
+  color: #fff;
+}
+.turbo .box .info button:hover {
+  cursor: pointer;
+  background: linear-gradient(0deg, #10B77F 0%, #10B7AD 85.44%);
+}
+.turbo .box.x2 {
+  height: 284px;
+  background: red;
+}
+.turbo .box.x2 .box_1 {
+  height: 284px;
+}
+.turbo .box.x2 .box_2 {
+  height: 284px;
+}
+.turbo .box:hover, .turbo .box.active {
+  cursor: pointer;
+}
+.turbo .box:hover .game-box, .turbo .box.active .game-box {
+  top: -100%;
+  transition: all 0.2s ease-in-out;
+}
+
+/*# sourceMappingURL=turboGame.css.map */

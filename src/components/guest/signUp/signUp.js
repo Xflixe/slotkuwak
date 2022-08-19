@@ -273,6 +273,10 @@ const SignUp =() =>{
                              });
                          }else{
                              signIn({username:data.username,password:data.password})
+
+                             if(window.top.location.href.indexOf('landing') !== -1){
+                                 window.top.location.href = `https://www.planetaxbet.com/${i18n.language}/main`
+                             }
                          }
                          //ev.emit('signIn',true);
                          //console.log('response',response)
@@ -511,7 +515,7 @@ const SignUp =() =>{
                     </div>*/}
 
                     <div className="col-12">
-                        <p style={{color:'#fff',marginBottom:0}}>{t('Have Promo Code?')}</p>
+                        <p style={{color:'#e6e9f1',marginBottom:0,fontSize:'13px'}}>{t('Got a Promo Code?')}</p>
                         <div className={`input-label ${error("promoCode")}`}>
                             <input type="text" name="promoCode" id="promoCode"
                                    value={signUpForm.promoCode}

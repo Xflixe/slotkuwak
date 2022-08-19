@@ -25,6 +25,7 @@ const responsible_gaming = React.lazy(() => import(("./screens/responsible_gamin
 const playSlot = React.lazy(() => import(("./screens/playSlot/PlaySlot")));
 const verification = React.lazy(() => import(("./screens/verification/verificationScreen")));
 const passRecover = React.lazy(() => import(("./screens/user/passRecover/recoverPassword")));
+const turbo = React.lazy(() => import(("./screens/turbo/turbo")));
 
 
 
@@ -55,6 +56,7 @@ export const guestRoutes = [
     { path: '/:lang/play', name: 'playSlot', exact:false, component:()=><div></div>, page:"play"},
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
+    { path: '/:lang/turbo', name: 'turbo', exact:true, component: turbo, page:"turbo" },
 
 
 
@@ -93,6 +95,7 @@ export const userRoutes = [
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
     { path: '/:lang/loader', name: 'verification', exact:false, component:()=><div>please wait</div>, page:"loader"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
+    { path: '/:lang/turbo', name: 'turbo', exact:true, component: turbo, page:"turbo" },
 
 ];
 
