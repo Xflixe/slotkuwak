@@ -92,11 +92,9 @@ const ChangePassword = ({title,email,err,onSubmit,onClose,send,save,verify,addit
                             onClose();
                             //history.push(`/${lang}/account/info`)
                         }else{
-                            console.log("catch")
                             ERROR({error:t("error")})
                         }
                     }).catch(e=>{
-                        console.log("catch")
                         ERROR({error:t("error")})
                     })
                 }

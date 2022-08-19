@@ -141,9 +141,9 @@ EmailVerificationModal.defaultValues = {
     //title:'Email Verification',
     email:'',
     err:'',
-    onSubmit:(code)=>console.log(code),
-    onClose:(_)=>console.log(_),
-    save:(_)=>console.log(_),
+    onSubmit:(code)=>{},
+    onClose:(_)=>{},
+    save:(_)=>{},
     send:"",
     additionalParams:{}
 }

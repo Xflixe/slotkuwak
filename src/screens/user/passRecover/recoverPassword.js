@@ -97,8 +97,10 @@ const RecoverPassword = () =>{
                         title:'Recover Password'
                     })
                 }
-            }).catch(reason => console.log('Recover Password Error'))
-        }).catch(ex=>{ console.log(ex)})
+            }).catch(reason => {
+                //console.log('Recover Password Error')
+            })
+        }).catch(ex=>{ })
     }
 
     const resetPassword=()=>{
@@ -150,7 +152,7 @@ const RecoverPassword = () =>{
             userToken:hash
         }
         Actions.User.checkRecoveryToken(params).then(response=>{
-            console.log('response',response)
+            //console.log('response',response)
             if(response.status){
                 setContentType(true);
                 setCheckData(response?.data?.data);
@@ -164,7 +166,9 @@ const RecoverPassword = () =>{
                     })
                 }
             }
-        }).catch(reason => console.log('111'))
+        }).catch(reason => {
+
+        })
     }
 
 

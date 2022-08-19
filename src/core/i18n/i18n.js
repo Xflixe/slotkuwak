@@ -21,7 +21,7 @@ i18n
         whitelist: ['ru', 'en', 'es'],
         preload: ['ru', 'en', 'es'],
         lng: localStorage.getItem("i18nextLng")||'en',
-        debug: true,
+        debug: false,
 
         interpolation: {
             escapeValue: false,

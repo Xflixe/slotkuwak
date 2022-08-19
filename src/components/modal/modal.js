@@ -47,7 +47,7 @@ Modal.propTypes={
 Modal.defaultProps={
     title:"ავტორიზაციის გავლა",
     closeButton:true,
-    onClickBackDrop:()=>console.log("backdrop click"),
-    onClose:()=>console.log("onClose")
+    onClickBackDrop:()=>{},
+    onClose:()=>{}
 }
 export default Modal;

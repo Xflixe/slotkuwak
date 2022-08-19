@@ -63,7 +63,6 @@ const Transactions = ({onClose}) => {
                     setTrData(response?.data?.data.reverse())
                 }
             }).catch((reason)=>{
-            console.log(reason)
         })
     }
 

@@ -17,7 +17,6 @@ export function useSLot() {
         }
         setLoader(slot.gameId);
         Actions.Slot.play({...slot,lang:i18n.language}).then(response=>{
-            console.log('useSLot',response)
             if(response.status && response.data?.resultCode===0){
                 let win;
                 if(response.data.data?.type ===null){
@@ -61,7 +60,6 @@ export function useSLot() {
                         break;
                     default:
                         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                        console.log(slot,isMobile)
                         if(isMobile && slot?.gameType==="casino" ) {
                             setTimeout(()=>{
                                 window.location.href=response.data.data.url
@@ -76,7 +74,6 @@ export function useSLot() {
                     break
                 }
             }else{
-                console.log('notify',response)
                 if(response.data?.resultCode === 202){
                     if(response.data?.message){
                          if(response?.data?.message.indexOf("404")>-1){

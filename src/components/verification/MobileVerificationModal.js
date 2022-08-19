@@ -153,8 +153,8 @@ MobileVerificationModal.defaultValues = {
     number:'',
     prefix:'+995',
     err:"",
-    onSubmit:(_)=>console.log(_),
-    save:(_)=>console.log(_),
+    onSubmit:(_)=>{},
+    save:(_)=>{},
     send:"",
     additionalParams:{}
 }

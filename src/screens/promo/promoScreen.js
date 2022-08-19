@@ -52,8 +52,6 @@ const PromoScreen = () =>{
         }
         if(!window.depositModal){
             window.depositModal = function (){
-
-                console.log(User)
                 User.isLogged? ev.emit('depositModal', true) : ev.emit('signUp',true)
             }
         }

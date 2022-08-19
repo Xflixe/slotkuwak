@@ -9,7 +9,6 @@ import _ from "lodash";
 import JWT from "../../models/JWT";
 let jwt  = new JWT()
 const signIn = ({data,loader,sourceId,code,token2fa,header,token}) =>async (dispatch)=>{
-console.log(token)
     const response = await http.post({
         url:Config.User.SIGN_IN
         ,data:query_string({
@@ -40,7 +39,6 @@ console.log(token)
  return response;
 }
 const signOut = () => async (dispatch)=>{
-  console.log("sign out")
   const response = await Request.get(Config.User.SIGN_OUT);
   if(response.status){
     dispatch({
@@ -49,13 +47,13 @@ const signOut = () => async (dispatch)=>{
       status:false
     })
   }else {
-    console.log("error")
   }
 }
 const ping = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
-            console.log("ping",response)
+
+
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},
@@ -71,6 +69,7 @@ const ping = () =>async (dispatch)=>{
 const checkSession = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
+
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},
@@ -117,7 +116,6 @@ const  resendOtp = ({send,type,prefix,value,additionalParams={},loader,permitAll
 }
 const  verifyOtp = ({verify,type,prefix,value,otp,additionalParams={},loader,permitAll=false}) =>{
     //{type}&prefix={prefix}&value={value}
-    console.log(prefix)
     return http.post({
         url:verify.replace("{type}",type).replace("{prefix}",prefix?prefix.toString().replace("+",""):"").replace("{value}",value).replace('{otp}',otp).concat('&',_.map(additionalParams,(v, k)=>{
         return k.concat('=',v)

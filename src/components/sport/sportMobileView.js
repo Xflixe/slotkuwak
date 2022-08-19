@@ -32,12 +32,14 @@ export const SportMobileView=()=>{
         "sportsBookView":"europeanView",
         "fixedHeight":true,
         "clearSiteStyles":false,
-        "onUniqueIdChange":(uuid)=>console.log(uuid),
+        "onUniqueIdChange":(uuid)=> {
+            //console.log(uuid)
+        },
         "onBalanceChange":balanceChangeHandler,
         "currency":"EUR",
         "events":{
-            onAppMount:()=>console.log("app Mount"),
-            onAppUnmount:()=>console.log("app unmount"),
+            onAppMount:()=>{},
+            onAppUnmount:()=>{},
         }
 
     })

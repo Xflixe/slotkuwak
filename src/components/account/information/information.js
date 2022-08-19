@@ -80,7 +80,6 @@ const Information = () => {
                 setSecurityQuestions((response.status && response.data?response.data?.data:[]))
 
                 if(ans !== {}){
-                    console.log(ans)
                     setQuestions({
                         question1:parseInt(ans?.data?.security_question1),
                         answer1:ans?.data?.security_answer1,
@@ -134,7 +133,6 @@ const Information = () => {
                             })
                         }
                     }
-                    //console.log(response.status);
                     //setSecurityQuestions((response.status && response.data?response.data?.data:[]))
 
                 })
@@ -174,7 +172,6 @@ const Information = () => {
                   }
                 })))
 
-                //console.log('InfoData',infoData)
             }
         })
     }
@@ -513,11 +510,11 @@ const Information = () => {
                                                                                                             CLOSE();
                                                                                                             //history.push(`/${lang}/account/info`)
                                                                                                         }else{
-                                                                                                            console.log("catch",response)
+                                                                                                            //console.log("catch",response)
                                                                                                             ERROR({error:t("error")})
                                                                                                         }
                                                                                                     }).catch(e=>{
-                                                                                                        console.log("catch",e)
+                                                                                                        //console.log("catch",e)
                                                                                                         ERROR({error:t("error")})
                                                                                                     })
                                                                                                 }
@@ -609,7 +606,7 @@ const Information = () => {
                                                         {
                                                             forEdit.email !== '' && <button
                                                                 onClick={()=>{
-                                                                    console.log('forEdit',forEdit)
+                                                                    //console.log('forEdit',forEdit)
                                                                     setInfoData({...infoData,email:forEdit.email,emailConfirmed:1});
                                                                     setForEdit({...forEdit,email:''});
 
@@ -655,11 +652,11 @@ const Information = () => {
                                                                                                     CLOSE();
                                                                                                     //history.push(`/${lang}/account/info`)
                                                                                                 }else{
-                                                                                                    console.log("catch")
+                                                                                                    //console.log("catch")
                                                                                                     ERROR({error:t("error")})
                                                                                                 }
                                                                                             }).catch(e=>{
-                                                                                                console.log("catch")
+                                                                                               // console.log("catch")
                                                                                                 ERROR({error:t("error")})
                                                                                             })
                                                                                         }

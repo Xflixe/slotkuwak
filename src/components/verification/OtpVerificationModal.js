@@ -43,7 +43,6 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
 
     const getOtpSources = () =>{
         Actions.Otp.sources().then(response=>{
-            console.log('sorse',response)
             if(response && response.length > 0){
                 let find =response.length===1?response[0]:_.find(response,v=>v.preferred);
                 if(find){
@@ -67,13 +66,11 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
             loader:setLoader
         })
             .then(response=>{
-                console.log('mobOtp',response)
                 if(response.status){
                     setCode("");
                     setReSend(response.data.data.remaining);
                     setCodeRequest(true);
                 }else {
-                    console.log('mobOtp',response)
                     setError('error');
                     setCodeRequest(false);
                 }
@@ -94,7 +91,6 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                         save(true);
                         setError('')
                     }else {
-                        console.log('444',response)
                         setError(t('error'))
                         save(false)
                     }
@@ -216,8 +212,8 @@ OtpVerificationModal.defaultValues = {
     title:"Otp Verification",
     type:"multi",
     err:"",
-    onSubmit:(_)=>console.log(_),
-    save:(_)=>console.log(_),
+    onSubmit:(_)=>{},
+    save:(_)=>{},
     send:"",
     additionalParams:{}
 }

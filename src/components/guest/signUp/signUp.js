@@ -303,7 +303,7 @@ const SignUp =() =>{
                          //setSignUpError(response?.error?.message);
 
                      }
-                 }).catch(reason => {console.log(reason)})
+                 }).catch(reason => {})
                  /*if(!confirmed){
                      if(!primaryContact.phone && !primaryContact.email){
                          alert('Chose Transactions Method');
@@ -321,7 +321,7 @@ const SignUp =() =>{
                  }*/
 
              }
-         }).catch(ex=>{ console.log(ex)})
+         }).catch(ex=>{ })
 
     }
     const togglePassType=(pass)=>{

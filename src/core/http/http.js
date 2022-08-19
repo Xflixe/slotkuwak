@@ -85,7 +85,6 @@ const Request = {
                 resolve({ status:false, data:reason?.response?.data?.error,reason:reason})
             })
           }catch (e) {
-              console.log(e.message)
           }
 
         }).finally(()=>{

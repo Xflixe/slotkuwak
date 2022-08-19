@@ -29,13 +29,11 @@ export const CustomDropdown=({data,label,style ,onSelect,open,setOpen,onClick,sh
 
         if(type==='filter' && nav.get("id")){
             data = _.map(data, v=>{
-                console.log(v.id.toString(),nav.get("id"),v.id.toString() ===nav.get("id"))
                 if(v.id.toString() ===nav.get("id")){
                     v.checked=true;
                 }
                 return v;
             })
-            console.log(data)
         }
 
         setProviders(data)
@@ -197,6 +195,6 @@ CustomDropdown.propTypes={
 CustomDropdown.defaultProps={
     showFilter:false,
     filters:[],
-    setFilters:e=>console.log(e),
-    onClick:e=>console.log(e)
+    setFilters:e=>{},
+    onClick:e=>{}
 }

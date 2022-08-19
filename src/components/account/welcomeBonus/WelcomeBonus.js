@@ -58,7 +58,7 @@ const WelcomeBonus = ({data,onClose})=>{
     }
 
     const claimBonus = (param) => {
-        console.log('consol param',param)
+       // console.log('consol param',param)
 
         Actions.User.claimBonusUrl({id:data?.NO_DEPOSIT_BONUS?.data?.id,type:gift===1?'wager':'freespin'}).then(response=>{
             if (response.status){
@@ -71,14 +71,10 @@ const WelcomeBonus = ({data,onClose})=>{
                     window.top.pushEvent(response.error.message,'error');
                 }
             }
-        }).catch(e=>console.log('claimBonus'))
+        }).catch(e=>{})
 
         onClose(false)
     }
-
-    useEffect(()=>{
-        console.log('data',data)
-    },[data])
 
     return (
         <div className="row welcome_bonus" style={{}}>

@@ -74,11 +74,9 @@ const Withdraw = ({onClose})=>{
                                 setSelectedCurrency(null);
                                 window.pushEvent(t("The operation was performed successfully"),"success")
                             }else{
-                                console.log("catch")
                                 ERROR({error:t("error")})
                             }
                         }).catch(e=>{
-                            console.log("catch")
                             ERROR({error:t("error")})
                         })
                     }
