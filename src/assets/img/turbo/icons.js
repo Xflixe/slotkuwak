@@ -23,6 +23,8 @@ import plinko from "./plinko.png";
 import plinko_small from "./plinko_small.png";
 import fortune from "./fortune.png";
 import fortune_small from "./fortune_small.png";
+import dice from "./dice.png";
+import dice_small from "./dice_small.png";
 
 export {
     left_arrow,
@@ -49,6 +51,8 @@ export {
     plinko,
     plinko_small,
     fortune,
-    fortune_small
+    fortune_small,
+    dice,
+    dice_small
 
 }

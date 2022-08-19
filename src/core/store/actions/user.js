@@ -289,8 +289,11 @@ const checkRestriction = () =>{
 const claimBonusUrl =({id,type})=>{
     return  http.post({url:Config.User.ClaimBonusUrl.replace("{id}",id).replace("{type}",type),permitAll:true})
 }
-const notification =()=>{
-    return  http.get({url:Config.User.notification})
+const messages =()=>{
+    return  http.get({url:Config.User.message})
+}
+const readMessage =({id})=>{
+    return  http.post({url:Config.User.readMessage.replace("{id}",id)})
 }
 
 export default {
@@ -308,7 +311,8 @@ export default {
     sendResetPass,
     info,
     getLendingInfo,
-    notification,
+    messages,
+    readMessage,
     getVerificationInfo,
     updateInfo,
     resendOtp,

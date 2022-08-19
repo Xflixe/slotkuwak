@@ -41,6 +41,13 @@ body {
   position: absolute;
   top: 0;
 }
+.turbo .box[data-game=aviator] .box_1 {
+  background: #882839 url("../../assets/img/turbo/fly_bg.png");
+}
+.turbo .box[data-game=dice] .right-icon .small {
+  top: 30%;
+  left: 70%;
+}
 .turbo .box .box_1 {
   position: relative;
   width: 203px;
@@ -58,6 +65,9 @@ body {
 }
 .turbo .box .box_1.pink {
   background: linear-gradient(128deg, #ed448b 13.23%, #e02e78 122.29%);
+}
+.turbo .box .box_1.purple {
+  background: linear-gradient(128deg, #7f1dd4 13.23%, #361774 122.29%);
 }
 .turbo .box .box_1 .full {
   height: 100%;

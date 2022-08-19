@@ -31,7 +31,9 @@ import {
     plinko,
     plinko_small,
     fortune,
-    fortune_small
+    fortune_small,
+    dice,
+    dice_small
 
 } from "../../assets/img/turbo/icons";
 
@@ -74,16 +76,23 @@ const Turbo = () =>{
                                 </div>
                             </div>
                         </div>
-                        <div className="box x2 {/*active*/}" data-game="aviator">
+                        <div className="box x2 {/*active*/}" data-game="dice">
+                            <div className="right-icon">
+                                <img alt="turbo" className="big" src={dice}/>
+                                <img alt="turbo" className="small" src={dice_small}/>
+                            </div>
                             <div className="game-box">
-                                <div className="box_1">
-                                    <div className="full">
-                                        <img alt="turbo" className="fly" src={fly}/>
-                                        <img alt="turbo" className="aviator" src={aviator}/>
+                                <div className="box_1 purple">
+                                    <div className="left-icon">
+                                        <img alt="turbo" className="big" src={left_arrow}/>
+                                    </div>
+                                    <div className="info">
+                                        <div className="title">Di</div>
+                                        <div className="name">Dice</div>
                                     </div>
                                 </div>
                                 <div className="box_2">
-                                    <div className="name">Russian Poker</div>
+                                    <div className="name">Dice</div>
                                     <div className="info">
                                         <button>Play Game</button>
                                     </div>
