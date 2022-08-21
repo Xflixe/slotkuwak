@@ -20,7 +20,7 @@ import _ from "lodash";
 
 const  App=()=> {
 
-    const messageData = {"data":[{"id":23,"entryDate":"2022-08-19T05:55:42","title":null,"body":null,"type":"promocode","specifiers":{"gameId":"2510","quantity":"10","gameName":"Fruit Cocktail","providerName":"Igrosoft"}},{"id":24,"entryDate":"2022-08-19T06:43:16","title":null,"body":null,"type":"wager","specifiers":{}},{"id":25,"entryDate":"2022-08-19T06:43:16","title":null,"body":null,"type":"freespin","specifiers":{"gameId":"1767","quantity":"15","gameName":"Shining Lady","providerName":"NetGame"}}]}
+    //const messageData = {"data":[{"id":23,"entryDate":"2022-08-19T05:55:42","title":null,"body":null,"type":"promocode","specifiers":{"gameId":"2510","quantity":"10","gameName":"Fruit Cocktail","providerName":"Igrosoft"}},{"id":24,"entryDate":"2022-08-19T06:43:16","title":null,"body":null,"type":"wager","specifiers":{}},{"id":25,"entryDate":"2022-08-19T06:43:16","title":null,"body":null,"type":"freespin","specifiers":{"gameId":"1767","quantity":"15","gameName":"Shining Lady","providerName":"NetGame"}}]}
     const {t} = useTranslation()
     const dispatch = useDispatch();
     const event = UseEvent();
@@ -58,9 +58,7 @@ const  App=()=> {
             ...message,
             allData:arr
         }
-
         setMessage({...newArr})
-
         console.log('message',message,closeId)
     }
 
@@ -81,17 +79,16 @@ const  App=()=> {
 
     }
 
-    useEffect(()=>{
-        if(User.isLogged){
-            messages()
-        }
-    },[User.isLogged])
-
-    useEffect(()=>{
-        if(message?.allData?.[0]){
-            onMessageUpdate()
-        }
-    },[message?.allData?.[0]])
+    //useEffect(()=>{
+    //    if(User.isLogged){
+    //        messages()
+    //    }
+    //},[User.isLogged])
+    //useEffect(()=>{
+    //    if(message?.allData?.[0]){
+    //        onMessageUpdate()
+    //    }
+    //},[message?.allData?.[0]])
 
     useEffect(()=>{
         const ping = async () => {

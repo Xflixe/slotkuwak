@@ -11,7 +11,7 @@ body {
   border-radius: 10px;
   margin: 10px;
   overflow: hidden;
-  width: 203px;
+  width: 206px;
   height: 132px;
   float: left;
 }
@@ -40,9 +40,11 @@ body {
   transition: all 0.1s ease-in-out;
   position: absolute;
   top: 0;
+  width: 100%;
 }
 .turbo .box[data-game=aviator] .box_1 {
-  background: #882839 url("../../assets/img/turbo/fly_bg.png");
+  background: #882839 url("../../assets/img/turbo/fly_bg.png") center;
+  background-size: cover;
 }
 .turbo .box[data-game=dice] .right-icon .small {
   top: 30%;
@@ -50,9 +52,8 @@ body {
 }
 .turbo .box .box_1 {
   position: relative;
-  width: 203px;
+  width: 100%;
   height: 132px;
-  background: linear-gradient(328.78deg, #882839 13.23%, #D93163 122.29%);
 }
 .turbo .box .box_1.blue {
   background: linear-gradient(128deg, #1d8c89 13.23%, #155c5a 122.29%);
@@ -80,7 +81,7 @@ body {
   margin: 16px 0;
 }
 .turbo .box .box_2 {
-  width: 203px;
+  width: 100%;
   height: 132px;
   background: #171B1C;
   display: flex;
@@ -138,7 +139,6 @@ body {
 }
 .turbo .box.x2 {
   height: 284px;
-  background: red;
 }
 .turbo .box.x2 .box_1 {
   height: 284px;
@@ -152,6 +152,58 @@ body {
 .turbo .box:hover .game-box, .turbo .box.active .game-box {
   top: -100%;
   transition: all 0.2s ease-in-out;
+}
+@media (max-width: 1199px) {
+  .turbo .box {
+    width: 216px;
+  }
+}
+@media (max-width: 767px) {
+  .turbo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .turbo .box {
+    flex: 1 calc(50% - 20px);
+  }
+}
+@media (max-width: 450px) {
+  .turbo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .turbo .box {
+    flex: 1 calc(100% - 20px);
+  }
+  .turbo .box .box_1 .full .fly {
+    height: 25px;
+    margin-bottom: 0;
+  }
+  .turbo .box .box_2 .full {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+  .turbo .box .box_2 .full .fly {
+    order: 2;
+  }
+  .turbo .box .box_2 .full .aviator {
+    order: 1;
+  }
+  .turbo .box .box_2 .full img {
+    height: 25px;
+  }
+  .turbo .box.x2 {
+    height: 132px;
+  }
+  .turbo .box.x2 .box_1 {
+    height: 132px;
+  }
+  .turbo .box.x2 .box_2 {
+    height: 132px;
+  }
 }
 
 /*# sourceMappingURL=turboGame.css.map */

@@ -9,7 +9,7 @@ body {
     border-radius: 10px;
     margin: 10px;
     overflow: hidden;
-    width: 203px;
+    width: 206px;
     height: 132px;
     float: left;
 
@@ -40,10 +40,12 @@ body {
       transition: all 0.1s ease-in-out;
       position: absolute;
       top:0;
+      width: 100%;
     }
 
     &[data-game="aviator"] .box_1 {
-      background: #882839 url('../../assets/img/turbo/fly_bg.png');
+      background: #882839 url('../../assets/img/turbo/fly_bg.png') center;
+      background-size: cover;
     }
     &[data-game="dice"] .right-icon {
       .small {
@@ -54,9 +56,9 @@ body {
 
     .box_1 {
       position: relative;
-      width: 203px;
+      width: 100%;
       height: 132px;
-      background: linear-gradient(328.78deg, #882839 13.23%, #D93163 122.29%);
+      //background: linear-gradient(328.78deg, #882839 13.23%, #D93163 122.29%);
 
       &.blue {
         background: linear-gradient(128deg, #1d8c89 13.23%, #155c5a 122.29%);
@@ -84,7 +86,7 @@ body {
       }
     }
     .box_2 {
-      width: 203px;
+      width: 100%;
       height: 132px;
       background: #171B1C;
       display: flex;
@@ -141,7 +143,6 @@ body {
 
     &.x2 {
       height: 284px;
-      background: red;
       .box_1 {
         height: 284px;
       }
@@ -155,6 +156,62 @@ body {
       .game-box {
         top: -100%;
         transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  @media (max-width: 1199px){
+    .box {
+      width: 216px;
+    }
+  }
+  @media (max-width: 767px){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .box {
+      //width: 245px;
+      flex: 1 calc(50% - 20px);
+    }
+  }
+  @media (max-width: 450px){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .box {
+      //width: 245px;
+      flex: 1 calc(100% - 20px);
+      .box_1 {
+        .full {
+          .fly {
+            height: 25px;
+            margin-bottom: 0;
+          }
+        }
+      }
+      .box_2 {
+        .full {
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 0 16px;
+          .fly {
+            order: 2;
+          }
+          .aviator {
+            order: 1;
+          }
+          img {height: 25px}
+        }
+      }
+      &.x2 {
+        height: 132px;
+        .box_1 {
+          height: 132px;
+        }
+        .box_2 {
+          height: 132px;
+        }
       }
     }
   }
