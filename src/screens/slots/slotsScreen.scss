@@ -15,6 +15,20 @@
     text-align: left;
     padding: 0 16px;
     height: 50px;
+    position: relative;
+    &[data-new]:before {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      content: attr(data-new);
+      color: #fff;
+      background: #B62752;
+      padding: 0 10px;
+      border-radius: 17px;
+      line-height: 20px;
+      font-size: 12px;
+    }
     &.active {
       color: #8f9ec8;
     }

@@ -26,6 +26,8 @@ import Transactions from "./account/transactions/transactions";
 import Carusel3D from "./3D_Carusel/3DCarusel";
 import NewSWP from "./newSWP/NewSWP";
 import Skeleton from "./skeleton/skeleton";
+import PromoList from "./account/promoList/promoList"
+
 
 
 export {
@@ -56,6 +58,7 @@ export {
     Transactions,
     Carusel3D,
     NewSWP,
-    Skeleton
+    Skeleton,
+    PromoList
 
 }

@@ -64,12 +64,6 @@ const Turbo = () =>{
             {id: 4, icon: desk_sp_en, url: `/en/sport`},
             {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
         ],
-        es: [
-            {id: 2, icon: desk_casino_en, url: `/es/casino`},
-            {id: 4, icon: desk_sp_en, url: `/es/sport`},
-            {id: 5, icon: img_desk_wb_en, url: `/es/promotions/welcome_bonus`},
-        ]
-
     } : {
         ru: [
             {id: 2, icon: mob_casino_ru, url: `/ru/casino`},
@@ -81,12 +75,6 @@ const Turbo = () =>{
             {id: 4, icon: mob_sp_en, url: `/en/sport`},
             {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
         ],
-        es: [
-            {id: 2, icon: mob_casino_en, url: `/es/casino`},
-            {id: 4, icon: mob_sp_en, url: `/es/sport`},
-            {id: 5, icon: img_mob_wb_en, url: `/es/promotions/welcome_bonus`},
-        ],
-
     }
 
     const onPlay = (gameId,name) => {
@@ -94,7 +82,7 @@ const Turbo = () =>{
     }
 
     return (
-        <>
+        <div style={{background:'#1e2224'}}>
             <Header page={"turbo"}/>
 
             <div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
@@ -123,7 +111,7 @@ const Turbo = () =>{
                                         <img alt="turbo" className="aviator" src={aviator}/>
                                     </div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3082,'aviator')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3082,'aviator')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +134,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Dice</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3083,'dice')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3083,'dice')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +180,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Goal</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3084,'goal')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3084,'goal')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +203,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Mini Roulette</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3089,'mini-roulette')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3089,'mini-roulette')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +226,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Keno</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3088,'keno')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3088,'keno')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +272,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Hilo</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3087,'hi-lo')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3087,'hi-lo')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +295,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Mines</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3086,'mines')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3086,'mines')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -376,7 +364,7 @@ const Turbo = () =>{
                                 <div className="box_2">
                                     <div className="name">Plinko</div>
                                     <div className="info">
-                                        <button onClick={()=>onPlay(3085,'plinko')}>Play Game</button>
+                                        <button onClick={()=>onPlay(3085,'plinko')}>{t('turbo_play')}</button>
                                     </div>
                                 </div>
                             </div>
@@ -410,7 +398,7 @@ const Turbo = () =>{
 
             <Footer/>
 
-        </>
+        </div>
     )
 }
 

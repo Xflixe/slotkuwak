@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {sl2, w2} from '../../assets/img/images';
 import {filter} from '../../assets/img/icons/icons';
-import {Footer, Header, NewSWP, ShowMore, SlotCard, Swp} from "../../components";
+import {Footer, Header, NewSWP, ShowMore, SlotCard, Swp, PromoList} from "../../components";
 import "../../assets/styles/_select2.scss"
 import "./slotsScreen.scss"
 import {Actions, useTranslation} from "../../core";
@@ -59,6 +59,8 @@ import mob_sl_en from "../../assets/img/slide/slots/mobile/2en.png";
 import mob_sl_ru from "../../assets/img/slide/slots/mobile/2ru.png";
 import mob_sp_en from "../../assets/img/slide/sport/mobile/2en.png";
 import mob_sp_ru from "../../assets/img/slide/sport/mobile/2ru.png";
+import {useNavigation} from "../../core/hooks/useNavigation";
+import {useUser} from "../../core/hooks/useUser";
 
 const slIcon = {
     '61':icon61,
@@ -100,6 +102,13 @@ const SlotsScreen = () =>{
     const [selectedFilters,setSelectedFilters] = useState([])
     const [slMobNav,setSlMobNav] = useState(false)
     const [selectedProvider,setSelectedProvider]=useState({name:'All Providers'})
+    const nav  = useNavigation();
+    const {User} = useUser();
+    const [freeSpin, setFreeSpin] = useState(null);
+
+    let params = useParams();
+    const [tab,setTab] = useState('all')
+
     const slideData = window.innerWidth > 767 ? {
             ru: [
                 {id: 2, icon: desk_casino_ru, url: `/ru/casino`},
@@ -135,13 +144,6 @@ const SlotsScreen = () =>{
             ],
 
         }
-
-    useEffect(()=>{
-        loadProvider();
-        loadSlotList()
-
-    },[])
-
 
     useEffect(()=>{
         if(selectedProvider?.length>0 || selectedFilters?.length>0){
@@ -210,6 +212,25 @@ const SlotsScreen = () =>{
     const getSlotList=()=> {
         return _.filter(filteredSlotList,(v,k)=>k<page*count());
     }
+    const getFreeSpin = ()=>{
+        Actions.User.getFreeSpin().then(response=>{
+            if(response.status){
+                setFreeSpin(response.data.data)
+            }
+        })
+    }
+
+    useEffect(()=>{
+        loadProvider();
+        loadSlotList();
+        getFreeSpin();
+    },[])
+
+    useEffect(()=>{
+        if(params?.params && params?.params === "freespin"){
+            setTab('freeSpin')
+        }
+    },[params])
 
     return (
         <>
@@ -224,14 +245,16 @@ const SlotsScreen = () =>{
                 <div className="container wrapper">
                     <div className="row">
                         <div className="col-12 d-flex align-items-center slot-new-filter">
-                            <button className={`${_.size(_.filter(providers,v=>v.checked))===0?'active':''}`} onClick={()=>{
+                            <button className={`${tab==="all"?'active':''}`} onClick={()=>{
+                                setTab('all')
                                 setProviders([..._.map(providers,(v,k)=>{
                                     v.checked=false;
                                     return v;
                                 })])
                             }}>{t("All")}</button>
-                            <button>{t("Trending")}</button>
-                            <button>{t("Most Liked")}</button>
+                            {User.isLogged && _.size(freeSpin)>0 && <button className={`${tab==="freeSpin"?'active':''}`} data-new="new" onClick={()=>setTab('freeSpin')}>{t("Free Spin")}</button>}
+                            <button onClick={()=>setTab('trending')}>{t("Trending")}</button>
+                            <button onClick={()=>setTab('like')}>{t("Most Liked")}</button>
                             <div className="search">
                                 <input
                                     type="text"
@@ -239,34 +262,42 @@ const SlotsScreen = () =>{
                                     className="search"
                                     placeholder={t("Search")}
                                     value={searchText}
-                                    onChange={e=>setSearchText(e.target.value)}
+                                    onChange={e=>{
+                                        setSearchText(e.target.value)
+                                        setTab('search')
+                                    }}
                                 />
                                 <span className="btn-search"></span>
                             </div>
                         </div>
-                        <div className={`col-12 d-flex align-items-center slot-nav ${slMobNav?'dropdown':''}`}>
-                            <ul>
-                                {
-                                    //console.log(providers)
-                                    _.map(providers,(p,index)=>{
-                                        return  <li key={index} className={`${p.checked?'active':""}`} onClick={()=>{
-                                            setProviders([..._.map(providers,(v,k)=>{
-                                                v.checked=(k===index);
-                                                return v;
-                                            })])
-                                        }}><img src={slIcon[p.id]}/> {p.name}</li>
-                                    })
-                                }
-                            </ul>
-                        </div>
-
-                        <div className={`col-12 d-flex align-items-center slot-nav-mob ${slMobNav?'active':''} `}>
-                            <button onClick={()=>{
-                                setSlMobNav(!slMobNav)
-                            }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
-                            </button>
-                        </div>
+                        {
+                            tab === "freeSpin"? '':(
+                                <>
+                                    <div className={`col-12 d-flex align-items-center slot-nav ${slMobNav?'dropdown':''}`}>
+                                        <ul>
+                                            {
+                                                //console.log(providers)
+                                                _.map(providers,(p,index)=>{
+                                                    return  <li key={index} className={`${p.checked?'active':""}`} onClick={()=>{
+                                                        setProviders([..._.map(providers,(v,k)=>{
+                                                            v.checked=(k===index);
+                                                            return v;
+                                                        })])
+                                                    }}><img src={slIcon[p.id]}/> {p.name}</li>
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className={`col-12 d-flex align-items-center slot-nav-mob ${slMobNav?'active':''} `}>
+                                        <button onClick={()=>{
+                                            setSlMobNav(!slMobNav)
+                                        }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+                                        </button>
+                                    </div>
+                                </>
+                            )
+                        }
 
                         {/*<div className={`col-12 d-flex align-items-center slot-nav-mob ${slMobNav?'active':'hide'} `}>
                             <ul>
@@ -340,9 +371,7 @@ const SlotsScreen = () =>{
                                 </ul>
                             </div>
                         </div>*/}
-                        <div className="col-12 d-flex align-items-center section-head">
-
-                        </div>
+                        <div className="col-12 d-flex align-items-center section-head"></div>
                         {
                             selectedProvider?.name &&
                             <div className="col-12 d-flex align-items-center section-head">
@@ -351,15 +380,24 @@ const SlotsScreen = () =>{
                                 </a>
                             </div>
                         }
-                        <div className="col-12">
-                            <div className="row casino-list">
-                                <SlotCard  data={getSlotList()} />
-                            </div>
-                        </div>
+                        {
+                            tab === "freeSpin"? (
+                              <PromoList data={freeSpin}/>
+                            ):(
+                                <>
+                                    <div className="col-12">
+                                        <div className="row casino-list">
+                                            <SlotCard  data={getSlotList()} />
+                                        </div>
+                                    </div>
 
-                        <div className="col-12">
-                            <ShowMore page={page} count={count()} length={filteredSlotList?.length} setPage={setPage}/>
-                        </div>
+                                    <div className="col-12">
+                                        <ShowMore page={page} count={count()} length={filteredSlotList?.length} setPage={setPage}/>
+                                    </div>
+                                </>
+                            )
+                        }
+
 
                     </div>
                 </div>

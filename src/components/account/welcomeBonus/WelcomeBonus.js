@@ -113,7 +113,7 @@ const WelcomeBonus = ({data,onClose})=>{
                         <div className="gift-info">
                             <div className="info">
                                 <i/>
-                                <p>If you close window without selecting welcome bonus type, Deposit Bonus (B Capital) will be activated automatically</p>
+                                <p>If you close window without selecting welcome bonus type, Deposit Bonus (Free spin) will be activated automatically</p>
                             </div>
                             <div className="but">
                                 <button className="skip" onClick={()=>{

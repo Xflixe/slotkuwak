@@ -22,13 +22,14 @@
       margin: 0 auto;
       span {font-weight: bold;}
     }
-    button {
+    button,a {
       background: linear-gradient(77.69deg, #10B77F 0%, #10B7AD 85.44%);
       border-radius: 6px;
       padding: 12px 24px;
       margin-top: 40px;
       font-size: 14px;
       color: #fff;
+      display: inline-block;
       &:hover {
         background: linear-gradient(77.69deg, #10B7AD 0%, #10B77F 85.44%);
       }

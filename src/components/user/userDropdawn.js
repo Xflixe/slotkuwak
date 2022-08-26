@@ -16,19 +16,25 @@ const UserDropDawn = ({onClose,className})=>{
     const ref2 = useRef(null);
     const [userVerification,setUserVerification]=useState(1);
 
-
     const [wager, setWager] = useState(null);
+    const [freeSpin, setFreeSpin] = useState(null);
+    const [tab, setTab] = useState(99);
 
     const getLendingInfo = ()=>{
         Actions.User.getLendingInfo().then(response=>{
             if(response.status){
-                //console.log('getLendingInfo',response);
                 setWager(response.data.data)
-                //setInfoData(response.data.data);
             }
         })
     }
 
+    const getFreeSpin = ()=>{
+        Actions.User.getFreeSpin().then(response=>{
+            if(response.status){
+                setFreeSpin(response.data)
+            }
+        })
+    }
 
     useOutsideRef2(ref2,"account-dropdown-link");
 
@@ -61,7 +67,14 @@ const UserDropDawn = ({onClose,className})=>{
     useEffect(()=>{
         getInfo()
         getLendingInfo()
+        getFreeSpin()
     },[])
+
+    useEffect(()=>{
+        if(wager !== null && freeSpin !== null){
+            setTab(1)
+        }
+    },[wager,freeSpin])
 
     return <>
 
@@ -75,18 +88,61 @@ const UserDropDawn = ({onClose,className})=>{
                     <p>{t("Balance")}</p>
                     <span>{User?.data?.accounts?.main?.currency?.iso3} {User?.data?.accounts?.main?.amount.toFixed(2)}</span>
                 </div>
+
                 {
                     wager?.bonusAmount && (
-                        <div className="d-col">
+                        <div className="d-col wager">
                             <p>{t("Bonus Money")}</p>
                             <span>{wager?.item?.currency} {wager?.bonusAmount.toFixed(2)}</span>
                         </div>
                     )
                 }
-
+                {
+                    // freeSpin
+                    !wager?.bonusAmount && freeSpin?.count && <div className="d-col freeSpin" style={{borderBottom:'none',borderLeft:'1px solid #242d40',padding:0, paddingLeft: '20px'}}>
+                        <div className="d-col freeSpin-col">
+                            <p>{t("Free Spin")}</p>
+                            <span>{freeSpin?.count}</span>
+                        </div>
+                        <a href={`/${i18n.language}/slots/freespin`}>
+                            <i />
+                        </a>
+                    </div>
+                }
             </div>
             {
-                (wager?.item || wager?.bonusClaimable) && (
+                // freeSpin
+                wager?.bonusAmount && freeSpin?.count && <div className="d-col freeSpin">
+                    <div className="d-col freeSpin-col">
+                        <p>{t("Free Spin")}</p>
+                        <span>{freeSpin?.count}</span>
+                    </div>
+                    <a href={`/${i18n.language}/slots/freespin`}>
+                        <i />
+                    </a>
+                </div>
+            }
+
+            {
+                tab !== 99 && <ul className="tabs">
+                    <li className={`${tab===1?'active':''}`} onClick={()=>setTab(1)}>Free Spins</li>
+                    <li className={`${tab===2?'active':''}`} onClick={()=>setTab(2)}>Deposit Bonus</li>
+                </ul>
+            }
+
+
+            {
+                // freeSpin
+                (tab === 1 || tab === 99) && (<div className="freeSpin_content">
+                        <h5>Free Spin</h5>
+                        <p>{t('Have fun and enjoy great wins with your free spins')}</p>
+                    </div>
+                )
+            }
+
+
+            {
+                (wager?.item || wager?.bonusClaimable) &&  (tab === 2 || tab === 99) && (
                     <div className="lending-box">
                         <div className="lending-box-title">
                             <h6>{t("Welcome Bonus")}</h6>

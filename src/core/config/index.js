@@ -8,6 +8,7 @@ export const Config ={
       //INFO:"/us/v1/api/secured/personal/info",
       INFO:"/us/v2/api/secured/personal/info",
       LENDINGINFO:"/ps/v1/api/secured/wager/info",
+      FREESPPIN:"/ps/v1/api/secured/freespin/info",
       VERIFICATIONINFO:"/us/v2/api/secured/personal/info/verify/check",
       message:"/us/v1/api/secured/user/notifications",
       readMessage:"/us/v1/api/secured/user/notifications/{id}",

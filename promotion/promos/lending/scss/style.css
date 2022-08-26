@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.sticky {
+  position: sticky;
+  top: 10px;
+}
+
 .promo .mw {
   max-width: 1400px;
   width: 100%;
@@ -370,6 +375,69 @@
   .promo .pr_content .cont_mw ul.info li p {
     font-size: 16px;
     line-height: 20px;
+  }
+}
+
+.fixed-element {
+  max-width: 1400px;
+  width: 100%;
+  height: 80px;
+  display: none;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4359BB;
+  align-items: center;
+  padding: 0 30px;
+  color: #fff;
+}
+.fixed-element.active {
+  display: flex;
+}
+.fixed-element h2 {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-size: 24px;
+  flex: 1;
+}
+.fixed-element h2 span {
+  color: #ecd046;
+}
+.fixed-element button {
+  background: linear-gradient(77.69deg, #10B77F 0%, #10B7AD 85.44%);
+  border-radius: 6px;
+  align-items: center;
+  padding: 16px 60px;
+  color: #fff;
+  border: 0;
+  margin-left: 20px;
+}
+.fixed-element button:hover {
+  cursor: pointer;
+  background: linear-gradient(77.69deg, #10B7AD 0%, #10B77F 85.44%);
+}
+
+@media (max-width: 600px) {
+  .fixed-element h2 {
+    font-size: 16px;
+  }
+  .fixed-element button {
+    padding: 16px 20px;
+  }
+}
+@media (max-width: 350px) {
+  .fixed-element {
+    padding: 0 20px;
+  }
+  .fixed-element h2 {
+    font-size: 16px;
+  }
+  .fixed-element button {
+    padding: 16px 20px;
+    margin-left: 10px;
   }
 }
 

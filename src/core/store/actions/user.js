@@ -89,6 +89,9 @@ const info = _.memoize((id=1)=>{
 const getLendingInfo = _.memoize((id=1)=>{
     return http.get({url:Config.User.LENDINGINFO+"?id=wager"})
 })
+const getFreeSpin = _.memoize((id=1)=>{
+    return http.get({url:Config.User.FREESPPIN+"?id=freespin"})
+})
 const getVerificationInfo = ()=>{
     return http.get({url:Config.User.VERIFICATIONINFO})
 }
@@ -311,6 +314,7 @@ export default {
     sendResetPass,
     info,
     getLendingInfo,
+    getFreeSpin,
     messages,
     readMessage,
     getVerificationInfo,

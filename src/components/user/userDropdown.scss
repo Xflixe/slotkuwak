@@ -13,6 +13,34 @@
   display: none;
   &.active {display: block}
 
+  .tabs {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    border-bottom: 1px solid #242D40;
+    margin: 0;
+    padding: 0;
+
+    li {
+      flex: 1;
+      border-left: 1px solid #242D40;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 12px;
+      &:first-child {
+        border: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+      }
+      &.active {
+        background: #d3a628;
+        color: #000;
+      }
+    }
+  }
   .user-info {
     padding: 12px 20px;
     h6 {
@@ -114,7 +142,7 @@
     }
   }
   .user-links {
-    padding: 12px 20px;
+    padding: 6px 20px;
     border-bottom: 1px solid #293246;
     & > * {
       transition: all .15s linear;
@@ -122,7 +150,7 @@
     .link {
       display: flex;
       align-items: center;
-      padding: 12px 0;
+      padding: 6px 0;
       margin: 0;
       color: #8A92A5;
       font-size: 16px;
@@ -165,6 +193,51 @@
         span {color: #fff;}
         svg {fill: #fff;}
       }
+    }
+
+  }
+
+  .freeSpin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 20px;
+    border-bottom: 1px solid #242D40;
+    p {margin: 0;font-size: 12px;}
+    span {color:#fff}
+    .freeSpin-col {
+      flex: 1;
+    }
+    a {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(77.69deg, #10B77F 0%, #10B7AD 85.44%);
+      border-radius: 50%;
+      i {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAOVBMVEUAAAD///////////////////////////////////////////////////////////////////////8KOjVvAAAAEnRSTlMAECAwP0BPUF9wgI+Qn6+/3+8Vytu2AAAAQklEQVR42mXHgwFEMRAA0dic/ns9fGOC3Seeaa+OPcEIOyb8qFfAoguybzu6LcwVM8T5+xY436FKsWShG7Fnfuu7LwKDAzBkyta8AAAAAElFTkSuQmCC);
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+      }
+    }
+  }
+  .freeSpin_content {
+    padding: 12px 20px;
+    border-bottom: 1px solid #293246;
+    h5{
+      font-size: 14px;
+      color: #fff;
+    }
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+      color: #8A92A5;
+      font-size: 12px;
+
+      line-height: 12px;
     }
 
   }

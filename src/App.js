@@ -64,7 +64,7 @@ const  App=()=> {
 
 
     const messages = ()=>{
-        clearTimeout(window.messageTimeout)
+        delete window.messageTimeout;
         Actions.User.messages().then(response=>{
             if(response.status){
                 setMessage({...message,allData:response?.data?.data})
@@ -79,16 +79,16 @@ const  App=()=> {
 
     }
 
-    //useEffect(()=>{
-    //    if(User.isLogged){
-    //        messages()
-    //    }
-    //},[User.isLogged])
-    //useEffect(()=>{
-    //    if(message?.allData?.[0]){
-    //        onMessageUpdate()
-    //    }
-    //},[message?.allData?.[0]])
+    useEffect(()=>{
+        if(User.isLogged){
+            messages()
+        }
+    },[User.isLogged])
+    useEffect(()=>{
+        if(message?.allData?.[0]){
+            onMessageUpdate()
+        }
+    },[message?.allData?.[0]])
 
     useEffect(()=>{
         const ping = async () => {
