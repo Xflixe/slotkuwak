@@ -71,7 +71,7 @@ const  App=()=> {
             }
         })
 
-        if(!window.messageTimeout){
+        if(!window.messageTimeout && User.isLogged){
             window.messageTimeout = setTimeout(function(){
                 messages()
             },1000 * 60)

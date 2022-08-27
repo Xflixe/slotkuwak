@@ -177,7 +177,7 @@ const CasinoScreen = () =>{
                             <ul>
                                 <li className="provider-logo">
                                     <div>Evolution Gaming</div>
-                                    <div>400 Games</div>
+                                    <div>148 Games</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
@@ -187,7 +187,7 @@ const CasinoScreen = () =>{
                             <ul>
                                 <li className="provider-logo">
                                     <div>VivoGaming</div>
-                                    <div>400 Games</div>
+                                    <div>26 Games</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
@@ -197,7 +197,7 @@ const CasinoScreen = () =>{
                             <ul>
                                 <li className="provider-logo">
                                     <div>Betgames.tv</div>
-                                    <div>400 Games</div>
+                                    <div>10 Games</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>
@@ -207,7 +207,7 @@ const CasinoScreen = () =>{
                             <ul>
                                 <li className="provider-logo">
                                     <div>PragmaticPlay Live</div>
-                                    <div>400 Games</div>
+                                    <div>110 Games</div>
                                 </li>
                                 <li className="arrow"><img src={arrow}/></li>
                             </ul>

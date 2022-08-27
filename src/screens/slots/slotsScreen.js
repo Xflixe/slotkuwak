@@ -232,6 +232,12 @@ const SlotsScreen = () =>{
         }
     },[params])
 
+    const [searchC,setSearchC] = useState(false)
+    const searchClass =()=>{
+        if(window.innerWidth < 992){
+            setSearchC(!searchC)
+        }
+    }
     return (
         <>
             <Header page={"slots"}/>
@@ -253,13 +259,15 @@ const SlotsScreen = () =>{
                                 })])
                             }}>{t("All")}</button>
                             {User.isLogged && _.size(freeSpin)>0 && <button className={`${tab==="freeSpin"?'active':''}`} data-new="new" onClick={()=>setTab('freeSpin')}>{t("Free Spin")}</button>}
+                            <button onClick={()=>setTab('favourite')}>{t("Favourite")}</button>
                             <button onClick={()=>setTab('trending')}>{t("Trending")}</button>
                             <button onClick={()=>setTab('like')}>{t("Most Liked")}</button>
+                            <button onClick={()=>setTab('game')}>{t("Table Game")}</button>
                             <div className="search">
                                 <input
                                     type="text"
                                     name="search"
-                                    className="search"
+                                    className={`search ${searchC?'active':''}`}
                                     placeholder={t("Search")}
                                     value={searchText}
                                     onChange={e=>{
@@ -267,7 +275,11 @@ const SlotsScreen = () =>{
                                         setTab('search')
                                     }}
                                 />
-                                <span className="btn-search"></span>
+                                <div className="search_clear" onClick={()=>{
+                                    setSearchText('');
+                                    setSearchC(!searchC);
+                                }}>X</div>
+                                <span className="btn-search" onClick={()=> searchClass()}/>
                             </div>
                         </div>
                         {

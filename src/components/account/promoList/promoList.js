@@ -18,9 +18,9 @@ const PromoList = ({data}) => {
         }else{
             ev.emit('notify', {
                 show:true,
-                text:'Oops, Unfortunately you can not withdraw money. Please verify your profile first.',
+                text: i18n.language === "en" ?'To be able to use Free Spins, please verify your account first.':'Для использования Free Spins, подтвердите аккаунт.',
                 type:'error',
-                title:'Withdraw Error',
+                title: i18n.language === "en" ?'Account verification!':'Верификация аккаунта!',
                 button:{
                     name:'Verify Account',
                     url: `/${i18n.language}/account/verification`
@@ -57,7 +57,7 @@ const PromoList = ({data}) => {
                                             <li className="prize">{v.provider}</li>
                                             <li className="slot">{v.game}</li>
                                             <li className="category">{v.quantity} FreeSpin</li>
-                                            <li className="time">{moment(v.validUntil).format("YYYY-MM-DD HH:MM")}</li>
+                                            <li className="time">{moment(v.validUntil).format("YYYY-MM-DD HH:mm")}</li>
                                         </ul>
                                         <div className="action">
                                             {(!v?.claimable || v?.configId && v?.configId !== "") && <button onClick={()=> playGame(v)}>{t('Play')}</button>}

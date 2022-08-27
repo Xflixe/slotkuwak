@@ -5,7 +5,7 @@
 }
 .slot-new-filter button {
   flex: 1;
-  max-width: 170px;
+  max-width: 120px;
   margin-right: 10px;
   background: #1D243A;
   font-family: "Proxima Regular", Helvetica, sans-serif;
@@ -13,10 +13,11 @@
   font-size: 16px;
   color: #4D5A7D;
   border-radius: 6px;
-  text-align: left;
   padding: 0 16px;
   height: 50px;
   position: relative;
+  text-align: center;
+  line-height: 15px;
 }
 .slot-new-filter button[data-new]:before {
   position: absolute;
@@ -31,6 +32,9 @@
   line-height: 20px;
   font-size: 12px;
 }
+.slot-new-filter button:first-child {
+  max-width: 70px;
+}
 .slot-new-filter button.active {
   color: #8f9ec8;
 }
@@ -41,8 +45,25 @@
 .slot-new-filter .search {
   flex: 1;
 }
+.slot-new-filter .search .search_clear {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  background-size: contain;
+  background-position: center;
+  width: 26px;
+  height: 30px;
+  color: #707070;
+  display: none;
+  line-height: 30px;
+}
+.slot-new-filter .search .search_clear:hover {
+  cursor: pointer;
+  color: red;
+}
 .slot-new-filter .search input {
-  padding: 10px 43px 16px;
+  padding: 13px 5px 13px 43px;
 }
 
 .slot-nav ul {
@@ -87,8 +108,57 @@
 }
 
 @media (max-width: 991px) {
+  .slot-new-filter {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-top: 10px;
+    /* width */
+    /* Track */
+    /* Handle */
+    /* Handle on hover */
+  }
+  .slot-new-filter .search {
+    order: 1;
+    margin: 0 5px;
+    position: relative;
+    margin-right: 10px;
+  }
+  .slot-new-filter .search input {
+    margin: 0;
+    padding: 13px 16px 13px 30px;
+  }
+  .slot-new-filter .search input::placeholder {
+    color: #192034;
+  }
+  .slot-new-filter .search input.active {
+    min-width: 222px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .slot-new-filter .search input.active + .search_clear {
+    display: block;
+  }
+  .slot-new-filter::-webkit-scrollbar {
+    width: 2px;
+    height: 0px;
+  }
+  .slot-new-filter::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .slot-new-filter::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  .slot-new-filter::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
   .slot-new-filter button {
-    max-width: 120px;
+    order: 2;
+    min-width: 102px;
+    font-size: 14px;
+    line-height: 13px;
+  }
+  .slot-new-filter button:first-child {
+    min-width: 70px;
   }
 
   .slot-nav {
@@ -137,6 +207,7 @@
   .slot-new-filter .search {
     order: 1;
     margin: 0 5px;
+    position: relative;
   }
   .slot-new-filter .search input {
     margin: 0;
@@ -144,6 +215,14 @@
   }
   .slot-new-filter .search input::placeholder {
     color: #192034;
+  }
+  .slot-new-filter .search input.active {
+    min-width: 222px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .slot-new-filter .search input.active + .search_clear {
+    display: block;
   }
   .slot-new-filter button {
     order: 2;
