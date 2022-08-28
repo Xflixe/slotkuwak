@@ -24,6 +24,7 @@ const Header = ({page}) =>{
     const {lang} = useParams();
     const [loaded,setLoaded]=useState(false);
     const [rotate,setRotate]=useState(false);
+    const [userStatus,setUserStatus]=useState(false);
     const [showUserDropDown,setShowUserDropDown]=useState(false);
     let rot ='';
     //useEffect(()=>{
@@ -110,8 +111,10 @@ const Header = ({page}) =>{
                                                     }
                                                 })
                                             }} className="deposit-link">{t("deposit")}</div>
+
                                             <div className="account-link" id="account-dropdown-link">
                                                 <img src={user_ico} alt="" id="account-dropdown-link"/>
+                                                {userStatus && <i data-status={userStatus}/>}
                                             </div>
 
                                             {/*<Link  to={`/${i18n.language}/account`} className="account-link"><img src={user_ico} alt=""/></Link>*/}
@@ -169,7 +172,7 @@ const Header = ({page}) =>{
                                 <div className="account-link" id="account-lang"><ChangeLagunge style={User.isLogged? {}:{marginLeft:'20px'}}/></div>
 
                             </div>
-                            {User.isLogged?<UserDropDawn onClose={()=>setShowUserDropDown(false)}/>:''}
+                            {User.isLogged?<UserDropDawn onUserStatus={(s)=>setUserStatus(s)} onClose={()=>setShowUserDropDown(false)}/>:''}
 
                         </div>
                     </div>

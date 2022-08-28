@@ -20481,6 +20481,19 @@ input.for-confirm {
   font-weight: 600;
   line-height: 23px;
 }
+.navbar .navbar-head .authorization-interface #account-dropdown-link {
+  position: relative;
+}
+.navbar .navbar-head .authorization-interface #account-dropdown-link i[data-status] {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: #f13232;
+  position: absolute;
+  z-index: 2;
+  top: 3px;
+  right: 3px;
+}
 .navbar .navbar-collapse {
   width: 100%;
   background-color: rgba(29, 36, 52, 0.6);

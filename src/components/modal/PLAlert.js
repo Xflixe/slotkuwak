@@ -1,10 +1,29 @@
 import {close} from "../../assets/img/icons/icons";
 import PropTypes from "prop-types";
 import './PLAlert.scss';
+import {useEffect} from "react";
 
 
 
 const PLAlert = ({data,children,title,footer,onClickBackDrop,closeButton,onClose,contentStyle,dialogStyle,className})=>{
+
+    useEffect(() => {
+        const keyDownHandler = event => {
+            //console.log('User pressed: ', event.key);
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                onClose()
+            }
+        };
+
+        document.addEventListener('keydown', keyDownHandler);
+
+        // 👇️ clean up event listener
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, []);
+
     return  (
         <div className="custom-modal" onClick={()=>onClickBackDrop()}>
             <div className={`modal-dialog modal-dialog-centered pl_alert ${className}`} style={{...dialogStyle}}>

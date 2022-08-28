@@ -9,7 +9,7 @@ import {useOutsideRef2} from "../../core/hooks/useOutSideClickRef2";
 
 
 
-const UserDropDawn = ({onClose,className})=>{
+const UserDropDawn = ({onClose,className,onUserStatus})=>{
     const {t,i18n} = useTranslation();
     const {User,checkSession,signOut} = useUser();
     const {lang} = useParams();
@@ -72,7 +72,10 @@ const UserDropDawn = ({onClose,className})=>{
 
     useEffect(()=>{
         if(wager !== null && freeSpin !== null && freeSpin?.count > 0){
-            setTab(1)
+            setTab(1);
+            onUserStatus(true)
+        }else {
+            onUserStatus(false)
         }
     },[wager,freeSpin])
 

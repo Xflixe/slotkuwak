@@ -220,6 +220,19 @@
 .user-dropdown .freeSpin p {
   margin: 0;
   font-size: 12px;
+  position: relative;
+  padding-left: 14px;
+}
+.user-dropdown .freeSpin p:before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: #f13232;
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 .user-dropdown .freeSpin span {
   color: #fff;

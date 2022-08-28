@@ -203,7 +203,23 @@
     align-items: center;
     padding: 5px 20px;
     border-bottom: 1px solid #242D40;
-    p {margin: 0;font-size: 12px;}
+    p {
+      margin: 0;
+      font-size: 12px;
+      position: relative;
+      padding-left: 14px;
+      &:before {
+        width: 8px;
+        height: 8px;
+        border-radius: 50px;
+        background-color: #f13232;
+        position: absolute;
+        content: '';
+        top:50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
     span {color:#fff}
     .freeSpin-col {
       flex: 1;
