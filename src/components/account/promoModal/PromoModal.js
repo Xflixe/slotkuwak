@@ -39,11 +39,11 @@ const PromoModal = ({data,onUpdate})=>{
     switch (data?.type){
         case 'wager':
             return (
-                <NewModal title={t("Deposit Bonus")} onClose={()=>modalClose(data?.id)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
+                <NewModal title={t("Deposit Bonus")} onClose={()=>onPlay(data)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
                     <div className="promo-modal-box">
                         <h3>Deposit Bonus Activated</h3>
                         <p>Start your adventure with PlanetaX, make your first deposit  and receive  bonus</p>
-                        <a href={`/${i18n.language}/account/verification`} onClick={()=>modalClose(data?.id)}>Deposit</a>
+                        <button onClick={()=>onPlay(data)}>Deposit</button>
                     </div>
                 </NewModal>
             )

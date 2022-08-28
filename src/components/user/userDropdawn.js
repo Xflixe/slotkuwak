@@ -71,7 +71,7 @@ const UserDropDawn = ({onClose,className})=>{
     },[])
 
     useEffect(()=>{
-        if(wager !== null && freeSpin !== null){
+        if(wager !== null && freeSpin !== null && freeSpin?.count > 0){
             setTab(1)
         }
     },[wager,freeSpin])
@@ -99,7 +99,7 @@ const UserDropDawn = ({onClose,className})=>{
                 }
                 {
                     // freeSpin
-                    !wager?.bonusAmount && freeSpin?.count && <div className="d-col freeSpin" style={{borderBottom:'none',borderLeft:'1px solid #242d40',padding:0, paddingLeft: '20px'}}>
+                    !wager?.bonusAmount && freeSpin?.count > 0 && <div className="d-col freeSpin" style={{borderBottom:'none',borderLeft:'1px solid #242d40',padding:0, paddingLeft: '20px'}}>
                         <div className="d-col freeSpin-col">
                             <p>{t("Free Spin")}</p>
                             <span>{freeSpin?.count}</span>
@@ -133,7 +133,7 @@ const UserDropDawn = ({onClose,className})=>{
 
             {
                 // freeSpin
-                (tab === 1 || tab === 99) && (<div className="freeSpin_content">
+                (tab === 1 || tab === 99) && freeSpin?.count > 0 && (<div className="freeSpin_content">
                         <h5>Free Spin</h5>
                         <p>{t('Have fun and enjoy great wins with your free spins')}</p>
                     </div>
