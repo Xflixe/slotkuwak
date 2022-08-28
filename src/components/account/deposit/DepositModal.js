@@ -7,6 +7,8 @@ import {NewModal, SvgDot} from "../../index";
 import SelectBox from "../../forms/select/NewSelect";
 import {copy} from "../../../assets/img/icons/icons"
 import lendingBanner from "../../../assets/img/lending.jpg";
+import {useUser} from "../../../core/hooks/useUser"
+import {UseEvent} from "../../../core/hooks/useEvent"
 window.reSendInterval=null;
 
 const currencyList = [
@@ -37,6 +39,7 @@ const currencyList = [
 
 const DepositModal = ({onClose})=>{
     const {t} = useTranslation();
+    const ev = UseEvent();
     const [loader,setLoader]=useState(false)
     const [qr,setQr] = useState(true)
     const [qrData,setQrData] = useState({})
@@ -44,7 +47,8 @@ const DepositModal = ({onClose})=>{
     const [copyText,setCopyText] = useState(false);
     const [crypto,setCrypto]=useState('');
     const [deposit,setDeposit]=useState({amount:'', address:""});
-
+    const {User,checkSession} = useUser();
+    const [local,setLocal] = useState(true)
     useEffect(()=>{
         if(qr){
             getCurrencyCourse();
@@ -66,7 +70,7 @@ const DepositModal = ({onClose})=>{
     }
 
 
-    return (
+    return local && (
             <NewModal title={t("Deposit QR")} onClose={()=>onClose(false)} className={'deposit-modal-new'}
                   dialogStyle={{width:'350px'}}
                   contentStyle={{width:'350px'}}
@@ -83,7 +87,23 @@ const DepositModal = ({onClose})=>{
                     placeholder={t("Currency")}
                     className="crypto-currency"
                     value={selectedCurrency.id}
-                    onSelect={e => setSelectedCurrency(e)}
+                    onSelect={e => {
+                        checkSession().then(response=>{
+                            if(response.status){
+                                setSelectedCurrency(e)
+                            }else{
+                                onClose()
+                                ev.emit('signIn', {
+                                    show:true,
+                                    onSuccess:(e)=>{
+                                        console.log("success login")
+                                        //setLocal(true)
+                                    }
+                                })
+                            }
+                        })
+
+                    }}
                 />
                 <div className="dep-wrap" >
                 {

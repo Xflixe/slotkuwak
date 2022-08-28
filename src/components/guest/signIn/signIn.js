@@ -14,6 +14,7 @@ const SignIn =() =>{
     const [signInLoader,setSignInLoader]=useState(false);
     const eventEmitter= new EventEmitter()
     const dispatch = useDispatch();
+    const [success,setSuccess]=useState(null)
     const [loginForm,setLoginForm]=useState({
         username:'',
         password:''
@@ -47,7 +48,15 @@ const SignIn =() =>{
 
 
     useEffect(()=>{
-        const signInFormEvent= ev.subscribe("signIn",setShow)
+        const signInFormEvent= ev.subscribe("signIn",e=>{
+           console.log(e)
+            if(typeof e === "boolean"){
+                setShow(e)
+            }else {
+                setShow(e?.show)
+                setSuccess(e?.onSuccess)
+            }
+        })
         return ()=>{
             signInFormEvent.unsubscribe()
         }
@@ -76,8 +85,14 @@ const SignIn =() =>{
                     window.location.reload()
                     return
                 }
+
                 setShow(false);
                 setShowOTP(false);
+                console.log(success)
+                if(success){
+                    alert()
+                    success()
+                }
             } else {
                 if(response?.error){
 
