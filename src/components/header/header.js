@@ -74,6 +74,7 @@ const Header = ({page}) =>{
                                             <div onClick={()=>{
 
                                                 checkSession().then(response=>{
+
                                                     if(response.status){
 
                                                         if(response?.data?.data?.verifyStatus===0){
@@ -90,13 +91,22 @@ const Header = ({page}) =>{
                                                                 }
                                                             })
                                                         }
+                                                    }else{
+                                                        ev.emit('signIn', true)
                                                     }
                                                 })
                                             }} className="withdraw-link">{t("withdraw")}</div>
                                             <div onClick={()=>{
                                                 checkSession().then(response=>{
-                                                    if(response){
+                                                    if(response.status){
                                                         ev.emit('depositModal', true)
+                                                    }else{
+                                                        ev.emit('signIn', {
+                                                            show:true,
+                                                            onSuccess:function (e){
+                                                                console.log("success login",e)
+                                                            }
+                                                        })
                                                     }
                                                 })
                                             }} className="deposit-link">{t("deposit")}</div>
