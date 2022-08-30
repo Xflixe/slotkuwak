@@ -71,11 +71,9 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
     },[])
 
     useEffect(()=>{
-        if(wager !== null && freeSpin !== null && freeSpin?.count > 0){
+        freeSpin?.count > 0 ? onUserStatus(true) : onUserStatus(false)
+        if(wager?.bonusClaimable && freeSpin?.count > 0){
             setTab(1);
-            onUserStatus(true)
-        }else {
-            onUserStatus(false)
         }
     },[wager,freeSpin])
 
@@ -139,10 +137,14 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                 (tab === 1 || tab === 99) && freeSpin?.count > 0 && (<div className="freeSpin_content">
                         <h5>Free Spin</h5>
                         <p>{t('Have fun and enjoy great wins with your free spins')}</p>
+                        <div className="fs_but">
+                            <div className="title">Next Free Spin</div>
+                            <div className="time"><span>2GMT +2</span>  15:00</div>
+                        </div>
                     </div>
                 )
-            }
 
+            }
 
             {
                 (wager?.item || wager?.bonusClaimable) &&  (tab === 2 || tab === 99) && (

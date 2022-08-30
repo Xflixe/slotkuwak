@@ -81,30 +81,30 @@ const WelcomeBonus = ({data,onClose})=>{
             {
                 <NewModal title={t("Welcome Bonus")} onClose={()=>claimBonus('exit')} contentStyle={{width:'870px'}} dialogStyle={{width:"870px"}}>
                     <div className="wb">
-                        <p>Welcome to PlanetaX! Please choose your bonus</p>
+                        <p>{t('Welcome to PlanetaX! Please choose your bonus')}</p>
                         <div className="gift-overflow">
                             <div className="grid-box">
-                            <div className="grid-item item-1">
-                                <h5>Deposit Bonus</h5>
-                                <strong>Make deposit to start adventure</strong>
-                                <ul>
-                                    <li>Get +100% up to €500 on your <br/>1st deposit</li>
-                                    <li>Get +150% up to €450 on your <br/>2nd deposit</li>
+                            <div className="grid-item item-1" style={{display:'flex',flexDirection:'column'}}>
+                                <h5>{t('Deposit Bonus')}</h5>
+                                <strong>{t('Make deposit to start adventure')}</strong>
+                                <ul style={{flex:1}}>
+                                    <li>{t('Get +100% up to €500 on your')} <br/>{t('1st deposit')}</li>
+                                    <li>{t('Get +150% up to €450 on your')} <br/>{t('2nd deposit')}</li>
                                 </ul>
                                 <div className={`chose_box ${gift===1?'active':''}`} onClick={()=> choseGift(1)}>
-                                    <p>Deposit Bonus</p>
+                                    <p>{t('Deposit Bonus')}</p>
                                     <div className="radio"/>
                                 </div>
                             </div>
                             <div className="grid-item item-2">
-                                <h5>Free Spins Bonus</h5>
-                                <strong>You will receive 120 Free Spins</strong>
+                                <h5>{t('Free Spins Bonus')}</h5>
+                                <strong>{t('You will receive 120 Free Spins')}</strong>
                                 <ul>
-                                    <li>Get 20 Free Spins everyday, for <br/>6 days</li>
-                                    <li>Login at least once for <br/>6 days</li>
+                                    <li>{t('Get 20 Free Spins everyday, for')} <br/>{t('6 days')}</li>
+                                    <li>{t('Login at least once for')} <br/>{t('6 days')}</li>
                                 </ul>
                                 <div className={`chose_box ${gift===2?'active':''}`} onClick={()=> choseGift(2)}>
-                                    <p>Free Spins</p>
+                                    <p>{t('Free Spins')}</p>
                                     <div className="radio"/>
                                 </div>
                             </div>
@@ -113,15 +113,15 @@ const WelcomeBonus = ({data,onClose})=>{
                         <div className="gift-info">
                             <div className="info">
                                 <i/>
-                                <p>If you close window without selecting welcome bonus type, Deposit Bonus (Free spin) will be activated automatically</p>
+                                <p>{t('If you close window without selecting welcome bonus type, Deposit Bonus will be activated automatically')}</p>
                             </div>
                             <div className="but">
                                 <button className="skip" onClick={()=>{
                                     claimBonus('skip')
-                                }}>Skip</button>
+                                }}>{t('Skip')}</button>
                                 <button className="claim" onClick={()=>{
                                     claimBonus('claim')
-                                }}>Claim Bonus</button>
+                                }}>{t('Claim Bonus')}</button>
                             </div>
                         </div>
 
