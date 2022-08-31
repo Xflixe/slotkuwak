@@ -200,6 +200,19 @@
   "Login at least once for": "Для активирования фриспинов надо авторизоваться на сайте ежедневно, в течение",
   "6 days": "6 дней",
   "Free Spins": "Фриспины",
+  "Free Spin": "Фриспин",
   "If you close window without selecting welcome bonus type, Deposit Bonus will be activated automatically": "Бонус за регистрацию будет выбран по умолчанию если вы закроете окно без выбора конкретного типа бонуса",
-  "Skip": "Пропустить"
+  "Skip": "Пропустить",
+  "PROVIDER": "ПРОВАЙДЕР",
+  "SLOT/ GAME": "СЛОТ/ИГРА",
+  "QUANTITY": "КОЛИЧЕСТВО",
+  "VALID UNTIL": "ГОДЕН ДО",
+  "FreeSpin Verification": "Верификация фриспинов",
+  "PromoCode Free Spin Bonus": "Бесплатные бонус фриспины по промокоду",
+  "Claim": "Получить",
+  "Free Spin Bonus": "Бонус фриспины",
+  "Claim €950 welcome bonus in 2 easy deposit bonuses. To redeem your offer - just follow these steps.": "Получите приветственный бонус в размере 950 евро за 2 простых депозитных бонуса. Чтобы получить бонус выполните следующие действия.",
+  "In order to receive Free spins daily, during 6 days, you should login at least once a day": "Чтобы получать ежедневные фриспины в течение 6 дней, вам необходимо заходить на сайт не реже одного раза в день"
+
+
 }

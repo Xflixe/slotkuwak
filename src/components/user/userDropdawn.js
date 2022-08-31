@@ -5,6 +5,7 @@ import {Actions, useTranslation} from "../../core";
 import {useUser} from "../../core/hooks/useUser";
 import {Link, useParams} from "react-router-dom";
 import {useOutsideRef2} from "../../core/hooks/useOutSideClickRef2";
+import moment from "moment";
 
 
 
@@ -77,6 +78,15 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
         }
     },[wager,freeSpin])
 
+    const getGmtTime=(v)=> {
+        let d = v;
+        let testDateUtc = moment.utc(d);
+        let localDate = testDateUtc.local();
+        let newDate = localDate.format('YYYY-MM-DD HH:mm');
+
+        return  newDate
+    }
+
     return <>
 
         <div className={`user-dropdown`} ref={ref2}>
@@ -102,7 +112,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                     // freeSpin
                     !wager?.bonusAmount && freeSpin?.count > 0 && <div className="d-col freeSpin" style={{borderBottom:'none',borderLeft:'1px solid #242d40',padding:0, paddingLeft: '20px'}}>
                         <div className="d-col freeSpin-col">
-                            <p>{t("Free Spin")}</p>
+                            <p>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</p>
                             <span>{freeSpin?.count}</span>
                         </div>
                         <a href={`/${i18n.language}/slots/freespin`}>
@@ -115,7 +125,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                 // freeSpin
                 wager?.bonusAmount && freeSpin?.count && <div className="d-col freeSpin">
                     <div className="d-col freeSpin-col">
-                        <p>{t("Free Spin")}</p>
+                        <p>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</p>
                         <span>{freeSpin?.count}</span>
                     </div>
                     <a href={`/${i18n.language}/slots/freespin`}>
@@ -126,8 +136,8 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
 
             {
                 tab !== 99 && <ul className="tabs">
-                    <li className={`${tab===1?'active':''}`} onClick={()=>setTab(1)}>Free Spins</li>
-                    <li className={`${tab===2?'active':''}`} onClick={()=>setTab(2)}>Deposit Bonus</li>
+                    <li className={`${tab===1?'active':''}`} onClick={()=>setTab(1)}>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</li>
+                    <li className={`${tab===2?'active':''}`} onClick={()=>setTab(2)}>{i18n.language === "en" ?'Deposit Bonus':'Депозитный бонус'}</li>
                 </ul>
             }
 
@@ -135,12 +145,21 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
             {
                 // freeSpin
                 (tab === 1 || tab === 99) && freeSpin?.count > 0 && (<div className="freeSpin_content">
-                        <h5>Free Spin</h5>
-                        <p>{t('Have fun and enjoy great wins with your free spins')}</p>
-                        <div className="fs_but">
-                            <div className="title">Next Free Spin</div>
-                            <div className="time"><span>2GMT +2</span>  15:00</div>
-                        </div>
+                        <h5>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</h5>
+                        {
+                            freeSpin?.promoFps === 1 && <p>{t('Have fun and enjoy great wins with your free spins')}</p>
+                        }
+                        {
+                            freeSpin?.regFps === 1 && (
+                                <>
+                                <p>{t('In order to receive Free spins daily, during 6 days, you should login at least once a day')}</p>
+                                <div className="fs_but">
+                                    <div className="title">{i18n.language === "en" ?'Next FreeSpin':'Следующий Фриспин'}</div>
+                                    <div className="time"><span>{getGmtTime(freeSpin?.nextFps)}</span></div>
+                                </div>
+                                </>
+                            )
+                        }
                     </div>
                 )
 
@@ -153,7 +172,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                             <h6>{t("Welcome Bonus")}</h6>
                             {wager?.item && <Link to={`/${i18n.language}/promotions`}>{t("See Rules")}</Link>}
                         </div>
-                        <p>{wager?.item?t('Bonus money must be wagered 35x before it can be converted into real money'):t('Claim €800 welcome bonus in 2 easy deposit bonuses, redeem your offer - just follow these steps.')}</p>
+                        <p>{wager?.item?t('Bonus money must be wagered 35x before it can be converted into real money'):t('Claim €950 welcome bonus in 2 easy deposit bonuses. To redeem your offer - just follow these steps.')}</p>
                         {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>{t("Claim Bonus")}</Link>}
 
                         {

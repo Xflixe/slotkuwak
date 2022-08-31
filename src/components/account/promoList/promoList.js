@@ -22,7 +22,7 @@ const PromoList = ({data}) => {
                 type:'error',
                 title: i18n.language === "en" ?'Account verification!':'Верификация аккаунта!',
                 button:{
-                    name:'Verify Account',
+                    name: i18n.language === "en" ?'Verify Account':'Верификация Аккаунта',
                     url: `/${i18n.language}/account/verification`
                 }
             })
@@ -39,10 +39,10 @@ const PromoList = ({data}) => {
                     <div className="t_head">
                         <div className="t_row grid-style">
                             <ul>
-                                <li className="prize">PROVIDER</li>
-                                <li className="col slot">SLOT/ GAME</li>
-                                <li className="category">QUANTITY</li>
-                                <li className="time">VALID UNTIL</li>
+                                <li className="prize">{t('PROVIDER')}</li>
+                                <li className="col slot">{t('SLOT/ GAME')}</li>
+                                <li className="category">{t('QUANTITY')}</li>
+                                <li className="time">{t('VALID UNTIL')}</li>
                             </ul>
                             <div className="action"/>
                         </div>
@@ -60,7 +60,7 @@ const PromoList = ({data}) => {
                                             <li className="time">{moment(v.validUntil).format("YYYY-MM-DD HH:mm")}</li>
                                         </ul>
                                         <div className="action">
-                                            {(!v?.claimable || v?.configId && v?.configId !== "") && <button onClick={()=> playGame(v)}>{t('Play')}</button>}
+                                            {(!v?.claimable || v?.configId && v?.configId !== "") && <button onClick={()=> playGame(v)}>{i18n.language === "en" ?'Play':'Играть'}</button>}
                                         </div>
                                     </div>
                                 )

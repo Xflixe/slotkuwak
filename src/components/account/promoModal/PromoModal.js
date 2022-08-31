@@ -41,9 +41,9 @@ const PromoModal = ({data,onUpdate})=>{
             return (
                 <NewModal title={t("Deposit Bonus")} onClose={()=>onPlay(data)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
                     <div className="promo-modal-box">
-                        <h3>Deposit Bonus Activated</h3>
-                        <p>Start your adventure with PlanetaX, make your first deposit  and receive  bonus</p>
-                        <button onClick={()=>onPlay(data)}>Deposit</button>
+                        <h3>{i18n.language === "en" ?'Deposit Bonus Activated':'Депозитный бонус активирован!'}</h3>
+                        <p>{i18n.language === "en" ?'Start your adventure with PlanetaX, make your first deposit  and receive  bonus':'Начните свое приключение с PlanetaX, сделайте первый депозит и получите бонус'}</p>
+                        <button onClick={()=>onPlay(data)}>{i18n.language === "en" ?'Deposit':'Депозит'}</button>
                     </div>
                 </NewModal>
             )
@@ -51,10 +51,10 @@ const PromoModal = ({data,onUpdate})=>{
             return (
                 <NewModal title={t("FreeSpin Verification")} onClose={()=>modalClose(data?.id)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
                     <div className="promo-modal-box">
-                        <h3>You have been awarded with {data?.specifiers?.quantity} fresspin</h3>
-                        <p>In {data?.specifiers?.providerName} {data?.specifiers?.gameName} and <strong style={{color:'#EEC64F'}}>to use it you need to be verified</strong> !</p>
+                        <h3>{i18n.language === "en" ?`You have been awarded ${data?.specifiers?.quantity} fresspin`:`Вы получили ${data?.specifiers?.quantity} фриспинов`}</h3>
+                        <p>{i18n.language === "en" ?`in ${data?.specifiers?.providerName} ${data?.specifiers?.gameName} and to use it you need to verify your account!`:`в ${data?.specifiers?.providerName} ${data?.specifiers?.gameName}, и для их использования вам необходимо пройти верификацию!`}</p>
 
-                        <button onClick={()=>onPlay(data)}>Verification</button>
+                        <button onClick={()=>onPlay(data)}>{i18n.language === "en" ?'Verification':'Верификация'}</button>
                     </div>
                 </NewModal>
             )
@@ -62,9 +62,9 @@ const PromoModal = ({data,onUpdate})=>{
             return (
                 <NewModal title={t("Free Spin Bonus")} onClose={()=>modalClose(data?.id)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
                     <div className="promo-modal-box">
-                        <h3>Free Spin Bonus Activated</h3>
-                        <p>{data?.specifiers?.quantity} free spin has been activated on your account, you can start playing immediately <span>{data?.specifiers?.gameName} by {data?.specifiers?.providerName}</span></p>
-                        <button onClick={()=>onPlay(data)}>Play Slot</button>
+                        <h3>{i18n.language === "en" ?'Free Spin Bonus Activated':'бонус фриспины активированы!'}  </h3>
+                        <p>{i18n.language === "en" ?`${data?.specifiers?.quantity} FREESPINS have been activated on your account, you can start playing ${data?.specifiers?.gameName} by ${data?.specifiers?.providerName} immediately.`:`На вашем аккаунте активировано ${data?.specifiers?.quantity} бесплатных фриспинов. Вы можете сразу начать играть ${data?.specifiers?.gameName} от ${data?.specifiers?.providerName}`}</p>
+                        <button onClick={()=>onPlay(data)}>{i18n.language === "en" ?'Play slot':'Играть в слот'}</button>
                     </div>
                 </NewModal>
             )
@@ -73,9 +73,9 @@ const PromoModal = ({data,onUpdate})=>{
             return (
                 <NewModal title={t("PromoCode Free Spin Bonus")} onClose={()=>modalClose(data?.id)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
                     <div className="promo-modal-box">
-                        <h3>PromoCode Free Spin Bonus Activated</h3>
-                        <p>{data?.specifiers?.quantity} free spin has been activated on your account, you can start playing immediately <span>{data?.specifiers?.gameName} by {data?.specifiers?.providerName}</span></p>
-                        <a href={`/${i18n.language}/slots/freespin`} onClick={()=>modalClose(data?.id)}>Claim</a>
+                        <h3>{i18n.language === "en" ?'PromoCode Free Spin Bonus Activated':'Бесплатные бонус фриспины по промокоду активированы!'}  </h3>
+                        <p>{i18n.language === "en" ?`${data?.specifiers?.quantity} FREESPINS have been activated on your account, you can start playing ${data?.specifiers?.gameName} by ${data?.specifiers?.providerName} immediately.`:`На вашем аккаунте активировано ${data?.specifiers?.quantity} бесплатных фриспинов. Вы можете сразу начать играть ${data?.specifiers?.gameName} от ${data?.specifiers?.providerName}`}</p>
+                        <a href={`/${i18n.language}/slots/freespin`} onClick={()=>modalClose(data?.id)}>{t('Claim')}</a>
                     </div>
                 </NewModal>
             )

@@ -259,10 +259,10 @@ const SlotsScreen = () =>{
                                 })])
                             }}>{t("All")}</button>
                             {User.isLogged && _.size(freeSpin)>0 && <button className={`${tab==="freeSpin"?'active':''}`} data-new="new" onClick={()=>setTab('freeSpin')}>{t("Free Spin")}</button>}
-                            <button onClick={()=>setTab('favourite')}>{t("Favourite")}</button>
-                            <button onClick={()=>setTab('trending')}>{t("Trending")}</button>
-                            <button onClick={()=>setTab('like')}>{t("Most Liked")}</button>
-                            <button onClick={()=>setTab('game')}>{t("Table Game")}</button>
+                            {/*<button onClick={()=>setTab('favourite')}>{t("Favourite")}</button>*/}
+                            {/*<button onClick={()=>setTab('trending')}>{t("Trending")}</button>*/}
+                            {/*<button onClick={()=>setTab('like')}>{t("Most Liked")}</button>*/}
+                            {/*<button onClick={()=>setTab('game')}>{t("Table Game")}</button>*/}
                             <div className="search">
                                 <input
                                     type="text"
