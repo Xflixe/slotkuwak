@@ -4,6 +4,8 @@ import {useUser} from "../../core/hooks/useUser";
 import {
     account,
     logo2,
+    logo3,
+    logo4,
     user_ico,
     refresh,
     logo_new,
@@ -48,12 +50,12 @@ const Header = ({page}) =>{
             <nav className="navbar navbar-expand-md flex-column">
                 <div className="navbar-head">
                     <div className="container">
-                        <div className="d-flex justify-content-between" style={{position:'relative'}}>
+                        <div className="d-flex justify-content-between" style={{position:'relative',alignItems:'center'}}>
                             <Link className="navbar-brand d-none d-lg-flex" to="/">
-                                <img src={logo2} alt=""/>
+                                <img src={logo3} alt=""/>
                             </Link>
                             <Link className="navbar-brand w-auto h-auto d-lg-none" to="/">
-                                <img src={logoM} alt=""/>
+                                <img src={logo4} alt=""/>
                             </Link>
                             <div className="authorization-interface d-flex align-items-center">
                                 {

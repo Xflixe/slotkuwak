@@ -14,6 +14,8 @@ import hArrows from "./h-arrows.svg";
 import home from "./home.svg";
 import logo from "./logo.svg";
 import logo2 from "./logo2.svg";
+import logo3 from "./logo3.svg";
+import logo4 from "./logo4.svg";
 import logout from "./logout.svg";
 import multiArrow from "./multi-arrow.svg";
 import netnet from "./netnet.svg";
@@ -75,6 +77,8 @@ hArrows,
 home,
 logo,
 logo2,
+    logo3,
+    logo4,
 logout,
 multiArrow,
 netnet,

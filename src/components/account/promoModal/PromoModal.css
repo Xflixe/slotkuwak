@@ -37,5 +37,25 @@
 .promo-modal .promo-modal-box button:hover, .promo-modal .promo-modal-box a:hover {
   background: linear-gradient(77.69deg, #10B7AD 0%, #10B77F 85.44%);
 }
+@media (max-width: 640px) {
+  .promo-modal {
+    min-width: 100%;
+  }
+  .promo-modal .promo-modal-box {
+    padding: 20px;
+  }
+  .promo-modal .promo-modal-box h3 {
+    font-size: 18px;
+  }
+  .promo-modal .promo-modal-box p {
+    font-size: 15px;
+  }
+  .promo-modal .promo-modal-box a {
+    margin-top: 20px;
+  }
+  .promo-modal .modal-box .modal-head .modal-title {
+    font-size: 16px;
+  }
+}
 
 /*# sourceMappingURL=PromoModal.css.map */

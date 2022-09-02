@@ -110,7 +110,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                 }
                 {
                     // freeSpin
-                    !wager?.bonusAmount && freeSpin?.count > 0 && <div className="d-col freeSpin" style={{borderBottom:'none',borderLeft:'1px solid #242d40',padding:0, paddingLeft: '20px'}}>
+                    !wager?.bonusAmount && (freeSpin?.count > 0 || freeSpin?.regFps === 1) && <div className="d-col freeSpin" style={{borderBottom:'none',borderLeft:'1px solid #242d40',padding:0, paddingLeft: '20px'}}>
                         <div className="d-col freeSpin-col">
                             <p>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</p>
                             <span>{freeSpin?.count}</span>
@@ -123,7 +123,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
             </div>
             {
                 // freeSpin
-                wager?.bonusAmount && freeSpin?.count && <div className="d-col freeSpin">
+                wager?.bonusAmount && (freeSpin?.count > 0 || freeSpin?.regFps === 1) && <div className="d-col freeSpin">
                     <div className="d-col freeSpin-col">
                         <p>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</p>
                         <span>{freeSpin?.count}</span>
@@ -144,7 +144,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
 
             {
                 // freeSpin
-                (tab === 1 || tab === 99) && freeSpin?.count > 0 && (<div className="freeSpin_content">
+                (tab === 1 || tab === 99) && (freeSpin?.count > 0 || freeSpin?.regFps === 1) && (<div className="freeSpin_content">
                         <h5>{i18n.language === "en" ?'FreeSpin':'Фриспины'}</h5>
                         {
                             freeSpin?.promoFps === 1 && <p>{t('Have fun and enjoy great wins with your free spins')}</p>

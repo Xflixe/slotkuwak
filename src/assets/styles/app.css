@@ -23591,7 +23591,13 @@ a:hover {
 
 }*/
 .navbar .navbar-head .navbar-brand {
-  height: 50px !important;
+  height: 36px !important;
+  width: unset;
+}
+
+.navbar .navbar-head .navbar-brand.d-lg-none {
+  height: 40px !important;
+  width: 40px !important;
 }
 
 .navbar .navbar-head {
