@@ -101,7 +101,7 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                 </div>
 
                 {
-                    wager?.bonusAmount && (
+                    wager?.bonusAmount && wager?.bonusAmount > 0 && (
                         <div className="d-col wager">
                             <p>{t("Bonus Money")}</p>
                             <span>{wager?.item?.currency} {wager?.bonusAmount.toFixed(2)}</span>

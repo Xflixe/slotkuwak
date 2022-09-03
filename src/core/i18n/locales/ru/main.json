@@ -212,7 +212,19 @@
   "Claim": "Получить",
   "Free Spin Bonus": "Бонус фриспины",
   "Claim €950 welcome bonus in 2 easy deposit bonuses. To redeem your offer - just follow these steps.": "Получите приветственный бонус в размере 950 евро за 2 простых депозитных бонуса. Чтобы получить бонус выполните следующие действия.",
-  "In order to receive Free spins daily, during 6 days, you should login at least once a day": "Чтобы получать ежедневные фриспины в течение 6 дней, вам необходимо заходить на сайт не реже одного раза в день"
+  "In order to receive Free spins daily, during 6 days, you should login at least once a day": "Чтобы получать ежедневные фриспины в течение 6 дней, вам необходимо заходить на сайт не реже одного раза в день",
+  "Your file is more than 30MB":"Ваш файл больше 30 МБ",
+  "Document Type": "Тип документа",
+  "Document Number": "Номер документа",
+  "Document Expire Date": "Срок действия документа",
+  "Upload a copy of your passport (color image)": "Загрузите копию паспорта (цветное изображение)",
+  "Upload the front image of the ID Card/Passport (color image)": "Загрузите изображение лицевой стороны удостоверения личности/паспорта (цветное изображение)",
+  "Upload the back image of the ID Card/Passport (color image)": "Загрузите изображение обратной стороны удостоверения личности/паспорта (цветное изображение)",
+  "Confirm And Continue": "Подтвердить и Продолжить",
+  "New Image": "Новое изображение",
+  "Account Confirmation": "Подтверждение аккаунта",
+  "Confirmed": "Confirmed",
+  "Sex": "Пол"
 
 
 }

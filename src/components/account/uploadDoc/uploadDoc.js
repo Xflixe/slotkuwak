@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
+import {UseEvent} from "../../../core/hooks/useEvent";
 
 const UploadDoc = ({id,onSelect,title, progress}) =>{
 
     const {t}=useTranslation()
     const [inArea, setInArea] = useState(false);
     const [result,setResult] = useState(null)
-
+    const event = UseEvent()
     useEffect(() => {
         onSelect(result)
     }, [result]);
@@ -15,7 +16,17 @@ const UploadDoc = ({id,onSelect,title, progress}) =>{
     const dropHandler=(ev)=> {
         ev.preventDefault();
         let files = ev.dataTransfer.files; // Array of all files
-        fileReader(files[0])
+        if(files[0].size > 31457280){
+            event.emit('notify', {
+                show:true,
+                text: t('Your file is more than 30MB'),
+                type:'error',
+                title:t('Error')
+            })
+        }else{
+            fileReader(files[0])
+        }
+
     }
     const chooseFile = (e)=>{
         if(e.target?.files.length>0){
@@ -25,6 +36,7 @@ const UploadDoc = ({id,onSelect,title, progress}) =>{
     }
     const fileReader = (file) => {
         let reader = new FileReader();
+        console.log(reader,file)
         reader.onload = function(e) {
             setResult(e.target.result)
         }

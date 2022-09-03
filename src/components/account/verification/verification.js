@@ -12,6 +12,7 @@ import {useHistory, useParams} from "react-router-dom";
 import moment from "moment";
 import {ERRORS} from "../../../core/utils/errors";
 import {arrowLeftBack} from "../../../assets/img/icons/icons";
+import {UseEvent} from "../../../core/hooks/useEvent";
 
 
 const currency = [
@@ -22,20 +23,35 @@ const currency = [
 ]
 
 
-const passportType= [
-    {id: "id_card", title: "ID Card"},
-    {id: "passport",title: "Passport"},
-    {id: "resident_identification",title: "Resident Identification"},
-]
+const passportType= {
+    "ru": [
+        {id: "id_card", title: "Удостоверения личности"},
+        {id: "passport",title: "Паспорт"},
+        {id: "resident_identification",title: "Идентификация резидента"}
+    ],
+    "en": [
+        {id: "id_card", title: "ID Card"},
+        {id: "passport",title: "Passport"},
+        {id: "resident_identification",title: "Resident Identification"}
+    ]
+}
 
-const gender = [
-    { id:"F",title:"Female",},
-    { id:"M",title:"Male",}
-]
+
+const gender = {
+    "ru": [
+        {id:"F",title:"женский"},
+        {id:"M",title:"Мужской"}
+    ],
+    "en": [
+        {id:"F",title:"Female"},
+        {id:"M",title:"Male"}
+    ]
+}
 
 const Confirmation = () => {
-    const {t} = useTranslation();
+    const {t,i18n} = useTranslation();
     const {lang} = useParams()
+    const ev = UseEvent()
     const history = useHistory()
     const {otp, PHONE,EMAIL,CLOSE,ERROR,MULTI} = useOTP();
     const [infoData, setInfoData] = useState({
@@ -201,8 +217,16 @@ const Confirmation = () => {
                 },loader:setLoader}).then(response=>{
                 if(response.status){
                     setInfoData({...infoData,requestId:response.data.data})
-
                     setStep(2)
+                }else{
+                    if(response?.error){
+                        ev.emit('notify', {
+                            show:true,
+                            text:response?.error?.message,
+                            type:'error',
+                            title:t('Error')
+                        })
+                    }
                 }
             }).catch(e=>{
                 ERROR({error:t("error")})
@@ -215,7 +239,6 @@ const Confirmation = () => {
         let error = _.chain(documents).map((v,k)=>{
             if(k==="doc_expire_date"){
                 if(v){
-
                     if(v === "MM-DD-YYYY" || v.split("-")[0].length !==4){
                         return {key:k,value:undefined}
                     }
@@ -223,7 +246,16 @@ const Confirmation = () => {
             }
             return {key:k,value:v}
         }).filter(v=>!v.value).map(v=>v.key).value();
+
+        // documents.passportType === "passport"
+        if(documents.passportType === "passport"){
+            let ind = error.indexOf("back");
+            if (ind !== -1) {
+                error.splice(ind, 1);
+            }
+        }
         if(error.length>0){
+            console.log(error)
             setErrors([...error])
         }else{
 
@@ -240,7 +272,16 @@ const Confirmation = () => {
                                 CLOSE();
                                 window.pushEvent(t("The operation was performed successfully"),"success")
                                 history.push(`/${lang}/account/info`)
-                            }else{
+                            }
+                            else{
+                                if(response?.error){
+                                    ev.emit('notify', {
+                                        show:true,
+                                        text:response?.error?.message,
+                                        type:'error',
+                                        title:t('Error')
+                                    })
+                                }
                                 switch (response?.error?.data?.mobile){
                                     case "mobile_duplicate_error":
                                         ERROR({error:t(ERRORS["mobile_duplicate_error"])})
@@ -365,9 +406,9 @@ const Confirmation = () => {
                                                         value={infoData.email}
                                                         onChange={e => !readOnly?setInfoData({...infoData,email:e.target.value}):''}
                                                     />
-                                                    <label htmlFor="email">Email</label>
+                                                    <label htmlFor="email">{t('Email')}</label>
                                                     {
-                                                        infoData?.emailConfirmed===1?<span className="confirmed">Confirmed</span>: null
+                                                        infoData?.emailConfirmed===1?<span className="confirmed">{t('Confirmed')}</span>: null
                                                             /*<button
                                                                 onClick={()=>{
                                                                     if(infoData.email.trim().length>0){
@@ -408,7 +449,7 @@ const Confirmation = () => {
                                             <div className="col-12 col-md-6">
                                                 <div className={`${error("gender")}`}>
                                                 <SelectBox
-                                                    data={gender}
+                                                    data={gender[i18n.language]}
                                                     value={infoData.gender}
                                                     placeholder={t("Sex")}
                                                     id={'gender'}
@@ -475,19 +516,13 @@ const Confirmation = () => {
 
                                                     <div className="col-12 col-md-6">
                                                         <SelectBox
-                                                            data={passportType}
-                                                            placeholder={"Document Type"}
+                                                            data={passportType[i18n.language]}
+                                                            placeholder={t('Document Type')}
                                                             value={documents.passportType}
                                                             error={error("passportType")}
                                                             onSelect={(e)=> setDocuments({...documents,passportType:e.id})}
 
                                                         />
-                                                       {/* <Select data={passportType} value={documents.passportType} label={t("Document Type")}
-                                                                plData={''} plName={t("Choose type")}
-                                                                id={'passportType'}
-                                                                error={error("passportType")}
-                                                                onSelect={(e)=> setDocuments({...documents,passportType:e})}
-                                                        />*/}
                                                     </div>
 
                                                     <div className="col-12 col-md-6">
@@ -519,21 +554,32 @@ const Confirmation = () => {
                                                             <label htmlFor="dob">{t("Document Expire Date")}</label>
                                                         </div>
                                                     </div>
-                                                    <div className={`col-12 col-md-6 ${error("front")}`}>
-                                                        <UploadDoc
-                                                            id={"front"}
-                                                            onSelect={e=>setDocuments({...documents,front:e})}
-                                                            title={"Upload a photo of the first spread or passport/ID card front side."}
-                                                        />
 
-                                                    </div>
-                                                    <div className={`col-12 col-md-6 ${error("front")}`}>
-                                                        <UploadDoc
-                                                            id={"back"}
-                                                            onSelect={e=>setDocuments({...documents,back:e})}
-                                                            title={"Upload a photo of the first spread or passport/ID card front side."}
-                                                        />
-                                                    </div>
+                                                    {
+                                                        documents.passportType !== "" && (
+                                                            <>
+                                                                <div className={`col-12 col-md-6 ${error("front")}`}>
+                                                                    <UploadDoc
+                                                                        id={"front"}
+                                                                        onSelect={e=>setDocuments({...documents,front:e})}
+                                                                        title={`${documents.passportType === "passport"? t('Upload a copy of your passport (color image)'):t('Upload the front image of the ID Card/Passport (color image)')}`}
+                                                                    />
+
+                                                                </div>
+                                                                {
+                                                                    documents.passportType !== "passport" && (
+                                                                        <div className={`col-12 col-md-6 ${error("front")}`}>
+                                                                            <UploadDoc
+                                                                                id={"back"}
+                                                                                onSelect={e=>setDocuments({...documents,back:e})}
+                                                                                title={"Upload the back image of the ID Card/Passport (color image)"}
+                                                                            />
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            </>
+                                                        )
+                                                    }
 
                                                     {/*<div className={"error-text"}>{t("error")}</div>*/}
 
