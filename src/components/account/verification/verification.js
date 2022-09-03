@@ -215,7 +215,8 @@ const Confirmation = () => {
         let error = _.chain(documents).map((v,k)=>{
             if(k==="doc_expire_date"){
                 if(v){
-                    if(v === "MM-DD-YYYY"){
+
+                    if(v === "MM-DD-YYYY" || v.split("-")[0].length !==4){
                         return {key:k,value:undefined}
                     }
                 }
