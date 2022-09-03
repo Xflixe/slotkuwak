@@ -6,8 +6,7 @@ import {Config} from "../config";
 import {query_string} from "../utils";
 import {useUser} from "../hooks/useUser";
 const http =  axios.create({
-    baseURL: '/',
-    timeout:10000
+    baseURL: '/'
 })
 const loaders = UseEvent();
 
