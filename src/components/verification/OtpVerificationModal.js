@@ -128,7 +128,7 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                     onClose();
                     return;
                 }
-                if(!codeRequest){
+                if(!code.length !==4){
                     ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
                     //window.pushEvent(t('Please Request SMS Code'),'error');
                     return;

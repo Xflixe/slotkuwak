@@ -10,7 +10,6 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
     const {t} = useTranslation()
     const [error,setError]=useState("")
     const [loader,setLoader]=useState(false)
-    const [codeRequest,setCodeRequest] = useState(false);
     let [reSend,setReSend]=useState(-1)
     const [code,setCode]=useState("")
     const ev  = UseEvent()
@@ -32,10 +31,8 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
                 if(response.status){
                     setCode("")
                     setReSend(response.data.data.remaining)
-                    setCodeRequest(true);
                 }else {
                     setError('error');
-                    setCodeRequest(false);
                 }
 
             }).catch(reason => setError(reason))
@@ -76,14 +73,13 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
 
             }
         }
-        setCodeRequest(true);
     },[reSend])
 
     return (
         <NewModal title={title?title:t('Email Verification')} onClose={()=>onClose()} contentStyle={{maxWidth:'500px'}}>
             <form onSubmit={e=>{
                 e.preventDefault();
-                if(!codeRequest){
+                if(code.length !== 4){
                     ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
                     //window.pushEvent(t('Please Request SMS Code'),'error');
                     return;
@@ -95,7 +91,6 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
                         setError("")
                     },2000)
                 }else{
-                    setCodeRequest(false);
                     if(verify){
                         onVerify()
                     }else{

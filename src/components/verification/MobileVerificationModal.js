@@ -46,10 +46,10 @@ export const MobileVerificationModal = ({number,prefix,onSubmit,err,send,save,ve
                 if(response.status){
                     setCode("")
                     setReSend(response.data.data.remaining);
-                    setCodeRequest(true);
+                   // setCodeRequest(true);
                 }else {
                     setError('error');
-                    setCodeRequest(false);
+                    //setCodeRequest(false);
                 }
             })
     }
@@ -95,14 +95,14 @@ export const MobileVerificationModal = ({number,prefix,onSubmit,err,send,save,ve
 
             }
         }
-        setCodeRequest(true);
+        //setCodeRequest(true);
     },[reSend])
 
     return (
         <NewModal title={title?title:t('Phone Verification')} onClose={()=>onClose()} contentStyle={{maxWidth:'500px' }}>
             <form onSubmit={e=>{
                 e.preventDefault();
-                if(!codeRequest){
+                if(code.length !==4){
                     ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
                     //window.pushEvent('Please Request SMS Code','error');
                     return;
@@ -111,7 +111,7 @@ export const MobileVerificationModal = ({number,prefix,onSubmit,err,send,save,ve
                     ev.emit('notify', {show:true, text: t('Incorrect sms code'), type:'error', title:t('Error')})
                     //window.pushEvent("Incorrect sms code","error");
                 }else{
-                    setCodeRequest(false);
+                    //setCodeRequest(false);
                     if(verify){
                         onVerify()
                     }else{
