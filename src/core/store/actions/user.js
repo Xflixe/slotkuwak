@@ -180,6 +180,7 @@ const verification=({data,loader})=>{
         });
 }
 const verificationStep1=({data,loader})=>{
+    console.log(data)
     return  http.post({
         url:Config.User.VERIFICATIONSTEP1,
         data:{

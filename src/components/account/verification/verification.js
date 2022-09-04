@@ -27,12 +27,12 @@ const passportType= {
     "ru": [
         {id: "id_card", title: "Удостоверения личности"},
         {id: "passport",title: "Паспорт"},
-        {id: "resident_identification",title: "Идентификация резидента"}
+        {id: "resident_identification",title: "Вид на жительство"}
     ],
     "en": [
         {id: "id_card", title: "ID Card"},
         {id: "passport",title: "Passport"},
-        {id: "resident_identification",title: "Resident Identification"}
+        {id: "resident_identification",title: "Residence Permit"}
     ]
 }
 
@@ -182,7 +182,6 @@ const Confirmation = () => {
                         }
                     })))
                 }else{
-
                     getInfo();
                 }
             }
@@ -193,7 +192,7 @@ const Confirmation = () => {
         return errors.indexOf(key)>-1?"error":""
     }
 
-    const nextStep = ()=>{
+    const nextStep = (smsCode='')=>{
         setErrors([])
         let error =  _.chain(infoData).map((v,k)=>{
             if(["mobileConfirmed","emailConfirmed","mobilePrefix","mobile","email","requestId"].indexOf(k) > -1){
@@ -212,20 +211,47 @@ const Confirmation = () => {
         if(error.length>0){
             setErrors([...error])
         }else{
+
+            let nd = {...infoData};
+            if(smsCode !== ''){
+                nd = {...infoData,otp:smsCode}
+            }
+
             Actions.User.verificationStep1({data:{
-                    ...infoData
+                    ...nd
                 },loader:setLoader}).then(response=>{
                 if(response.status){
                     setInfoData({...infoData,requestId:response.data.data})
                     setStep(2)
                 }else{
                     if(response?.error){
-                        ev.emit('notify', {
-                            show:true,
-                            text:response?.error?.message,
-                            type:'error',
-                            title:t('Error')
-                        })
+                        let key = _.keys(response?.error?.data)[0];
+                        let val = response?.error?.data[key];
+
+                        switch (val){
+                            case "mobile":
+                                PHONE({
+                                    prefix:infoData.mobilePrefix,
+                                    number:infoData.mobile,
+                                    send:"/us/v2/api/secured/personal/info/verify/otp/get",
+                                    permitAll:false,
+                                    save:e=>{
+                                        if(e){
+                                            nextStep(e);
+                                            CLOSE();
+                                        }
+                                    }
+                                })
+                                break;
+                            default:
+                                ev.emit('notify', {
+                                    show:true,
+                                    text:response?.error?.message,
+                                    type:'error',
+                                    title:t('Error')
+                                })
+                                break;
+                        }
                     }
                 }
             }).catch(e=>{
@@ -349,7 +375,7 @@ const Confirmation = () => {
                                                             value={infoData.mobilePrefix}
                                                             placeholder={t("Prefix")}
                                                             //plData={''} plName={t("Choose Sex")}
-                                                            onSelect={(e)=> !readOnly?setInfoData({...infoData,mobilePrefix:e.id}):''}
+                                                            onSelect={(e)=> (!readOnly && infoData?.mobileConfirmed !==1)?setInfoData({...infoData,mobilePrefix:e.id}):''}
                                                         />
                                                     </div>
                                                     <div className={`input-label-border`} style={{flex:1,position: "relative"}}>
@@ -359,7 +385,7 @@ const Confirmation = () => {
                                                             id="mobile"
                                                             className="for-confirm"
                                                             value={infoData.mobile}
-                                                            onChange={e => !readOnly?setInfoData({...infoData,mobile:e.target.value}):''}
+                                                            onChange={e => (!readOnly && infoData?.mobileConfirmed !==1)?setInfoData({...infoData,mobile:e.target.value}):''}
                                                         />
                                                         <label htmlFor="phone">{t("Phone")}</label>
                                                         {
@@ -404,7 +430,7 @@ const Confirmation = () => {
                                                         id="email"
                                                         className="for-confirm"
                                                         value={infoData.email}
-                                                        onChange={e => !readOnly?setInfoData({...infoData,email:e.target.value}):''}
+                                                        onChange={e => (!readOnly && infoData?.emailConfirmed !==1)?setInfoData({...infoData,email:e.target.value}):''}
                                                     />
                                                     <label htmlFor="email">{t('Email')}</label>
                                                     {

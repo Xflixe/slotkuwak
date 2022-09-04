@@ -121,14 +121,14 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
     return (
         <NewModal title={(t(title)).concat(' ',(selectedSource?.type === 'email'? t('via Email'): t('via Phone')))}
                   onClose={()=>onClose()}
-                  contentStyle={{maxWidth:'500px' }}>
+                  contentStyle={{maxWidth:'500px'}}>
             <form onSubmit={e=>{
                 e.preventDefault();
                 if(!sourceId){
                     onClose();
                     return;
                 }
-                if(!code.length !==4){
+                if(code.length !== 4){
                     ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
                     //window.pushEvent(t('Please Request SMS Code'),'error');
                     return;
