@@ -102,7 +102,6 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
 
     }
     useEffect(()=>{
-
         if(reSend===-1){
             if(window.reSendInterval){
                 clearInterval(window.reSendInterval)
@@ -114,7 +113,6 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                     setReSend(--reSend)
 
                 },1000)
-
             }
         }
         setCodeRequest(true);
@@ -131,11 +129,13 @@ export const OtpVerificationModal = ({err,send,save,verify,onClose,additionalPar
                     return;
                 }
                 if(!codeRequest){
-                    window.pushEvent(t('Please Request SMS Code'),'error');
+                    ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
+                    //window.pushEvent(t('Please Request SMS Code'),'error');
                     return;
                 }
                 if(!code){
-                    window.pushEvent(t("Incorrect sms code"),"error");
+                    ev.emit('notify', {show:true, text: t('Incorrect sms code'), type:'error', title:t('Error')})
+                    //window.pushEvent(t("Incorrect sms code"),"error");
                 }else{
                     setCodeRequest(false);
                     if(verify){

@@ -84,11 +84,13 @@ export const EmailVerificationModal = ({email,err,onSubmit,onClose,send,save,ver
             <form onSubmit={e=>{
                 e.preventDefault();
                 if(!codeRequest){
-                    window.pushEvent(t('Please Request SMS Code'),'error');
+                    ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
+                    //window.pushEvent(t('Please Request SMS Code'),'error');
                     return;
                 }
                 if(!code){
-                    window.pushEvent(t("Incorrect sms code"),"error");
+                    ev.emit('notify', {show:true, text: t('Incorrect sms code'), type:'error', title:t('Error')})
+                    //window.pushEvent(t("Incorrect sms code"),"error");
                     setTimeout(()=>{
                         setError("")
                     },2000)

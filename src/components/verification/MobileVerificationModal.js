@@ -103,11 +103,13 @@ export const MobileVerificationModal = ({number,prefix,onSubmit,err,send,save,ve
             <form onSubmit={e=>{
                 e.preventDefault();
                 if(!codeRequest){
-                    window.pushEvent('Please Request SMS Code','error');
+                    ev.emit('notify', {show:true, text: t('Please Request SMS Code'), type:'error', title:t('Error')})
+                    //window.pushEvent('Please Request SMS Code','error');
                     return;
                 }
                 if(!code){
-                    window.pushEvent("Incorrect sms code","error");
+                    ev.emit('notify', {show:true, text: t('Incorrect sms code'), type:'error', title:t('Error')})
+                    //window.pushEvent("Incorrect sms code","error");
                 }else{
                     setCodeRequest(false);
                     if(verify){
