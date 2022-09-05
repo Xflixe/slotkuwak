@@ -113,6 +113,7 @@ const Confirmation = () => {
     const getMobileCodeList = ()=> {
         Actions.User.getMobileCodeList().then(response=>{
             if(response.status){
+                //console.log('setMobileCode',mobileCode)
                 setMobileCode(_.map(response.data, (v,k)=> {
                     return _.map(v,(val) => {return {id:val.code,title:val.title,code:val.iso3} })
                 })[0])
@@ -365,20 +366,21 @@ const Confirmation = () => {
                                             <div className="col-12 d-none d-md-flex">
                                                 <div className="form-title">{t("Information")}</div>
                                             </div>
-                                            <div className="col-12 col-md-6">
+
+
+                                            {/*<div className="col-12 col-md-6">
                                                 <div style={{display:'flex',width:"100%"}}>
-                                                    <div style={{width:"100px",marginRight: '10px'}}>
+                                                    <div id="verif_prefix" data-text={t('Optional')} style={{width:"100px",marginRight: '10px'}}>
                                                         <SelectBox
                                                             id={"prefix"}
                                                             search={true}
                                                             data={mobileCode}
                                                             value={infoData.mobilePrefix}
                                                             placeholder={t("Prefix")}
-                                                            //plData={''} plName={t("Choose Sex")}
                                                             onSelect={(e)=> (!readOnly && infoData?.mobileConfirmed !==1)?setInfoData({...infoData,mobilePrefix:e.id}):''}
                                                         />
                                                     </div>
-                                                    <div className={`input-label-border`} style={{flex:1,position: "relative"}}>
+                                                    <div id="verif_mob" data-text={t('Optional')} className={`input-label-border`} style={{flex:1,position: "relative"}}>
                                                         <input
                                                             type="number"
                                                             name="mobile"
@@ -390,34 +392,6 @@ const Confirmation = () => {
                                                         <label htmlFor="phone">{t("Phone")}</label>
                                                         {
                                                             infoData?.mobileConfirmed===1?<span className="confirmed">{t("Confirmed")}</span>: null
-                                                                /*<button
-                                                                    type="button"
-                                                                    className="btn-confirm"
-                                                                    onClick={()=>{
-                                                                        if(infoData?.mobile === ''){
-                                                                            window.pushEvent(t("Fill Mobile"),"error");
-                                                                            return;
-                                                                        }
-                                                                        if(infoData?.mobile.trim().length>0){
-                                                                            PHONE({
-                                                                                prefix:infoData.mobilePrefix,
-                                                                                number:infoData.mobile,
-                                                                                send:"/os/v1/api/secured/otp/profile-verification-mobile",
-                                                                                verify:"/os/v1/api/secured/otp/profile-verification-mobile",
-                                                                                save:e=>{
-                                                                                    if(e){
-                                                                                        setInfoData({...infoData,mobileConfirmed:1});
-                                                                                        window.pushEvent(t("The operation was performed successfully"),"success");
-                                                                                        CLOSE();
-                                                                                    }
-
-                                                                                }
-                                                                            })
-                                                                        }
-                                                                    }}
-                                                                >
-                                                                    {t("Confirm")}
-                                                                </button>*/
                                                         }
                                                     </div>
                                                 </div>
@@ -435,31 +409,9 @@ const Confirmation = () => {
                                                     <label htmlFor="email">{t('Email')}</label>
                                                     {
                                                         infoData?.emailConfirmed===1?<span className="confirmed">{t('Confirmed')}</span>: null
-                                                            /*<button
-                                                                onClick={()=>{
-                                                                    if(infoData.email.trim().length>0){
-                                                                        EMAIL({
-                                                                                email:infoData.email,
-                                                                                send:"/os/v1/api/secured/otp/profile-verification-email",
-                                                                                verify:"/os/v1/api/secured/otp/profile-verification-email",
-                                                                                save:e=>{
-                                                                                    if(e){
-                                                                                        window.pushEvent(t("The operation was performed successfully"),"success");
-                                                                                        setInfoData({...infoData,emailConfirmed:1});
-                                                                                        CLOSE()
-                                                                                    }
-                                                                                }
-                                                                        })
-                                                                    }
-                                                                }}
-                                                                type="button"
-                                                                className="btn-confirm"
-                                                            >
-                                                                {t("Confirm")}
-                                                            </button>*/
                                                     }
                                                 </div>
-                                            </div>
+                                            </div>*/}
                                             <div className="col-12 col-md-6">
                                                 <div  className={`input-label-border ${error("firstName")}`}>
                                                     <input onChange={e => !readOnly?setInfoData({...infoData,firstName:e.target.value}):''} value={infoData.firstName} type="text" name="name" id="name"/>

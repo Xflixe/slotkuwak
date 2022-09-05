@@ -241,5 +241,6 @@
   "Upload the front image of the ID Card/Passport (color image)": "Upload the front image of the ID Card/Passport (color image)",
   "Upload the back image of the ID Card/Passport (color image)": "Upload the back image of the ID Card/Passport (color image)",
   "New Image": "New Image",
-  "Confirmed": "Confirmed"
+  "Confirmed": "Confirmed",
+  "Optional": "Optional"
 }
