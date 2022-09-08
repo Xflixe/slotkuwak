@@ -4,7 +4,7 @@ const main = React.lazy(() => import(("./screens/main/mainScreen")));
 const contact = React.lazy(() => import(("./screens/contact/contactScreen")));
 const Redirect = React.lazy(() => import(("./components/redirect/redirect")));
 const slots = React.lazy(() => import(("./screens/slots/slotsScreen")));
-const promo = React.lazy(() => import(("./screens/promo/promoScreen")));
+const promo = React.lazy(() => import(("./screens/promo/promo")));
 const promotions = React.lazy(() => import(("./screens/promotions/promotionScreen")));
 const promos = React.lazy(() => import(("./screens/promo/promoScreen")));
 const welcomeBonus = React.lazy(() => import(("./screens/promotions/welcomeBonusScreen")));
@@ -26,9 +26,6 @@ const playSlot = React.lazy(() => import(("./screens/playSlot/PlaySlot")));
 const verification = React.lazy(() => import(("./screens/verification/verificationScreen")));
 const passRecover = React.lazy(() => import(("./screens/user/passRecover/recoverPassword")));
 const turbo = React.lazy(() => import(("./screens/turbo/turbo")));
-
-
-
 
 export const guestRoutes = [
     { path: '/', name: 'Home', exact:true, component: Redirect, page:"main" },
@@ -58,9 +55,6 @@ export const guestRoutes = [
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
     { path: '/:lang/turbo', name: 'turbo', exact:false, component: turbo, page:"turbo" },
-
-
-
 ];
 
 export const userRoutes = [
@@ -98,7 +92,6 @@ export const userRoutes = [
     { path: '/:lang/loader', name: 'verification', exact:false, component:()=><div>please wait</div>, page:"loader"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
     { path: '/:lang/turbo', name: 'turbo', exact:false, component: turbo, page:"turbo" },
-
 ];
 
 

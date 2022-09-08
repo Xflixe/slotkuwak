@@ -11,7 +11,6 @@ const PromoCard =(props)=> {
     },[props.count])
 
     return (
-
             _.map(data, (v,index)=>{
                 return  (
                     <div className="col-12 col-md-6 col-lg-4" key={index}>

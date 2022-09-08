@@ -94,8 +94,6 @@ const PromoScreen = () =>{
                 header? <Header page={"promo"}/>:''
             }
 
-
-            {/*<iframe width="100%" height={frameHeight} src={} />*/}
             <div className={"promotion"}>
                 <iframe
                     //ref={ref}
@@ -108,51 +106,7 @@ const PromoScreen = () =>{
 
                 />
             </div>
-            {/*<div className="container slider-container" style={{margin:'10px auto',borderRadius:'6px'}}>
-                <NewSWP data={slideData} />
-            </div>
-            <main className="main">
-                <div className="container wrapper">
 
-                    <ul className="d-flex align-items-center flex-wrap promo-tabs list-unstyled">
-                        <li className="nav-item" role="presentation">
-                            <a href="#" className="nav-link active"> {t("All")} </a>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <a href="#" className="nav-link"> {t("Casino")} </a>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <a href="#" className="nav-link"> {t("Sports")} </a>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <a href="#" className="nav-link"> {t("Shop")} </a>
-                        </li>
-                    </ul>
-                    <div className="col-12 d-flex align-items-center section-head">
-                        <a href="#">
-                            <div className="section-heading">{t("all Provider")}</div>
-                        </a>
-                    </div>
-
-                    <div className="tab-content promo-list" id="myTabContent">
-                        <div>
-                            <div className="row">
-                                <PromoCard count={20} data={[
-                                    {id:1,icon:promo1},
-                                    {id:1,icon:promo2},
-                                    {id:1,icon:promo3},
-                                    {id:1,icon:promo4},
-                                    {id:1,icon:promo5},
-                                    {id:1,icon:promoCardCover}
-                                ]} />
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </main>*/}
 
             {
                 footer? <Footer style={{marginTop:0}}/>:''

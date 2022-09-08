@@ -68,6 +68,16 @@ const PromoModal = ({data,onUpdate})=>{
                     </div>
                 </NewModal>
             )
+        case 'depositX2FpsBonus':
+            return (
+                <NewModal title={t("Free Spin Bonus")} onClose={()=>modalClose(data?.id)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
+                    <div className="promo-modal-box">
+                        <h3>{i18n.language === "en" ?'Free Spin Bonus Activated':'Бесплатные бонус фриспины активированы!'}  </h3>
+                        <p>{i18n.language === "en" ?`${data?.specifiers?.quantity} FREESPINS have been activated on your account, you can start playing ${data?.specifiers?.gameName} by ${data?.specifiers?.providerName} immediately.`:`На вашем аккаунте активировано ${data?.specifiers?.quantity} бесплатных фриспинов. Вы можете сразу начать играть ${data?.specifiers?.gameName} от ${data?.specifiers?.providerName}`}</p>
+                        <a href={`/${i18n.language}/slots/freespin`} onClick={()=>modalClose(data?.id)}>{t('Claim')}</a>
+                    </div>
+                </NewModal>
+            )
 
         default:
             return (

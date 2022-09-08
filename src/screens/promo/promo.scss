@@ -1,0 +1,35 @@
+.action_row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px 0;
+  .filter {
+    flex: 1;
+    button {
+      flex: 1 1;
+      max-width: 120px;
+      margin-right: 10px;
+      background: #1D243A;
+      font-family: "Proxima Regular", Helvetica, sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: #4D5A7D;
+      border-radius: 6px;
+      padding: 0 16px;
+      height: 40px;
+      position: relative;
+      text-align: center;
+      line-height: 15px;
+      &.active {
+        color: #000;
+        background: #FFBC00;
+
+      }
+      &:not(.active):hover {
+        cursor: pointer;
+        background: #1e263d;
+      }
+    }
+  }
+}
