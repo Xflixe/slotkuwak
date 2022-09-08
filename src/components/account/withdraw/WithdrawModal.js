@@ -133,6 +133,9 @@ const Withdraw = ({onClose})=>{
             .then(response=>{
                 if(response.status){
                     setExRate(response.data.data)
+                    if(withdraw?.amount){
+                        setCrypto(((User?.data?.accounts?.main?.amount / 1.02).toFixed(2) * response.data.data?.exchangeRate?.rateTo).toFixed(10))
+                    }
                 }else{
                     setExRate(null)
                     window.pushEvent(response.error?.message,"error")
@@ -167,7 +170,10 @@ const Withdraw = ({onClose})=>{
                                     placeholder={t("currency")}
                                     className="crypto-currency"
                                     value={selectedCurrency.id}
-                                    onSelect={e => setSelectedCurrency(e)}
+                                    onSelect={e => {
+
+                                        setSelectedCurrency(e)
+                                    }}
                                 />
                                 {
                                     exRate? <p style={{color:'#899194',fontSize:'12px',margin:'10px 5px 40px 5px'}}>
@@ -208,6 +214,7 @@ const Withdraw = ({onClose})=>{
                                                 <label htmlFor="amount">{t("EUR")}</label>
                                                 <div className="withdraw_max" onClick={()=>{
                                                      setWithdraw({...withdraw,amount: (User?.data?.accounts?.main?.amount / 1.02).toFixed(2) })
+                                                    setCrypto(((User?.data?.accounts?.main?.amount / 1.02).toFixed(2) * exRate?.exchangeRate?.rateTo).toFixed(10))
                                                 }}>{t('MAX')}</div>
                                                 {/*{t("Money")}*/}
                                             </div>
