@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.promo .mw {
+  max-width: 1110px;
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+}
+.promo .pr_head {
+  display: flex;
+  flex-direction: row;
+  height: 343px;
+  background: url("../img/wb_en.png") no-repeat center;
+  width: 100%;
+  background-size: cover !important;
+}
+.promo .lending-rules {
+  margin-top: 32px;
+  font-family: "Montserrat", sans-serif;
+}
+.promo .lending-rules .rules-wrap {
+  width: 100%;
+  color: #BEC5D9;
+  font-size: 14px;
+}
+.promo .lending-rules .rules-wrap img {
+  width: 100%;
+}
+.promo .lending-rules .rules-wrap h4 {
+  color: #FFFFFF;
+  font-size: 16px;
+}
+.promo .lending-rules .rules-wrap h5 {
+  color: #FFFFFF;
+}
+.promo .lending-rules .rules-wrap > p {
+  margin-top: 20px;
+  max-width: 750px;
+  font-size: 14px;
+}
+.promo .lending-rules .rules-wrap .steps {
+  margin: 0 0 40px;
+  padding: 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  border-bottom: 1px solid #212A3E;
+}
+.promo .lending-rules .rules-wrap .steps li {
+  margin-right: 70px;
+  padding: 0 0 20px;
+}
+.promo .lending-rules .rules-wrap .steps li div {
+  color: #BEC5D9;
+}
+.promo .lending-rules .rules-wrap .steps li p {
+  color: #FFFFFF;
+  font-size: 18px;
+  margin: 0;
+}
+.promo .lending-rules .rules-wrap ul.step_road {
+  display: flex;
+  flex-direction: row;
+  padding: 30px 0;
+  border-bottom: 1px solid #262E41;
+}
+.promo .lending-rules .rules-wrap ul.step_road li {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 20px;
+}
+.promo .lending-rules .rules-wrap ul.step_road li .num {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 36px;
+  color: #F8C528;
+  margin-right: 25px;
+}
+.promo .lending-rules .rules-wrap ul.step_road li .text h5 {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+.promo .lending-rules .rules-wrap ul.step_road li .text p {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+.promo .lending-rules .rules-wrap section {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.promo .lending-rules .rules-wrap section .rules-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top: 25px;
+}
+.promo .lending-rules .rules-wrap section .rules-title span {
+  font-size: 14px;
+  color: #FFBC00;
+  font-weight: normal;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+.promo .lending-rules .rules-wrap section .rules-list {
+  padding: 14px;
+}
+.promo .lending-rules .rules-wrap section .rules-list li {
+  margin: 10px 0;
+}
+.promo .lending-rules .rules-wrap .sec-btn {
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 18px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #27B66C;
+  padding: 15px 55px;
+  margin: 20px 0 50px;
+}
+@media (max-width: 1180px) {
+  .promo .lending-rules {
+    margin: 30px;
+  }
+}
+@media (max-width: 1130px) {
+  .promo .pr_head {
+    height: 31vw;
+  }
+}
+@media (max-width: 900px) {
+  .promo .pr_head .pr_head_2 {
+    max-width: 40vw;
+    background-size: contain;
+  }
+  .promo .pr_head .pr_head_text h1 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .promo .lending-rules .rules-wrap ul.step_road {
+    margin: 0 30px;
+    flex-wrap: wrap;
+  }
+  .promo .lending-rules .rules-wrap ul.step_road li {
+    min-width: 260px;
+    max-width: 320px;
+    margin: 15px 0;
+  }
+}
+@media (max-width: 500px) {
+  .promo .pr_head {
+    background: url("../img/wb_mob_en.png") no-repeat center;
+    height: 62vw;
+  }
+}
+@media (max-width: 400px) {
+  .promo .lending-rules .rules-wrap ul.step_road {
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  .promo .lending-rules .rules-wrap ul.step_road li {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 15px 0;
+  }
+}
+@media (max-width: 350px) {
+  .promo .pr_head .pr_head_2 {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
