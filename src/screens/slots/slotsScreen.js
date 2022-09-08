@@ -1,12 +1,10 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {sl2, w2} from '../../assets/img/images';
-import {filter} from '../../assets/img/icons/icons';
+
 import {Footer, Header, NewSWP, ShowMore, SlotCard, Swp, PromoList} from "../../components";
 import "../../assets/styles/_select2.scss"
 import "./slotsScreen.scss"
 import {Actions, useTranslation} from "../../core";
 import _ from "lodash"
-import {CustomDropdown} from "../../components/dropdown/dropDown";
 import {useCount} from "../../core/hooks/useCount";
 import {
     icon61,
@@ -62,6 +60,9 @@ import mob_sp_ru from "../../assets/img/slide/sport/mobile/2ru.png";
 import {useNavigation} from "../../core/hooks/useNavigation";
 import {useUser} from "../../core/hooks/useUser";
 
+import banner1web from "../../assets/img/slide/main/w/banner1.png";
+import banner1mob from "../../assets/img/slide/main/m/banner1.png";
+import {UseEvent} from "../../core/hooks/useEvent"
 const slIcon = {
     '61':icon61,
     '70':icon70,
@@ -94,6 +95,8 @@ const slIcon = {
 const SlotsScreen = () =>{
     const {t,i18n} = useTranslation()
     const {count} = useCount()
+    const ev = UseEvent();
+    const {User,checkSession} = useUser();
     const [page,setPage]=useState(1)
     const [providers,setProviders]=useState([])
     const [filters,setFilters]=useState([])
@@ -103,7 +106,6 @@ const SlotsScreen = () =>{
     const [slMobNav,setSlMobNav] = useState(false)
     const [selectedProvider,setSelectedProvider]=useState({name:'All Providers'})
     const nav  = useNavigation();
-    const {User} = useUser();
     const [freeSpin, setFreeSpin] = useState(null);
 
     let params = useParams();
@@ -111,16 +113,19 @@ const SlotsScreen = () =>{
 
     const slideData = window.innerWidth > 767 ? {
             ru: [
+                {id:1, icon:banner1web, method:()=>slide1Action()},
                 {id: 2, icon: desk_casino_ru, url: `/ru/casino`},
                 {id: 4, icon: desk_sp_ru, url: `/ru/sport`},
                 {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id:1, icon:banner1web, method:()=>slide1Action()},
                 {id: 2, icon: desk_casino_en, url: `/en/casino`},
                 {id: 4, icon: desk_sp_en, url: `/en/sport`},
                 {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
             ],
             es: [
+                {id:1, icon:banner1web, method:()=>slide1Action()},
                 {id: 2, icon: desk_casino_en, url: `/es/casino`},
                 {id: 4, icon: desk_sp_en, url: `/es/sport`},
                 {id: 5, icon: img_desk_wb_en, url: `/es/promotions/welcome_bonus`},
@@ -128,16 +133,19 @@ const SlotsScreen = () =>{
 
         } : {
             ru: [
+                {id:1, icon:banner1mob, method:()=>slide1Action()},
                 {id: 2, icon: mob_casino_ru, url: `/ru/casino`},
                 {id: 4, icon: mob_sp_ru, url: `/ru/sport`},
                 {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id:1, icon:banner1mob, method:()=>slide1Action()},
                 {id: 2, icon: mob_casino_en, url: `/en/casino`},
                 {id: 4, icon: mob_sp_en, url: `/en/sport`},
                 {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
             ],
             es: [
+                {id:1, icon:banner1mob, method:()=>slide1Action()},
                 {id: 2, icon: mob_casino_en, url: `/es/casino`},
                 {id: 4, icon: mob_sp_en, url: `/es/sport`},
                 {id: 5, icon: img_mob_wb_en, url: `/es/promotions/welcome_bonus`},
@@ -157,7 +165,20 @@ const SlotsScreen = () =>{
     useEffect(()=>{
         setSelectedProvider(_.filter(providers,v=>v?.checked))
     },[providers])
-
+    const slide1Action = () =>{
+        checkSession().then(response=>{
+            if(response.status){
+                ev.emit('depositModal', true)
+            }else{
+                ev.emit('signUp', {
+                    show:true,
+                    onSuccess:function (e){
+                        console.log("success login",e)
+                    }
+                })
+            }
+        })
+    }
     const filteredSlotList = useMemo(()=>{
         let filtered =list;
         if(searchText.trim()?.length>0){

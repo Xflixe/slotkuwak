@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useNavigation} from "../../core/hooks/useNavigation";
 
-import {Balance, Footer, Guest, Header} from "../../components";
+import { Footer, Guest, Header} from "../../components";
 import "../../assets/styles/_select2.scss"
 import {useTranslation} from "../../core";
 

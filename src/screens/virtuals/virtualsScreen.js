@@ -28,6 +28,7 @@ import desk_sl_en from "../../assets/img/slide/slots/desktop/2en.png";
 import desk_sl_ru from "../../assets/img/slide/slots/desktop/2ru.png";
 import desk_sp_en from "../../assets/img/slide/sport/desktop/2en.png";
 import desk_sp_ru from "../../assets/img/slide/sport/desktop/2ru.png";
+import banner1web from "../../assets/img/slide/main/w/banner1.png";
 
 
 import img_mob_wb_ru from "../../assets/img/slide/wb_mob_ru.png";
@@ -38,37 +39,42 @@ import mob_sl_en from "../../assets/img/slide/slots/mobile/2en.png";
 import mob_sl_ru from "../../assets/img/slide/slots/mobile/2ru.png";
 import mob_sp_en from "../../assets/img/slide/sport/mobile/2en.png";
 import mob_sp_ru from "../../assets/img/slide/sport/mobile/2ru.png";
+import banner1mob from "../../assets/img/slide/main/m/banner1.png";
+import {UseEvent} from "../../core/hooks/useEvent"
+import {useUser} from "../../core/hooks/useUser"
 
 const VirtualsScreen = () =>{
     const  {t,i18n} = useTranslation()
     const {count} = useCount()
     const {lang}=useParams();
+    const ev = UseEvent();
+    const {User,checkSession} = useUser();
     const [page,setPage]=useState(1)
     const [providers,setProviders]=useState([])
     const [filters,setFilters]=useState([])
     const [list,setList]=useState([])
     const [selectedProvider,setSelectedProvider]=useState([])
     const [selectedFilters,setSelectedFilters] = useState([])
-    const [providerFilter,setProviderFilter]=useState(false);
-    const [filtersFilter,setFiltersFilter]=useState(false);
+
     const [searchText, setSearchText] = useState("")
-    const [selected,setSelected] = useState([])
-    const [showMobileFilter,setShowMobileFilter] = useState(false)
     const slideData =
         window.innerWidth > 767 ? {
             ru: [
+                {id:1, icon:banner1web, method:()=>slide1Action()},
                 {id: 4, icon: desk_sp_ru, url: `/ru/sport`},
                 {id: 3, icon: desk_sl_ru, url: `/ru/slots`},
                 {id: 2, icon: desk_casino_ru, url: `/ru/casino`},
                 {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id:1, icon:banner1web, method:()=>slide1Action()},
                 {id: 4, icon: desk_sp_en, url: `/en/sport`},
                 {id: 3, icon: desk_sl_en, url: `/en/slots`},
                 {id: 2, icon: desk_casino_en, url: `/en/casino`},
                 {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
             ],
             es: [
+                {id:1, icon:banner1web, method:()=>slide1Action()},
                 {id: 4, icon: desk_sp_en, url: `/es/sport`},
                 {id: 3, icon: desk_sl_en, url: `/es/slots`},
                 {id: 2, icon: desk_casino_en, url: `/es/casino`},
@@ -77,18 +83,21 @@ const VirtualsScreen = () =>{
 
         } : {
             ru: [
+                {id:1, icon:banner1mob, method:()=>slide1Action()},
                 {id: 4, icon: mob_sp_ru, url: `/ru/sport`},
                 {id: 3, icon: mob_sl_ru, url: `/ru/slots`},
                 {id: 2, icon: mob_casino_ru, url: `/ru/casino`},
                 {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id:1, icon:banner1mob, method:()=>slide1Action()},
                 {id: 4, icon: mob_sp_en, url: `/en/sport`},
                 {id: 3, icon: mob_sl_en, url: `/en/slots`},
                 {id: 2, icon: mob_casino_en, url: `/en/casino`},
                 {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
             ],
             es: [
+                {id:1, icon:banner1mob, method:()=>slide1Action()},
                 {id: 4, icon: mob_sp_en, url: `/es/sport`},
                 {id: 3, icon: mob_sl_en, url: `/es/slots`},
                 {id: 2, icon: mob_casino_en, url: `/es/casino`},
@@ -109,7 +118,20 @@ const VirtualsScreen = () =>{
             setPage(1)
         }
     },[selectedProvider,selectedFilters,searchText])
-
+    const slide1Action = () =>{
+        checkSession().then(response=>{
+            if(response.status){
+                ev.emit('depositModal', true)
+            }else{
+                ev.emit('signUp', {
+                    show:true,
+                    onSuccess:function (e){
+                        console.log("success login",e)
+                    }
+                })
+            }
+        })
+    }
     const homeClick = () => {
         setSelectedProvider(null);
         loadProvider();

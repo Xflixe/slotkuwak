@@ -46,10 +46,17 @@ const NewSWP = (props) =>{
                 _.map(data, (v,index)=>{
                     return  (
                         <SwiperSlide key={index}>
-                            <Link to={v?.url}>
-                                <div className="sl_img" style={{background: `url(${v.icon})`}} />
-                                {/*<img src={v.icon} alt="Bitcoin" />*/}
-                            </Link>
+                            {
+                                v?.method ?
+                                    <a  onClick={()=>v.method()}>
+                                        <div className="sl_img" style={{background: `url(${v.icon})`,cursor:'pointer'}}/>
+                                    </a>
+                                   :
+                                    <Link to={v?.url}>
+                                        <div className="sl_img" style={{background: `url(${v.icon})`}} />
+                                        {/*<img src={v.icon} alt="Bitcoin" />*/}
+                                    </Link>
+                            }
                         </SwiperSlide>
                     )
                 })
