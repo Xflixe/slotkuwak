@@ -18,7 +18,11 @@
   width: 100%;
   background-size: cover !important;
 }
+.promo .pr_head[data-lang=ru] {
+  background: url("../img/wb_ru.png") no-repeat center;
+}
 .promo .lending-rules {
+  padding-left: 20px;
   margin-top: 32px;
   font-family: "Montserrat", sans-serif;
 }
@@ -31,7 +35,7 @@
   width: 100%;
 }
 .promo .lending-rules .rules-wrap h4 {
-  color: #FFFFFF;
+  color: #ffba20;
   font-size: 16px;
 }
 .promo .lending-rules .rules-wrap h5 {
@@ -39,7 +43,6 @@
 }
 .promo .lending-rules .rules-wrap > p {
   margin-top: 20px;
-  max-width: 750px;
   font-size: 14px;
 }
 .promo .lending-rules .rules-wrap .steps {
@@ -168,6 +171,9 @@
   .promo .pr_head {
     background: url("../img/wb_mob_en.png") no-repeat center;
     height: 62vw;
+  }
+  .promo .pr_head[data-lang=ru] {
+    background: url("../img/wb_mob_ru.png") no-repeat center;
   }
 }
 @media (max-width: 400px) {

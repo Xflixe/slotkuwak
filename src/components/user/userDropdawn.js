@@ -170,10 +170,10 @@ const UserDropDawn = ({onClose,className,onUserStatus})=>{
                     <div className="lending-box">
                         <div className="lending-box-title">
                             <h6>{t("Welcome Bonus")}</h6>
-                            {wager?.item && <Link to={`/${i18n.language}/promotions`}>{t("See Rules")}</Link>}
+                            {wager?.item && <Link to={`/${i18n.language}/promo`}>{t("See Rules")}</Link>}
                         </div>
                         <p>{wager?.item?t('Bonus money must be wagered 35x before it can be converted into real money'):t('Claim €950 welcome bonus in 2 easy deposit bonuses. To redeem your offer - just follow these steps.')}</p>
-                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promotions`}>{t("Claim Bonus")}</Link>}
+                        {wager?.bonusClaimable && !wager?.item && <Link className="lending-button" to={`/${i18n.language}/promo`}>{t("Claim Bonus")}</Link>}
 
                         {
                             wager?.item && (

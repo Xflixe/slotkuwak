@@ -18,10 +18,14 @@
     background: url('../img/wb_en.png') no-repeat center;
     width: 100%;
     background-size: cover !important;
+    &[data-lang="ru"] {
+      background: url('../img/wb_ru.png') no-repeat center;
+    }
   }
 
   .lending-rules {
     //margin: 0 20px;
+    padding-left: 20px;
     margin-top: 32px;
     font-family: 'Montserrat',sans-serif;
 
@@ -35,13 +39,13 @@
         width: 100%;
       }
       h4 {
-        color: #FFFFFF;
+        color: #ffba20;
         font-size: 16px;
       }
       h5 {
         color: #FFFFFF;
       }
-      > p {margin-top: 20px;max-width: 750px;font-size: 14px}
+      > p {margin-top: 20px;font-size: 14px}
 
       .steps {
         margin: 0 0 40px;
@@ -187,6 +191,9 @@
     .pr_head {
       background: url('../img/wb_mob_en.png') no-repeat center;
       height: 62vw;
+      &[data-lang="ru"] {
+        background: url('../img/wb_mob_ru.png') no-repeat center;
+      }
     }
   }
 

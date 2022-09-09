@@ -2,13 +2,17 @@ import React,{useEffect,useState} from 'react'
 import _ from 'lodash'
 import {play} from "../../assets/img/icons/icons";
 import {promo1} from "../../assets/img/images";
+import {useTranslation} from "../../core";
 
 const PromoCard =(props)=> {
-    const [data,setData]= useState(props.data)
+    //const [data,setData]= useState(props.data)
     const [count,setCount] = useState(props.count || 5)
-    useEffect(()=> {
-        setCount(props.count)
-    },[props.count])
+    const {t,i18n} = useTranslation()
+    const [data,setData]= useState(props.data)
+
+    useEffect(()=>{
+        setData(props.data)
+    },[props.data])
 
     return (
             _.map(data, (v,index)=>{
@@ -17,18 +21,13 @@ const PromoCard =(props)=> {
                         <div className="promo-card">
                             <img
                                 src={v.icon}
-                                alt="Edge Out Eddie $2,500 Jackpot!"
+                                alt={v.title}
                                 className="promo-card-cover"
                             />
                             <div className="promo-card-body">
-                                <div className="promo-card-title">
-                                    Edge Out Eddie $2,500 Jackpot!
-                                </div>
-                                <p className="promo-card-paragraph">
-                                    Beat Eddie's multiplier every single week on a specified
-                                    game to share in a $2,500 prize pool!
-                                </p>
-                                <a href="#" className="btn-dy">read more</a>
+                                <div className="promo-card-title">{v.title}</div>
+                                <p className="promo-card-paragraph">{v.text}</p>
+                                <a href={`/${i18n.language}/${v.url}`} className="btn-dy">{t('read more')}</a>
                             </div>
                         </div>
                     </div>

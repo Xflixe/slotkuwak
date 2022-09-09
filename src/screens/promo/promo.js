@@ -6,6 +6,12 @@ import {
     promo3,
     promo4,
     promo5,
+    pr1_en,
+    pr1_ru,
+    fb_en,
+    fb_ru,
+    express_ru,
+    express_en
 } from '../../assets/img/promo/promo';
 import {Footer, Header, NewSWP, Swp} from "../../components";
 import PromoCard from "../../components/promo/promoCard";
@@ -27,24 +33,52 @@ const PromoScreen = () =>{
     const [footer, setFooter] = useState(true);
     const {lang} = useParams()
     const [filter,setFilter] = useState('all')
-    const promoData =  {
+    //const [promData,setPromData] = useState()
+    const promoData = {
         ru: [
             {
-                icon:promo1,
-                title:"Edge Out Eddie $2,500 Jackpot!",
-                text:"Beat Eddie's multiplier every single week on a specified game to share in a $2,500 prize pool!"
+                icon:pr1_ru,
+                url:"promotions/welcome_bonus",
+                title:"100% БОНУС НА ДЕПОЗИТ.",
+                text:"Внеси депозит и получи 100% бонус на депозит!"
+            },
+            {
+                icon:fb_ru,
+                url:"promotions/freespin_bonus",
+                title:"ВНЕСИТЕ ДЕПОЗИТ И ПОЛУЧИТЕ 2X ФРИСПИНЫ.",
+                text:"Внеси первый депозит и получи до 200 фриспинов!"
+            },
+            {
+                icon:express_ru,
+                url:"promotions/express_bonus",
+                title:"ЭКСПРЕСС БОНУС В СПОРТЕ.",
+                text:"Делай ставки, используй экспресс-бонус и увеличивай свою прибыль."
             }
         ],
         en: [
             {
-                icon:promo1,
-                title:"Edge Out Eddie $2,500 Jackpot!",
-                text:"Beat Eddie's multiplier every single week on a specified game to share in a $2,500 prize pool!"
+                icon:pr1_en,
+                url:"promotions/welcome_bonus",
+                title:"100% DEPOSIT BONUS.",
+                text:"Make a deposit and receive a 100% deposit bonus!"
+            },
+            {
+                icon:fb_en,
+                url:"promotions/freespin_bonus",
+                title:"DEPOSIT AND RECEIVE 2X FREESPINS.",
+                text:"Make a first deposit and receive up to 200 Freespins!"
+            },
+            {
+                icon:express_en,
+                url:"promotions/express_bonus",
+                title:"EXPRESS BONUS IN SPORTS.",
+                text:"Make a bet, use the Express bonus and boost your profit."
             }
         ]
     }
 
-
+    //useEffect(()=> {
+    //},[])
 
     return (
         <>

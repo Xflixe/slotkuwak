@@ -55,6 +55,11 @@ const PromoScreen = () =>{
                 User.isLogged? ev.emit('depositModal', true) : ev.emit('signUp',true)
             }
         }
+        if(!window.getLang){
+            window.getLang = function (){
+                return i18n.language
+            }
+        }
 
 
         return ()=>{
@@ -69,6 +74,9 @@ const PromoScreen = () =>{
             }
             if(window.depositModal){
                 delete  window.depositModal
+            }
+            if(window.getLang){
+                delete  window.getLang
             }
         }
     },[])
@@ -103,7 +111,6 @@ const PromoScreen = () =>{
                     className={"promotion-frame"}
                     width="100%" height="100%"
                     style={{height:frameHeight}}
-
                 />
             </div>
 

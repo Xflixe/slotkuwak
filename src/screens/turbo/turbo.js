@@ -35,20 +35,21 @@ import {
     dice_small
 
 } from "../../assets/img/turbo/icons";
-import desk_casino_ru from "../../assets/img/slide/casino/desktop/3ru.png";
-import desk_sp_ru from "../../assets/img/slide/sport/desktop/2ru.png";
-import img_desk_wb_ru from "../../assets/img/slide/wb_ru.png";
-import desk_casino_en from "../../assets/img/slide/casino/desktop/3en.png";
-import desk_sp_en from "../../assets/img/slide/sport/desktop/2en.png";
+
 import img_desk_wb_en from "../../assets/img/slide/wb_en.png";
-import mob_casino_ru from "../../assets/img/slide/casino/mobile/3ru.png";
-import mob_sp_ru from "../../assets/img/slide/sport/mobile/2ru.png";
+import img_desk_wb_ru from "../../assets/img/slide/wb_ru.png";
+import banner_en from "../../assets/img/slide/main/w/banner1.png";
+import banner_ru from "../../assets/img/slide/main/w/wb_ru.png";
+import express_ru from "../../assets/img/slide/express_ru.png";
+import express_en from "../../assets/img/slide/express_en.png";
+
 import img_mob_wb_ru from "../../assets/img/slide/wb_mob_ru.png";
-import mob_casino_en from "../../assets/img/slide/casino/mobile/3en.png";
-import mob_sp_en from "../../assets/img/slide/sport/mobile/2en.png";
 import img_mob_wb_en from "../../assets/img/slide/wb_mob_en.png";
-import banner1web from "../../assets/img/slide/main/w/banner1.png";
-import banner1mob from "../../assets/img/slide/main/m/banner1.png";
+import banner_mob_en from "../../assets/img/slide/main/m/banner1.png";
+import banner_mob_ru from "../../assets/img/slide/main/m/wb_mob_ru.png";
+import express_mob_ru from "../../assets/img/slide/express_mob_en.png";
+import express_mob_en from "../../assets/img/slide/express_mob_en.png";
+
 import {UseEvent} from "../../core/hooks/useEvent"
 import {useUser} from "../../core/hooks/useUser"
 
@@ -61,33 +62,33 @@ const Turbo = () =>{
     const {User,checkSession} = useUser();
     const ref=useRef();
 
-    const slideData = window.innerWidth > 767 ? {
-        ru: [
-            {id:1, icon:banner1web, method:()=>slide1Action()},
-            {id: 2, icon: desk_casino_ru, url: `/ru/casino`},
-            {id: 4, icon: desk_sp_ru, url: `/ru/sport`},
-            {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
-        ],
-        en: [
-            {id:1, icon:banner1web, method:()=>slide1Action()},
-            {id: 2, icon: desk_casino_en, url: `/en/casino`},
-            {id: 4, icon: desk_sp_en, url: `/en/sport`},
-            {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
-        ],
-    } : {
-        ru: [
-            {id:1, icon:banner1mob, method:()=>slide1Action()},
-            {id: 2, icon: mob_casino_ru, url: `/ru/casino`},
-            {id: 4, icon: mob_sp_ru, url: `/ru/sport`},
-            {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
-        ],
-        en: [
-            {id:1, icon:banner1mob, method:()=>slide1Action()},
-            {id: 2, icon: mob_casino_en, url: `/en/casino`},
-            {id: 4, icon: mob_sp_en, url: `/en/sport`},
-            {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
-        ],
-    }
+    const slideData =
+        window.innerWidth > 767 ?
+            {
+                ru: [
+                    {id:1, icon:banner_ru, method:()=>slide1Action()},
+                    {id: 2, icon: express_ru, url: `/ru/promotions/express_bonus`},
+                    {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
+                ],
+                en: [
+                    {id:1, icon:banner_en, method:()=>slide1Action()},
+                    {id: 2, icon: express_en, url: `/ru/promotions/express_bonus`},
+                    {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
+                ]
+            }
+            :
+            {
+                ru: [
+                    {id:1, icon:banner_mob_ru, method:()=>slide1Action()},
+                    {id: 2, icon: express_mob_ru, url: `/ru/promotions/express_bonus`},
+                    {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
+                ],
+                en: [
+                    {id:1, icon:banner_mob_en, method:()=>slide1Action()},
+                    {id: 5, icon: express_mob_en, url: `/en/promotions/express_bonus`},
+                    {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
+                ]
+            }
 
     const onPlay = (gameId,name) => {
         window.open(`/${i18n.language}/playSlot?id=${gameId}&gameId=${name}`)
