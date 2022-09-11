@@ -200,8 +200,8 @@ const Withdraw = ({onClose})=>{
                                                         if(parseFloat((event.target.value * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
                                                             setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
                                                             return;
-                                                        }else if(event.target.value<20){
-                                                            setFeeError(t(`You can withdraw min 20EUR (Fee 0.4EUR /2%)`))
+                                                        }else if(event.target.value<50){
+                                                            setFeeError(t(`You can withdraw min 50EUR (Fee 0.4EUR /2%)`))
                                                             return;
                                                         }else{
                                                             setFeeError(null)
@@ -218,7 +218,7 @@ const Withdraw = ({onClose})=>{
                                                 }}>{t('MAX')}</div>
                                                 {/*{t("Money")}*/}
                                             </div>
-                                            <p style={{color:'#899194',fontSize:'0.8rem',margin:'4px 3px'}}> {feeError?feeError:t(`MIN - {{min}} EUR`,{min:20})}  </p>
+                                            <p style={{color:'#899194',fontSize:'0.8rem',margin:'4px 3px'}}> {feeError?feeError:t(`MIN - {{min}} EUR`,{min:50})}  </p>
                                         </div>
 
 
@@ -234,8 +234,8 @@ const Withdraw = ({onClose})=>{
                                                         if(parseFloat((amount * 1.02).toFixed(2))> User?.data?.accounts?.main?.amount*1 ){
                                                             setFeeError(t(`Insufficient balance: you can withdraw max {{max}}EUR (Fee {{fee}}EUR /{{percent}}%)`,{percent:2,max:(User?.data?.accounts?.main?.amount*1/1.02).toFixed(2),fee:(User?.data?.accounts?.main?.amount * 0.02).toFixed(2)}))
                                                             return;
-                                                        }else if(amount<20){
-                                                            setFeeError(t(`You can withdraw min 20EUR (Fee 0.4EUR /2%)`))
+                                                        }else if(amount<50){
+                                                            setFeeError(t(`You can withdraw min 50EUR (Fee 0.4EUR /2%)`))
                                                             return;
                                                         }else{
                                                             setFeeError(null)

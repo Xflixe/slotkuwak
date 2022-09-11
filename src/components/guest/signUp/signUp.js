@@ -516,7 +516,7 @@ const SignUp =() =>{
 
                     <div className="col-12">
                         <p style={{color:'#e6e9f1',marginBottom:0,fontSize:'13px'}}>{t('Got a Promo Code?')}</p>
-                        <div className={`input-label ${error("promoCode")}`}>
+                        <div className={`input-label`}>
                             <input type="text" name="promoCode" id="promoCode"
                                    value={signUpForm.promoCode}
                                    onChange={event => setSignUpForm({...signUpForm,promoCode:event.target.value})}
