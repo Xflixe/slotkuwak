@@ -26,6 +26,7 @@ const playSlot = React.lazy(() => import(("./screens/playSlot/PlaySlot")));
 const verification = React.lazy(() => import(("./screens/verification/verificationScreen")));
 const passRecover = React.lazy(() => import(("./screens/user/passRecover/recoverPassword")));
 const turbo = React.lazy(() => import(("./screens/turbo/turbo")));
+const tournament = React.lazy(() => import(("./screens/tournament/tournament")));
 
 export const guestRoutes = [
     { path: '/', name: 'Home', exact:true, component: Redirect, page:"main" },
@@ -40,7 +41,6 @@ export const guestRoutes = [
     { path: '/:lang/promotions',name: 'Promotions', exact:true, component: promotions , page:"promotions"},
     { path: '/:lang/promotions/:page', name: 'Promotions', exact:false, component: promos , page:"promotions"},
     { path: '/:lang/welcomebonus', name: 'WelcomeBonus', exact:false, component: welcomeBonus , page:"welcomebonus"},
-
     { path: '/:lang/casino', name: 'Casino', exact:false, component: casino, page:"casino" },
     { path: '/:lang/sport', name: 'Sport', exact:false, component: sport, page:"sport" },
     { path: '/:lang/live', name: 'Live', exact:false, component: live, page:"live" },
@@ -55,6 +55,7 @@ export const guestRoutes = [
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
     { path: '/:lang/turbo', name: 'turbo', exact:false, component: turbo, page:"turbo" },
+    { path: '/:lang/tournament',name: 'Tournament', exact:false, component: tournament , page:"tournament"},
 ];
 
 export const userRoutes = [
@@ -92,6 +93,7 @@ export const userRoutes = [
     { path: '/:lang/loader', name: 'verification', exact:false, component:()=><div>please wait</div>, page:"loader"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
     { path: '/:lang/turbo', name: 'turbo', exact:false, component: turbo, page:"turbo" },
+    { path: '/:lang/tournament',name: 'Tournament', exact:false, component: tournament , page:"tournament"},
 ];
 
 
