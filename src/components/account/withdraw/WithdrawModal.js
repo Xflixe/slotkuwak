@@ -13,6 +13,8 @@ import WithdrawIcon from "./icons/widthdraw-icon.png"
 import WithdrawCopyIcon from "./icons/withdraw-copy.png"
 import {useUser} from "../../../core/hooks/useUser"
 import {Timeout} from "../../../core/utils/timeout"
+import {useNavigation} from "../../../core/hooks/useNavigation";
+import {useHistory} from "react-router-dom";
 
 window.reSendInterval=null;
 
@@ -54,6 +56,7 @@ const Withdraw = ({onClose})=>{
     const [disableBtn,setDisableBtn]= useState(null)
     const [feeError,setFeeError]=useState(null)
     const ev = UseEvent()
+    const history = useHistory()
 
     useEffect(()=>{
         if(selectedCurrency){
@@ -94,7 +97,8 @@ const Withdraw = ({onClose})=>{
                             if(response.status){
                                 CLOSE();
                                 setSelectedCurrency(null);
-                                window.pushEvent(t("The operation was performed successfully"),"success")
+                                window.pushEvent(t("The operation was performed successfully"),"success");
+                                history.push(`/${i18n.language}/main`);
                             }else{
 
                                 if(response?.error && response?.error?.resultCode === 2){
@@ -171,7 +175,6 @@ const Withdraw = ({onClose})=>{
                                     className="crypto-currency"
                                     value={selectedCurrency.id}
                                     onSelect={e => {
-
                                         setSelectedCurrency(e)
                                     }}
                                 />
@@ -179,7 +182,6 @@ const Withdraw = ({onClose})=>{
                                     exRate? <p style={{color:'#899194',fontSize:'12px',margin:'10px 5px 40px 5px'}}>
                                         {exRate?.exchangeRate?.rateFrom} {exRate.currency} ~ {exRate?.exchangeRate?.rateTo} {exRate.toCurrency}
                                     </p>:''
-
                                 }
 
                             </div>
@@ -253,7 +255,6 @@ const Withdraw = ({onClose})=>{
                                             <div className="input-box" style={{position:'relative'}}>
                                                 <input type="text" name="account" id="account"
                                                        value={withdraw?.address} onChange={event => {
-
                                                             setWithdraw({...withdraw,address:event.target.value})
                                                        }}
                                                 />
@@ -261,7 +262,6 @@ const Withdraw = ({onClose})=>{
 {/*
                                                 <img src={WithdrawCopyIcon} width='20' style={{position:'absolute',right:'10px',top:'15px'}}/>
 */}
-
                                             </div>
 
                                         </div>

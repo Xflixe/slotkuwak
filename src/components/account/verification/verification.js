@@ -550,7 +550,7 @@ const Confirmation = () => {
                                                                             <UploadDoc
                                                                                 id={"back"}
                                                                                 onSelect={e=>setDocuments({...documents,back:e})}
-                                                                                title={"Upload the back image of the ID Card/Passport (color image)"}
+                                                                                title={t('Upload the back image of the ID Card/Passport (color image)')}
                                                                             />
                                                                         </div>
                                                                     )

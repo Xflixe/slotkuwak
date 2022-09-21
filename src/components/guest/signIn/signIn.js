@@ -101,12 +101,22 @@ const SignIn =() =>{
                         setShowOTP(true);
                         setReSend(parseInt(response?.error?.expires_in))
                     }else{
-                        ev.emit('notify', {
-                            show:true,
-                            text:t('specified username or password is incorrect'),
-                            type:'error',
-                            title:t('Log In Error')
-                        })
+                        if(JSON.parse(response?.error?.error)?.error_description === "Account disabled"){
+                            ev.emit('notify', {
+                                show:true,
+                                text: t('Your account is blocked. Please contact our support'),
+                                type:'error',
+                                title:t('Log In Error')
+                            })
+                        }else{
+                            ev.emit('notify', {
+                                show:true,
+                                text:t('specified username or password is incorrect'),
+                                type:'error',
+                                title:t('Log In Error')
+                            })
+                        }
+
                     }
                 }else{
                     //window.top.pushEvent('specified username or password is incorrect','error');

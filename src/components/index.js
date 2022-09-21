@@ -28,8 +28,6 @@ import NewSWP from "./newSWP/NewSWP";
 import Skeleton from "./skeleton/skeleton";
 import PromoList from "./account/promoList/promoList"
 
-
-
 export {
     NewModal,
     PLXModal,
@@ -60,5 +58,4 @@ export {
     NewSWP,
     Skeleton,
     PromoList
-
 }

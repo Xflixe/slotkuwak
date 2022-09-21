@@ -7,7 +7,7 @@ import {useTranslation} from "../../core";
 import {useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useUser} from "../../core/hooks/useUser"
-
+import './tournament.css'
 
 const Tournament = () =>{
     const {User} = useUser()
@@ -20,7 +20,7 @@ const Tournament = () =>{
     const [footer, setFooter] = useState(true);
     const {i18n} = useTranslation()
     const {lang} = useParams()
-    const [url,setUrl] = useState(`/promos/${page}/index_${i18n.language}.html?${Math.random()}`)
+    const [url,setUrl] = useState(`/tournaments/?${Math.random()}`)
 
     useEffect(()=>{
         if(!window.setHeader){
@@ -70,7 +70,7 @@ const Tournament = () =>{
     },[])
 
     useEffect(()=>{
-        setUrl(`/tournament/?${Math.random()}`)
+        setUrl(`/tournaments/?${Math.random()}`)
         //setUrl(`/promos/${page}/index_${i18n.language}.html?${Math.random()}`)
         //console.log(lang,i18n.language)
     },[lang,i18n.language])
@@ -81,20 +81,20 @@ const Tournament = () =>{
                 header? <Header page={"promo"}/>:''
             }
 
-            <div className={"promotion"}>
+            <div className={"tournament"}>
                 <iframe
                     //ref={ref}
-                    scrolling="no"
+                    scrolling="yes"
                     src={url}
                     frameBorder="0"
                     className={"promotion-frame"}
-                    width="100%" height="100%"
-                    style={{height:frameHeight}}
+                    width="100%"
+                    height="auto"
                 />
             </div>
 
             {
-                footer? <Footer style={{marginTop:0}}/>:''
+                //footer? <Footer style={{marginTop:0}}/>:''
             }
 
         </>

@@ -56,4 +56,12 @@ module.exports = function(app) {
         '/promos',
         createProxyMiddleware(proxyPromo)
     );
+    app.use(
+        '/ts',
+        createProxyMiddleware(proxyPromo)
+    );
+    app.use(
+        '/tournaments/',
+        createProxyMiddleware(proxyPromo)
+    );
 };
