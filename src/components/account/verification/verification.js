@@ -69,6 +69,7 @@ const Confirmation = () => {
         mobilePrefix:"",
         requestId:''
     });
+    const [rawInfo,setRawInfo] = useState(null)
 
     const [documents,setDocuments]=useState({
         "passportType":"",
@@ -92,8 +93,9 @@ const Confirmation = () => {
     const [readOnly,setReadOnly]=useState(false)
     const [userVerificationStatus,setUserVerificationStatus]=useState(null)
 
+
     useEffect(()=>{
-        //getInfo();
+        getInfo(2);
         getVerificationInfo();
         getCountryList();
         getMobileCodeList();
@@ -121,9 +123,11 @@ const Confirmation = () => {
         })
     }
 
-    const getInfo = ()=>{
-        Actions.User.info().then(response=>{
+    const getInfo = (infoId)=>{
+        Actions.User.info(infoId).then(response=>{
             if(response.status){
+                setRawInfo(response?.data?.data)
+
                 if (response?.data?.data?.verifyStatus === 0 || response?.data?.data?.verifyStatus === 2){
                     setReadOnly(true)
                 }
@@ -298,7 +302,7 @@ const Confirmation = () => {
                             if(response.status){
                                 CLOSE();
                                 window.pushEvent(t("The operation was performed successfully"),"success")
-                                history.push(`/${lang}/account/info`)
+                                history.push(`/${lang}/account/info/reload`)
                             }
                             else{
                                 if(response?.error){
@@ -574,16 +578,22 @@ const Confirmation = () => {
                             readOnly === false &&
                             <div className="col-12 col-md-4">
                                 <div style={{color:`${status.status ==="success"? 'green':'red'}`}}>{status.msg}</div>
-                                <button type="submit" style={{width:'100%',position:'relative',overflow:'hidden'}} className="btn-primary" onClick={()=>{
-                                    if(step===1){
-                                        nextStep();
-                                    }else{
-                                        finishStep();
-                                    }
-                                }}>
-                                    {loader && <div className="loader-wrap"><SvgDot contentStyle={{backgroundColor: '#ffbc00'}}/></div>}
-                                    {t("Confirm And Continue")}
-                                </button>
+                                {
+                                    (rawInfo?.hasUserRequestedVerify === true && rawInfo?.verifyRequest?.result === -1)?
+                                        ''
+                                        :
+                                        <button type="submit" style={{width:'100%',position:'relative',overflow:'hidden'}} className="btn-primary" onClick={()=>{
+                                            if(step===1){
+                                                nextStep();
+                                            }else{
+                                                finishStep();
+                                            }
+                                        }}>
+                                            {loader && <div className="loader-wrap"><SvgDot contentStyle={{backgroundColor: '#ffbc00'}}/></div>}
+                                            {t("Confirm And Continue")}
+                                        </button>
+                                }
+
                             </div>
                         }
 

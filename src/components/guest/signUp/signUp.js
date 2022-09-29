@@ -172,6 +172,16 @@ const SignUp =() =>{
 
     const onSignUp=(signUpForm)=>{
         setErrors([])
+
+        //let em = signUpForm.mail.split('@');
+        //if(em.indexOf('+') !== -1){
+        //    let emPlus = em[0].split('+')[0].replaceAll('.','');
+        //    setSignUpForm({...signUpForm,mail:emPlus.join(em[1])})
+        //}else{
+        //    let dots = em[0].replaceAll('.','');
+        //    setSignUpForm({...signUpForm,mail:dots.join(em[1])})
+        //}
+
          window.grecaptcha.execute('6LcsE_IdAAAAAElaP_6dOnfzTJD2irfkvp1wzIeS', {action: 'register'}).then(async(token)=> {
              let error = _.chain(signUpForm)
                  .map((v,k)=>{
@@ -285,14 +295,29 @@ const SignUp =() =>{
                          if(response?.error?.data){
                              let key = _.keys(response?.error?.data)[0];
                              let val = response?.error?.data[key];
+                             //console.log(key,val)
                              if(key==="otp"){
                                  if(['mail',"mobile"].indexOf(val)>-1){
                                      setOtpDialog(val)
                                  }else{
                                      window.top.pushEvent(t('Incorect SMS Code Please Check Sending SMS'),'error');
                                  }
+                             }
+                             else if(key === 'email' && val === 'email_blocked'){
+                                 ev.emit('notify', {
+                                     show:true,
+                                     text: `${t('please choose another mail domain')} "@${data.mail.split('@')[1]}" is in block list.`,
+                                     type:'error',
+                                     title:t('Sign Up Error')
+                                 })
+                             }else if(key === 'ip' && val === 'ip_blocked'){
+                                 ev.emit('notify', {
+                                     show:true,
+                                     text: t('from this ip address registration is suspended.'),
+                                     type:'error',
+                                     title:t('Sign Up Error')
+                                 })
                              }else{
-
                                  window.top.pushEvent(t(val),'error');
                                  if(errors.indexOf(key)===-1){
                                      setErrors([...errors,key])

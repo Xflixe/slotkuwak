@@ -55,7 +55,9 @@ export const guestRoutes = [
     { path: '/:lang/verification', name: 'verification', exact:false, component:verification, page:"verification"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
     { path: '/:lang/turbo', name: 'turbo', exact:false, component: turbo, page:"turbo" },
-    { path: '/:lang/tournament',name: 'Tournament', exact:false, component: tournament , page:"tournament"},
+    { path: '/:lang/tournament',name: 'Tournament', exact:true, component: tournament , page:"tournament"},
+    { path: '/:lang/tournament/:page',name: 'Tournament', exact:true, component: tournament , page:"tournament"},
+    { path: '/:lang/tournament/:page/:tourId',name: 'Tournament', exact:true, component: tournament , page:"tournament"},
 ];
 
 export const userRoutes = [
@@ -78,6 +80,7 @@ export const userRoutes = [
     { path: '/:lang/casino', name: 'Casino', exact:false, component: casino, page:"casino" },
     { path: '/:lang/account', name: 'Account', exact:true, component: account, page:"account" },
     { path: '/:lang/account/:route', name: 'Account', exact:false, component: account, page:"account" },
+    { path: '/:lang/account/:route/:params', name: 'Account', exact:false, component: account, page:"account" },
     { path: '/:lang/sport', name: 'Sport', exact:false, component: sport, page:"sport" },
     { path: '/:lang/live', name: 'Live', exact:false, component: live, page:"live" },
     { path: '/:lang/transaction', name: 'Transaction', exact:false, component: transaction , page:"transaction"},
@@ -93,7 +96,9 @@ export const userRoutes = [
     { path: '/:lang/loader', name: 'verification', exact:false, component:()=><div>please wait</div>, page:"loader"},
     { path: '/:lang/pr/:hash', name: 'pr', exact:false, component:passRecover, page:"pr"},
     { path: '/:lang/turbo', name: 'turbo', exact:false, component: turbo, page:"turbo" },
-    { path: '/:lang/tournament',name: 'Tournament', exact:false, component: tournament , page:"tournament"},
+    { path: '/:lang/tournament',name: 'Tournament', exact:true, component: tournament , page:"tournament"},
+    { path: '/:lang/tournament/:page',name: 'Tournament', exact:true, component: tournament , page:"tournament"},
+    { path: '/:lang/tournament/:page/:tourId',name: 'Tournament', exact:true, component: tournament , page:"tournament"},
 ];
 
 

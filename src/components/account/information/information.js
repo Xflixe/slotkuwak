@@ -7,6 +7,7 @@ import ChangePassword from '../../account/changePassword/ChangePassword'
 import SelectBox from "../../forms/select/NewSelect";
 import {SvgDot} from "../../index";
 import PLXModal from "../../modal/PLXModal";
+import {useHistory, useParams} from "react-router-dom";
 
 const currency = [
 /*
@@ -73,6 +74,8 @@ const Information = () => {
     const [otpSource,setOtpSource]=useState('');
     const [countries,setCountries]=useState([]);
     const [mobileCode,setMobileCode]=useState([]);
+    const {params,lang} = useParams()
+    const history = useHistory()
 
     const getSecurityQuestion =(ans={})=>{
         Actions.User.getSecurityQuestion({loader:setSecurityQuestionsLoader})
@@ -97,6 +100,13 @@ const Information = () => {
 
         getInfo();
     },[]);
+
+    useEffect(()=>{
+        if(params === "reload"){
+            history.push(`/${lang}/account/info`)
+            window.location.reload()
+        }
+    },[params])
 
     useEffect(()=>{
         if(openSecretQuestion && securityQuestions.length===0){
@@ -159,8 +169,8 @@ const Information = () => {
         })
     }
 
-    const getInfo = ()=>{
-        Actions.User.info().then(response=>{
+    const getInfo = (infoId)=>{
+        Actions.User.info(infoId).then(response=>{
             if(response.status){
                 let res = response.data.data;
                 setInfoData(_.fromPairs(_.map(infoData, (v,k)=> {

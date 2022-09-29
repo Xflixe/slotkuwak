@@ -4,7 +4,7 @@ import {useNavigation} from "../../core/hooks/useNavigation";
 import {Footer, Header} from "../../components";
 
 import {useTranslation} from "../../core";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useUser} from "../../core/hooks/useUser"
 import './tournament.css'
@@ -13,14 +13,16 @@ const Tournament = () =>{
     const {User} = useUser()
     const {t} = useTranslation()
     const nav = useNavigation();
-    const {page} =useParams()
+    const {page,tourId} =useParams()
     const ev = UseEvent()
     const [frameHeight, setFrameHeight] = useState('100px');
     const [header, setHeader] = useState(true);
     const [footer, setFooter] = useState(true);
     const {i18n} = useTranslation()
     const {lang} = useParams()
-    const [url,setUrl] = useState(`/tournaments/?${Math.random()}`)
+    const [url,setUrl] = useState(`/tournaments/`)
+    const history = useHistory()
+    const [frameScroll, setFrameScroll] = useState('yes')
 
     useEffect(()=>{
         if(!window.setHeader){
@@ -48,32 +50,36 @@ const Tournament = () =>{
                 return i18n.language
             }
         }
-
+        if(!window.redirect){
+            window.redirect = function (url){
+                history.push(`/${lang}/tournament${url}`)
+            }
+        }
+        if(!window.frameScroll){
+            window.frameScroll = function (ev){
+                setFrameScroll(ev)
+            }
+        }
 
         return ()=>{
-            if(window.setHeader){
-                delete  window.setHeader
-            }
-            if(window.setFooter){
-                delete  window.setFooter
-            }
-            if(window.setHeight){
-                delete  window.setHeight
-            }
-            if(window.depositModal){
-                delete  window.depositModal
-            }
-            if(window.getLang){
-                delete  window.getLang
-            }
+            if(window.setHeader){delete  window.setHeader}
+            if(window.setFooter){delete  window.setFooter}
+            if(window.setHeight){delete  window.setHeight}
+            if(window.depositModal){delete  window.depositModal}
+            if(window.getLang) {delete window.getLang}
+            if(window.redirect){delete  window.redirect}
+            if(window.frameScroll){delete  window.frameScroll}
         }
     },[])
 
+
     useEffect(()=>{
-        setUrl(`/tournaments/?${Math.random()}`)
-        //setUrl(`/promos/${page}/index_${i18n.language}.html?${Math.random()}`)
-        //console.log(lang,i18n.language)
-    },[lang,i18n.language])
+        if(window.location.href.indexOf('zur.planetaxbet') !== -1){
+            setUrl(`https://slotmaster.com/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
+        }else{
+            setUrl(`/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
+        }
+    },[page,tourId,lang,i18n.language])
 
     return (
         <>
@@ -84,7 +90,7 @@ const Tournament = () =>{
             <div className={"tournament"}>
                 <iframe
                     //ref={ref}
-                    scrolling="yes"
+                    scrolling={frameScroll}
                     src={url}
                     frameBorder="0"
                     className={"promotion-frame"}
