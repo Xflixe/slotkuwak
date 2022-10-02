@@ -57,17 +57,17 @@ const Confirmation = () => {
     const [infoData, setInfoData] = useState({
         firstName:'',
         email:'',
-        mobile:'',
         gender:'',
         dob:"",
         lastName:'',
-        //username:'',
-        //currency: "EUR",
         nationality:"",
         mobileConfirmed:0,
         emailConfirmed:0,
-        mobilePrefix:"",
         requestId:''
+        //mobile:'',
+        //mobilePrefix:"",
+        //username:'',
+        //currency: "EUR",
     });
     const [rawInfo,setRawInfo] = useState(null)
 
@@ -133,13 +133,14 @@ const Confirmation = () => {
                 }
                 if (response?.data?.data?.userVerifyStatus === 2){setStep(2)}
                 let res = response.data.data;
-                setInfoData(_.fromPairs(_.map(infoData, (v,k)=> {
+
+                setInfoData({...infoData,..._.fromPairs(_.map(infoData, (v,k)=> {
                     switch (k){
                         case "nationality":
                             return [k,res['country']];
-                        default: return [k,res[k]];
+                        default: return [k,res[k] || ""];
                     }
-                })))
+                }))})
 
                 /*const {
                     firstName,
@@ -181,11 +182,11 @@ const Confirmation = () => {
                         setReadOnly(true)
                     }
                     let res = response.data.data;
-                    setInfoData(_.fromPairs(_.map(infoData, (v,k)=> {
+                    setInfoData({...infoData,..._.fromPairs(_.map(infoData, (v,k)=> {
                         switch (k){
-                            default: return [k,res[k]];
+                            default: return [k,res[k] || ""];
                         }
-                    })))
+                    }))})
                 }else{
                     getInfo();
                 }
@@ -217,7 +218,7 @@ const Confirmation = () => {
             setErrors([...error])
         }else{
 
-            let nd = {...infoData};
+            let nd = {...infoData,lastName:infoData.lastName?.trim(),firstName:infoData.firstName?.trim()};
             if(smsCode !== ''){
                 nd = {...infoData,otp:smsCode}
             }
@@ -347,6 +348,13 @@ const Confirmation = () => {
         }
     }
 
+    const checkString=(val,name)=> {
+        const t = /^[A-Za-z ]+$/.test(val)
+        if(t || val === ''){
+            setInfoData({...infoData,[name]:val})
+        }
+    }
+
     return (
         <>
             <div id="accountTabContent">
@@ -357,7 +365,6 @@ const Confirmation = () => {
                     aria-labelledby="personal-tab"
                 >
                     <div className="account-tab-inner">
-
                         <form onSubmit={e=>{
                             e.preventDefault()
 
@@ -418,13 +425,13 @@ const Confirmation = () => {
                                             </div>*/}
                                             <div className="col-12 col-md-6">
                                                 <div  className={`input-label-border ${error("firstName")}`}>
-                                                    <input onChange={e => !readOnly?setInfoData({...infoData,firstName:e.target.value}):''} value={infoData.firstName} type="text" name="name" id="name"/>
+                                                    <input onChange={e => !readOnly? checkString(e.target.value,'firstName'):''} value={infoData.firstName} type="text" name="name" id="name"/>
                                                     <label htmlFor="name">{t("Name")}</label>
                                                 </div>
                                             </div>
                                             <div className="col-12 col-md-6">
                                                 <div className={`input-label-border ${error("lastName")}`}>
-                                                    <input onChange={e => !readOnly?setInfoData({...infoData,lastName:e.target.value}):''} value={infoData.lastName} type="text" name="surname" id="surname"/>
+                                                    <input onChange={e => !readOnly? checkString(e.target.value,'lastName'):''} value={infoData.lastName} type="text" name="surname" id="surname"/>
                                                     <label htmlFor="surname">{t("Surname")}</label>
                                                 </div>
                                             </div>

@@ -6,6 +6,7 @@ import {Guest} from "../../components";
 import {useNavigation} from "../../core/hooks/useNavigation";
 import EventEmitter from "../../core/utils/eventEmitter";
 import {useSLot} from "../../core/hooks/useSLot";
+import './playSlot.scss'
 
 const PlaySlot= () => {
     const {t,i18n} = useTranslation()

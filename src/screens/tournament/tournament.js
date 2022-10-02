@@ -74,12 +74,9 @@ const Tournament = () =>{
 
 
     useEffect(()=>{
-        if(window.location.href.indexOf('zur.planetaxbet') !== -1){
-            setUrl(`https://slotmaster.com/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
-        }else{
-            setUrl(`/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
-        }
+        setUrl(`/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
     },[page,tourId,lang,i18n.language])
+
 
     return (
         <>
@@ -94,6 +91,7 @@ const Tournament = () =>{
                     src={url}
                     frameBorder="0"
                     className={"promotion-frame"}
+                    id={"promotion-frame"}
                     width="100%"
                     height="auto"
                 />

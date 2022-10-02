@@ -4,7 +4,6 @@ import {UseEvent} from "../hooks/useEvent";
 import JWT from "../models/JWT";
 import {Config} from "../config";
 import {query_string} from "../utils";
-import {useUser} from "../hooks/useUser";
 const http =  axios.create({
     baseURL: '/'
 })
@@ -59,6 +58,7 @@ class Http {
         const jwt  = new JWT()
         return  new Promise(resolve => {
             if (loader) this.setLoader(loader, true);
+            console.log(data)
             http.post(url,data,permitAll? header? {headers:{...header}}:{} :{headers: {
                     ...header,
                     'Authorization': `bearer ${jwt.access}`

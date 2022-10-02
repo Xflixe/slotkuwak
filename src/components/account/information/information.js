@@ -178,7 +178,7 @@ const Information = () => {
                       case 'mobilePrefix':
                           let cod = "+"+res[k];
                           return [k,cod];
-                      default: return [k,res[k]];
+                      default: return [k,res[k] || ''];
                   }
                 })))
 

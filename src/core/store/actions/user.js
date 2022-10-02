@@ -97,7 +97,12 @@ const getVerificationInfo = ()=>{
     return http.get({url:Config.User.VERIFICATIONINFO})
 }
 const signUp = async ({data,loader}) => {
-    const response = await http.post({url:Config.User.SIGN_UP, data:query_string(data),permitAll:true,loader:loader});
+    let formData =new FormData()
+    _.forEach(data, (v,k)=>{
+        formData.append(k,v);
+    })
+
+    const response = await http.post({url:Config.User.SIGN_UP, data:formData,permitAll:true,loader:loader});
     if (!response.status) {
         //window.pushEvent("Invalid Credentials","error")
        // alert(`An error occurred while registering`)

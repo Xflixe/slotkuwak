@@ -275,6 +275,19 @@ const SignUp =() =>{
                          //    });
                          //}
 
+                         // პრომო კოდის გააქტიურების შეცდომა
+                         if(response?.data?.data?.promotions?.promoCode?.data &&
+                             response?.data?.data?.promotions?.promoCode?.data?.resultCode === 417 &&
+                             response?.data?.data?.promotions?.promoCode?.data?.message.indexOf('ORA-20343') !== -1
+                         ){
+                             ev.emit('notify', {
+                                 show:true,
+                                 text: t('Promo code is already used!'),
+                                 type:'error',
+                                 title:t('Promo Code')
+                             })
+                         }
+
                          if (response?.data?.data?.promotions?.NO_DEPOSIT_BONUS){
                              ev.emit('welcomeBonus',{
                                  ...response?.data?.data?.promotions,
