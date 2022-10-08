@@ -4,6 +4,7 @@ import './PromoModal.scss';
 import {NewModal} from "../../index";
 import {UseEvent} from "../../../core/hooks/useEvent";
 import {Link, Redirect} from "react-router-dom";
+import i18n from "i18next";
 
 const PromoModal = ({data,onUpdate})=>{
     const {t,i18n} = useTranslation();
@@ -92,6 +93,15 @@ const PromoModal = ({data,onUpdate})=>{
                         <p>{i18n.language === "en" ?`in ${data?.specifiers?.providerName} ${data?.specifiers?.gameName} and to use it you need to verify your account!`:`в ${data?.specifiers?.providerName} ${data?.specifiers?.gameName}, и для их использования вам необходимо пройти верификацию!`}</p>
 
                         <button onClick={()=>onPlay(data)}>{i18n.language === "en" ?'Verification':'Верификация'}</button>
+                    </div>
+                </NewModal>
+            )
+        case 'louie':
+            return (
+                <NewModal title={i18n.language === "ru" ? 'Sportsbook БОНУС':'Spotsbook BONUS'} onClose={()=>modalClose(data?.id)} className={'promo-modal'} dialogStyle={{width:'600px'}} contentStyle={{width:'600px'}}>
+                    <div className="promo-modal-box">
+                        <p>{i18n.language === 'ru'?'Ваш Sportsbook кэшбэк-бонус активирован!':'Your cashback bonus in Sportsbook is activated!'}</p>
+                        <button onClick={()=>modalClose(data?.id)}>{i18n.language === "en" ?'Close':'Close'}</button>
                     </div>
                 </NewModal>
             )

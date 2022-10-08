@@ -251,7 +251,9 @@ const SignUp =() =>{
                      }
                  }
                  localStorage.removeItem("GRD_access_token")
+
                  let data = {...signUpForm,token:token}
+
                  if(cookie.getCookie("cxd")){
                      data = {...data,cxd:cookie.getCookie("cxd")}
                  }

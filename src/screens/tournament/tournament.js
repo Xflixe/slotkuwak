@@ -10,7 +10,7 @@ import {useUser} from "../../core/hooks/useUser"
 import './tournament.css'
 
 const Tournament = () =>{
-    const {User} = useUser()
+    const {User,checkSession} = useUser()
     const {t} = useTranslation()
     const nav = useNavigation();
     const {page,tourId} =useParams()
@@ -61,6 +61,24 @@ const Tournament = () =>{
             }
         }
 
+        if(!window.isLogged){
+            window.isLogged = function (){
+                checkSession().then(response=>{
+                    console.log('response',response)
+                    if(response.status){
+                        return true
+                    }else{
+                        return false
+                    }
+                })
+            }
+        }
+        if(!window.singIn){
+            window.singIn = function (){
+                ev.emit('signIn',true)
+            }
+        }
+
         return ()=>{
             if(window.setHeader){delete  window.setHeader}
             if(window.setFooter){delete  window.setFooter}
@@ -69,13 +87,29 @@ const Tournament = () =>{
             if(window.getLang) {delete window.getLang}
             if(window.redirect){delete  window.redirect}
             if(window.frameScroll){delete  window.frameScroll}
+            if(window.isLogged){delete  window.isLogged}
+            if(window.singIn){delete  window.singIn}
         }
     },[])
 
 
     useEffect(()=>{
         setUrl(`/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
-    },[page,tourId,lang,i18n.language])
+    },[page,tourId])
+
+    useEffect(()=>{
+        i18n.on("languageChanged", (e)=> {
+            document.getElementById('promotion-frame').contentWindow.location.reload();
+        })
+
+        return ()=> {
+            i18n.off("languageChanged", (e)=> console.log(e))
+        }
+    },[])
+
+    useEffect(()=>{
+        document.getElementById('promotion-frame').contentWindow.location.reload();
+    },[User.isLogged])
 
 
     return (

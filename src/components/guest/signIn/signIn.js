@@ -88,9 +88,10 @@ const SignIn =() =>{
 
                 setShow(false);
                 setShowOTP(false);
-                console.log(success)
+
+
+
                 if(success){
-                    alert()
                     success()
                 }
             } else {

@@ -16,6 +16,7 @@ import WelcomeBonus from "./components/account/welcomeBonus/WelcomeBonus";
 import PromoModal from "./components/account/promoModal/PromoModal";
 import {Restricted} from "./components/restricted/Restricted"
 import _ from "lodash";
+import i18n from "i18next";
 
 
 const  App=()=> {
@@ -76,7 +77,6 @@ const  App=()=> {
                 messages()
             },1000 * 60)
         }
-
     }
 
     useEffect(()=>{
