@@ -53,8 +53,7 @@ const signOut = () => async (dispatch)=>{
 const ping = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
-
-
+            window.user = response.status?response.data.data:null
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},
@@ -71,6 +70,7 @@ const checkSession = () =>async (dispatch)=>{
     return new Promise(resolve => {
         http.get({url:Config.User.PING}).then(response=>{
 
+            window.user = response.status?response.data.data:null
             dispatch({
                 type: PING,
                 payload: response.status?response.data.data:{},

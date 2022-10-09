@@ -3,11 +3,13 @@ import {useNavigation} from "../../core/hooks/useNavigation";
 
 import {Footer, Header} from "../../components";
 
-import {useTranslation} from "../../core";
+import {Actions, Config, useTranslation} from "../../core";
 import {useHistory, useParams} from "react-router-dom";
 import {UseEvent} from "../../core/hooks/useEvent";
 import {useUser} from "../../core/hooks/useUser"
 import './tournament.css'
+import {useDispatch} from "react-redux";
+
 
 const Tournament = () =>{
     const {User,checkSession} = useUser()
@@ -23,6 +25,7 @@ const Tournament = () =>{
     const [url,setUrl] = useState(`/tournaments/`)
     const history = useHistory()
     const [frameScroll, setFrameScroll] = useState('yes')
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         if(!window.setHeader){
@@ -62,17 +65,11 @@ const Tournament = () =>{
         }
 
         if(!window.isLogged){
-            window.isLogged = function (){
-                checkSession().then(response=>{
-                    console.log('response',response)
-                    if(response.status){
-                        return true
-                    }else{
-                        return false
-                    }
-                })
-            }
+          /*  window.isLogged = function (){
+                return User.isLogged
+            }*/
         }
+
         if(!window.singIn){
             window.singIn = function (){
                 ev.emit('signIn',true)
@@ -118,7 +115,7 @@ const Tournament = () =>{
                 header? <Header page={"promo"}/>:''
             }
 
-            <div className={"tournament"}>
+            <div className={"tournament"} data-scrl={frameScroll}>
                 <iframe
                     //ref={ref}
                     scrolling={frameScroll}

@@ -4,6 +4,9 @@
 .tournament iframe {
   height: calc(100vh - 122px);
 }
+.tournament[data-scrl=no] + .stickFooter {
+  display: none;
+}
 
 iframe[title="Button to launch messaging window"] {
   display: none !important;

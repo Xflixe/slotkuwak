@@ -91,7 +91,8 @@ const  App=()=> {
     },[message?.allData?.[0]])
 
     useEffect(()=>{
-        const ping = async () => {
+        const ping =
+            async () => {
             setLoaded(await dispatch(Actions.User.ping()))
         }
 
