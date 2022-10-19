@@ -86,6 +86,9 @@ const checkSession = () =>async (dispatch)=>{
 const info = _.memoize((id=1)=>{
     return http.get({url:Config.User.INFO+"?id="+id})
 })
+const promoCode =(code)=>{
+    return http.get({url:Config.User.PROMOCODE+"?code="+code})
+}
 
 const getLendingInfo = _.memoize((id=1)=>{
     return http.get({url:Config.User.LENDINGINFO+"?id=wager"})
@@ -320,6 +323,7 @@ export default {
     checkRecoveryToken,
     sendResetPass,
     info,
+    promoCode,
     getLendingInfo,
     getFreeSpin,
     messages,

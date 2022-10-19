@@ -32,7 +32,10 @@ import {
     icon8,
     icon123,
     icon89,
-    icon50
+    icon50,
+    icon136,
+    icon135,
+    icon133
 } from "../../assets/img/slot-nav/icon";
 
 
@@ -45,6 +48,14 @@ import banner_en from "../../assets/img/slide/main/w/banner1.png";
 import banner_ru from "../../assets/img/slide/main/w/wb_ru.png";
 import express_ru from "../../assets/img/slide/express_ru.png";
 import express_en from "../../assets/img/slide/express_en.png";
+import pragmatic_ru from "../../assets/img/slide/pragmatic-ru.png";
+import pragmatic_en from "../../assets/img/slide/pragmatic-en.png";
+import evoplay_en from "../../assets/img/slide/slots/desktop/evoplay_WEB_ENG.png";
+import evoplay_ru from "../../assets/img/slide/slots/desktop/evoplay_WEB_RU.png";
+import thunderkick_en from "../../assets/img/slide/slots/desktop/thunderkick_web_eng.png";
+import thunderkick_ru from "../../assets/img/slide/slots/desktop/thunderkick_web_ru.png";
+import yggdrasil_en from "../../assets/img/slide/slots/desktop/yggdrasil-web-eng.png";
+import yggdrasil_ru from "../../assets/img/slide/slots/desktop/yggdrasil-web-RU.png";
 
 import img_mob_wb_ru from "../../assets/img/slide/wb_mob_ru.png";
 import img_mob_wb_en from "../../assets/img/slide/wb_mob_en.png";
@@ -52,6 +63,15 @@ import banner_mob_en from "../../assets/img/slide/main/m/banner1.png";
 import banner_mob_ru from "../../assets/img/slide/main/m/wb_mob_ru.png";
 import express_mob_ru from "../../assets/img/slide/express_mob_en.png";
 import express_mob_en from "../../assets/img/slide/express_mob_en.png";
+import pragmatic_mob_ru from "../../assets/img/slide/pragmatic-mob-ru.png";
+import pragmatic_mob_en from "../../assets/img/slide/pragmatic-mob-en.png";
+import evoplay_mob_en from "../../assets/img/slide/slots/mobile/EVOPLAY_MOBILE_ENG.png";
+import evoplay_mob_ru from "../../assets/img/slide/slots/mobile/EVOPLAY_MOBILE_RU.png";
+import thunderkick_mob_en from "../../assets/img/slide/slots/mobile/thunderkick_MOBILE_ENG.png";
+import thunderkick_mob_ru from "../../assets/img/slide/slots/mobile/thunderkick_MOBILE_RU.png";
+import yggdrasil_mob_en from "../../assets/img/slide/slots/mobile/yggdrasil_MOBILE_ENG.png";
+import yggdrasil_mob_ru from "../../assets/img/slide/slots/mobile/yggdrasil_MOBILE_RU.png";
+
 
 import {useNavigation} from "../../core/hooks/useNavigation";
 import {useUser} from "../../core/hooks/useUser";
@@ -85,7 +105,10 @@ const slIcon = {
     '8':icon8,
     '123':icon123,
     '89':icon89,
-    '50':icon50
+    '50':icon50,
+    '136':icon136,
+    '135':icon135,
+    '133':icon133
 }
 
 const SlotsScreen = () =>{
@@ -111,11 +134,19 @@ const SlotsScreen = () =>{
         window.innerWidth > 767 ?
             {
                 ru: [
+                    {id: 3, icon: pragmatic_ru, url: `/ru/promotions/pragmatic`},
+                    {id: 7, icon: yggdrasil_ru, url: `/ru/slots/133`},
+                    {id: 6, icon: thunderkick_ru, url: `/ru/slots/136`},
+                    {id: 4, icon: evoplay_ru, url: `/ru/slots/135`},
                     {id:1, icon:banner_ru, method:()=>slide1Action()},
                     {id: 2, icon: express_ru, url: `/ru/promotions/express_bonus`},
                     {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
                 ],
                 en: [
+                    {id: 3, icon: pragmatic_en, url: `/en/promotions/pragmatic`},
+                    {id: 7, icon: yggdrasil_en, url: `/en/slots/133`},
+                    {id: 6, icon: thunderkick_en, url: `/en/slots/136`},
+                    {id: 4, icon: evoplay_en, url: `/en/slots/135`},
                     {id:1, icon:banner_en, method:()=>slide1Action()},
                     {id: 2, icon: express_en, url: `/ru/promotions/express_bonus`},
                     {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
@@ -124,11 +155,20 @@ const SlotsScreen = () =>{
             :
             {
                 ru: [
+                    {id: 3, icon: pragmatic_mob_ru, url: `/ru/promotions/pragmatic`},
+                    {id: 7, icon: yggdrasil_ru, url: `/ru/slots/133`},
+                    {id: 6, icon: thunderkick_mob_ru, url: `/ru/slots/136`},
+                    {id: 4, icon: evoplay_mob_ru, url: `/ru/slots/135`},
                     {id:1, icon:banner_mob_ru, method:()=>slide1Action()},
                     {id: 2, icon: express_mob_ru, url: `/ru/promotions/express_bonus`},
                     {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
+
                 ],
                 en: [
+                    {id: 3, icon: pragmatic_mob_en, url: `/en/promotions/pragmatic`},
+                    {id: 7, icon: yggdrasil_en, url: `/en/slots/133`},
+                    {id: 6, icon: thunderkick_mob_en, url: `/en/slots/136`},
+                    {id: 4, icon: evoplay_mob_en, url: `/en/slots/135`},
                     {id:1, icon:banner_mob_en, method:()=>slide1Action()},
                     {id: 5, icon: express_mob_en, url: `/en/promotions/express_bonus`},
                     {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},
@@ -146,7 +186,9 @@ const SlotsScreen = () =>{
 
     useEffect(()=>{
         setSelectedProvider(_.filter(providers,v=>v?.checked))
+
     },[providers])
+
     const slide1Action = () =>{
         checkSession().then(response=>{
             if(response.status){
@@ -161,6 +203,7 @@ const SlotsScreen = () =>{
             }
         })
     }
+
     const filteredSlotList = useMemo(()=>{
         let filtered =list;
         if(searchText.trim()?.length>0){
@@ -200,10 +243,17 @@ const SlotsScreen = () =>{
             //if(response.status){
             //    setSelectedProvider(response.data.data.providers[0]);
             //}
-            setProviders(response.status?response.data.data.providers:[]);
             setFilters(response.status?response.data.data.filterGroups:[]);
+            if(params?.params && parseInt(params?.params) !== null){
+                filterSlotListByParams(response.status?response.data.data.providers:[])
+            }else{
+                setProviders(response.status?response.data.data.providers:[]);
+            }
+
+
         }).catch(reason => {})
     }
+
     const loadSlotList =()=>{
         Actions.Slot.listByPage(1).then((response)=>{
             setList(response.status?response.data.data:[])
@@ -229,9 +279,18 @@ const SlotsScreen = () =>{
         getFreeSpin();
     },[])
 
+    const filterSlotListByParams=(providers)=>{
+            setProviders([..._.map(providers,(v,k)=>{
+                return {...v,checked:(v.id===parseInt(params.params))};
+            })])
+    }
+
     useEffect(()=>{
         if(params?.params && params?.params === "freespin"){
             setTab('freeSpin')
+        }
+        if(params?.params && parseInt(params?.params) !== null ){
+            filterSlotListByParams(providers)
         }
     },[params])
 
@@ -293,7 +352,7 @@ const SlotsScreen = () =>{
                                             {
                                                 //console.log(providers)
                                                 _.map(providers,(p,index)=>{
-                                                    return  <li key={index} className={`${p.checked?'active':""}`} onClick={()=>{
+                                                    return  <li data-id={p.id} key={index} className={`${p.checked?'active':""}`} onClick={()=>{
                                                         setProviders([..._.map(providers,(v,k)=>{
                                                             v.checked=(k===index);
                                                             return v;

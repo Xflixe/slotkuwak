@@ -11,7 +11,9 @@ import {
     fb_en,
     fb_ru,
     express_ru,
-    express_en
+    express_en,
+    pragmatic_ru,
+    pragmatic_en,
 } from '../../assets/img/promo/promo';
 import {Footer, Header, NewSWP, Swp} from "../../components";
 import PromoCard from "../../components/promo/promoCard";
@@ -51,6 +53,12 @@ const PromoScreen = () =>{
             {
                 icon:express_ru,
                 url:"promotions/express_bonus",
+                title:"случайные денежные призы или фриспины при любом спине.",
+                text:"Попади в лидерборд с самым большим коэффициентом, пойманным за спин."
+            },
+            {
+                icon:pragmatic_ru,
+                url:"promotions/pragmatic",
                 title:"ЭКСПРЕСС БОНУС В СПОРТЕ.",
                 text:"Делай ставки, используй экспресс-бонус и увеличивай свою прибыль."
             }
@@ -73,6 +81,12 @@ const PromoScreen = () =>{
                 url:"promotions/express_bonus",
                 title:"EXPRESS BONUS IN SPORTS.",
                 text:"Make a bet, use the Express bonus and boost your profit."
+            },
+            {
+                icon:pragmatic_en,
+                url:"promotions/pragmatic",
+                title:"Get cash prizes or freespins on any spin",
+                text:"Win unexpected cash prizes every day, and reach the weekly leaderboard"
             }
         ]
     }

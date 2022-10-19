@@ -140,15 +140,15 @@ const Footer =({style})=>{
                             <div className={"position-relative  logo-list ft-carousel-1"}>
                                 <FooterCarousel count={3} data={[
                                     {id:67,icon:evolutionGaming, page:'casino'},
-                                    {id:63,icon:relax, page:'slots'},
-                                    {id:69,icon:pragmatic, page:'slots'},
+                                    {id:86,icon:relax, page:'slots'},
+                                    {id:58,icon:pragmatic, page:'slots'},
 
                                 ]}/>
                             </div>
                             <div className={"position-relative  logo-list ft-carousel-2 last"}>
                                 <FooterCarousel count={3} data={[
-                                    {id:62,icon:playngo , page:'slots'},
-                                    {id:58,icon:isoftbet, page:'slots'},
+                                    {id:79,icon:playngo , page:'slots'},
+                                    {id:80,icon:isoftbet, page:'slots'},
                                     {id:57,icon:kiron, page:'virtuals'},
                                 ]}/>
                             </div>

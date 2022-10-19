@@ -11,6 +11,8 @@ import banner_en from "../../assets/img/slide/main/w/banner1.png";
 import banner_ru from "../../assets/img/slide/main/w/wb_ru.png";
 import express_ru from "../../assets/img/slide/express_ru.png";
 import express_en from "../../assets/img/slide/express_en.png";
+import pragmatic_ru from "../../assets/img/slide/pragmatic-ru.png";
+import pragmatic_en from "../../assets/img/slide/pragmatic-en.png";
 
 import img_mob_wb_ru from "../../assets/img/slide/wb_mob_ru.png";
 import img_mob_wb_en from "../../assets/img/slide/wb_mob_en.png";
@@ -18,10 +20,11 @@ import banner_mob_en from "../../assets/img/slide/main/m/banner1.png";
 import banner_mob_ru from "../../assets/img/slide/main/m/wb_mob_ru.png";
 import express_mob_ru from "../../assets/img/slide/express_mob_en.png";
 import express_mob_en from "../../assets/img/slide/express_mob_en.png";
+import pragmatic_mob_ru from "../../assets/img/slide/pragmatic-mob-ru.png";
+import pragmatic_mob_en from "../../assets/img/slide/pragmatic-mob-en.png";
 
 import {useUser} from "../../core/hooks/useUser"
 import {UseEvent} from "../../core/hooks/useEvent"
-
 
 
 const MainScreen = () =>{
@@ -53,11 +56,13 @@ const MainScreen = () =>{
         window.innerWidth > 767 ?
             {
             ru: [
+                {id: 3, icon: pragmatic_ru, url: `/ru/promotions/pragmatic`},
                 {id:1, icon:banner_ru, method:()=>slide1Action()},
                 {id: 2, icon: express_ru, url: `/ru/promotions/express_bonus`},
                 {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id: 3, icon: pragmatic_en, url: `/en/promotions/pragmatic`},
                 {id:1, icon:banner_en, method:()=>slide1Action()},
                 {id: 2, icon: express_en, url: `/ru/promotions/express_bonus`},
                 {id: 5, icon: img_desk_wb_en, url: `/en/promotions/welcome_bonus`},
@@ -66,11 +71,13 @@ const MainScreen = () =>{
         :
             {
             ru: [
+                {id: 3, icon: pragmatic_mob_ru, url: `/ru/promotions/pragmatic`},
                 {id:1, icon:banner_mob_ru, method:()=>slide1Action()},
                 {id: 2, icon: express_mob_ru, url: `/ru/promotions/express_bonus`},
                 {id: 5, icon: img_mob_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id: 3, icon: pragmatic_mob_en, url: `/en/promotions/pragmatic`},
                 {id:1, icon:banner_mob_en, method:()=>slide1Action()},
                 {id: 5, icon: express_mob_en, url: `/en/promotions/express_bonus`},
                 {id: 5, icon: img_mob_wb_en, url: `/en/promotions/welcome_bonus`},

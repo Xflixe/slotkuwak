@@ -75,6 +75,11 @@ const Tournament = () =>{
                 ev.emit('signIn',true)
             }
         }
+        if(!window.redirectTo){
+            window.redirectTo = function (page){
+                history.push(`/${lang}/${page}`)
+            }
+        }
 
         return ()=>{
             if(window.setHeader){delete  window.setHeader}
@@ -86,6 +91,7 @@ const Tournament = () =>{
             if(window.frameScroll){delete  window.frameScroll}
             if(window.isLogged){delete  window.isLogged}
             if(window.singIn){delete  window.singIn}
+            if(window.redirectTo){delete  window.redirectTo}
         }
     },[])
 
@@ -108,9 +114,10 @@ const Tournament = () =>{
         document.getElementById('promotion-frame').contentWindow.location.reload();
     },[User.isLogged])
 
+    //let getHeight = 0 //window.innerHeight - document.querySelector('.navbar').clientHeight - 8;
 
     return (
-        <>
+        <div id="tournament">
             {
                 header? <Header page={"promo"}/>:''
             }
@@ -132,7 +139,7 @@ const Tournament = () =>{
                 //footer? <Footer style={{marginTop:0}}/>:''
             }
 
-        </>
+        </div>
     )
 }
 

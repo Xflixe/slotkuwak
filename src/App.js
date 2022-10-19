@@ -61,6 +61,7 @@ const  App=()=> {
         }
         setMessage({...newArr})
         console.log('message',message,closeId)
+
     }
 
 
@@ -72,7 +73,7 @@ const  App=()=> {
             }
         })
 
-        if(!window.messageTimeout && User.isLogged){
+        if(!window.messageTimeout && User.isLogged && window.user !== null){
             window.messageTimeout = setTimeout(function(){
                 messages()
             },1000 * 60)
@@ -80,10 +81,13 @@ const  App=()=> {
     }
 
     useEffect(()=>{
-        if(User.isLogged){
+        if(User.isLogged && window.user !== null){
             messages()
+        }else{
+            delete window.messageTimeout;
         }
-    },[User.isLogged])
+    },[User.isLogged,window.user])
+
     useEffect(()=>{
         if(message?.allData?.[0]){
             onMessageUpdate()

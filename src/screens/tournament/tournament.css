@@ -1,15 +1,51 @@
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
 .tournament {
   background: #1e2224;
+  height: 100%;
+  /*@media (max-width: 767px) {
+    iframe {
+      height: calc(100vh - 108px);
+    }
+  }
+  @media (max-width: 850px) {
+    & + .stickFooter {
+      display: none;
+    }
+  }*/
 }
 .tournament iframe {
-  height: calc(100vh - 122px);
+  height: 100%;
 }
 .tournament[data-scrl=no] + .stickFooter {
   display: none;
 }
+@media (max-width: 850px) {
+  .tournament + .stickFooter {
+    display: none;
+  }
+}
 
 iframe[title="Button to launch messaging window"] {
   display: none !important;
+}
+
+#tournament {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+#tournament .tournament {
+  flex: 1;
+}
+@media (max-width: 850px) {
+  #tournament + .stickFooter {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=tournament.css.map */

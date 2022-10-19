@@ -24,6 +24,9 @@ import icon8 from './bf.png';
 import icon123 from './IgroSoft.png';
 import icon89 from './kalamba.png';
 import icon50 from './triple.png';
+import icon136 from './thundrekick.png';
+import icon135 from './evoplay.png';
+import icon133 from './Yggdrasil.svg';
 
 
 export  {
@@ -52,5 +55,8 @@ export  {
     icon8,
     icon123,
     icon89,
-    icon50
+    icon50,
+    icon136,
+    icon135,
+    icon133
 }

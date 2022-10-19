@@ -15,6 +15,7 @@ import {useUser} from "../../../core/hooks/useUser"
 import {Timeout} from "../../../core/utils/timeout"
 import {useNavigation} from "../../../core/hooks/useNavigation";
 import {useHistory} from "react-router-dom";
+import {toFixedWithoutRound} from "../../../core/helpers/toFixedWithoutRound";
 
 window.reSendInterval=null;
 
@@ -215,8 +216,8 @@ const Withdraw = ({onClose})=>{
                                                 />
                                                 <label htmlFor="amount">{t("EUR")}</label>
                                                 <div className="withdraw_max" onClick={()=>{
-                                                     setWithdraw({...withdraw,amount: (User?.data?.accounts?.main?.amount / 1.02).toFixed(2) })
-                                                    setCrypto(((User?.data?.accounts?.main?.amount / 1.02).toFixed(2) * exRate?.exchangeRate?.rateTo).toFixed(10))
+                                                     setWithdraw({...withdraw,amount: toFixedWithoutRound(User?.data?.accounts?.main?.amount / 1.02,2) })
+                                                    setCrypto((toFixedWithoutRound(User?.data?.accounts?.main?.amount / 1.02,2) * exRate?.exchangeRate?.rateTo).toFixed(10))
                                                 }}>{t('MAX')}</div>
                                                 {/*{t("Money")}*/}
                                             </div>

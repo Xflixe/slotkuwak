@@ -1,16 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import {useNavigation} from "../../core/hooks/useNavigation";
-import {
-    promo1,
-    promo2,
-    promo3,
-    promo4,
-    promo5,
-    promoCardCover,
-    sl2, w2
-} from '../../assets/img/images';
-import {Footer, Header, NewSWP, Swp} from "../../components";
-import PromoCard from "../../components/promo/promoCard";
+
+import {Footer, Header} from "../../components";
 import {useTranslation} from "../../core";
 
 import img_desk_1 from "../../assets/img/slide/slots/desktop/1.jpg";
@@ -18,8 +9,7 @@ import img_mob_1 from "../../assets/img/slide/slots/mobile/1.jpg";
 import {useParams} from "react-router-dom";
 
 import {UseEvent} from "../../core/hooks/useEvent";
-import {useUser} from "../../core/hooks/useUser"
-
+import {useUser} from "../../core/hooks/useUser";
 
 const PromoScreen = () =>{
     const {User} = useUser()
@@ -60,6 +50,11 @@ const PromoScreen = () =>{
                 return i18n.language
             }
         }
+        if(!window.playSlot){
+            window.playSlot = function (v){
+                window.open(`/${i18n.language}/playSlot?id=${v.id}&gameId=${v.gameId}`)
+            }
+        }
 
 
         return ()=>{
@@ -77,6 +72,9 @@ const PromoScreen = () =>{
             }
             if(window.getLang){
                 delete  window.getLang
+            }
+            if(window.playSlot){
+                delete  window.playSlot
             }
         }
     },[])

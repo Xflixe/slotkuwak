@@ -82,6 +82,19 @@
       padding: 12px 12px;
       border-bottom: 2px solid #1D2332;
 
+      &[data-id="72"] ,
+      &[data-id="89"] {
+        max-width: 130px;
+      }
+      &[data-id="72"],
+      &[data-id="133"],
+      &[data-id="135"] {
+        max-width: 140px;
+      }
+      &[data-id="136"] {
+        max-width: 150px;
+      }
+
       img{margin-right: 5px}
 
       &.active {
@@ -186,7 +199,7 @@
     ul {
       flex-wrap: nowrap;
       li {
-        white-space: nowrap
+        white-space: nowrap;
       }
     }
   }
@@ -281,6 +294,20 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &[data-id="72"] ,
+        &[data-id="89"] {
+          max-width: unset;
+        }
+
+        &[data-id="72"],
+        &[data-id="133"],
+        &[data-id="135"] {
+          max-width: unset;
+        }
+        &[data-id="136"] {
+          max-width: unset;
+        }
       }
     }
   }

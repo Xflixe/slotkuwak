@@ -8,6 +8,7 @@ import SelectBox from "../../forms/select/NewSelect";
 import {SvgDot} from "../../index";
 import PLXModal from "../../modal/PLXModal";
 import {useHistory, useParams} from "react-router-dom";
+import {UseEvent} from "../../../core/hooks/useEvent";
 
 const currency = [
 /*
@@ -32,6 +33,7 @@ const gender = [
 const Information = () => {
     const {t} = useTranslation();
     const {otp, PHONE,EMAIL,CLOSE,ERROR,MULTI} = useOTP();
+    const ev = UseEvent()
     const [forEdit,setForEdit] = useState({
         email:'',
         mobile:''
@@ -70,7 +72,10 @@ const Information = () => {
     const [securityQuestions,setSecurityQuestions]=useState([]);
     const [open2FA,setOpen2FA]=useState(false);
     const [dat2FA,setDat2FA]=useState(false);
-
+    const [promo, setPromo] = useState({
+        code:'',
+        loader:false
+    })
     const [otpSource,setOtpSource]=useState('');
     const [countries,setCountries]=useState([]);
     const [mobileCode,setMobileCode]=useState([]);
@@ -311,6 +316,37 @@ const Information = () => {
         })
     }
 
+    const activePromoCode = () => {
+        if(promo.code !== ''){
+            setPromo({...promo,loader: true})
+            Actions.User.promoCode(promo.code).then(response=>{
+                if(response.status){
+                    ev.emit('notify', {
+                        show:true,
+                        text:t('Your promo code has been activated'),
+                        type:'success',
+                        title:t('Success')
+                    })
+                }else{
+                    ev.emit('notify', {
+                        show:true,
+                        text:response?.error?.message,
+                        type:'error',
+                        title:t('Error')
+                    })
+                }
+                setPromo({code:'', loader:false})
+            })
+        }else {
+            ev.emit('notify', {
+                show:true,
+                text:t('Please enter your promo code'),
+                type:'error',
+                title:t('Error')
+            })
+        }
+
+    }
     return (
         <>
 
@@ -726,9 +762,31 @@ const Information = () => {
 
                                     </div>
                                 </div>
-                                <div className="col-12 col-md-4 tab-pane" id="security" role="tabpanel" aria-labelledby="security-tab"
-                                >
+                                <div className="col-12 col-md-4 tab-pane" id="security" role="tabpanel" aria-labelledby="security-tab">
                                     <div className="row personal-row">
+                                        <div className="col-12 d-none d-md-flex">
+                                            <div className="form-title">{t("Promo Section")}</div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div  className={`input-label-border ${error("email")}`}>
+                                                <input
+                                                    type="promo"
+                                                    name="promo"
+                                                    id="promo"
+                                                    className="for-confirm"
+                                                    value={promo.code}
+                                                    onChange={e => setPromo({...promo,code:e.target.value})}
+                                                    disabled=''
+                                                />
+                                                <label htmlFor="promo">{t("Promo Code")}</label>
+                                                <button onClick={()=>activePromoCode()} type="button" className="btn-confirm">
+                                                    {promo.loader && <div className="loader-wrap"><SvgDot contentStyle={{backgroundColor: '#232e46'}}/></div>}
+                                                    {t("Confirm")}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row personal-row" style={{marginTop:'31px'}}>
                                         <div className="col-12 d-none d-md-flex">
                                             <div className="form-title">{t("Security")}</div>
                                         </div>

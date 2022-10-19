@@ -16,7 +16,7 @@ const SlotCard =({data})=> {
                 return  (
                     <div className="card-list-item" key={index} >
                         {loader===v.gameId && <Loader/>}
-                        <div className="sl-card" style={{backgroundImage:`url(${v.imageUrl})`}} >
+                        <div className="sl-card" style={{backgroundImage:`url(${v.imageUrl})`}} data-play={`window.top.playSlot({id:${v.id},gameId:${v.gameId}})`}>
                             <div className="sl-card-hover" onClick={()=>window.open(`/${i18n.language}/playSlot?id=${v.id}&gameId=${v.gameId}`)}>
                                 <div className="slot-card-cover "/>
                                 <img src={v.imageUrl} alt="" style={{visibility:"hidden"}} />

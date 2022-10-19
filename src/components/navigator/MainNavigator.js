@@ -9,6 +9,7 @@ const MainNavigator = ()=>{
     return (
         <>
             {(userRoutes).map((route, idx) => {
+
                 return route.component ? (
                     <Route
                         key={idx}
@@ -24,11 +25,7 @@ const MainNavigator = ()=>{
                         )} />
                 ) :   <Redirect to={'/en'}/>;
             })}
-
         </>
-
-
     )
-
 }
 export default MainNavigator;

@@ -28,7 +28,7 @@ const  FooterCarousel = (props) =>{
                 _.map(data, (v,index)=>{
                     return  (
                         <SwiperSlide key={index}>
-                            <Link to={`/${lang}/${v.page}?id=${v.id}`}>
+                            <Link to={`/${lang}/${v.page}/${v.id}`}>
                                 <img src={v.icon} alt="Bitcoin" />
                             </Link>
                         </SwiperSlide>

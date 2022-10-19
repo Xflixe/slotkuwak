@@ -7,6 +7,7 @@ export const Config ={
       PING: "/us/v1/api/secured/ping",
       //INFO:"/us/v1/api/secured/personal/info",
       INFO:"/us/v2/api/secured/personal/info",
+      PROMOCODE:"/ps/v1/api/secured/promo/code/activate",
       LENDINGINFO:"/ps/v1/api/secured/wager/info",
       FREESPPIN:"/ps/v1/api/secured/freespin/info",
       VERIFICATIONINFO:"/us/v2/api/secured/personal/info/verify/check",

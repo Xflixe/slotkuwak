@@ -13,6 +13,9 @@ import promo5 from './promo-5.png';
 import express_ru from './express_ru.png';
 import express_en from './express_en.png';
 
+import pragmatic_ru from './pragmatic-ru.png';
+import pragmatic_en from './pragmatic-en.png';
+
 export  {
 
     promo1,
@@ -26,6 +29,8 @@ export  {
     fb_ru,
     express_ru,
     express_en,
+    pragmatic_ru,
+    pragmatic_en,
 
 }
 

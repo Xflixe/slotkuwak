@@ -10,8 +10,6 @@ import main_en from "./locales/en/main.json";
 import main_ru from "./locales/ru/main.json";
 import main_es from "./locales/es/main.json";
 
-
-
 i18n
     .use(Backend)
     .use(LanguageDetector)

@@ -299,7 +299,7 @@ const SignUp =() =>{
                          }else{
                              signIn({username:data.username,password:data.password})
 
-                             if(window.top.location.href.indexOf('landing') !== -1){
+                             if(window.top.location.href.indexOf('landing') !== -1 || window.top.location.href.indexOf('cashback40') !== -1){
                                  window.top.location.href = `https://www.planetaxbet.com/${i18n.language}/main`
                              }
                          }

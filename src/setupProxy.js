@@ -2,8 +2,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function(app) {
 
     const proxy = {
-        target: 'http://192.168.1.29:8072',
-        //target: 'http://192.168.1.20:8072',
+        target: 'http://lasha.planetaxbet.com:8072',
+        //target: 'http://192.168.1.29:8072',
         //target: 'https://www.planetaxbet.com',
         //target: 'http://10.8.0.6:8072',
         //target: 'https://staging.planetaxbet.com',
@@ -25,7 +25,8 @@ module.exports = function(app) {
 
     const proxyTournaments = {
         //target: 'https://www.planetaxbet.com/',
-        target: 'http://192.168.1.29:8072',
+        target: 'http://lasha.planetaxbet.com:8072',
+        //target: 'http://192.168.1.29:8072',
         //target: 'https://staging.planetaxbet.com',
         //target: 'https://zur.planetaxbet.com',
         logLevel:"debug",
