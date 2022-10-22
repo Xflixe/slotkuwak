@@ -60,8 +60,6 @@ const  App=()=> {
             allData:arr
         }
         setMessage({...newArr})
-        console.log('message',message,closeId)
-
     }
 
 
@@ -120,6 +118,7 @@ const  App=()=> {
         const withdrawModal= event.subscribe("withdrawModal",setWithdrawModal)
         const welcomeBonus= event.subscribe("welcomeBonus",setWelcomeBonus)
         const message = event.subscribe("message",setMessage)
+        const getMessage = event.subscribe("getMessage",messages)
 
         //checkLanguage()
         const listener = event.subscribe("plxEvent",(e)=>{
@@ -140,6 +139,7 @@ const  App=()=> {
             listener.unsubscribe()
             welcomeBonus.unsubscribe()
             message.unsubscribe()
+            getMessage.unsubscribe()
         }
     },[])
 

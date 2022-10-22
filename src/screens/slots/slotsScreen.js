@@ -313,6 +313,9 @@ const SlotsScreen = () =>{
                 <div className="container wrapper">
                     <div className="row">
                         <div className="col-12 d-flex align-items-center slot-new-filter">
+
+
+
                             <button className={`${tab==="all"?'active':''}`} onClick={()=>{
                                 setTab('all')
                                 setProviders([..._.map(providers,(v,k)=>{
@@ -320,6 +323,14 @@ const SlotsScreen = () =>{
                                     return v;
                                 })])
                             }}>{t("All")}</button>
+
+                            {/*{
+                                _.map(filters,filter => <button key={filter.id} onClick={()=>{
+                                    console.log(filter.id)
+                                    //getFilteredSlots(filter.id)
+                                }}>{filter.name}  <i>{filter?.options?.itemsCount}</i></button>)
+                            }*/}
+
                             {User.isLogged && _.size(freeSpin)>0 && <button className={`${tab==="freeSpin"?'active':''}`} data-new="new" onClick={()=>setTab('freeSpin')}>{t("Free Spin")}</button>}
                             {/*<button onClick={()=>setTab('favourite')}>{t("Favourite")}</button>*/}
                             {/*<button onClick={()=>setTab('trending')}>{t("Trending")}</button>*/}

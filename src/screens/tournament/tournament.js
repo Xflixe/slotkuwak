@@ -97,6 +97,7 @@ const Tournament = () =>{
 
 
     useEffect(()=>{
+        console.log(`/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
         setUrl(`/tournaments${page? '/'+page :''}${tourId? '/'+tourId :''}`)
     },[page,tourId])
 

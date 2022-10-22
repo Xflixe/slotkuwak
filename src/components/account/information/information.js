@@ -9,6 +9,7 @@ import {SvgDot} from "../../index";
 import PLXModal from "../../modal/PLXModal";
 import {useHistory, useParams} from "react-router-dom";
 import {UseEvent} from "../../../core/hooks/useEvent";
+import moment from "moment";
 
 const currency = [
 /*
@@ -321,6 +322,10 @@ const Information = () => {
             setPromo({...promo,loader: true})
             Actions.User.promoCode(promo.code).then(response=>{
                 if(response.status){
+                    setTimeout(function(){
+                        ev.emit('getMessage',{});
+                    },500)
+
                     ev.emit('notify', {
                         show:true,
                         text:t('Your promo code has been activated'),
@@ -328,13 +333,32 @@ const Information = () => {
                         title:t('Success')
                     })
                 }else{
-                    ev.emit('notify', {
-                        show:true,
-                        text:response?.error?.message,
-                        type:'error',
-                        title:t('Error')
-                    })
+                    // პრომო კოდის გააქტიურების შეცდომა
+                    if(response?.error?.message.indexOf('ORA-20343') !== -1){
+                        ev.emit('notify', {
+                            show:true,
+                            text: t('Promo code is already used!'),
+                            type:'error',
+                            title:t('Promo Code')
+                        })
+                    }else if(response?.error?.resultCode === 400){
+                        ev.emit('notify', {
+                            show:true,
+                            text: t('you have been blocked till: ') + moment.utc(response?.error?.message).local().format('HH:mm, DD-MM-YYYY'),
+                            type:'error',
+                            title:t('Promo Code')
+                        })
+                    }else{
+                        ev.emit('notify', {
+                            show:true,
+                            text:response?.error?.message,
+                            type:'error',
+                            title:t('Error')
+                        })
+                    }
                 }
+                setPromo({code:'', loader:false})
+            }).catch(e=>{
                 setPromo({code:'', loader:false})
             })
         }else {
