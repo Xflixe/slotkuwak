@@ -233,7 +233,11 @@
   "Your account is blocked. Please contact our support": "Ваша учетная запись заблокировано. Пожалуйста, свяжитесь с нашей службой поддержки",
   "Promo code is already used!": "Промокод уже использован!",
   "Your promo code has been activated": "Ваш промокод активирован",
-  "Please enter your promo code": "Пожалуйста, введите промо-код"
+  "Please enter your promo code": "Пожалуйста, введите промо-код",
+  "not found. Please check the details and try again": "не найден. Проверьте данные и повторите попытку.",
+  "Invalid Promo Code": "Промо-код Недействителен",
+  "BLOCK_24_PROMO_CODE": "Использование промокода заблокировано на 24 часа из-за множественных неверных попыток.",
+  "Promo Code Locked": "Промокод Заблокирован"
 
 
 }

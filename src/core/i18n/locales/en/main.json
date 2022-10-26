@@ -250,6 +250,10 @@
   "Your account is blocked. Please contact our support": "Your account is blocked. Please contact our support",
   "Promo code is already used!": "Promo code is already used!",
   "Your promo code has been activated": "Your promo code has been activated",
-  "Please enter your promo code": "Please enter your promo code"
+  "Please enter your promo code": "Please enter your promo code",
+  "not found. Please check the details and try again": "not found. Please check the details and try again",
+  "Invalid Promo Code": "Invalid Promo Code",
+  "BLOCK_24_PROMO_CODE": "Using a promo code is locked for 24 hours, due to multiple incorrect attempts.",
+  "Promo Code Locked": "Promo Code Locked"
 
 }

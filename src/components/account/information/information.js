@@ -344,11 +344,21 @@ const Information = () => {
                     }else if(response?.error?.resultCode === 400){
                         ev.emit('notify', {
                             show:true,
-                            text: t('you have been blocked till: ') + moment.utc(response?.error?.message).local().format('HH:mm, DD-MM-YYYY'),
+                            text: t('BLOCK_24_PROMO_CODE'),
+                            //text: t('you have been blocked till: ') + moment.utc(response?.error?.message).local().format('HH:mm, DD-MM-YYYY'),
                             type:'error',
-                            title:t('Promo Code')
+                            title:t('Promo Code Locked')
                         })
-                    }else{
+                    }
+                    else if(response?.error?.resultCode === 44){
+                        ev.emit('notify', {
+                            show:true,
+                            text: t('not found. Please check the details and try again'),
+                            type:'error',
+                            title: t('Invalid Promo Code')
+                        })
+                    }
+                    else{
                         ev.emit('notify', {
                             show:true,
                             text:response?.error?.message,

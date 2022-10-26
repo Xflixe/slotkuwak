@@ -1,6 +1,5 @@
 html, body, #root {
   height: 100%;
-  overflow: hidden;
 }
 
 .tournament {
@@ -38,6 +37,7 @@ iframe[title="Button to launch messaging window"] {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  overflow: hidden;
 }
 #tournament .tournament {
   flex: 1;

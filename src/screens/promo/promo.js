@@ -14,6 +14,8 @@ import {
     express_en,
     pragmatic_ru,
     pragmatic_en,
+    happy_halloween_ru,
+    happy_halloween_en
 } from '../../assets/img/promo/promo';
 import {Footer, Header, NewSWP, Swp} from "../../components";
 import PromoCard from "../../components/promo/promoCard";
@@ -61,6 +63,12 @@ const PromoScreen = () =>{
                 url:"promotions/pragmatic",
                 title:"ЭКСПРЕСС БОНУС В СПОРТЕ.",
                 text:"Делай ставки, используй экспресс-бонус и увеличивай свою прибыль."
+            },
+            {
+                icon:happy_halloween_ru,
+                url:"promotions/happy_halloween",
+                title:"Happy Halloween",
+                text:"Играй в Happy Halloween и получи гарантированный 10% Кэшбэк на выбранные игры"
             }
         ],
         en: [
@@ -87,6 +95,12 @@ const PromoScreen = () =>{
                 url:"promotions/pragmatic",
                 title:"Get cash prizes or freespins on any spin",
                 text:"Win unexpected cash prizes every day, and reach the weekly leaderboard"
+            },
+            {
+                icon:happy_halloween_en,
+                url:"promotions/happy_halloween",
+                title:"Happy Halloween",
+                text:"Play Happy Halloween and get guaranteed 10% cashback on the selected games."
             }
         ]
     }

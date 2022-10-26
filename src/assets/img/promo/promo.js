@@ -16,6 +16,9 @@ import express_en from './express_en.png';
 import pragmatic_ru from './pragmatic-ru.png';
 import pragmatic_en from './pragmatic-en.png';
 
+import happy_halloween_ru from './happy_halloween_ru.png';
+import happy_halloween_en from './happy_halloween_en.png';
+
 export  {
 
     promo1,
@@ -31,6 +34,8 @@ export  {
     express_en,
     pragmatic_ru,
     pragmatic_en,
+    happy_halloween_ru,
+    happy_halloween_en
 
 }
 

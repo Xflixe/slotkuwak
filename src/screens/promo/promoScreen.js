@@ -55,6 +55,21 @@ const PromoScreen = () =>{
                 window.open(`/${i18n.language}/playSlot?id=${v.id}&gameId=${v.gameId}`)
             }
         }
+        if(!window.singIn){
+            window.singIn = function (){
+                ev.emit('signIn',true)
+            }
+        }
+        if(!window.signUp){
+            window.signUp = function (){
+                ev.emit('signUp',true)
+            }
+        }
+        if(!window.isLogged){
+            window.isLogged = function (){
+              return User.isLogged
+            }
+        }
 
 
         return ()=>{
@@ -76,6 +91,15 @@ const PromoScreen = () =>{
             if(window.playSlot){
                 delete  window.playSlot
             }
+            if(window.singIn){
+                delete  window.singIn
+            }
+            if(window.signUp){
+                delete  window.signUp
+            }
+            if(window.isLogged){
+                delete  window.isLogged
+            }
         }
     },[])
 
@@ -83,6 +107,10 @@ const PromoScreen = () =>{
         setUrl(`/promos/${page}/index_${i18n.language}.html?${Math.random()}`)
         //console.log(lang,i18n.language)
     },[lang,i18n.language])
+
+    useEffect(()=>{
+        document.getElementById('promo_frame').contentWindow.location.reload();
+    },[User.isLogged])
 
     const [slideData,setSlideData] = useState(
         window.innerWidth > 767 ? [
@@ -107,6 +135,7 @@ const PromoScreen = () =>{
                     src={url}
                     frameBorder="0"
                     className={"promotion-frame"}
+                    id={"promo_frame"}
                     width="100%" height="100%"
                     style={{height:frameHeight}}
                 />

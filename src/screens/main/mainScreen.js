@@ -13,6 +13,8 @@ import express_ru from "../../assets/img/slide/express_ru.png";
 import express_en from "../../assets/img/slide/express_en.png";
 import pragmatic_ru from "../../assets/img/slide/pragmatic-ru.png";
 import pragmatic_en from "../../assets/img/slide/pragmatic-en.png";
+import happy_halloween_ru from "../../assets/img/slide/happy_halloween_ru.png";
+import happy_halloween_en from "../../assets/img/slide/happy_halloween_en.png";
 
 import img_mob_wb_ru from "../../assets/img/slide/wb_mob_ru.png";
 import img_mob_wb_en from "../../assets/img/slide/wb_mob_en.png";
@@ -56,12 +58,14 @@ const MainScreen = () =>{
         window.innerWidth > 767 ?
             {
             ru: [
+                {id: 4, icon: happy_halloween_ru, url: `/ru/promotions/happy_halloween`},
                 {id: 3, icon: pragmatic_ru, url: `/ru/promotions/pragmatic`},
                 {id:1, icon:banner_ru, method:()=>slide1Action()},
                 {id: 2, icon: express_ru, url: `/ru/promotions/express_bonus`},
                 {id: 5, icon: img_desk_wb_ru, url: `/ru/promotions/welcome_bonus`},
             ],
             en: [
+                {id: 4, icon: happy_halloween_en, url: `/en/promotions/happy_halloween`},
                 {id: 3, icon: pragmatic_en, url: `/en/promotions/pragmatic`},
                 {id:1, icon:banner_en, method:()=>slide1Action()},
                 {id: 2, icon: express_en, url: `/ru/promotions/express_bonus`},

@@ -188,8 +188,8 @@ const Withdraw = ({onClose})=>{
                             </div>
                             {
                                 exRate? <>
-                                        <div className={`new-input-label ${feeError ? 'withdraw-error' : ''}`} >
-                                            <div className="input-box" >
+                                        <div className={`new-input-label  ${feeError ? 'withdraw-error' : ''}`} >
+                                            <div className={`input-box ${error("amount")}`} >
                                                 <input type={"number"} name="Amount" id="amount" value={withdraw?.amount} onChange={event => {
 
                                                     setWithdraw({...withdraw,amount:event.target.value});
@@ -252,7 +252,7 @@ const Withdraw = ({onClose})=>{
                                             </div>
                                         </div>
 
-                                        <div className={`new-input-label`}  >
+                                        <div className={`new-input-label ${error("address")}`} >
                                             <div className="input-box" style={{position:'relative'}}>
                                                 <input type="text" name="account" id="account"
                                                        value={withdraw?.address} onChange={event => {
